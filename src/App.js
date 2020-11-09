@@ -26,7 +26,7 @@ export default function App() {
 
   const submit = document.querySelector(".loginButton");
   const credentialsObject = Object.create(Credentials);
-  //console.log(credentials);
+  console.log(credentials);
   if (submit) {
     document.querySelectorAll(".login input").forEach((input) => {
       input.addEventListener("keyup", () => {
@@ -34,12 +34,12 @@ export default function App() {
         credentialsObject.password = document.querySelector(".password").value;
         // credentials.push(credentialsObject);
         // console.log(credentialsObject);
-        submit.addEventListener("click", () => {
-          setCredentials(credentialsObject);
-        });
       });
     });
   }
+  submit.addEventListener("click", () => {
+    setCredentials(credentialsObject);
+  });
 
   return (
     <AuthProvider>
