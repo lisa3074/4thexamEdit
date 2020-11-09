@@ -30,7 +30,6 @@ const Login = ({ history }) => {
 
   function handleChange(e) {
     e.target.type === "email" ? setEmail(e.target.value) : setPassword(e.target.value);
-    console.log(emailHandler + " " + passwordHandler);
   }
   const { currentUser } = useContext(AuthContext);
 

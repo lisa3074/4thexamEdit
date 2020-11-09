@@ -26,22 +26,14 @@ export default function App() {
 
   const submit = document.querySelector(".loginButton");
   const credentialsObject = Object.create(Credentials);
-  /*   if (submit) {
-    submit.addEventListener("submit", () => {
-      const credentialsObject = Object.create(Credentials);
-      credentialsObject.email = document.querySelector(".email").value;
-      credentialsObject.password = document.querySelector(".password").value;
-      credentials.push(credentialsObject);
-      console.log(credentials);
-    });
-  } */
+  //console.log(credentials);
   if (submit) {
     document.querySelectorAll(".login input").forEach((input) => {
       input.addEventListener("keyup", () => {
         credentialsObject.email = document.querySelector(".email").value;
         credentialsObject.password = document.querySelector(".password").value;
         // credentials.push(credentialsObject);
-        console.log(credentialsObject);
+        // console.log(credentialsObject);
         submit.addEventListener("click", () => {
           setCredentials(credentialsObject);
         });
