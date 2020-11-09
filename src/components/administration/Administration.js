@@ -1,17 +1,20 @@
 import { app } from "firebase-admin";
 import React from "react";
+import { AuthProvider } from "../jsModules/firebase/auth";
 import { firebaseConfig } from "../jsModules/firebase/firebase";
 
 export default function Administration({ credentials }) {
   console.log("administration/Administration.js || Administration.js");
-  console.log(credentials);
+  //const currentUser = AuthProvider();
+  //console.log(currentUser);
   return (
     <>
       <h1>Administration</h1>
       <p>
-        {credentials.email}
+        {credentials != undefined ? credentials.email : ""}
         <br />
-        {credentials.password}
+        {credentials != undefined ? credentials.password : ""}
+        <br />
       </p>
       <button onClick={() => firebaseConfig.auth().signOut()}>Sign out</button>
     </>

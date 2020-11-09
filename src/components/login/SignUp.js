@@ -3,11 +3,12 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { firebaseConfig } from "../jsModules/firebase/firebase";
 
-const SignUp = ({ history }) => {
+const SignUp = ({ history, saveCredentials }) => {
   const [error, setError] = useState([null]);
   const handleSignUp = useCallback(
     async (e) => {
       e.preventDefault();
+      saveCredentials();
       const { email, password } = e.target.elements;
       try {
         await firebaseConfig.auth().createUserWithEmailAndPassword(email.value, password.value);
@@ -28,11 +29,11 @@ const SignUp = ({ history }) => {
         <p>Fill in the form below to log in.</p>
         <label>
           Email
-          <input name="email" type="email" placeholder="Email" />
+          <input name="email" type="email" placeholder="Email" className="email" />
         </label>
         <label>
           Password
-          <input name="password" type="password" placeholder="Password" name="password" />
+          <input name="password" type="password" placeholder="Password" name="password" className="password" />
         </label>
 
         <div>

@@ -4,22 +4,18 @@ import { Link } from "react-router-dom";
 import { firebaseConfig } from "../jsModules/firebase/firebase";
 import { AuthContext } from "../jsModules/firebase/auth";
 
-const Login = ({ history }) => {
+const Login = ({ history, saveCredentials }) => {
   const [error, setError] = useState([null]);
-  const [emailHandler, setEmail] = useState([""]);
-  const [passwordHandler, setPassword] = useState([""]);
 
   const handleLogin = useCallback(
     async (e) => {
       e.preventDefault();
+      saveCredentials();
       const { email, password } = e.target.elements;
-      console.log(email.value, password.value);
       try {
         await firebaseConfig.auth().signInWithEmailAndPassword(email.value, password.value);
         history.push("/");
       } catch (error) {
-        console.log(error.message);
-        console.log(error.code);
         error.message === "The password is invalid or the user does not have a password."
           ? setError("Either the user does not exist or the password does not match user")
           : setError(error.message);
@@ -28,9 +24,6 @@ const Login = ({ history }) => {
     [history]
   );
 
-  function handleChange(e) {
-    e.target.type === "email" ? setEmail(e.target.value) : setPassword(e.target.value);
-  }
   const { currentUser } = useContext(AuthContext);
 
   if (currentUser) {
@@ -46,25 +39,11 @@ const Login = ({ history }) => {
         <p>Fill in the form below to log in.</p>
         <label>
           Email
-          <input
-            className="email"
-            name="email"
-            type="email"
-            placeholder="Email"
-            onChange={handleChange}
-            value={emailHandler}
-          />
+          <input className="email" name="email" type="email" placeholder="Email" />
         </label>
         <label>
           Password
-          <input
-            className="password"
-            name="password"
-            type="password"
-            placeholder="Password"
-            onChange={handleChange}
-            value={passwordHandler}
-          />
+          <input className="password" name="password" type="password" placeholder="Password" />
         </label>
 
         <div>
