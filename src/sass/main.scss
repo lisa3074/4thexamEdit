@@ -1,4 +1,112 @@
-@use "partials/chat.scss";
-.App {
-  color: blue;
+@font-face {
+  font-family: "IBMPlexSans-Bold";
+  src: url("../fonts/IBMPlexSans-Bold.eot");
+  src: url("../fonts/IBMPlexSans-Bold.woff2") format("woff2"), url("../fonts/IBMPlexSans-Bold.woff") format("woff"),
+    url("../fonts/IBMPlexSans-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "IBMPlexSans-Medium";
+  src: url("../fonts/IBMPlexSans-Medium.eot");
+  src: url("../fonts/IBMPlexSans-Medium.woff2") format("woff2"), url("../fonts/IBMPlexSans-Medium.woff") format("woff"),
+    url("../fonts/IBMPlexSans-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "IBMPlexSans-Regular";
+  src: url("../fonts/IBMPlexSans-Regular.eot");
+  src: url("../fonts/IBMPlexSans-Regular.woff2") format("woff2"),
+    url("../fonts/IBMPlexSans-Regular.woff") format("woff"), url("../fonts/IBMPlexSans-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "IBMPlexSans-SemiBold";
+  src: url("../fonts/IBMPlexSans-SemiBold.eot");
+  src: url("../fonts/IBMPlexSans-SemiBold.woff2") format("woff2"),
+    url("../fonts/IBMPlexSans-SemiBold.woff") format("woff"),
+    url("../fonts/IBMPlexSans-SemiBold.ttf") format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary: #1ec69a;
+  --secondary: #384d62;
+  --tietery: #b0b2b5;
+  --background: #f3f7fc;
+  --dark-text: #222224;
+  --light-text: #9b9b9b;
+  --yellow: #f0c75d;
+  --orange: #d98c6a;
+  --chat-you: #eaecef;
+  --chat-me: #c9eee5;
+
+  //PLANNER COLORS
+
+  --orange-p: #fb6126;
+  --green-p: #41c1a0;
+  --purple-p: #8567b2;
+  --yellow-p: #b4b256;
+  --blue-p: #34d0d5;
+  --black-p: #222224;
+
+  //SHADOWS
+  --shadow-button: 2px 2px 3px #384d623f;
+  --shadow-image: 0px 1px 10px #384d626e;
+
+  --border-radius: 10px;
+
+  //BUTTONS
+  --border-button: 20px;
+  --gradient: linear-gradient(0deg, rgba(30, 198, 154, 1) 0%, rgba(98, 189, 166, 1) 100%);
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+}
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+h1 {
+  font-family: "IBMPlexSans-SemiBold";
+}
+h2 {
+  font-family: "IBMPlexSans-Bold";
+}
+h3 {
+  font-family: "IBMPlexSans-Medium";
+}
+p,
+label .MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated {
+  font-family: "IBMPlexSans-Regular";
+}
+button {
+  font-family: "IBMPlexSans-Medium";
+  color: white;
+  font-size: 0.85rem;
+  padding: 0.5rem 2.5rem;
+  border: none;
+  box-shadow: var(--shadow-button);
+  border-radius: var(--border-button);
+  letter-spacing: 0.5px;
+}
+img {
+  box-shadow: var(--shadow-image);
+}
+.text-btn {
+  background-color: var(--primary);
+  background: var(--gradient);
+}
+
+a {
+  color: currentColor;
+  text-decoration: none;
+}
+
+.hide {
+  display: none;
 }

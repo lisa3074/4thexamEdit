@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-import { firebaseConfig } from "../jsModules/firebase/firebase";
+import { firebaseConfig } from "../../jsModules/firebase/firebase";
 
 const SignUp = ({ history, saveCredentials }) => {
   const [error, setError] = useState([null]);

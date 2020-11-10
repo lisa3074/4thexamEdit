@@ -1,8 +1,12 @@
 import React, { useCallback, useState, useContext } from "react";
+import Grid from "@material-ui/core/Grid";
+import AlternateEmailOutlinedIcon from "@material-ui/icons/AlternateEmailOutlined";
+import VpnKeyIcon from "@material-ui/icons/VpnKey";
+import LockIcon from "@material-ui/icons/Lock";
+import TextField from "@material-ui/core/TextField";
 import { withRouter, Redirect } from "react-router";
-import { Link } from "react-router-dom";
-import { firebaseConfig } from "../jsModules/firebase/firebase";
-import { AuthContext } from "../jsModules/firebase/auth";
+import { firebaseConfig } from "../../jsModules/firebase/firebase";
+import { AuthContext } from "../../jsModules/firebase/auth";
 
 const Login = ({ history, saveCredentials }) => {
   const [error, setError] = useState([null]);
@@ -31,33 +35,44 @@ const Login = ({ history, saveCredentials }) => {
   }
 
   return (
-    <div className="login">
-      <form onSubmit={handleLogin}>
-        <h1>
-          Log in to <Link to="/"> Skatteguiden</Link>
-        </h1>
-        <p>Fill in the form below to log in.</p>
-        <label>
-          Email
-          <input className="email" name="email" type="email" placeholder="Email" />
-        </label>
-        <label>
-          Password
-          <input className="password" name="password" type="password" placeholder="Password" />
-        </label>
-
-        <div>
-          {error ? <p>{error}</p> : null}
-          <button className="loginButton" type="submit">
-            Log in
-          </button>
+    <main className="login-wrapper">
+      <div className="login">
+        <div className="signin-icon">
+          <LockIcon />
         </div>
-        <hr></hr>
-        <p>
-          Don't have an account? If you work at Skatteguiden you can <Link to="/signup">Sign up</Link> here.
-        </p>
-      </form>
-    </div>
+        <h2>Sign in</h2>
+
+        <form onSubmit={handleLogin}>
+          <div className="login-inputs">
+            <Grid container spacing={1} alignItems="flex-end">
+              <Grid item>
+                <AlternateEmailOutlinedIcon />
+              </Grid>
+              <Grid item>
+                <TextField id="email" label="Email" className="email" name="email" type="email" />
+              </Grid>
+            </Grid>
+          </div>
+          <div className="login-inputs">
+            <Grid container spacing={1} alignItems="flex-end">
+              <Grid item>
+                <VpnKeyIcon />
+              </Grid>
+              <Grid item>
+                <TextField id="password" label="Password" className="password" name="password" type="password" />
+              </Grid>
+            </Grid>
+          </div>
+
+          {error ? <p>{error}</p> : null}
+          <div className="button-wrapper">
+            <button className="loginButton text-btn btn" type="submit">
+              Sign in
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
   );
 };
 
