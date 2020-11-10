@@ -5,6 +5,7 @@ import { auth } from "./components/jsModules/firebase/firebase";
 import "firebase/auth";
 
 /* needed */
+import "./sass/scss/login.scss";
 import "./sass/main.scss";
 import React, { useEffect, useState } from "react";
 import Login from "./components/login/Login";

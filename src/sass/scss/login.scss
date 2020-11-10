@@ -1,0 +1,74 @@
+.login {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*  padding-bottom: 40vh; */
+  h2 {
+    padding: 1rem 0 2rem;
+  }
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    svg {
+      fill: var(--primary);
+    }
+  }
+}
+
+.login-inputs {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  input,
+  label {
+    width: 100%;
+  }
+  svg {
+    width: 18px;
+  }
+  label {
+    font-size: 0.875rem;
+    padding-bottom: 0px;
+  }
+
+  div:nth-child(2).MuiGrid-root.MuiGrid-item {
+    width: calc(100% - 26px - 1rem);
+  }
+  .MuiFormControl-root.MuiTextField-root.email,
+  .MuiFormControl-root.MuiTextField-root.password {
+    width: 100%;
+  }
+}
+
+.signin-icon {
+  background-color: var(--secondary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    fill: white;
+  }
+}
+
+.login .button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 2rem;
+}
+.login-wrapper {
+  width: 100%;
+  height: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
