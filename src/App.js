@@ -14,6 +14,23 @@ import Administration from "./components/administration/overview/Administration"
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { AuthProvider } from "./jsModules/firebase/auth";
 
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#38C29E",
+    },
+    secondary: {
+      light: "#0066ff",
+      main: "#384D62",
+      contrastText: "#ffcc00",
+    },
+    contrastThreshold: 3,
+    tonalOffset: 0.2,
+  },
+});
+
 export default function App() {
   console.log("App");
 
@@ -27,20 +44,21 @@ export default function App() {
   const saveCredentials = () => {
     credentialsObject.email = document.querySelector(".email").value;
     credentialsObject.password = document.querySelector(".password").value;
-    // console.log(credentialsObject);
     setCredentials(credentialsObject);
   };
 
   return (
-    <AuthProvider>
-      <Router>
-        <Switch>
-          <PrivateRoute exact path="/" credentials={credentials} component={Administration} />
-          <Route exact path="/signup" component={() => <SignUp saveCredentials={saveCredentials} />}></Route>
-          <Route exact path="/login" component={() => <Login saveCredentials={saveCredentials} />}></Route>
-        </Switch>
-      </Router>
-    </AuthProvider>
+    <ThemeProvider theme={theme}>
+      <AuthProvider>
+        <Router>
+          <Switch>
+            <PrivateRoute exact path="/" credentials={credentials} component={Administration} />
+            <Route exact path="/signup" component={() => <SignUp saveCredentials={saveCredentials} />}></Route>
+            <Route exact path="/login" component={() => <Login saveCredentials={saveCredentials} />}></Route>
+          </Switch>
+        </Router>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

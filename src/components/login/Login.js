@@ -1,20 +1,20 @@
+import { firebaseConfig } from "../../jsModules/firebase/firebase";
+import { AuthContext } from "../../jsModules/firebase/auth";
 import React, { useCallback, useState, useContext } from "react";
+import { withRouter, Redirect } from "react-router";
 import Grid from "@material-ui/core/Grid";
 import AlternateEmailOutlinedIcon from "@material-ui/icons/AlternateEmailOutlined";
 import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import LockIcon from "@material-ui/icons/Lock";
 import TextField from "@material-ui/core/TextField";
-import { withRouter, Redirect } from "react-router";
-import { firebaseConfig } from "../../jsModules/firebase/firebase";
-import { AuthContext } from "../../jsModules/firebase/auth";
+import Question from "./Question";
 
-const Login = ({ history, saveCredentials }) => {
+const Login = ({ history }) => {
   const [error, setError] = useState([null]);
 
   const handleLogin = useCallback(
     async (e) => {
       e.preventDefault();
-      saveCredentials();
       const { email, password } = e.target.elements;
       try {
         await firebaseConfig.auth().signInWithEmailAndPassword(email.value, password.value);
@@ -34,6 +34,10 @@ const Login = ({ history, saveCredentials }) => {
     return <Redirect to="/" />;
   }
 
+  function questionClicked() {
+    document.querySelector(".Question").classList.toggle("hide");
+  }
+
   return (
     <main className="login-wrapper">
       <div className="login">
@@ -41,7 +45,6 @@ const Login = ({ history, saveCredentials }) => {
           <LockIcon />
         </div>
         <h2>Sign in</h2>
-
         <form onSubmit={handleLogin}>
           <div className="login-inputs">
             <Grid container spacing={1} alignItems="flex-end">
@@ -64,13 +67,18 @@ const Login = ({ history, saveCredentials }) => {
             </Grid>
           </div>
 
-          {error ? <p>{error}</p> : null}
+          {error ? <p className="error">{error}</p> : null}
           <div className="button-wrapper">
             <button className="loginButton text-btn btn" type="submit">
               Sign in
             </button>
           </div>
         </form>
+
+        <div className="question-icon" onClick={questionClicked}>
+          <h3>?</h3>
+        </div>
+        <Question />
       </div>
     </main>
   );
