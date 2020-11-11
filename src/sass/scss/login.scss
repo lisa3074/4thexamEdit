@@ -38,17 +38,9 @@
   svg {
     width: 18px;
   }
-  label {
-    font-size: 0.875rem;
-    padding-bottom: 0px;
-  }
 
   div:nth-child(2).MuiGrid-root.MuiGrid-item {
     width: calc(100% - 26px - 1rem);
-  }
-  .MuiFormControl-root.MuiTextField-root.email,
-  .MuiFormControl-root.MuiTextField-root.password {
-    width: 100%;
   }
 }
 

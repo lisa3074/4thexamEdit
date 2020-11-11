@@ -4,6 +4,7 @@ import "firebase/auth";
 import "./sass/scss/reset.scss";
 import "./sass/scss/menu.scss";
 import "./sass/scss/login.scss";
+import "./sass/scss/newUserForm.scss";
 import "./sass/main.scss";
 import "./sass/scss/adminOverview.scss";
 import React, { useEffect, useState } from "react";
@@ -15,6 +16,8 @@ import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-d
 import { AuthProvider } from "./jsModules/firebase/auth";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+//Change upper to lower when ready for production build.
+//import { unstable_createMuiStrictModeTheme as createMuiTheme } from "@material-ui/core";
 
 const theme = createMuiTheme({
   palette: {
@@ -53,6 +56,7 @@ export default function App() {
         <Router>
           <Switch>
             <PrivateRoute exact path="/" credentials={credentials} component={Administration} />
+            <PrivateRoute exact path="/administration" credentials={credentials} component={Administration} />
             <Route exact path="/signup" component={() => <SignUp saveCredentials={saveCredentials} />}></Route>
             <Route exact path="/login" component={() => <Login saveCredentials={saveCredentials} />}></Route>
           </Switch>

@@ -43,6 +43,7 @@
 
 .MenuNav {
   padding-top: 3rem;
+  padding-bottom: 2rem;
   li {
     display: flex;
     align-items: center;
@@ -63,5 +64,42 @@
   }
   li:nth-child(5) svg {
     height: 22px;
+  }
+}
+
+.SubMenu {
+  width: 100%;
+  background-color: var(--secondary);
+  color: white;
+  display: grid;
+  grid-template-areas: "menu btn optional";
+  padding: 0 1rem;
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+  .float-btn {
+    background-color: var(--primary);
+    width: 50px;
+    height: 50px;
+    grid-area: btn;
+    justify-self: center;
+    position: absolute;
+    transform: translate(0px, -25px);
+  }
+  .menuIcon {
+    grid-area: menu;
+    justify-self: flex-start;
+    align-self: center;
+    width: 35px;
+    height: 35px;
+  }
+  .newUserIcon {
+    grid-area: optional;
+    justify-self: flex-end;
+    align-self: center;
   }
 }
