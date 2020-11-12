@@ -1,0 +1,53 @@
+.FilterUsers {
+  background-color: white;
+  box-shadow: var(--card-shadow);
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  padding: 1rem;
+
+  .filter-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+  .division,
+  .hours {
+    width: 45%;
+  }
+  select.MuiSelect-outlined {
+    font-family: "IBMPlexSans-Regular";
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    transform: translate(0px, -1px);
+    color: var(--dark-text);
+  }
+
+  label {
+    color: var(--light-text);
+    font-family: "IBMPlexSans-Medium";
+  }
+  .MuiInputLabel-outlined {
+    transform: translate(14px, 8px) scale(0.9);
+  }
+  .searchUsers {
+    position: relative;
+    .MuiInputLabel-shrink {
+      transform: translate(0px, 10px) scale(0.75);
+    }
+  }
+  .search-icon {
+    position: absolute;
+    transform: translate(-2rem, 16px);
+    width: 25px;
+    height: 25px;
+    fill: var(--dark-text);
+    stroke: var(--dark-text);
+    stroke-width: 1px;
+  }
+  .input-wrapper {
+    padding: 0 0.5rem;
+    .MuiFormControl-root.MuiTextField-root label.MuiFormLabel-root {
+      font-family: "IBMPlexSans-Regular";
+      font-size: 0.8rem;
+    }
+  }
+}

@@ -11,7 +11,13 @@ export default function FormNav() {
   function submit(e) {
     e.preventDefault();
     console.log("submited");
-    clearUserForm();
+    if (
+      document.querySelector(".ViewProfile").classList.contains("hide") &&
+      document.querySelector(".password input").value === ""
+    ) {
+    } else {
+      clearUserForm();
+    }
   }
 
   return (
@@ -25,7 +31,7 @@ export default function FormNav() {
       <div className="float-btn back hide" onClick={backwards}>
         <ArrowBackRoundedIcon />
       </div>
-      <button className="float-btn check hide" disabled onClick={submit}>
+      <button className="float-btn check hide" onClick={submit}>
         <CheckRoundedIcon />
       </button>
     </nav>

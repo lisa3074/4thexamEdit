@@ -1,12 +1,7 @@
-export function displayProfile() {
+export function displayProfile(userId) {
   document.querySelector(".ViewProfile").classList.remove("hide");
+  document.querySelector(".ViewProfile").setAttribute("data-user", userId);
   document.querySelector(".UserList").classList.add("hide");
-  document.querySelector(".menuIcon").classList.add("hide");
-  document.querySelector(".menuBack").classList.remove("hide");
-  document.querySelector(".menuSearch").classList.add("hide");
-  document.querySelector(".menuEdit").classList.remove("hide");
-  document.querySelector(".newUserIcon").classList.add("hide");
-  document.querySelector(".menuDelete").classList.remove("hide");
 }
 export function hidePrivateInfo() {
   console.log("hide privat");
@@ -19,4 +14,12 @@ export function showPrivateInfo() {
   document.querySelector(".visibilityOn").classList.add("hide");
   document.querySelector(".visibilityOff").classList.remove("hide");
   document.querySelector(".Private .info-wrapper").classList.remove("hide");
+}
+export function setSubmMenu() {
+  document.querySelector(".menuIcon").classList.add("hide");
+  document.querySelector(".menuBack").classList.remove("hide");
+  document.querySelector(".menuSearch").classList.add("hide");
+  document.querySelector(".menuEdit").classList.remove("hide");
+  document.querySelector(".newUserIcon").classList.add("hide");
+  document.querySelector(".menuDelete").classList.remove("hide");
 }

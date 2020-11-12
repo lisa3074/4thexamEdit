@@ -39,7 +39,7 @@ export default function WorkForm() {
       </div>
 
       <div className="input-wrapper">
-        <FormControl error>
+        <FormControl>
           <InputLabel id="hours">Work hours</InputLabel>
           <Select name="Work hours" className="hours" labelId="hours" value={hours} onChange={handleHours} required>
             <MenuItem value="full time">Full time</MenuItem>

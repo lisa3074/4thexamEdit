@@ -21,3 +21,14 @@ export function showMenu() {
   document.querySelector(".Chat").classList.add("hide");
   document.querySelector(".Menu").classList.remove("hide");
 }
+export function searchUsers() {
+  document.querySelector(".menuSearch").classList.add("hide");
+  document.querySelector(".menuClose").classList.remove("hide");
+  document.querySelector(".FilterUsers").classList.remove("hide");
+}
+export function closeSearch() {
+  document.querySelector(".menuSearch").classList.remove("hide");
+  document.querySelector(".menuClose").classList.add("hide");
+  document.querySelector(".FilterUsers").classList.add("hide");
+  //RESET LIST/SEARCH
+}

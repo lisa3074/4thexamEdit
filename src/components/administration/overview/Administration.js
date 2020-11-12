@@ -12,6 +12,7 @@ export default function Administration({ credentials }) {
   console.log("administration/Administration.js || Administration.js");
   //const currentUser = AuthProvider();
   //console.log(currentUser);
+
   return (
     <section className="Administration">
       <TopBar></TopBar>

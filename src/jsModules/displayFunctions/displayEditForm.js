@@ -1,4 +1,5 @@
 import image from "../../images/lisa2020.jpg";
+import placeholder from "../../images/placeholder.png";
 
 export function editUser() {
   const $ = document.querySelector.bind(document);
@@ -34,6 +35,8 @@ export function editUser() {
 }
 export function clearUserForm() {
   const $ = document.querySelector.bind(document);
+  $(".FormPath > h2").textContent = "Add user";
+
   $(".UserForm").classList.add("hide");
   $(".PersonForm").classList.remove("hide");
   $(".WorkForm").classList.add("hide");
@@ -41,7 +44,7 @@ export function clearUserForm() {
   $(".check").classList.add("hide");
   $(".back").classList.add("hide");
   $("form").reset();
-  $(".previewImg").src = image;
+  $(".previewImg").src = placeholder;
   $(".float-btn.three").style.backgroundColor = "var(--tietery)";
   $(".float-btn.two").style.backgroundColor = "var(--tietery)";
   document.querySelector(".PrivateForm > .upload-wrapper > label > div > p").textContent = "Upload contract";

@@ -3,16 +3,28 @@ import image from "../../images/placeholder.png";
 export function forwards() {
   console.log("forwards");
   const $ = document.querySelector.bind(document);
-  if (!$(".PersonForm").classList.contains("hide")) {
+  if ($(".name input").value === "" && !$(".PersonForm").classList.contains("hide")) {
+    console.log("no input");
+  } else if (!$(".PersonForm").classList.contains("hide")) {
     $(".back").classList.remove("hide");
     $(".WorkForm").classList.remove("hide");
     $(".PersonForm").classList.add("hide");
-
     $(".float-btn.two").style.backgroundColor = "var(--secondary)";
+  } else if (
+    ($(".position input").value === "" ||
+      $(".division input").value === "" ||
+      $(".hours input").value === "" ||
+      $(".email input").value === "") &&
+    !$(".WorkForm").classList.contains("hide")
+  ) {
   } else if (!$(".WorkForm").classList.contains("hide")) {
     $(".PrivateForm").classList.remove("hide");
     $(".WorkForm").classList.add("hide");
     $(".float-btn.three").style.backgroundColor = "var(--secondary)";
+  } else if ($(".cpr input").value === "" && !$(".PrivateForm").classList.contains("hide")) {
+  } else if ($(".ViewProfile").classList.contains("hide")) {
+    if ($(".password input").value === "" && !$(".PrivateForm").classList.contains("hide")) {
+    }
   }
   setTimeout(() => {
     !$(".PrivateForm").classList.contains("hide")

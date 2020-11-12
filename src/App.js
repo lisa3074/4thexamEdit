@@ -6,6 +6,7 @@ import "./sass/scss/menu.scss";
 import "./sass/scss/login.scss";
 import "./sass/scss/newUserForm.scss";
 import "./sass/scss/viewProfile.scss";
+import "./sass/scss/filterUsers.scss";
 import "./sass/main.scss";
 import "./sass/scss/adminOverview.scss";
 import React, { useEffect, useState } from "react";
@@ -51,18 +52,20 @@ export default function App() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <AuthProvider>
-        <Router>
-          <Switch>
-            <PrivateRoute exact path="/" credentials={credentials} component={Administration} />
-            <PrivateRoute exact path="/administration" credentials={credentials} component={Administration} />
-            <Route exact path="/signup" component={() => <SignUp saveCredentials={saveCredentials} />}></Route>
-            <Route exact path="/login" component={() => <Login saveCredentials={saveCredentials} />}></Route>
-          </Switch>
-        </Router>
-      </AuthProvider>
-    </ThemeProvider>
+    <section className="App">
+      <ThemeProvider theme={theme}>
+        <AuthProvider>
+          <Router>
+            <Switch>
+              <PrivateRoute exact path="/" credentials={credentials} component={Administration} />
+              <PrivateRoute exact path="/administration" credentials={credentials} component={Administration} />
+              <Route exact path="/signup" component={() => <SignUp saveCredentials={saveCredentials} />}></Route>
+              <Route exact path="/login" component={() => <Login saveCredentials={saveCredentials} />}></Route>
+            </Switch>
+          </Router>
+        </AuthProvider>
+      </ThemeProvider>
+    </section>
   );
 }
 

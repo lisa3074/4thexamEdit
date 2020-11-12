@@ -8,7 +8,13 @@ import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import { editUser } from "../../jsModules/displayFunctions/displayEditForm";
-import { newUser, openMenu, delegation } from "../../jsModules/displayFunctions/subMenuNavigation";
+import {
+  newUser,
+  openMenu,
+  delegation,
+  searchUsers,
+  closeSearch,
+} from "../../jsModules/displayFunctions/subMenuNavigation";
 
 export default function SubMenu() {
   return (
@@ -20,13 +26,13 @@ export default function SubMenu() {
         <ArrowBackIosRoundedIcon />
       </div>
       <div className="float-btn">
-        <div className="menuSearch">
+        <div className="menuSearch" onClick={searchUsers}>
           <SearchRoundedIcon />
         </div>
         <div className="menuEdit hide" onClick={editUser}>
           <EditRoundedIcon />
         </div>
-        <div className="menuClose hide">
+        <div className="menuClose hide" onClick={closeSearch}>
           <CloseRoundedIcon />
         </div>
       </div>

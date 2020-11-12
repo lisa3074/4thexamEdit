@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import image from "../../../images/placeholder.png";
 import $ from "jquery";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
-export default function PersonForm() {
+export default function PersonForm(props) {
+  console.log(props);
+  /*   const [focus, setFocus] = useState(false);
+
+  function nameFocus(e) {
+    setFocus(true);
+  } */
+
   function preview(e) {
     console.log("preview");
     const file = $("input[type=file]").get(0).files[0];
@@ -14,7 +21,6 @@ export default function PersonForm() {
       };
       reader.readAsDataURL(file);
     }
-
     const lastBackSlash = e.target.value.lastIndexOf("\\") + 1;
     const fileName = e.target.value.substring(lastBackSlash, 50);
     document.querySelector(".PersonForm > .upload-wrapper > label > div > p").textContent = fileName;
@@ -23,7 +29,20 @@ export default function PersonForm() {
     <fieldset name="Person" className="PersonForm">
       <h2>PERSON</h2>
       <div className="input-wrapper">
-        <TextField name="Name" className="name" label="First and last name" required />
+        <TextField
+          id="name"
+          name="Name"
+          className="name"
+          label="First and last name"
+          value={props.text}
+          required
+          onFocus={() => {
+            props.setFocus(true);
+          }}
+          error={props.text === "" && props.focus}
+          onChange={props.handleName}
+          helperText={props.text === "" && props.focus ? "You need to fill out your name" : " "}
+        />
       </div>
       <div className="flex-wrapper">
         <div className="input-wrapper">

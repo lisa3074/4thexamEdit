@@ -143,6 +143,17 @@ a {
 .input-wrapper {
   padding: 0.7rem 0;
 }
+.App .MuiInputBase-input {
+  font-size: 0.875rem;
+  font-family: "IBMPlexSans-Regular";
+}
+span.MuiFormLabel-asterisk.Mui-error,
+.MuiFormHelperText-root.Mui-error.Mui-required {
+  color: var(--orange);
+}
+.MuiFormLabel-root.Mui-error.Mui-required {
+  color: var(--light-text);
+}
 .hide {
   display: none;
 }

@@ -1,9 +1,16 @@
 import React from "react";
 import image from "../../../images/lisa2020.jpg";
-import { displayProfile } from "../../../jsModules/displayFunctions/displayProfile";
-export default function UserCard() {
+import { displayProfile, setSubmMenu } from "../../../jsModules/displayFunctions/displayProfile";
+export default function UserCard(e) {
+  function detectId(e) {
+    console.log(e.target.parentNode.classList[1]);
+    const userId = e.target.parentNode.dataset.user;
+    displayProfile(userId);
+    setSubmMenu();
+  }
+
   return (
-    <article className="UserCard">
+    <article className="UserCard" data-user="a1">
       <img src={image} alt="" />
       <div className="info-container">
         <div className="info-wrapper">
@@ -19,7 +26,7 @@ export default function UserCard() {
           <p className="usercard division">Development</p>
         </div>
       </div>
-      <button className="usercard btn primary text-btn" onClick={displayProfile}>
+      <button className="usercard btn primary text-btn" onClick={(e) => detectId(e)}>
         View
       </button>
     </article>
