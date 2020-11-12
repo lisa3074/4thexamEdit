@@ -55,6 +55,7 @@
   //SHADOWS
   --shadow-button: 2px 2px 3px #384d623f;
   --shadow-image: 0px 1px 10px #384d626e;
+  --card-shadow: 0px 1px 15px #384d6228;
 
   --border-radius: 10px;
 
@@ -105,17 +106,19 @@ button {
   align-items: center;
   color: white;
   /*   position: fixed; */
-  svg {
-    fill: white;
-    stroke: white;
-    stroke-width: 1px;
-  }
   &:disabled {
     filter: brightness(1.5) saturate(0.2);
   }
 }
+.float-btn svg,
+.menuBack svg {
+  fill: white;
+  stroke: white;
+  stroke-width: 1px;
+}
 img {
   box-shadow: var(--shadow-image);
+  border-radius: 50%;
 }
 .text-btn {
   background-color: var(--primary);
@@ -138,7 +141,7 @@ a {
   }
 }
 .input-wrapper {
-  padding: 0.8rem 0;
+  padding: 0.7rem 0;
 }
 .hide {
   display: none;

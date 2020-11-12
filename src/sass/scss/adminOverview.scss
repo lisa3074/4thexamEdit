@@ -1,4 +1,45 @@
-.userlist {
+.Administration {
+  min-height: 100%;
+}
+.Main {
+  background-color: var(--background);
+  min-height: 100vh;
+  height: 100%;
+  padding: 0.5rem;
+}
+
+.UserCard {
+  width: 100%;
+  height: 11rem;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0px 1px 15px #384d6228;
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: 75% 25%;
+  grid-template-rows: 60% 40%;
+  grid-template-areas:
+    "info image"
+    "info button";
+  .info-container {
+    grid-area: info;
+  }
+  img {
+    grid-area: image;
+    justify-self: center;
+    align-self: flex-start;
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+  }
+  button {
+    grid-area: button;
+    padding: 0.4rem 1rem;
+    width: 5rem;
+    height: 2rem;
+    justify-self: center;
+    align-self: flex-end;
+  }
   h1,
   p {
     color: var(--dark-text);
@@ -9,10 +50,7 @@
     color: var(--light-text);
     font-size: 0.65rem;
   }
-  img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 50%;
+  .info-wrapper {
+    padding: 0 0rem 1.5rem;
   }
 }

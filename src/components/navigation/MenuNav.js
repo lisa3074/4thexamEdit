@@ -6,22 +6,18 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
 import LockIcon from "@material-ui/icons/Lock";
 import { firebaseConfig } from "../../jsModules/firebase/firebase";
+import { administration, newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 export default function MenuNav() {
-  function adminClick() {
-    document.querySelector(".Main").classList.remove("hide");
-    document.querySelector(".SubMenu").classList.remove("hide");
-    document.querySelector(".Menu").classList.add("hide");
-  }
   return (
     <div className="MenuNav">
       <ul>
-        <Link to="/administration" onClick={adminClick}>
+        <Link to="/administration" onClick={administration}>
           <li>
             <PeopleIcon />
             <h3 className="admin-link">Administration</h3>
           </li>
         </Link>
-        <li>
+        <li onClick={newUser}>
           <PersonAddIcon />
           <h3 className="new-user-link">New user</h3>
         </li>

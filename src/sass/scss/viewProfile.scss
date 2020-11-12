@@ -1,0 +1,166 @@
+.ViewProfile {
+  padding-bottom: 40px;
+  .Person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  img {
+    width: 130px;
+    height: 130px;
+  }
+  h1 {
+    padding-top: 1.5rem;
+  }
+  .userCard {
+    width: 100%;
+    background-color: white;
+    box-shadow: var(--card-shadow);
+    border-radius: var(--border-radius);
+    margin-bottom: 1.3rem;
+    padding: 1.5rem 1rem;
+    display: grid;
+    grid-template-areas: "left right";
+  }
+
+  h2 {
+    font-size: 0.69rem;
+    color: var(--light-text);
+  }
+  .heading {
+    font-size: 0.9rem;
+    color: var(--dark-stext);
+    grid-area: right;
+    justify-self: flex-end;
+    padding-right: 1rem;
+  }
+  .heading-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 1rem;
+    padding-right: 0;
+    svg.MuiSvgIcon-root {
+      margin: 1rem;
+      width: 20px;
+      height: 20px;
+    }
+  }
+  p {
+    font-size: 0.85rem;
+    padding: 0.3rem 0 2rem;
+  }
+  p:last-child,
+  .address {
+    padding-bottom: 0;
+  }
+  .info-wrapper {
+    grid-area: left;
+  }
+  .Private svg {
+    width: 30px;
+    height: 30px;
+    margin-top: 0.5rem;
+    fill: var(--primary);
+  }
+
+  .WorkLoad {
+    grid-template-areas:
+      "heading"
+      "bars";
+    grid-template-rows: 1rem 18rem;
+    .heading {
+      grid-area: heading;
+      justify-self: flex-end;
+    }
+
+    .todo,
+    .done {
+      font-size: 0.625rem;
+      padding: 0 0.5rem;
+    }
+
+    .inProgress {
+      font-size: 0.625rem;
+    }
+    .todo-number,
+    .progress-number,
+    .done-number {
+      font-size: 1rem;
+      color: var(--dark-text);
+      width: 20px;
+      text-align: center;
+    }
+
+    .todoBar,
+    .progressBar,
+    .doneBar {
+      width: 20px;
+      border-radius: 5px;
+    }
+
+    .inProgress {
+      transform: rotate(90deg) translateX(45px);
+    }
+
+    .info-wrapper {
+      grid-area: bars;
+      display: grid;
+      grid-template-areas:
+        "todo progress done"
+        "todoInfo progressInfo doneInfo";
+      grid-template-rows: 60% 40%;
+      grid-template-columns: 22% 5rem auto;
+    }
+
+    .todoBar {
+      grid-area: todo;
+      background-color: var(--orange);
+      height: 3rem;
+      align-self: flex-end;
+      justify-self: flex-end;
+    }
+    .progressBar {
+      grid-area: progress;
+      background-color: var(--yellow);
+      height: 2rem;
+      align-self: flex-end;
+      justify-self: center;
+    }
+    .doneBar {
+      grid-area: done;
+      background-color: var(--primary);
+      height: 10rem;
+      align-self: flex-end;
+      justify-self: flex-start;
+    }
+    .todoInfo {
+      grid-area: todoInfo;
+      display: flex;
+      justify-self: flex-end;
+      padding-top: 0.5rem;
+    }
+    .progressInfo {
+      grid-area: progressInfo;
+      display: flex;
+      flex-direction: column;
+      justify-self: center;
+      align-items: center;
+      padding-top: 0.5rem;
+    }
+    .doneInfo {
+      grid-area: doneInfo;
+      display: flex;
+      justify-self: flex-start;
+      padding-top: 0.5rem;
+    }
+    .inProgress {
+      height: auto;
+    }
+
+    .done,
+    .todo {
+      padding-top: 0.35rem;
+    }
+  }
+}

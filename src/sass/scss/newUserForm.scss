@@ -10,7 +10,7 @@
   .FormPath {
     background-color: white;
     border-radius: var(--border-radius);
-    box-shadow: 0px 1px 15px #384d6228;
+    box-shadow: var(--card-shadow);
   }
   .FormPath {
     height: 7rem;
@@ -107,6 +107,9 @@ input[type="file"] {
 .upload-wrapper {
   padding-top: 1.5rem;
 }
+.PrivateForm .upload-wrapper {
+  padding-top: 1rem;
+}
 .previewImg {
   margin-top: 1rem;
   width: 100%;
@@ -114,6 +117,7 @@ input[type="file"] {
   max-height: 60%;
   object-fit: contain;
   box-shadow: none;
+  border-radius: 0px;
 }
 .FormNav {
   .float-btn {

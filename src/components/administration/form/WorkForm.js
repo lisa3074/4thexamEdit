@@ -25,12 +25,6 @@ export default function WorkForm() {
     setSelectedDate(e.target.value);
   };
 
-  function findFileName(e) {
-    const lastBackSlash = e.target.value.lastIndexOf("\\") + 1;
-    const fileName = e.target.value.substring(lastBackSlash, 50);
-    document.querySelector(".WorkForm > .upload-wrapper > label > div > p").textContent = fileName;
-  }
-
   console.log(hours);
   console.log(level);
   console.log(selectedDate);
@@ -43,13 +37,11 @@ export default function WorkForm() {
       <div className="input-wrapper">
         <TextField name="Division" className="division" label="Division" required />
       </div>
-      <div className="input-wrapper">
-        <TextField name="Email" className="email" type="email" label="Email" required />
-      </div>
+
       <div className="input-wrapper">
         <FormControl error>
           <InputLabel id="hours">Work hours</InputLabel>
-          <Select name="Work hours" labelId="hours" value={hours} onChange={handleHours} required>
+          <Select name="Work hours" className="hours" labelId="hours" value={hours} onChange={handleHours} required>
             <MenuItem value="full time">Full time</MenuItem>
             <MenuItem value="part time">Part time</MenuItem>
             <MenuItem value="hourly">Hourly</MenuItem>
@@ -58,6 +50,7 @@ export default function WorkForm() {
       </div>
       <div className="input-wrapper">
         <TextField
+          className="startDate"
           name="Start date"
           id="date"
           label="On board since"
@@ -72,23 +65,18 @@ export default function WorkForm() {
       <div className="input-wrapper">
         <FormControl>
           <InputLabel htmlFor="level">User level</InputLabel>
-          <Select name="User level" id="level" value={level} onChange={handleLevel} required>
+          <Select name="User level" className="level" id="level" value={level} onChange={handleLevel} required>
             <MenuItem value="admin">Administrator</MenuItem>
             <MenuItem value="regular">Regular user</MenuItem>
             <MenuItem value="board">Board member</MenuItem>
           </Select>
         </FormControl>
       </div>
-      <div className="upload-wrapper">
-        <label className="custom-upload" htmlFor="pdf-upload">
-          <div className="flex-wrapper">
-            <button className="upload-image float-btn">
-              <PublishRoundedIcon />
-            </button>
-            <p>Upload contract (.pdf)</p>
-          </div>
-          <input id="pdf-upload" type="file" name="image" onChange={findFileName} />
-        </label>
+      <div className="input-wrapper">
+        <TextField name="Email" className="email" type="email" label="Email" required />
+      </div>
+      <div className="input-wrapper">
+        <TextField name="Phone" className="phone" type="tel" label="Phone" />
       </div>
     </fieldset>
   );

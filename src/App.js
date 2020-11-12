@@ -5,16 +5,16 @@ import "./sass/scss/reset.scss";
 import "./sass/scss/menu.scss";
 import "./sass/scss/login.scss";
 import "./sass/scss/newUserForm.scss";
+import "./sass/scss/viewProfile.scss";
 import "./sass/main.scss";
 import "./sass/scss/adminOverview.scss";
 import React, { useEffect, useState } from "react";
+import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
+import { AuthProvider } from "./jsModules/firebase/auth";
 import Login from "./components/login/Login";
 import PrivateRoute from "./components/login/PrivateRoute";
 import SignUp from "./components/login/SignUp";
 import Administration from "./components/administration/overview/Administration";
-import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
-import { AuthProvider } from "./jsModules/firebase/auth";
-
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 //Change upper to lower when ready for production build.
 //import { unstable_createMuiStrictModeTheme as createMuiTheme } from "@material-ui/core";

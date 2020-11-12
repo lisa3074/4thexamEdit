@@ -1,25 +1,44 @@
 import React from "react";
-import MenuIcon from "@material-ui/icons/Menu";
+import MenuRoundedIcon from "@material-ui/icons/MenuRounded";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
-import PersonAddIcon from "@material-ui/icons/PersonAdd";
-export default function SubMenu() {
-  function newUser() {
-    console.log("navigation/SubMenu.js || SubMenu() -> newUser() ");
+import PersonAddRoundedIcon from "@material-ui/icons/PersonAddRounded";
+import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
+import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
+import EditRoundedIcon from "@material-ui/icons/EditRounded";
+import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
+import AddRoundedIcon from "@material-ui/icons/AddRounded";
+import { editUser } from "../../jsModules/displayFunctions/displayEditForm";
+import { newUser, openMenu, delegation } from "../../jsModules/displayFunctions/subMenuNavigation";
 
-    document.querySelector(".UserForm").classList.remove("hide");
-  }
-  function openMenu() {
-    document.querySelector(".Main").classList.add("hide");
-    document.querySelector(".SubMenu").classList.add("hide");
-    document.querySelector(".Menu").classList.remove("hide");
-  }
+export default function SubMenu() {
   return (
     <nav className="SubMenu hide">
-      <MenuIcon className="menuIcon" onClick={openMenu} />
-      <div className="float-btn">
-        <SearchRoundedIcon />
+      <div className="menuIcon" onClick={openMenu}>
+        <MenuRoundedIcon />
       </div>
-      <PersonAddIcon className="newUserIcon" onClick={newUser} />
+      <div className="menuBack hide" onClick={delegation}>
+        <ArrowBackIosRoundedIcon />
+      </div>
+      <div className="float-btn">
+        <div className="menuSearch">
+          <SearchRoundedIcon />
+        </div>
+        <div className="menuEdit hide" onClick={editUser}>
+          <EditRoundedIcon />
+        </div>
+        <div className="menuClose hide">
+          <CloseRoundedIcon />
+        </div>
+      </div>
+      <div className="newUserIcon" onClick={newUser}>
+        <PersonAddRoundedIcon />
+      </div>
+      <div className="menuDelete hide">
+        <DeleteRoundedIcon />
+      </div>
+      <div className="menuAddTask hide">
+        <AddRoundedIcon />
+      </div>
     </nav>
   );
 }

@@ -44,6 +44,7 @@ export default function PersonForm() {
           <input id="file-upload" type="file" name="image" onChange={preview} />
         </label>
       </div>
+
       <img className="previewImg" src={image} alt="Placeholder"></img>
     </fieldset>
   );

@@ -1,27 +1,8 @@
 import React from "react";
+import { person, work, privat } from "../../../jsModules/displayFunctions/formNavigation";
 export default function FormPath() {
   const $ = document.querySelector.bind(document);
-  function person() {
-    $(".PersonForm").classList.remove("hide");
-    $(".WorkForm").classList.add("hide");
-    $(".PrivateForm").classList.add("hide");
-    $(".float-btn.two").style.backgroundColor = "var(--tietery)";
-    $(".float-btn.three").style.backgroundColor = "var(--tietery)";
-  }
-  function work() {
-    $(".WorkForm").classList.remove("hide");
-    $(".PersonForm").classList.add("hide");
-    $(".PrivateForm").classList.add("hide");
-    $(".float-btn.two").style.backgroundColor = "var(--secondary)";
-    $(".float-btn.three").style.backgroundColor = "var(--tietery)";
-  }
-  function privat() {
-    $(".PrivateForm").classList.remove("hide");
-    $(".PersonForm").classList.add("hide");
-    $(".WorkForm").classList.add("hide");
-    $(".float-btn.two").style.backgroundColor = "var(--secondary)";
-    $(".float-btn.three").style.backgroundColor = "var(--secondary)";
-  }
+
   return (
     <section className="FormPath">
       <h2>Add user</h2>
