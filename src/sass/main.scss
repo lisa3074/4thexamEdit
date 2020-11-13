@@ -78,6 +78,17 @@ body {
   height: 100%;
 }
 
+.question-icon,
+button,
+.float-btn,
+.subject > p,
+li,
+svg.add-user,
+svg.add-task,
+.custom-upload .flex-wrapper {
+  cursor: pointer;
+}
+
 h1 {
   font-family: "IBMPlexSans-SemiBold";
 }

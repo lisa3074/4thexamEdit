@@ -90,6 +90,7 @@
   position: absolute;
   bottom: 6rem;
   width: 90%;
+  max-width: 500px;
   padding: 1rem 2rem 2rem;
   background-color: white;
   border-radius: var(--border-radius);
@@ -104,5 +105,10 @@
   }
   a {
     color: var(--primary);
+  }
+}
+@media (min-width: 600px) {
+  .Question {
+    right: 3rem;
   }
 }

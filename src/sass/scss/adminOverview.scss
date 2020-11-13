@@ -95,3 +95,56 @@
     }
   }
 }
+@media (min-width: 1450px) {
+  .UserList {
+    display: grid;
+    grid-template-columns: calc((100% - 2.6rem) / 3) calc((100% - 2.6rem) / 3) calc((100% - 2.6rem) / 3);
+    column-gap: 1.2rem;
+    .UserCard {
+      grid-template-areas:
+        "image info info"
+        "image division button";
+      grid-template-columns: 100px auto 120px;
+      grid-template-rows: 65% 35%;
+      height: 10.5rem;
+      padding: 1.5rem;
+      img {
+        grid-area: image;
+        width: 90px;
+        height: 90px;
+        align-self: center;
+        justify-self: center;
+      }
+      .info-container {
+        display: block;
+        grid-area: info;
+        padding-left: 1rem;
+        .info-wrapper {
+          padding-bottom: 0.8rem;
+        }
+      }
+      .info-wrapper:nth-child(3) {
+        grid-area: division;
+      }
+      button {
+        grid-area: button;
+        align-self: flex-end;
+        justify-self: flex-end;
+      }
+    }
+  }
+}
+@media (min-width: 1750px) {
+  .UserList {
+    grid-template-columns: calc((100% - 3.6rem) / 4) calc((100% - 3.6rem) / 4) calc((100% - 3.6rem) / 4) calc(
+        (100% - 3.6rem) / 4
+      );
+  }
+}
+@media (min-width: 2200px) {
+  .UserList {
+    grid-template-columns:
+      calc((100% - 4.8rem) / 5) calc((100% - 4.8rem) / 5) calc((100% - 4.8rem) / 5) calc((100% - 4.8rem) / 5)
+      calc((100% - 4.8rem) / 5);
+  }
+}

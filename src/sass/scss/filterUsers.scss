@@ -1,4 +1,5 @@
-.FilterUsers {
+.FilterUsers,
+.TopBar {
   background-color: white;
   box-shadow: var(--card-shadow);
   border-radius: var(--border-radius);
@@ -10,7 +11,8 @@
     justify-content: space-between;
   }
   .division,
-  .hours {
+  .hours,
+  .select {
     width: 45%;
   }
   select.MuiSelect-outlined {
@@ -49,5 +51,94 @@
       font-family: "IBMPlexSans-Regular";
       font-size: 0.8rem;
     }
+  }
+}
+@media (min-width: 1000px) {
+  .TopBar .searchUsers .MuiInputLabel-shrink,
+  .TopBar .MuiInputLabel-shrink {
+    transform: translate(0px, -20000px) scale(0.75);
+  }
+  .TopBar {
+    padding: 1rem 2rem 0;
+    .admin-top,
+    .planner-top {
+      height: 100%;
+    }
+    .grid-wrapper {
+      display: grid;
+      grid-template-areas: "sorted filter . search add chat";
+      grid-template-columns: 6rem 15rem auto 10rem 5rem 50px;
+      align-content: center;
+      align-items: center;
+      height: 100%;
+
+      .sorted {
+        grid-area: sorted;
+      }
+      .filter-wrapper {
+        grid-area: filter;
+      }
+      .input-wrapper {
+        grid-area: search;
+      }
+      .filter-wrapper,
+      .input-wrapper {
+        transform: translateY(-10px);
+      }
+      svg {
+        fill: var(--tietery);
+        stroke: var(--tietery);
+      }
+      .float-btn {
+        grid-area: chat;
+        background-color: var(--primary);
+        justify-self: flex-end;
+        transform: translateY(-8px);
+        svg {
+          width: 22px;
+          height: 22px;
+          fill: white;
+          stroke: none;
+        }
+      }
+      .add-user,
+      .add-task {
+        grid-area: add;
+        justify-self: center;
+        width: 30px;
+        height: 30px;
+      }
+      .add-user {
+        stroke: none;
+      }
+    }
+    .planner-top .grid-wrapper {
+      .select:nth-child(1) {
+        width: 40%;
+      }
+      .select:nth-child(2) {
+        width: 50%;
+      }
+      grid-template-columns: 6rem 20rem auto 0rem 5rem 50px;
+    }
+  }
+}
+@media (min-width: 1200px) {
+  .TopBar .grid-wrapper {
+    grid-template-columns: 6rem 20rem auto 15rem 5rem 50px;
+  }
+  .TopBar .planner-top .grid-wrapper {
+    .select:nth-child(1) {
+      width: 45%;
+    }
+    .select:nth-child(2) {
+      width: 45%;
+    }
+    grid-template-columns: 6rem 25rem auto 0rem 5rem 50px;
+  }
+}
+@media (min-width: 1300px) {
+  .TopBar .grid-wrapper {
+    grid-template-columns: 6rem 20rem auto 20rem 5rem 50px;
   }
 }
