@@ -1,0 +1,13 @@
+.form {
+  padding: 0;
+}
+
+.addForm {
+  padding: 1rem 2rem;
+}
+
+@media (max-width: 600px) {
+  .form {
+    padding: 1rem 2rem;
+  }
+}
