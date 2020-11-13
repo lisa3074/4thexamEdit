@@ -4,7 +4,7 @@ export function administration(innerWidth) {
   if (innerWidth < 1000) {
     document.querySelector(".Menu").classList.add("hide");
   }
-  document.querySelector(".Main").classList.remove("hide");
+  document.querySelector(".MainAdmin").classList.remove("hide");
   document.querySelector(".Planner").classList.add("hide");
   document.querySelector(".SubMenu").classList.remove("hide");
   document.querySelector(".ViewProfile").classList.add("hide");
@@ -17,7 +17,7 @@ export function planner(innerWidth) {
   if (innerWidth < 1000) {
     document.querySelector(".Menu").classList.add("hide");
   }
-  document.querySelector(".Main").classList.add("hide");
+  document.querySelector(".MainAdmin").classList.add("hide");
   document.querySelector(".Planner").classList.remove("hide");
   document.querySelector(".admin-top").classList.add("hide");
   document.querySelector(".planner-top").classList.remove("hide");
