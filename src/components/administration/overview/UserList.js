@@ -4,6 +4,10 @@ export default function UserList() {
   return (
     <div className="UserList">
       <UserCard></UserCard>
+      <UserCard></UserCard>
+      <UserCard></UserCard>
+      <UserCard></UserCard>
+      <UserCard></UserCard>
     </div>
   );
 }

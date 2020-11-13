@@ -1,17 +1,19 @@
 .Administration {
   min-height: 100%;
 }
-.Main {
+.Main,
+.MainDesktop {
   background-color: var(--background);
   min-height: 100vh;
   height: 100%;
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 3.2rem;
 }
 
 .UserCard {
   width: 100%;
   height: 11rem;
   padding: 1.5rem;
+  margin-bottom: 1.2rem;
   border-radius: var(--border-radius);
   box-shadow: 0px 1px 15px #384d6228;
   background-color: #fff;
@@ -49,8 +51,47 @@
   h2 {
     color: var(--light-text);
     font-size: 0.65rem;
+    padding-bottom: 0.2rem;
   }
   .info-wrapper {
-    padding: 0 0rem 1.5rem;
+    padding: 0 0rem 1.3rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .Main {
+    min-height: 100%;
+    overflow-y: scroll;
+    padding: 2rem;
+    .UserCard {
+      height: auto;
+      padding: 0.7rem;
+      grid-template-areas: "image info button";
+      grid-template-columns: 5rem auto 7rem;
+      grid-template-rows: 100%;
+      p,
+      h1 {
+        font-size: 0.85rem;
+      }
+      h2 {
+        padding-bottom: 0.3rem;
+      }
+      .info-container {
+        display: grid;
+        grid-template-columns: 33% 40% auto;
+        grid-template-rows: 100%;
+        padding-left: 2rem;
+        .info-wrapper {
+          padding: 0;
+          display: flex;
+          flex-wrap: nowrap;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
+      .text-btn {
+        align-self: center;
+      }
+    }
   }
 }

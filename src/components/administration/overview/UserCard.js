@@ -3,7 +3,7 @@ import image from "../../../images/lisa2020.jpg";
 import { displayProfile, setSubmMenu } from "../../../jsModules/displayFunctions/displayProfile";
 export default function UserCard(e) {
   function detectId(e) {
-    console.log(e.target.parentNode.classList[1]);
+    console.log(e.target.parentNode.dataset.user);
     const userId = e.target.parentNode.dataset.user;
     displayProfile(userId);
     setSubmMenu();

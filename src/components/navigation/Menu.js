@@ -2,22 +2,15 @@ import React from "react";
 import MenuNav from "./MenuNav";
 import Profile from "./Profile";
 
-export default function Menu() {
+export default function Menu(props) {
   return (
     <>
-      <nav className="Menu">
+      <nav className={props.innerWidth < 1000 ? "Menu" : "Menu MenuDesktop"}>
         <div className="logo-name">
           <h1>SkatteGuiden</h1>
         </div>
         <Profile></Profile>
-        <MenuNav></MenuNav>
-      </nav>
-      <nav className="MenuDesktop hide">
-        <div className="logo-name">
-          <h1>SkatteGuiden</h1>
-        </div>
-        <Profile></Profile>
-        <MenuNav></MenuNav>
+        <MenuNav innerWidth={props.innerWidth} setEndpoint={props.setEndpoint}></MenuNav>
       </nav>
     </>
   );

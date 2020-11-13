@@ -1,8 +1,10 @@
 export function newUser() {
   document.querySelector(".UserForm").classList.remove("hide");
 }
-export function openMenu() {
-  document.querySelector(".Main").classList.add("hide");
+export function openMenu(endpoint) {
+  if (endpoint === "administration") {
+    document.querySelector(".Main").classList.add("hide");
+  }
   document.querySelector(".SubMenu").classList.add("hide");
   document.querySelector(".Menu").classList.remove("hide");
 }

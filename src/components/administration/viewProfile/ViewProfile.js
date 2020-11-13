@@ -2,6 +2,7 @@ import React from "react";
 import Contact from "./Contact";
 import Person from "./Person";
 import Private from "./Private";
+import ProfileNav from "./ProfileNav";
 import Work from "./Work";
 import WorkLoad from "./WorkLoad";
 
@@ -13,6 +14,8 @@ export default function ViewProfile() {
       <Contact />
       <WorkLoad />
       <Private />
+      <div className="empty"></div>
+      <ProfileNav />
     </section>
   );
 }

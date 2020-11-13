@@ -16,10 +16,15 @@ import {
   closeSearch,
 } from "../../jsModules/displayFunctions/subMenuNavigation";
 
-export default function SubMenu() {
+export default function SubMenu(props) {
+  const endpoint = props.endpoint;
   return (
     <nav className="SubMenu hide">
-      <div className="menuIcon" onClick={openMenu}>
+      <div
+        className="menuIcon"
+        onClick={() => {
+          openMenu(endpoint);
+        }}>
         <MenuRoundedIcon />
       </div>
       <div className="menuBack hide" onClick={delegation}>

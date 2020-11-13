@@ -17,6 +17,7 @@ import PrivateRoute from "./components/login/PrivateRoute";
 import SignUp from "./components/login/SignUp";
 import Administration from "./components/administration/overview/Administration";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import Planner from "./components/planner/planner";
 //Change upper to lower when ready for production build.
 //import { unstable_createMuiStrictModeTheme as createMuiTheme } from "@material-ui/core";
 
@@ -37,7 +38,14 @@ const theme = createMuiTheme({
 
 export default function App() {
   console.log("App");
+  let [innerWidth, setInnerWidth] = useState(window.innerWidth);
+  const [endpoint, setEndpoint] = useState("administration");
 
+  window.addEventListener("resize", resizeHandler);
+  function resizeHandler() {
+    setInnerWidth(window.innerWidth);
+  }
+  console.log(innerWidth);
   const Credentials = {
     email: "",
     password: "",
@@ -57,8 +65,28 @@ export default function App() {
         <AuthProvider>
           <Router>
             <Switch>
-              <PrivateRoute exact path="/" credentials={credentials} component={Administration} />
-              <PrivateRoute exact path="/administration" credentials={credentials} component={Administration} />
+              <PrivateRoute
+                exact
+                path="/"
+                credentials={credentials}
+                component={() => (
+                  <Administration endpoint={endpoint} setEndpoint={setEndpoint} innerWidth={innerWidth} />
+                )}
+              />
+              <PrivateRoute
+                exact
+                path="/administration"
+                credentials={credentials}
+                component={() => (
+                  <Administration innerWidth={innerWidth} endpoint={endpoint} setEndpoint={setEndpoint} />
+                )}
+              />
+              <PrivateRoute
+                exact
+                path="/planner"
+                credentials={credentials}
+                component={() => <Planner endpoint={endpoint} setEndpoint={setEndpoint} innerWidth={innerWidth} />}
+              />
               <Route exact path="/signup" component={() => <SignUp saveCredentials={saveCredentials} />}></Route>
               <Route exact path="/login" component={() => <Login saveCredentials={saveCredentials} />}></Route>
             </Switch>

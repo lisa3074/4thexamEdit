@@ -18,7 +18,7 @@ const Login = ({ history }) => {
       const { email, password } = e.target.elements;
       try {
         await firebaseConfig.auth().signInWithEmailAndPassword(email.value, password.value);
-        history.push("/");
+        history.push("/administration");
       } catch (error) {
         error.message === "The password is invalid or the user does not have a password."
           ? setError("Either the user does not exist or the password does not match user")
