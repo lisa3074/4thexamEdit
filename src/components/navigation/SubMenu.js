@@ -23,7 +23,7 @@ export default function SubMenu(props) {
       <div
         className="menuIcon"
         onClick={() => {
-          openMenu(endpoint);
+          openMenu();
         }}>
         <MenuRoundedIcon />
       </div>

@@ -16,33 +16,25 @@ export default function MenuNav(props) {
           to="/administration"
           onClick={() => {
             administration(innerWidth);
-            props.setEndpoint("administration");
           }}>
           <li>
             <PeopleIcon />
             <h3 className="admin-link">Administration</h3>
           </li>
         </Link>
+        <li onClick={newUser}>
+          <PersonAddIcon />
+          <h3 className="new-user-link">New user</h3>
+        </li>
 
-        <Link to="/administration" onClick={newUser}>
-          <li>
-            <PersonAddIcon />
-            <h3 className="new-user-link">New user</h3>
-          </li>
-        </Link>
-
-        <Link
-          to="/planner"
+        <li
           onClick={() => {
             planner(innerWidth);
-
-            props.setEndpoint("planner");
           }}>
-          <li>
-            <CalendarTodayIcon />
-            <h3 className="planner-link">Planner</h3>
-          </li>
-        </Link>
+          <CalendarTodayIcon />
+          <h3 className="planner-link">Planner</h3>
+        </li>
+
         <li>
           <ChatBubbleIcon />
           <h3 className="chat-link">Chat</h3>

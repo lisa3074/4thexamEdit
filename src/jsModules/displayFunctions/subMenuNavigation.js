@@ -1,10 +1,10 @@
 export function newUser() {
   document.querySelector(".UserForm").classList.remove("hide");
 }
-export function openMenu(endpoint) {
-  if (endpoint === "administration") {
-    document.querySelector(".Main").classList.add("hide");
-  }
+export function openMenu() {
+  document.querySelector(".Planner").classList.add("hide");
+  document.querySelector(".Main").classList.add("hide");
+
   document.querySelector(".SubMenu").classList.add("hide");
   document.querySelector(".Menu").classList.remove("hide");
 }
@@ -32,5 +32,6 @@ export function closeSearch() {
   document.querySelector(".menuSearch").classList.remove("hide");
   document.querySelector(".menuClose").classList.add("hide");
   document.querySelector(".FilterUsers").classList.add("hide");
+
   //RESET LIST/SEARCH
 }

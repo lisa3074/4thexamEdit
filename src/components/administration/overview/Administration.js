@@ -4,6 +4,7 @@ import Main from "./Main";
 import TopBar from "../../navigation/TopBar";
 import SubMenu from "../../navigation/SubMenu";
 import UserForm from "../form/UserForm";
+import Planner from "../../planner/planner";
 
 export default function Administration(props) {
   console.log("administration/Administration.js || Administration.js");
@@ -14,8 +15,9 @@ export default function Administration(props) {
       <TopBar endpoint={props.endpoint}></TopBar>
       <Menu innerWidth={props.innerWidth} setEndpoint={props.setEndpoint}></Menu>
       <Main innerWidth={props.innerWidth}></Main>
-      <SubMenu endpoint={props.endpoint}></SubMenu>
+      <Planner />
       <UserForm />
+      <SubMenu endpoint={props.endpoint}></SubMenu>
       {/* 
       <p>{credentials != undefined ? credentials.email : ""}</p> */}
     </section>
