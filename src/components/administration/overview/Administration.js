@@ -4,7 +4,7 @@ import Main from "./Main";
 import TopBar from "../../navigation/TopBar";
 import SubMenu from "../../navigation/SubMenu";
 import UserForm from "../form/UserForm";
-import Planner from "../../planner/planner";
+import Planner from "../../planner/Planner";
 
 export default function Administration(props) {
   console.log("administration/Administration.js || Administration.js");
