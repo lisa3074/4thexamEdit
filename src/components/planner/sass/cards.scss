@@ -1,5 +1,5 @@
-.AppPlanner {
-  .mui-panel.panelMargin {
+/* .AppPlanner {
+  .MuiAccordion-root.panelMargin {
     margin: 0.1rem 0.3rem 0.5rem;
     border-radius: 10px;
   }
@@ -8,9 +8,7 @@
     cursor: pointer;
   }
 
-  .hideAlways {
-    display: none;
-  }
+
   form {
     max-width: 100%;
   }
@@ -20,7 +18,13 @@
   .container {
     padding-bottom: 0;
   }
-  .mui--text-headline,
+  .float-btn {
+    background-color: var(--primary);
+    margin-left: 0.8rem;
+    &.delete {
+      background-color: var(--secondary);
+    }
+  }
   h2 {
     font-size: 1.2rem;
     margin-top: 1rem;
@@ -31,7 +35,7 @@
     font-weight: 300;
     color: rgb(65, 65, 65);
   }
-  .mui-panel {
+  .MuiAccordion-root {
     padding: 15px 15px 0px 5px;
   }
   .description {
@@ -40,3 +44,22 @@
     white-space: pre-wrap;
   }
 }
+ */
+
+.container {
+  .description {
+    overflow: scroll;
+  }
+
+  .card {
+    padding: 0.5rem 1rem;
+  }
+}
+/* .hideAlways {
+  display: none;
+} */
+
+.AppPlanner .MuiAccordion-root.MuiAccordion-rounded {
+  border: none;
+}
+//MuiPaper-root MuiAccordion-root panelMargin smaller a5f1d7f6f8ada1e610003b827 MuiAccordion-rounded MuiPaper-elevation1 MuiPaper-rounded

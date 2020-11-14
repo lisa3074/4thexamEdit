@@ -3,8 +3,7 @@
     margin: 0;
   }
 
-  form input,
-  form textarea {
+  form input {
     margin-bottom: 0.5rem;
   }
 
@@ -23,60 +22,22 @@
 
   .option_wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    position: absoulute;
   }
 
   .option_wrapper button {
     margin-top: 0;
   }
-  .mui-btn--primary.btn {
-    color: var(--black);
-    background-color: #7f7f7f;
-    border-radius: 5px;
-  }
-  .mui-btn--primary.btn.delete {
-    background-color: #7f7f7f;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 2px 0 rgba(0, 0, 0, 0.12);
-    line-height: 0;
-    margin-bottom: 15px;
-    color: white;
-  }
-  .mui-btn--primary.btn.edit {
-    background-color: #e7e9ea;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 2px 0 rgba(0, 0, 0, 0.12);
-    line-height: 0;
-    margin-bottom: 15px;
-    color: black;
-  }
 
-  .colorLabel,
-  .mui-textfield--float-label > label {
-    color: rgb(60, 60, 60);
-    font-size: 14px;
-    font-weight: 300;
-  }
-  .mui-btn--primary.btn.submit:disabled {
+  .MuiButtonBase-root.btn.submit:disabled {
     background-color: #9b9b9b;
   }
-  .mui-btn--primary.btn.submit {
+  .MuiButtonBase-root.btn.submit {
     color: white;
   }
 
-  .mui-textfield > input:invalid:not(:focus):not(:required),
-  .mui-textfield > input:invalid:not(:focus):required.mui--is-empty.mui--is-touched,
-  .mui-textfield > input:invalid:not(:focus):required.mui--is-not-empty,
-  .mui-textfield > input:invalid:not(:focus):required:not(:empty):not(.mui--is-empty):not(.mui--is-not-empty),
-  .mui-textfield
-    > input:invalid:not(:focus):required[value]:not([value=""]):not(.mui--is-empty):not(.mui--is-not-empty),
-  .mui-textfield > input:not(:focus).mui--is-invalid:not(:required),
-  .mui-textfield > input:not(:focus).mui--is-invalid:required.mui--is-empty.mui--is-touched,
-  .mui-textfield > input:not(:focus).mui--is-invalid:required.mui--is-not-empty,
-  .mui-textfield > input:not(:focus).mui--is-invalid:required:not(:empty):not(.mui--is-empty):not(.mui--is-not-empty),
-  .mui-textfield
-    > input:not(:focus).mui--is-invalid:required[value]:not([value=""]):not(.mui--is-empty):not(.mui--is-not-empty) {
-    border-color: var(--error);
-  }
-  .mui-textfield--float-label.description {
+  .MuiFormControl-root.description {
     margin-bottom: 0;
   }
   .addForm {
@@ -98,10 +59,6 @@
 
   .colorInput {
     padding-top: 1rem;
-  }
-
-  .flex textarea {
-    height: 6rem;
   }
 }
 @media (max-width: 600px) {

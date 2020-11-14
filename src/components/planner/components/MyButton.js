@@ -2,22 +2,27 @@
 import Button from "@material-ui/core/Button";
 import { popUp } from "./modules/editPopup";
 import React, { useState } from "react";
-//import Input from "muicss/lib/react/input";
 import Input from "@material-ui/core/Input";
-import Textarea from "muicss/lib/react/textarea";
-//import Option from "muicss/lib/react/option";
-//import Select from "muicss/lib/react/select";
 import Select from "@material-ui/core/Select";
 import styles from "./Form.module.css";
 import SubmitButton from "./SubmitButton";
 import { close } from "./modules/editPopup";
 import { CirclePicker } from "react-color";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
+import EditRoundedIcon from "@material-ui/icons/EditRounded";
+import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
+import DeleteForeverRoundedIcon from "@material-ui/icons/DeleteForeverRounded";
+import EditForm from "./EditForm";
 
 export default function MyButton(props) {
   //here we destructure, so we get a variable and a function (clicks = var, setClickes = function)
   function onClickDelete() {
     props.deleteCard(props.id);
   }
+  console.log(props);
 
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
@@ -26,34 +31,7 @@ export default function MyButton(props) {
   const [assignedTo, setAssigned] = useState("");
   const [list, setList] = useState("To Do");
 
-  const titleChanged = (e) => {
-    setTitle(e.target.value);
-    console.log(title);
-    console.log(props.id);
-  };
-
-  const catChanged = (e) => {
-    setCategory(e.target.value);
-    console.log(e.target.value);
-  };
-  const descriptionChanged = (e) => {
-    setDescription(e.target.value);
-    console.log(e.target.value);
-  };
-  const assignedChanged = (e) => {
-    setAssigned(e.target.value);
-    console.log(e.target.value);
-  };
-  const colorChanged = (color) => {
-    setColor(color.hex);
-    console.log(color.hex);
-  };
-  const listChanged = (e) => {
-    setList(e.target.value);
-    console.log(e.target.value);
-  };
-
-  const payload = {
+  /* const payload = {
     title: title,
     list: list,
     assignedTo: [assignedTo],
@@ -61,9 +39,9 @@ export default function MyButton(props) {
     category: category,
     description: description,
     id: props.id,
-  };
+  }; */
 
-  function submit(evt) {
+  /*   function submit(evt) {
     evt.preventDefault();
     console.log(props.header);
     props.editCard(payload, props.id, title, list, assignedTo, color, category, description);
@@ -73,146 +51,53 @@ export default function MyButton(props) {
     setDescription("");
     setCategory("");
     close("#b" + props.id);
-  }
+  } */
 
   function whichButton() {
     if (props.name === "delete") {
       onClickDelete();
     } else {
-      console.log();
+      console.log(props);
       popUp("#b" + props.id);
       setUpForm();
     }
   }
   function setUpForm() {
-    setTitle(props.title);
-    setCategory(props.category);
-    setDescription(props.description);
-    setAssigned(props.assignedTo);
-    setColor(props.color);
-    setList(props.list);
+    setTimeout(() => {
+      setTitle(props.title);
+      setCategory(props.category);
+      setDescription(props.description);
+      setAssigned(props.assignedTo);
+      setColor(props.color);
+      setList(props.list);
+    }, 2000);
   }
   //MANUEL VALIDERING
-  const [titleFocusOn, setTitleFocusOn] = useState("false");
-  const [catFocusOn, setCatFocusOn] = useState("false");
 
-  const titleFocusChanged = (e) => {
-    console.log("focusChanged");
-    setTitleFocusOn(true);
-  };
-  const catFocusChanged = (e) => {
-    console.log("catFocusChanged");
-    setCatFocusOn(true);
-  };
-
-  const titleBorderStyle = {
-    outline: "none",
-    borderRight:
-      title.length > 0
-        ? "2px solid #47ae7a"
-        : title.length === 0 && titleFocusOn === true
-        ? "2px solid #e68b3c"
-        : "0px solid #e68b3c",
-  };
-  const catBorderStyle = {
-    outline: "none",
-    borderRight:
-      category.length > 0
-        ? "2px solid #47ae7a"
-        : category.length === 0 && catFocusOn === true
-        ? "2px solid #e68b3c"
-        : "0px solid #ff5e5e",
-  };
   return (
-    <>
-      <Button color="primary" className={props.name + " btn fade_out hide"} onClick={whichButton}>
-        {props.name}
-      </Button>
-
-      {
-        <article className="editContainer hide" id={"b" + props.id}>
-          <div className="editWrapper">
-            <h2 className="editTask">Edit task</h2>
-            <p onClick={() => close("#b" + props.id)}>✕</p>
-          </div>
-          <div className="flex">
-            <div>
-              <form className={styles.form + " form"} onSubmit={submit}>
-                <Input
-                  className="title"
-                  style={titleBorderStyle}
-                  label="title"
-                  /*  required={true} */
-
-                  type="text"
-                  onFocus={titleFocusChanged}
-                  onChange={titleChanged}
-                  name="title"
-                  value={title}
-                />
-                <Input
-                  style={catBorderStyle}
-                  className="category"
-                  label="Category"
-                  /*   required={true} */
-
-                  type="text"
-                  onFocus={catFocusChanged}
-                  onChange={catChanged}
-                  name="Category"
-                  value={category}
-                />
-
-                <Input
-                  className="assigned"
-                  label="Assigned to"
-                  type="text"
-                  onChange={assignedChanged}
-                  name="AssignedTo"
-                  value={assignedTo}
-                />
-                <Input
-                  className="description"
-                  label="Description"
-                  onChange={descriptionChanged}
-                  name="Description"
-                  value={description}></Input>
-
-                {/*     <Input
-                  className="color colorInput"
-                  label="Color"
-                  floatingLabel={true}
-                  type="color"
-                  onChange={colorChanged}
-                  name="Color"
-                  value={color}
-                /> */}
-                <label className="colorLabel">
-                  Color
-                  <CirclePicker
-                    onChange={colorChanged}
-                    value={color}
-                    className="color colorInput"
-                    label="Color"
-                    floatingLabel={true}
-                    name="Color"
-                  />
-                </label>
-                <Select className="list" name="input" label="List" onChange={listChanged} value={list}>
-                  <option value="To Do" label="To Do" />
-                  <option value="Doing" label="Doing" />
-                  <option value="Done" label="Done" />
-                </Select>
-
-                <SubmitButton
-                  name={title.length === 0 || category.length === 0 ? "Not there yet" : "Save"}
-                  disabled={title.length === 0 || category.length === 0}
-                />
-              </form>
-            </div>
-          </div>
-        </article>
-      }
-    </>
+    <div className="MyButton">
+      <div className={props.name + " btn fade_out hide float-btn"} onClick={whichButton}>
+        {props.name === "edit" ? <EditRoundedIcon /> : <DeleteForeverRoundedIcon />}
+      </div>
+      {props.title === "" ? (
+        ""
+      ) : (
+        <EditForm
+          color={color}
+          assignedTo={assignedTo}
+          description={description}
+          title={title}
+          category={category}
+          list={list}
+          setTitle={setTitle}
+          setAssigned={setAssigned}
+          setCategory={setCategory}
+          setDescription={setDescription}
+          setColor={setColor}
+          setList={setList}
+          id={props.id}
+        />
+      )}
+    </div>
   );
 }

@@ -9,15 +9,16 @@ export function popUp(theId) {
   });
 }
 
-export function close(theId) {
+export function close(theId, e) {
   console.log(theId);
   console.log("close");
+  console.log(e);
   document.querySelector(theId).classList.add("hide");
   document.querySelectorAll(".scrollList").forEach((list) => {
     list.style.overflow = "initial";
     list.style.overflowY = "scroll";
   });
-  closeExpand();
+  closeExpand(theId, e);
   /* document.querySelectorAll(".expandCard > p").forEach((p) => {
     setTimeout(() => {
       p.classList.add("hide");

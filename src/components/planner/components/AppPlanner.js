@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-/* import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider"; */
 import Nav from "./Nav";
 import Main from "./Main";
 import { RestDb } from "./modules/restdb";
 import { init } from "./modules/mobNavigation";
 import { scroll } from "./modules/scroll";
-/* import "./wdyr"; */
 import "../sass/style.scss";
 import "../sass/form.scss";
 import "../sass/list.scss";
@@ -13,9 +11,6 @@ import "../sass/edit.scss";
 import "../sass/cards.scss";
 import "../sass/animations.scss";
 import "../sass/navigation.scss";
-/* import EditForm from "./EditForm"; */
-
-/* import theme from "./theme"; */
 
 export default function AppPlanner() {
   const [cards, setCards] = useState([]);

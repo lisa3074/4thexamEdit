@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-//import Input from "muicss/lib/react/input";
-//import Textarea from "muicss/lib/react/textarea";
-import Input from "@material-ui/core/Input";
-
-//import Option from "muicss/lib/react/option";
-//import Select from "muicss/lib/react/select";
 import Select from "@material-ui/core/Select";
+import TextField from "@material-ui/core/TextField";
 import SubmitButton from "./SubmitButton";
 import { CirclePicker } from "react-color";
-/* import "../sass/form.scss"; */
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
 
 export default function Form(props) {
   const [title, setTitle] = useState("");
@@ -116,61 +113,53 @@ export default function Form(props) {
   return (
     <>
       <form className="addForm" id="form" onSubmit={submit}>
-        <Input
+        <TextField
           className="title"
           style={titleBorderStyle}
           label="title"
-          type="text"
-          onFocus={titleFocusChanged}
-          onChange={titleChanged}
           name="title"
           value={title}
+          onFocus={titleFocusChanged}
+          onChange={titleChanged}
         />
-        <Input
+
+        <TextField
           style={catBorderStyle}
           className="category"
           label="Category"
-          /*   required={true} */
-
-          type="text"
           onFocus={catFocusChanged}
           onChange={catChanged}
           name="Category"
           value={category}
         />
 
-        <Input
+        <TextField
           className="assigned"
           label="Assigned to"
-          type="text"
           onChange={assignedChanged}
           name="AssignedTo"
           value={assignedTo}
         />
-        <Input
+        <TextField
           className="description"
           label="Description"
           onChange={descriptionChanged}
           name="Description"
           style={outline}
-          value={description}></Input>
+          value={description}
+          multiline
+          rows={6}
+        />
 
-        <label className="colorLabel">
-          Color
-          <CirclePicker
-            onChange={colorChanged}
-            value={color}
-            className="color colorInput"
-            label="Color"
-            floatingLabel={true}
-            name="Color"
-          />
-        </label>
-        <Select className="list" name="input" label="List" onChange={listChanged} value={list}>
-          <option value="To Do" label="To Do" />
-          <option value="Doing" label="Doing" />
-          <option value="Done" label="Done" />
-        </Select>
+        <FormControl>
+          <InputLabel htmlFor="list">List</InputLabel>
+
+          <Select className="list" name="input" id="list" onChange={listChanged} value={list}>
+            <MenuItem value="To Do">To do</MenuItem>
+            <MenuItem value="Doing">Doing</MenuItem>
+            <MenuItem value="Done">Done</MenuItem>
+          </Select>
+        </FormControl>
 
         {/* Her er en if/else sætning:
 Hvis title.length = 0 (mm.)(hvis der ikke står noget i feltet), 

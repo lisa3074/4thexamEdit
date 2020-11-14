@@ -1,5 +1,6 @@
-export function closeExpand(theId) {
+export function closeExpand(theId, e) {
   const theIdClass = `a${theId}`;
+  console.log(theIdClass);
   document.querySelectorAll(".muiPaper-root.panelMargin").forEach((panel) => {
     if (!panel.classList.contains(theIdClass)) {
       console.log("its a match");

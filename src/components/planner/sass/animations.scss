@@ -65,10 +65,12 @@
   }
 
   svg {
-    position: absolute;
+    /*     position: absolute;
     top: -5rem;
     left: calc((100% / 2) - 50px);
-    width: 100px;
+    width: 100px; */
+    width: 25px;
+    height: 25px;
   }
 }
 
