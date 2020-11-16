@@ -1,0 +1,58 @@
+.editContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  width: 100vw;
+  height: calc(var(--vh, 1vh) * 100);
+  z-index: 20;
+}
+.editContainer p {
+  width: calc(100% - 40px);
+  height: 4rem;
+  text-align: right;
+  padding: 1rem 2rem 0 0;
+  font-size: 2rem;
+  cursor: pointer;
+  margin: 0;
+}
+
+.editWrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  width: 100%;
+}
+
+.editTask {
+  padding: 1.55rem 0 0 2rem;
+  font-size: 24px;
+  margin: 0;
+}
+
+.flex {
+  width: calc(100% - 40px);
+  height: calc(100% - 8rem);
+  display: flex;
+  justify-content: center;
+  margin-top: 0rem;
+  overflow-y: scroll;
+}
+
+.flex div {
+  width: 100%;
+  max-width: 500px;
+}
+
+.description {
+  overflow: hidden;
+}
+@media (max-width: 600px) {
+  .editContainer {
+    width: 100%;
+  }
+
+  .editWrapper {
+    width: calc(100% - 40px);
+  }
+}

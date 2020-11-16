@@ -1,0 +1,85 @@
+.scrollList {
+  min-width: 275px;
+  overflow: hidden;
+}
+
+.Done,
+.Doing,
+.To.Do {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 5px solid white;
+  z-index: 10;
+  min-width: 275px;
+}
+.Done h1,
+.Doing h1,
+.To.Do h1,
+.bg h2 {
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  color: black;
+  font-weight: 200;
+  padding-left: 1.2rem;
+}
+.Done,
+.Doing,
+.To.Do,
+.bg {
+  color: white;
+}
+.bg {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 5px solid white;
+  z-index: 10;
+  min-width: 275px;
+  border-radius: 10px;
+}
+
+.bg h2 {
+  font-weight: 400;
+  font-size: 45px;
+  line-height: 48px;
+  text-transform: lowercase;
+  margin: 0;
+  color: black;
+  padding-left: 1.5rem;
+  font-weight: 200;
+  height: 95%;
+}
+.scrollList > ul {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: auto;
+
+  @supports (-webkit-touch-callout: none) {
+    height: 80vh;
+    max-height: 100%;
+  }
+
+  @supports not (-webkit-touch-callout: none) {
+    height: calc(100% - 5rem);
+    max-height: var(--px);
+  }
+}
+@media (max-width: 600px) {
+  .scrollList {
+    position: absolute;
+    height: 100%;
+    background-color: #fff;
+    overflow-x: hidden;
+  }
+  .To.Do,
+  .Done,
+  .Doing {
+    width: 100%;
+  }
+}
