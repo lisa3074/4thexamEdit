@@ -1,49 +1,117 @@
-.mui-panel.panelMargin {
-  margin: 0.1rem 0.3rem 0.5rem;
-  border-radius: 10px;
-}
-.container {
-  position: relative;
-  top: 0px;
-  left: 0px;
-  padding: 0.5rem 1rem;
-  padding-bottom: 0;
-}
+.Planner {
+  p {
+    font-size: 0.875rem;
+  }
+  .mui-panel.panelMargin {
+    margin: 0.1rem 0.3rem 0.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    position: relative;
+    background-color: white;
+  }
+  .category-color {
+    height: 100%;
+    width: 4px;
+    position: absolute;
+    background-color: black;
+    transform: translate(-5px, -15px);
+    border-radius: 25px 0 0 25px;
+  }
+  .container {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    padding: 0rem 1rem;
+    padding-bottom: 0;
+  }
+  .flex-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    p {
+      padding: 0.3rem 0;
+      font-size: 0.85rem;
+    }
+    .due {
+      text-align: right;
+      font-size: 0.7rem;
+      font-family: "IBMPlexSans-Medium";
+      color: var(--light-text);
+    }
+  }
+  .panelMargin[data-state="visible"] .flex-wrapper {
+    display: block;
+    .due {
+      text-align: left;
+    }
+  }
+  .container > header {
+    cursor: pointer;
+  }
 
-.container > header {
-  cursor: pointer;
-}
+  .flex-wrapper {
+    width: 100%;
+  }
+  .panelMargin[data-state="visible"] .bottom-wrapper {
+    padding-top: 1rem;
+  }
 
-.hideAlways {
-  display: none;
-}
-form {
-  max-width: 100%;
-}
-.expandCard {
-  cursor: pointer;
-}
-.container {
-  padding-bottom: 0;
-}
-.mui--text-headline,
-h2 {
-  font-size: 1.2rem;
-  margin-top: 1rem;
-  white-space: nowrap;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-weight: 300;
-  color: rgb(65, 65, 65);
-}
-.mui-panel {
-  padding: 15px 15px 0px 5px;
-}
-.description {
-  height: 7rem;
-  overflow-y: scroll;
-  white-space: pre-wrap;
-}
-@media (max-width: 600px) {
+  .expandCard p,
+  .assignedTo {
+    padding: 1rem 0;
+  }
+
+  .panelMargin[data-state="hidden"] .assignedTo {
+    padding: 0.3rem 0;
+  }
+
+  .container .MuiFormControl-root {
+    margin: 1rem 0;
+  }
+  header h1 {
+    padding: 0 0 0.5rem 0;
+  }
+  .panelMargin[data-state="visible"] header h1 {
+    padding: 0.5rem 0 0.5rem 0;
+  }
+
+  .hideAlways {
+    display: none;
+  }
+  form {
+    max-width: 100%;
+  }
+  .expandCard {
+    cursor: pointer;
+  }
+  .container {
+    padding-bottom: 0;
+  }
+  .mui--text-headline,
+  h2 {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 300;
+    color: rgb(65, 65, 65);
+  }
+  .mui-panel {
+    padding: 15px 15px 0px 5px;
+  }
+  .description {
+    height: 7.5rem;
+    overflow-y: scroll;
+    white-space: pre-wrap;
+  }
+  .panelMargin[data-state="visible"] .bottom-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .panelMargin[data-state="hidden"] .option_wrapper {
+    display: none;
+  }
 }

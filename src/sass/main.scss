@@ -102,6 +102,11 @@ p,
 label .MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated {
   font-family: "IBMPlexSans-Regular";
 }
+
+.progress {
+  cursor: progress;
+  pointer-events: none;
+}
 button,
 button.MuiButton-root {
   font-family: "IBMPlexSans-Medium";

@@ -28,6 +28,7 @@ export default function MenuNav(props) {
         </li>
 
         <li
+          className="go-to-planner"
           onClick={() => {
             planner(innerWidth);
           }}>

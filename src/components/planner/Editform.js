@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import Input from "muicss/lib/react/input";
 import Textarea from "muicss/lib/react/textarea";
 import { CirclePicker } from "react-color";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import TextField from "@material-ui/core/TextField";
 
 export default function EditCard(props) {
   //here we destructure, so we get a variable and a function (clicks = var, setClickes = function)
@@ -66,45 +71,43 @@ export default function EditCard(props) {
   };
   return (
     <>
-      <Input
+      <TextField
         className="title"
         style={titleBorderStyle}
         label="title"
-        floatingLabel={true}
-        type="text"
         onFocus={titleFocusChanged}
         onChange={titleChanged}
         name="title"
         value={props.title}
       />
-      <Input
+
+      <TextField
         style={catBorderStyle}
         className="category"
         label="Category"
-        floatingLabel={true}
-        type="text"
         onFocus={catFocusChanged}
         onChange={catChanged}
         name="Category"
         value={props.category}
       />
 
-      <Input
+      <TextField
         className="assigned"
         label="Assigned to"
-        floatingLabel={true}
-        type="text"
         onChange={assignedChanged}
         name="AssignedTo"
         value={props.assignedTo}
       />
-      <Textarea
+
+      <TextField
         className="description"
         label="Description"
-        floatingLabel={true}
         onChange={descriptionChanged}
         name="Description"
-        value={props.description}></Textarea>
+        value={props.description}
+        multiline
+        rows={4}
+      />
 
       <label className="colorLabel">
         Color
@@ -117,6 +120,14 @@ export default function EditCard(props) {
           name="Color"
         />
       </label>
+      <FormControl className="list">
+        <InputLabel id="select-edit-list">Choose list</InputLabel>
+        <Select labelId="select-edit-list" name="input" label="List" onChange={listChanged} value={props.list}>
+          <MenuItem value="To Do">To do</MenuItem>
+          <MenuItem value="Doing">Doing</MenuItem>
+          <MenuItem value="Done">Done</MenuItem>
+        </Select>
+      </FormControl>
     </>
   );
 }

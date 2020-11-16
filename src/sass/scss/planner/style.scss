@@ -72,209 +72,197 @@
   --border-button: 20px;
   --gradient: linear-gradient(0deg, rgba(30, 198, 154, 1) 0%, rgba(98, 189, 166, 1) 100%);
 }
-* {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
-  height: 100vh;
-  width: 100vw;
-}
 
-#root {
-  height: 100%;
-  width: 100%;
-}
-
-.Planner {
+.planner-wrapper {
   display: block;
   position: relative;
   top: 0;
   height: calc(var(--vh, 1vh) * 100);
   padding-right: 1rem;
-}
-
-.NewTask {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  height: calc(var(--vh, 1vh) * 100);
-  z-index: 100;
   background-color: var(--background);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .addForm {
-    max-width: 500px;
-    background-color: white;
-    height: 48rem;
+
+  .NewTask {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    height: calc(var(--vh, 1vh) * 100);
+    z-index: 100;
+    background-color: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .addForm {
+      max-width: 500px;
+      background-color: white;
+      height: 48rem;
+    }
   }
-}
-h1 {
-  font-family: "IBMPlexSans-SemiBold";
-}
-h2 {
-  font-family: "IBMPlexSans-Bold";
-}
-h3 {
-  font-family: "IBMPlexSans-Medium";
-}
-p,
-label .MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated {
-  font-family: "IBMPlexSans-Regular";
-}
-button,
-button.MuiButton-root {
-  font-family: "IBMPlexSans-Medium";
-  color: white;
-  font-size: 0.85rem;
-  padding: 0.5rem 2.5rem;
-  border: none;
-  box-shadow: var(--shadow-button);
-  border-radius: var(--border-button);
-  letter-spacing: 0.5px;
-}
-.float-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  &:disabled {
-    filter: brightness(1.5) saturate(0.2);
+  h1 {
+    font-family: "IBMPlexSans-SemiBold";
   }
-}
-.float-btn svg {
-  fill: white;
-  stroke: white;
-  stroke-width: 1px;
-}
-img {
-  box-shadow: var(--shadow-image);
-  border-radius: 50%;
-}
-.text-btn {
-  background-color: var(--primary);
-  background: var(--gradient);
-}
-nav h2 {
-  padding: 0.8rem 0 0 2rem;
-}
+  h2 {
+    font-family: "IBMPlexSans-Bold";
+  }
+  h3 {
+    font-family: "IBMPlexSans-Medium";
+  }
+  p,
+  label .MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated {
+    font-family: "IBMPlexSans-Regular";
+  }
+  button,
+  button.MuiButton-root {
+    font-family: "IBMPlexSans-Medium";
+    color: white;
+    font-size: 0.85rem;
+    padding: 0.5rem 2.5rem;
+    border: none;
+    box-shadow: var(--shadow-button);
+    border-radius: var(--border-button);
+    letter-spacing: 0.5px;
+  }
+  .float-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    &:disabled {
+      filter: brightness(1.5) saturate(0.2);
+    }
+  }
+  .float-btn svg {
+    fill: white;
+    stroke: white;
+    stroke-width: 1px;
+  }
+  img {
+    box-shadow: var(--shadow-image);
+    border-radius: 50%;
+  }
+  .text-btn {
+    background-color: var(--primary);
+    background: var(--gradient);
+  }
+  nav h2 {
+    padding: 0.8rem 0 0 2rem;
+  }
 
-.Main {
-  height: 100%;
-  overflow: hidden;
-  overflow-x: scroll;
-}
+  .Main {
+    height: 100%;
+    overflow: hidden;
+    overflow-x: scroll;
+  }
 
-.relativeContainer {
-  height: 100%;
-  width: 100%;
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
+  .relativeContainer {
+    height: 100%;
+    width: 100%;
+    padding: 1.2rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 1.2rem;
+  }
 
-.addForm,
-.flex,
-ul {
-  overflow-y: scroll;
-  scrollbar-width: 0;
-}
+  .addForm,
+  .flex,
+  ul {
+    overflow-y: scroll;
+    scrollbar-width: 0;
+  }
 
-.scrollList::-webkit-scrollbar,
-.addForm::-webkit-scrollbar,
-.flex::-webkit-scrollbar,
-ul::-webkit-scrollbar,
-.description::-webkit-scrollbar {
-  width: 0;
-}
+  .scrollList::-webkit-scrollbar,
+  .addForm::-webkit-scrollbar,
+  .flex::-webkit-scrollbar,
+  ul::-webkit-scrollbar,
+  .description::-webkit-scrollbar {
+    width: 0;
+  }
 
-textarea::-webkit-scrollbar,
-.scrollbar::-webkit-scrollbar {
-  width: 0.5rem;
-}
-::-webkit-scrollbar-thumb {
-  background: #2b76a87b;
-  border-radius: 20px;
-}
-::selection {
-  background: #c7d6dd;
-}
+  textarea::-webkit-scrollbar,
+  .scrollbar::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2b76a87b;
+    border-radius: 20px;
+  }
+  ::selection {
+    background: #c7d6dd;
+  }
 
-::-moz-selection {
-  background: #c7d6dd;
-}
+  ::-moz-selection {
+    background: #c7d6dd;
+  }
 
-li {
-  list-style: none;
-}
+  li {
+    list-style: none;
+  }
 
-ul {
-  padding: 0;
-  margin: 0;
-}
+  ul {
+    padding: 0;
+    margin: 0;
+  }
 
-li > * {
-  margin-top: 0.5rem;
-}
-.theList {
-  text-transform: lowercase;
-  margin: 0;
-  padding: 0;
-}
-.inline {
-  display: inline;
-}
+  .theList {
+    text-transform: lowercase;
+    margin: 0;
+    padding: 0;
+  }
+  .inline {
+    display: inline;
+  }
 
-label {
-  display: block;
-}
+  label {
+    display: block;
+  }
 
-.load_container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-}
+  .load_container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
 
-.loading {
-  height: 8rem;
-}
-.hide {
-  display: none;
+  .loading {
+    height: 8rem;
+  }
+  .hide {
+    display: none;
+  }
 }
 @media (max-width: 600px) {
-  .Planner {
+  .planner-wrapper {
     position: relative;
     overflow: hidden;
     display: block;
     padding-right: 0;
-  }
-  .Main {
-    height: 100%;
-    overflow: hidden;
-  }
 
-  .NewTask {
-    position: absolute;
-    width: calc(100% - 40px);
-    /*   height: 100%; */
+    .Main {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .NewTask {
+      position: absolute;
+      width: calc(100% - 40px);
+      /*   height: 100%; */
+    }
+    .relativeContainer {
+      display: block;
+    }
   }
-  .relativeContainer {
-    display: block;
-  }
-}
-@media (min-width: 1000px) {
-  .float-btn {
-    width: 50px;
-    height: 50px;
-    svg {
-      width: 30px;
-      height: 30px;
+  @media (min-width: 1000px) {
+    .float-btn {
+      width: 50px;
+      height: 50px;
+      svg {
+        width: 30px;
+        height: 30px;
+      }
     }
   }
 }

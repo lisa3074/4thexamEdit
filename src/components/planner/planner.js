@@ -66,22 +66,34 @@ export default function Planner() {
   }, []);
 
   if (cards.length === 0) {
+    setTimeout(() => {
+      document.querySelector(".go-to-planner").classList.add("progress");
+    }, 500);
     return (
-      <div className="load_container">
+      <div className="load_container hide">
         <h1 className="loading">LOADING</h1>
       </div>
     );
   } else {
     setTimeout(() => {
+      document.querySelector(".go-to-planner").classList.remove("progress");
       init();
     }, 10);
   }
 
   return (
-    <div className="Planner hide">
-      {cards === "" && <h1>LOADING</h1>}
-      <NewTask onFormSubmit={onFormSubmit} />
-      <MainPlanner deleteCard={deleteCard} moveCard={moveCard} editCard={editCard} dragCard={dragCard} cards={cards} />
-    </div>
+    <main className="Planner hide">
+      <section className="planner-wrapper">
+        {cards === "" && <h1>LOADING</h1>}
+        <NewTask onFormSubmit={onFormSubmit} />
+        <MainPlanner
+          deleteCard={deleteCard}
+          moveCard={moveCard}
+          editCard={editCard}
+          dragCard={dragCard}
+          cards={cards}
+        />
+      </section>
+    </main>
   );
 }

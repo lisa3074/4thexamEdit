@@ -17,7 +17,7 @@ import PrivateRoute from "./components/login/PrivateRoute";
 import SignUp from "./components/login/SignUp";
 import Administration from "./components/administration/overview/Administration";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import Planner from "./components/planner/planner";
+import Planner from "./components/planner/Planner";
 //Change upper to lower when ready for production build.
 //import { unstable_createMuiStrictModeTheme as createMuiTheme } from "@material-ui/core";
 

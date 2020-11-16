@@ -2,11 +2,15 @@ import React, { useState } from "react";
 
 //import styles from "./Card.module.css";
 import Option from "muicss/lib/react/option";
-import Select from "muicss/lib/react/select";
+//import Select from "muicss/lib/react/select";
+import Select from "@material-ui/core/Select";
 import Panel from "muicss/lib/react/panel";
 import { expand } from "./modules/expand";
 import { closeExpand } from "./modules/closeExpand";
 import CardButtons from "./CardButtons";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
 
 //one way is to destructure the card array with curly brackets at this level ({ card })
 //if the last level sent the array here: card = {card}
@@ -46,37 +50,9 @@ export default function Card(props) {
 
   const colorCat = {
     backgroundColor: props.color,
-    borderRadius: "50%",
-    height: "15px",
-    margin: "0",
-    marginLeft: "1rem",
-    width: "15px",
-    border: "1px solid black",
-    float: "left",
-    display: "inline",
   };
-  const uppercase = {
-    textTransform: "uppercase",
-    margin: "0 0.5rem 0 0.5rem",
-    color: "#504f4f",
-    fontWeight: "400",
-    fontSize: "12px",
-    textAlign: "right",
-    width: "auto",
-    display: "inline",
-    float: "left",
-  };
-
-  const posiionAb = {
-    position: "absolute",
-    top: "0rem",
-    right: "0rem",
-    width: "100%",
-  };
-  const posiionRel = {
-    position: "relative",
-    top: "0",
-    left: "0",
+  const colorText = {
+    color: props.color,
   };
 
   return (
@@ -87,41 +63,53 @@ export default function Card(props) {
       onDragEnd={(e) => {
         cardDragged(e, props._id);
       }}>
-      <li className={"container"} id={"a" + props._id} key={props._id} style={posiionRel}>
-        <div className="expandCard" onClick={/* () => expand(props._id) */ clickOnCard}>
+      <div className="category-color" style={colorCat}></div>
+      <li className="container" id={"a" + props._id} key={props._id}>
+        <div className="expandCard" onClick={clickOnCard}>
           <header>
-            <h2 className="smallerFont">{props.title}</h2>
-            <div style={posiionAb}>
-              <div style={colorCat}></div>
-              <p style={uppercase}>{props.category}</p>
-            </div>
+            <h1 className="smallerFont">{props.title}</h1>
           </header>
-          <p className="fade_out hide">Added: {props.added.substring(0, 10)} </p>
-          <p className="fade_out hide">Assigned to: {props.assignedTo}</p>
           <p className="description scrollbar fade_out hide">{props.description}</p>
           <p className="hideAlways fade_out hide">{props.color}</p>
           <p className="hideAlways fade_out hide">{props.list}</p>
         </div>
-        <Select className="fade_out hide" name="input" label="List" onChange={listChanged} value={(list, props.list)}>
-          <Option value="To Do" label="To Do" />
-          <Option value="Doing" label="Doing" />
-          <Option value="Done" label="Done" />
-        </Select>
-        <div className="option_wrapper">
-          <CardButtons
-            className={"a" + props._id}
-            name="edit"
-            deleteCard={props.deleteCard}
-            editCard={props.editCard}
-            title={props.title}
-            list={props.list}
-            assignedTo={props.assignedTo}
-            color={props.color}
-            category={props.category}
-            description={props.description}
-            id={props._id}
-          />
-          <CardButtons name="delete" id={props._id} deleteCard={props.deleteCard} />
+        <p className="assignedTo">{props.assignedTo}</p>
+
+        <FormControl className="fade_out hide">
+          <InputLabel id="select-list">Choose list</InputLabel>
+          <Select
+            labelId="select-list"
+            id="demo-simple-select"
+            value={(list, props.list)}
+            onChange={listChanged}
+            name="input"
+            label="List">
+            <MenuItem value="To Do">To do</MenuItem>
+            <MenuItem value="Doing">Doing</MenuItem>
+            <MenuItem value="Done">Done</MenuItem>
+          </Select>
+        </FormControl>
+        <div className="bottom-wrapper">
+          <div className="flex-wrapper" onClick={clickOnCard}>
+            <p className="due">Due: 18. dec 2020 {/* {props.due.substring(0, 10)} */}</p>
+            <p style={colorText}>{props.category}</p>
+          </div>
+          <div className="option_wrapper">
+            <CardButtons
+              className={"a" + props._id}
+              name="edit"
+              deleteCard={props.deleteCard}
+              editCard={props.editCard}
+              title={props.title}
+              list={props.list}
+              assignedTo={props.assignedTo}
+              color={props.color}
+              category={props.category}
+              description={props.description}
+              id={props._id}
+            />
+            <CardButtons name="delete" id={props._id} deleteCard={props.deleteCard} />
+          </div>
         </div>
       </li>
     </Panel>
