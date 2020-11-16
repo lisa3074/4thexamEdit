@@ -1,4 +1,5 @@
 .FilterUsers,
+.FilterTasks,
 .TopBar {
   background-color: white;
   box-shadow: var(--card-shadow);
@@ -12,7 +13,9 @@
   }
   .division,
   .hours,
-  .select {
+  .select,
+  .category,
+  .employee {
     width: 45%;
   }
   select.MuiSelect-outlined {
@@ -52,6 +55,9 @@
       font-size: 0.8rem;
     }
   }
+}
+.FilterTasks {
+  margin-bottom: 0;
 }
 @media (min-width: 1000px) {
   .TopBar .searchUsers .MuiInputLabel-shrink,

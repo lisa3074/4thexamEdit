@@ -67,14 +67,6 @@ export default function App() {
             <Switch>
               <PrivateRoute
                 exact
-                path="/"
-                credentials={credentials}
-                component={() => (
-                  <Administration endpoint={endpoint} setEndpoint={setEndpoint} innerWidth={innerWidth} />
-                )}
-              />
-              <PrivateRoute
-                exact
                 path="/administration"
                 credentials={credentials}
                 component={() => (
@@ -89,6 +81,7 @@ export default function App() {
               />
               <Route exact path="/signup" component={() => <SignUp saveCredentials={saveCredentials} />}></Route>
               <Route exact path="/login" component={() => <Login saveCredentials={saveCredentials} />}></Route>
+              <Route exact path="/" component={() => <Login saveCredentials={saveCredentials} />}></Route>
             </Switch>
           </Router>
         </AuthProvider>

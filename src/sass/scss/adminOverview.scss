@@ -8,6 +8,11 @@
   height: 100%;
   padding: 0.5rem 0.5rem 3.2rem;
 }
+.UserList {
+  height: 100vh;
+  overflow: auto;
+  padding-bottom: 4rem;
+}
 
 .UserCard {
   width: 100%;

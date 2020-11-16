@@ -1,7 +1,6 @@
-import Button from "muicss/lib/react/button";
 import { popUp } from "./modules/editPopup";
 import React, { useState } from "react";
-import DeleteForeverRoundedIcon from "@material-ui/icons/DeleteForeverRounded";
+import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import SubmitButton from "./SubmitButton";
 import EditForm from "./Editform";
@@ -63,12 +62,8 @@ export default function EditCard(props) {
   return (
     <>
       <div className={props.name + " float-btn btn fade_out hide"} onClick={whichButton}>
-        {props.name === "edit" ? <EditRoundedIcon /> : <DeleteForeverRoundedIcon />}
+        {props.name === "edit" ? <EditRoundedIcon /> : <DeleteRoundedIcon />}
       </div>
-      {/* <div className="float-btn"></div> */}
-      {/*       <Button color="primary" className={props.name + " btn fade_out hide"} onClick={whichButton}>
-        {props.name}
-      </Button> */}
 
       {
         <article className="editContainer hide" id={"b" + props.id}>

@@ -171,6 +171,7 @@ export default function PlannerForm(props) {
             <MenuItem value="To Do">To do</MenuItem>
             <MenuItem value="Doing">Doing</MenuItem>
             <MenuItem value="Done">Done</MenuItem>
+            <MenuItem value="Barrier">Barrier</MenuItem>
           </Select>
         </FormControl>
         {/* Her er en if/else sætning:

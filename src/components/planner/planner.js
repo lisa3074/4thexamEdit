@@ -13,7 +13,7 @@ import "../../sass/scss/planner/cards.scss";
 import "../../sass/scss/planner/animations.scss";
 import "../../sass/scss/planner/navigation.scss";
 
-export default function Planner() {
+export default function Planner(props) {
   const [cards, setCards] = useState([]);
   scroll();
 
@@ -69,6 +69,7 @@ export default function Planner() {
     setTimeout(() => {
       document.querySelector(".go-to-planner").classList.add("progress");
     }, 500);
+
     return (
       <div className="load_container hide">
         <h1 className="loading">LOADING</h1>
@@ -77,6 +78,7 @@ export default function Planner() {
   } else {
     setTimeout(() => {
       document.querySelector(".go-to-planner").classList.remove("progress");
+      document.querySelector(".loading-page").classList.add("hide");
       init();
     }, 10);
   }

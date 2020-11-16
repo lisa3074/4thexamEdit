@@ -3,7 +3,7 @@ import { done, doing, todo, addTask } from "./modules/mobNavigation";
 
 export default function MobNav(props) {
   return (
-    <section className="mob_nav">
+    <section className="mob_nav hide">
       <div onClick={done} className="navDone">
         <p>Done</p>
       </div>

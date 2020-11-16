@@ -1,6 +1,6 @@
 .Planner {
   .biggerFont {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     transition: 0.5s;
     animation-timing-function: ease-out;
     white-space: normal;
@@ -82,7 +82,7 @@
   @media (max-width: 600px) {
     .show {
       z-index: 11;
-      width: calc(100% - 40px);
+      width: calc(100% - 1rem);
       transform: "" /* translateX(0) */;
       transition: 1s;
     }

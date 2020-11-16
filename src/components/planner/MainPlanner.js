@@ -1,5 +1,7 @@
 import React from "react";
+import FilterTasks from "./FilterTasks";
 import PlannerList from "./PlannerList";
+import PlannerNav from "./PlannerNav";
 
 //The list container
 export default function Main({ cards, onFormSubmit, moveCard, deleteCard, editCard, dragCard }) {
@@ -9,6 +11,8 @@ export default function Main({ cards, onFormSubmit, moveCard, deleteCard, editCa
   const [dropList, setDropList] = React.useState("");
   return (
     <main className="Main">
+      <PlannerNav />
+      <FilterTasks />
       <section className="relativeContainer">
         {/*header is a prop I decided to use. This prop can be referenced by writing {props.header}
       This is a good level to filter data, so we dont pass along too much (save speed)
@@ -34,6 +38,17 @@ export default function Main({ cards, onFormSubmit, moveCard, deleteCard, editCa
           dropList={dropList}
           header="Doing"
           cards={cards.filter((c) => c.list === "Doing")}
+        />
+        <PlannerList
+          deleteCard={deleteCard}
+          moveCard={moveCard}
+          editCard={editCard}
+          dragCard={dragCard}
+          onFormSubmit={onFormSubmit}
+          setDropList={setDropList}
+          dropList={dropList}
+          header="Barrier"
+          cards={cards.filter((c) => c.list === "Barrier")}
         />
         <PlannerList
           deleteCard={deleteCard}

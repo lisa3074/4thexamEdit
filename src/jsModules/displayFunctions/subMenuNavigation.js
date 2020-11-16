@@ -23,15 +23,19 @@ export function showMenu() {
   document.querySelector(".Chat").classList.add("hide");
   document.querySelector(".Menu").classList.remove("hide");
 }
-export function searchUsers() {
+export function searchUsers(tool) {
   document.querySelector(".menuSearch").classList.add("hide");
   document.querySelector(".menuClose").classList.remove("hide");
-  document.querySelector(".FilterUsers").classList.remove("hide");
+  tool === "admin"
+    ? document.querySelector(".FilterUsers").classList.remove("hide")
+    : document.querySelector(".FilterTasks").classList.remove("hide");
 }
-export function closeSearch() {
+export function closeSearch(tool) {
   document.querySelector(".menuSearch").classList.remove("hide");
   document.querySelector(".menuClose").classList.add("hide");
-  document.querySelector(".FilterUsers").classList.add("hide");
+  tool === "admin"
+    ? document.querySelector(".FilterUsers").classList.add("hide")
+    : document.querySelector(".FilterTasks").classList.add("hide");
 
   //RESET LIST/SEARCH
 }

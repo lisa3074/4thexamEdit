@@ -67,7 +67,9 @@ export default function Card(props) {
       <li className="container" id={"a" + props._id} key={props._id}>
         <div className="expandCard" onClick={clickOnCard}>
           <header>
-            <h1 className="smallerFont">{props.title}</h1>
+            <h1 className="smallerFont" title={props.title}>
+              {props.title}
+            </h1>
           </header>
           <p className="description scrollbar fade_out hide">{props.description}</p>
           <p className="hideAlways fade_out hide">{props.color}</p>
@@ -87,6 +89,7 @@ export default function Card(props) {
             <MenuItem value="To Do">To do</MenuItem>
             <MenuItem value="Doing">Doing</MenuItem>
             <MenuItem value="Done">Done</MenuItem>
+            <MenuItem value="Barrier">Barrier</MenuItem>
           </Select>
         </FormControl>
         <div className="bottom-wrapper">
@@ -95,6 +98,7 @@ export default function Card(props) {
             <p style={colorText}>{props.category}</p>
           </div>
           <div className="option_wrapper">
+            <CardButtons name="delete" id={props._id} deleteCard={props.deleteCard} />
             <CardButtons
               className={"a" + props._id}
               name="edit"
@@ -108,7 +112,6 @@ export default function Card(props) {
               description={props.description}
               id={props._id}
             />
-            <CardButtons name="delete" id={props._id} deleteCard={props.deleteCard} />
           </div>
         </div>
       </li>

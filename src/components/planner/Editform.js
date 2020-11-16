@@ -126,6 +126,7 @@ export default function EditCard(props) {
           <MenuItem value="To Do">To do</MenuItem>
           <MenuItem value="Doing">Doing</MenuItem>
           <MenuItem value="Done">Done</MenuItem>
+          <MenuItem value="Barrier">Barrier</MenuItem>
         </Select>
       </FormControl>
     </>

@@ -31,13 +31,21 @@ export default function SubMenu(props) {
         <ArrowBackIosRoundedIcon />
       </div>
       <div className="float-btn">
-        <div className="menuSearch" onClick={searchUsers}>
+        <div
+          className="menuSearch"
+          onClick={() => {
+            searchUsers(props.tool);
+          }}>
           <SearchRoundedIcon />
         </div>
         <div className="menuEdit hide" onClick={editUser}>
           <EditRoundedIcon />
         </div>
-        <div className="menuClose hide" onClick={closeSearch}>
+        <div
+          className="menuClose hide"
+          onClick={() => {
+            closeSearch(props.tool);
+          }}>
           <CloseRoundedIcon />
         </div>
       </div>

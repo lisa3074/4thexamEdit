@@ -10,7 +10,7 @@ export default function Menu(props) {
           <h1>SkatteGuiden</h1>
         </div>
         <Profile></Profile>
-        <MenuNav innerWidth={props.innerWidth} setEndpoint={props.setEndpoint}></MenuNav>
+        <MenuNav innerWidth={props.innerWidth} setEndpoint={props.setEndpoint} setTool={props.setTool}></MenuNav>
       </nav>
     </>
   );

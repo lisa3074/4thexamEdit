@@ -9,6 +9,7 @@ import { firebaseConfig } from "../../jsModules/firebase/firebase";
 import { administration, newUser, planner } from "../../jsModules/displayFunctions/mainMenuNavigation";
 export default function MenuNav(props) {
   let innerWidth = props.innerWidth;
+
   return (
     <div className="MenuNav">
       <ul>
@@ -16,13 +17,17 @@ export default function MenuNav(props) {
           to="/administration"
           onClick={() => {
             administration(innerWidth);
+            props.setTool("admin");
           }}>
           <li>
             <PeopleIcon />
             <h3 className="admin-link">Administration</h3>
           </li>
         </Link>
-        <li onClick={newUser}>
+        <li
+          onClick={() => {
+            newUser();
+          }}>
           <PersonAddIcon />
           <h3 className="new-user-link">New user</h3>
         </li>
@@ -31,6 +36,7 @@ export default function MenuNav(props) {
           className="go-to-planner"
           onClick={() => {
             planner(innerWidth);
+            props.setTool("planner");
           }}>
           <CalendarTodayIcon />
           <h3 className="planner-link">Planner</h3>
