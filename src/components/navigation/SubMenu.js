@@ -8,6 +8,7 @@ import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import { editUser } from "../../jsModules/displayFunctions/displayEditForm";
+import { resetSubmenu } from "../../jsModules/displayFunctions/subMenuNavigation";
 import {
   newUser,
   openMenu,
@@ -15,8 +16,10 @@ import {
   searchUsers,
   closeSearch,
 } from "../../jsModules/displayFunctions/subMenuNavigation";
+import { addTask } from "../planner/modules/mobNavigation";
 
 export default function SubMenu(props) {
+  const tool = props.tool;
   const endpoint = props.endpoint;
   return (
     <nav className="SubMenu hide">
@@ -24,10 +27,15 @@ export default function SubMenu(props) {
         className="menuIcon"
         onClick={() => {
           openMenu();
+          tool === "planner" ? resetSubmenu() : openMenu();
         }}>
         <MenuRoundedIcon />
       </div>
-      <div className="menuBack hide" onClick={delegation}>
+      <div
+        className="menuBack hide"
+        onClick={() => {
+          delegation(tool);
+        }}>
         <ArrowBackIosRoundedIcon />
       </div>
       <div className="float-btn">
@@ -55,7 +63,7 @@ export default function SubMenu(props) {
       <div className="menuDelete hide">
         <DeleteRoundedIcon />
       </div>
-      <div className="menuAddTask hide">
+      <div className="menuAddTask hide" onClick={addTask}>
         <AddRoundedIcon />
       </div>
     </nav>

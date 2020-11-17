@@ -86,15 +86,18 @@
     height: 100vh;
     position: fixed;
     height: calc(var(--vh, 1vh) * 100);
-    z-index: 100;
+    z-index: 101;
     background-color: var(--background);
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0.7rem;
     .addForm {
       max-width: 500px;
       background-color: white;
-      height: 48rem;
+      height: 100%;
+      border-radius: var(--border-radius);
+      box-shadow: var(--card-shadow);
     }
   }
   h1 {
@@ -154,6 +157,7 @@
     height: 100%;
     overflow: hidden;
     overflow-x: scroll;
+    padding-bottom: 3rem;
   }
 
   .relativeContainer {
@@ -234,6 +238,7 @@
     display: none;
   }
 }
+
 @media (max-width: 600px) {
   .planner-wrapper {
     position: relative;
@@ -249,13 +254,14 @@
     .NewTask {
       position: absolute;
       width: calc(100% - 40px);
-      /*   height: 100%; */
     }
     .relativeContainer {
       display: block;
     }
   }
-  @media (min-width: 1000px) {
+}
+@media (min-width: 1000px) {
+  .planner-wrapper {
     .float-btn {
       width: 50px;
       height: 50px;
@@ -263,6 +269,16 @@
         width: 30px;
         height: 30px;
       }
+    }
+    .Main {
+      width: calc(100vw - 250px);
+      padding-bottom: 0;
+    }
+    .relativeContainer {
+      column-gap: 0.7rem;
+    }
+    .scrollList {
+      padding-right: 0.5rem;
     }
   }
 }

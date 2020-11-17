@@ -73,14 +73,16 @@
   .container .MuiFormControl-root {
     margin: 1rem 0;
   }
-  header h1 {
-    padding: 0 0 0.5rem 0;
+  header h1,
+  .assignedTo {
     width: 100%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-
+  header h1 {
+    padding: 0 0 0.5rem 0;
+  }
   .panelMargin[data-state="visible"] header h1 {
     padding: 0.5rem 0 0.5rem 0;
     width: 100%;

@@ -96,6 +96,30 @@
   .flex textarea {
     height: 6rem;
   }
+
+  .MuiAutocomplete-hasPopupIcon.MuiAutocomplete-hasClearIcon .MuiAutocomplete-inputRoot {
+    padding-right: 0;
+  }
+  .MuiChip-root.MuiAutocomplete-tag.MuiChip-deletable {
+    background-color: var(--secondary);
+    color: white;
+    margin-top: 0.2rem;
+    svg {
+      fill: white;
+    }
+  }
+  .float-btn.cancel {
+    background-color: var(--secondary);
+  }
+  .float-btn.save {
+    background-color: var(--primary);
+  }
+  #form .flex-wrapper {
+    position: absolute;
+    bottom: 2rem;
+    width: calc(100% - 4rem);
+    left: 2rem;
+  }
   @media (max-width: 600px) {
     .addForm {
       overflow: scroll;

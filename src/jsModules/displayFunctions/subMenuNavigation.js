@@ -11,6 +11,12 @@ export function openMenu() {
 export function delegation() {
   !document.querySelector(".ViewProfile").classList.contains("hide") ? showCardList() : showMenu();
 }
+
+export function resetSubmenu() {
+  console.log("resetSubmenu");
+  document.querySelector(".newUserIcon").classList.remove("hide");
+  document.querySelector(".menuAddTask").classList.add("hide");
+}
 export function showCardList() {
   document.querySelectorAll(".ViewProfile, .menuBack, .menuEdit, .menuDelete").forEach((element) => {
     element.classList.add("hide");

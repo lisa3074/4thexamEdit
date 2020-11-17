@@ -3,11 +3,14 @@ import Button from "muicss/lib/react/button";
 
 export default function SubmitButton(props) {
   return (
-    <Button
+    /*    <Button
       disabled={props.disabled}
       color="primary"
       className="btn submit">
       {props.name}
-    </Button>
+    </Button> */
+    <div disabled={props.disabled} color="primary" className="float-btn">
+      {props.name}
+    </div>
   );
 }

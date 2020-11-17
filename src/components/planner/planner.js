@@ -6,6 +6,7 @@ import { init } from "./modules/mobNavigation";
 import { scroll } from "./modules/scroll";
 import "../../sass/scss/planner/style.scss";
 
+import "../../sass/scss/planner/newTask.scss";
 import "../../sass/scss/planner/form.scss";
 import "../../sass/scss/planner/list.scss";
 import "../../sass/scss/planner/edit.scss";

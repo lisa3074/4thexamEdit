@@ -73,17 +73,18 @@
     animation-delay: 0.5s;
   }
 
-  /*   svg {
-    position: absolute;
-    top: -5rem;
-    left: calc((100% / 2) - 50px);
-    width: 100px;
-  } */
   @media (max-width: 600px) {
     .show {
       z-index: 11;
       width: calc(100% - 1rem);
       transform: "" /* translateX(0) */;
+      transition: 1s;
+    }
+    .showNew {
+      z-index: 101;
+      width: 100vw;
+      height: 100vh;
+
       transition: 1s;
     }
 

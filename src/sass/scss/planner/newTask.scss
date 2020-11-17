@@ -1,0 +1,9 @@
+.Planner {
+  .MuiFormControl-root.MuiTextField-root,
+  .MuiFormControl-root {
+    margin-top: 1rem;
+  }
+  .MuiAutocomplete-endAdornment {
+    display: none;
+  }
+}

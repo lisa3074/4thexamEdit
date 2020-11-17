@@ -1,37 +1,54 @@
 import React, { useState } from "react";
 import SubmitButton from "./SubmitButton";
-import { CirclePicker } from "react-color";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import { closeNewTask } from "./modules/mobNavigation";
+import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
+import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 
 export default function PlannerForm(props) {
   const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState({});
   const [description, setDescription] = useState("");
   const [color, setColor] = useState("#ffffff");
-  const [assignedTo, setAssigned] = useState("");
-  let [list, setList] = useState("To Do");
+  const [assignedTo, setAssigned] = useState([]);
+  const [due, setDue] = useState("");
+  let [list, setList] = useState("");
 
   const titleChanged = (e) => {
     setTitle(e.target.value);
   };
-  const catChanged = (e) => {
-    setCategory(e.target.value);
-  };
+
   const descriptionChanged = (e) => {
     setDescription(e.target.value);
   };
-  const assignedChanged = (e) => {
-    setAssigned(e.target.value);
+  console.log(color);
+
+  const catChanged = (option) => {
+    setCategory((category) => {
+      return option.target.innerText;
+    });
+    //setCategory(option.target.innerText);
   };
-  const colorChanged = (color) => {
-    setColor(color.hex);
+  console.log(category);
+
+  const colorChanged = (option, categories) => {
+    let object = categories.filter((entry) => entry.category === option.target.innerText);
+    let newColor = object.map((entry) => entry.color);
+    setColor((color) => {
+      return newColor.toString();
+    });
   };
   const listChanged = (e) => {
     setList(e.target.value);
+    console.log(e.target.value);
+  };
+  const dueChanged = (e) => {
+    setDue(e.target.value);
     console.log(e.target.value);
   };
 
@@ -39,8 +56,21 @@ export default function PlannerForm(props) {
     outlineColor: "green",
   };
 
-  function submit(evt) {
+  //console.log(assignedTo);
+  function collectAssigned(evt) {
     evt.preventDefault();
+    const nameButtons = document.querySelectorAll(".MuiChip-root.MuiAutocomplete-tag span");
+    nameButtons.forEach((name) => {
+      // console.log(name.innerHTML);
+      setAssigned((assignedTo) => [...assignedTo, name.innerHTML]);
+    });
+    setTimeout(() => {
+      //console.log(assignedTo);
+      submit();
+    }, 3000);
+  }
+
+  function submit(evt) {
     console.log(props.header);
     setTitleFocusOn(false);
     setCatFocusOn(false);
@@ -48,19 +78,19 @@ export default function PlannerForm(props) {
       title: title,
       list: list,
       added: Date.now(),
-      assignedTo: [assignedTo],
+      assignedTo: assignedTo,
       color: color,
       category: category,
       description: description,
       timeStamp: Date.now(),
     });
     setTitle("");
-    setAssigned("");
     setColor("#ffffff");
     setDescription("");
     setCategory("");
     setList("To Do");
     correctTrue();
+    //setAssigned([]);
   }
   //MANUEL VALIDERING
   const [titleFocusOn, setTitleFocusOn] = useState("false");
@@ -89,30 +119,45 @@ export default function PlannerForm(props) {
 
   const titleBorderStyle = {
     outline: "none",
-    borderRight:
-      title.length > 0
-        ? "2px solid #47ae7a"
-        : title.length === 0 && titleFocusOn === true
-        ? "2px solid #e68b3c"
-        : "0px solid #e68b3c",
+    borderBottom: title.length === 0 && titleFocusOn === true ? "2px solid #e68b3c" : "0px solid #e68b3c",
   };
   const catBorderStyle = {
     outline: "none",
-    borderRight:
-      category.length > 0
-        ? "2px solid #47ae7a"
-        : category.length === 0 && catFocusOn === true
-        ? "2px solid #e68b3c"
-        : "0px solid #ff5e5e",
+    borderBottom: category.length === 0 && catFocusOn === true ? "2px solid #e68b3c" : "0px solid #ff5e5e",
   };
-
+  const disabled = {
+    pointerEvents: title.length === 0 || category.length === 0 ? "none" : "auto",
+    filter: title.length === 0 || category.length === 0 ? "grayscale(1) brightness(1.3)" : "none",
+    padding: "0",
+  };
   const succes = {
     display: correct === true ? "block" : "none",
   };
+  const users = [
+    "Lisa Søndergaard",
+    "Rune Jensen",
+    "The Godfather: Part II",
+    "The Dark Knight",
+    "12 Angry Men",
+    "Schindler's List",
+  ];
+  /*   const assigned = ["Lisa Søndergaard", "Rune Jensen"]; */
 
+  const categories = [
+    { category: "Design", color: "#374d62" },
+    { category: "Support", color: "#f44336" },
+    { category: "Development", color: "#1ec69a" },
+    { category: "Finance", color: "#9b9b9b" },
+    { category: "Sales", color: "#fb6126" },
+    { category: "Test", color: "#f0c75d" },
+    { category: "UX", color: "#d98c6a" },
+    { category: "Marketing", color: "#222224" },
+    { category: "Research", color: "#34d0d5" },
+    { category: "Documentation", color: "#b4b256" },
+  ];
   return (
     <>
-      <form className="addForm" id="form" onSubmit={submit}>
+      <form className="addForm" id="form" onSubmit={collectAssigned}>
         <div className="bg">
           <h2>ADD TASK</h2>
         </div>
@@ -120,29 +165,27 @@ export default function PlannerForm(props) {
         <TextField
           className="title"
           style={titleBorderStyle}
-          label="title"
+          label="title task"
           onFocus={titleFocusChanged}
           onChange={titleChanged}
           name="title"
           value={title}
         />
+        <Autocomplete
+          multiple
+          //size="small"
+          options={users}
+          getOptionLabel={(option) => option}
+          filterSelectedOptions
+          //  defaultValue={[users[3]]}
+          // brug denne til at hente assiged ind i (PUT) defaultValue={assigned}
+          /*    onChange={(option) => {
+            assignedChanged(option);
+          }} */
 
-        <TextField
-          style={catBorderStyle}
-          className="category"
-          label="Category"
-          onFocus={catFocusChanged}
-          onChange={catChanged}
-          name="Category"
-          value={category}
-        />
-
-        <TextField
-          className="assigned"
-          label="Assigned to"
-          onChange={assignedChanged}
-          name="AssignedTo"
-          value={assignedTo}
+          renderInput={(params) => (
+            <TextField {...params} variant="standard" label="Add collaborators" placeholder="" />
+          )}
         />
 
         <TextField
@@ -154,17 +197,6 @@ export default function PlannerForm(props) {
           multiline
           rows={4}
         />
-        <label className="colorLabel">
-          Color
-          <CirclePicker
-            onChange={colorChanged}
-            value={color}
-            className="color colorInput"
-            label="Color"
-            floatingLabel={true}
-            name="Color"
-          />
-        </label>
         <FormControl className="list">
           <InputLabel id="select-list">Choose list</InputLabel>
           <Select labelId="select-list" name="input" label="List" onChange={listChanged} value={list}>
@@ -174,16 +206,35 @@ export default function PlannerForm(props) {
             <MenuItem value="Barrier">Barrier</MenuItem>
           </Select>
         </FormControl>
-        {/* Her er en if/else sætning:
-Hvis title.length = 0 (mm.)(hvis der ikke står noget i feltet), 
-så sæt name til State title and category. Ellers så giv knappen navnet Add.
-Hvis inputfelterne er tomme, så sæt disabled til true og send det videre til SubmitButton.js
-I SubmitButton.js bestemmes der så at knappen er disabled, hvis den er true og ellers ikke
-Her er det kun nødvendigt at udfylde title og category */}
-        <SubmitButton
+        <TextField className="due" label="Due date" onChange={dueChanged} name="Due" value={due} />
+
+        <Autocomplete
+          className="category"
+          label="Category"
+          name="Category"
+          options={categories}
+          getOptionLabel={(option) => option.category}
+          filterSelectedOptions
+          onFocus={catFocusChanged}
+          onChange={(option) => {
+            catChanged(option);
+            colorChanged(option, categories);
+          }}
+          renderInput={(params) => <TextField {...params} variant="standard" label="Category" placeholder="" />}
+        />
+
+        {/*   <SubmitButton
           name={title.length === 0 || category.length === 0 ? "Not there yet" : "Add task"}
           disabled={title.length === 0 || category.length === 0}
-        />
+        /> */}
+        <div className="flex-wrapper">
+          <button style={disabled} className="float-btn save" onSubmit={collectAssigned}>
+            <CheckRoundedIcon />
+          </button>
+          <div className="float-btn cancel" onClick={closeNewTask}>
+            <CloseRoundedIcon />
+          </div>
+        </div>
       </form>
       <svg style={succes} height="100%" viewBox="0 0 512 512" width="100%" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -193,21 +244,3 @@ Her er det kun nødvendigt at udfylde title og category */}
     </>
   );
 }
-
-//MANUEL VALIDERING
-/*   const [titleFocusOn, setTitleFocusOn] = useState("false");
-  
-    const titleFocusChanged = (e) => {
-    console.log("focusChanged");
-    setTitleFocusOn(true);
-  };
-
-    const titleBorderStyle = {
-    outline: "none",
-    borderRight:
-      title.length > 0
-        ? "4px solid green"
-        : title.length === 0 && titleFocusOn === true
-        ? "3px solid red"
-        : "0px solid red",
-  }; */

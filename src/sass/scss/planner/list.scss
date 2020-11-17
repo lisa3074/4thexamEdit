@@ -14,7 +14,7 @@
     width: 100%;
     z-index: 10;
     min-width: 275px;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0rem;
   }
   .Done h1,
   .Doing h1,
@@ -93,6 +93,23 @@
     .Doing,
     .Barrier {
       width: 100%;
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  .Planner {
+    .Done1 .Done h1,
+    .To.Do1 .To.Do h1,
+    .Barrier1 .Barrier,
+    .Doing1 .Doing {
+      display: block;
+    }
+    .Done,
+    .Doing,
+    .To.Do,
+    .Barrier {
+      padding-bottom: 0.5rem;
     }
   }
 }
