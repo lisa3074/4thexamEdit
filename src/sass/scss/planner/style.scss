@@ -154,14 +154,14 @@
   }
 
   .Main {
-    height: 100%;
+    height: calc(100vh - 80px);
     overflow: hidden;
     overflow-x: scroll;
     padding-bottom: 3rem;
   }
 
   .relativeContainer {
-    height: 100%;
+    height: calc(100% - 60px);
     width: 100%;
     padding: 0.5rem;
     position: relative;
@@ -184,21 +184,13 @@
   .description::-webkit-scrollbar {
     width: 0;
   }
+  .Main::-webkit-scrollbar {
+    height: 0.3rem;
+  }
 
   textarea::-webkit-scrollbar,
   .scrollbar::-webkit-scrollbar {
     width: 0.5rem;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #2b76a87b;
-    border-radius: 20px;
-  }
-  ::selection {
-    background: #c7d6dd;
-  }
-
-  ::-moz-selection {
-    background: #c7d6dd;
   }
 
   li {
@@ -276,6 +268,8 @@
     }
     .relativeContainer {
       column-gap: 0.7rem;
+      padding: 0.5rem 2rem;
+      height: 100%;
     }
     .scrollList {
       padding-right: 0.5rem;

@@ -102,7 +102,21 @@ p,
 label .MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated {
   font-family: "IBMPlexSans-Regular";
 }
+::-webkit-scrollbar {
+  width: 0.2rem;
+  height: 0;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 20px;
+}
+::selection {
+  background: var(--primary);
+}
 
+::-moz-selection {
+  background: var(--primary);
+}
 .progress {
   cursor: progress;
   pointer-events: none;

@@ -14,15 +14,21 @@
     width: 4px;
     position: absolute;
     background-color: black;
-    transform: translate(-5px, -15px);
+    //transform: translate(-5px, -15px);
     border-radius: 25px 0 0 25px;
   }
   .container {
     position: relative;
     top: 0px;
     left: 0px;
-    padding: 0rem 1rem;
+    padding: 1rem;
     padding-bottom: 0;
+    .description {
+      scrollbar-width: 2px;
+      &::-webkit-scrollbar {
+        width: 2px;
+      }
+    }
     svg {
       width: 20px;
       height: 20px;
@@ -115,7 +121,7 @@
     color: rgb(65, 65, 65);
   }
   .mui-panel {
-    padding: 15px 15px 0px 5px;
+    padding: 0;
   }
   .description {
     height: 7.5rem;
