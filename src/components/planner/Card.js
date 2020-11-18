@@ -1,49 +1,44 @@
 import React, { useState } from "react";
-
-//import styles from "./Card.module.css";
-import Option from "muicss/lib/react/option";
-//import Select from "muicss/lib/react/select";
 import Select from "@material-ui/core/Select";
 import Panel from "muicss/lib/react/panel";
 import { expand } from "./modules/expand";
 import { closeExpand } from "./modules/closeExpand";
-import CardButtons from "./CardButtons";
+import EditForm from "./Editform";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 
-//one way is to destructure the card array with curly brackets at this level ({ card })
-//if the last level sent the array here: card = {card}
-//then we only get one card at a time sendt to this function
-
-//Another way (the one used) is to destructure at the preveous level: {...card}
-//the we can use props as well (props)
 export default function Card(props) {
-  /*   console.log(props.targetHeader); */
+  console.log("planner/Cards.js || Cards()");
 
   const [list, setList] = useState("");
   const listChanged = (e) => {
+    console.log("planner/Cards.js || listChanged()");
     setList(e.target.value);
     onClickMove(e.target.value);
   };
 
   const cardDragged = (e, id) => {
+    console.log("planner/Cards.js || cardDragged()");
     e.preventDefault();
     setList(props.dropList);
     dragMove(id, props.dropList);
   };
 
   function onClickMove(list) {
+    console.log("planner/Cards.js || onClickMove()");
     console.log(list);
     console.log(props._id);
     props.moveCard({ _id: props._id, list: list, timeStamp: Date.now() }, props._id, list, Date.now());
   }
   function dragMove(id, list) {
+    console.log("planner/Cards.js || dragMove()");
     console.log(list);
     console.log(id);
     props.dragCard({ _id: id, list: list, timeStamp: Date.now() }, id, list, Date.now());
   }
   function clickOnCard() {
+    console.log("planner/Cards.js || clickOnCard()");
     closeExpand(props._id);
     expand(props._id);
   }
@@ -94,14 +89,12 @@ export default function Card(props) {
         </FormControl>
         <div className="bottom-wrapper">
           <div className="flex-wrapper" onClick={clickOnCard}>
-            <p className="due">Due: 18. dec 2020 {/* {props.due.substring(0, 10)} */}</p>
+            <p className="due">Due: {props.due !== undefined ? props.due.substring(0, 10) : "No due date"}</p>
             <p style={colorText}>{props.category}</p>
           </div>
           <div className="option_wrapper">
-            <CardButtons name="delete" id={props._id} deleteCard={props.deleteCard} />
-            <CardButtons
+            <EditForm
               className={"a" + props._id}
-              name="edit"
               deleteCard={props.deleteCard}
               editCard={props.editCard}
               title={props.title}
@@ -110,6 +103,7 @@ export default function Card(props) {
               color={props.color}
               category={props.category}
               description={props.description}
+              due={props.due}
               id={props._id}
             />
           </div>

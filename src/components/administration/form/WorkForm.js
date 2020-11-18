@@ -25,9 +25,9 @@ export default function WorkForm() {
     setSelectedDate(e.target.value);
   };
 
-  console.log(hours);
+  /*   console.log(hours);
   console.log(level);
-  console.log(selectedDate);
+  console.log(selectedDate); */
   return (
     <fieldset name="Work" className="WorkForm hide">
       <h2>WORK</h2>

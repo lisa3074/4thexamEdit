@@ -4,7 +4,8 @@ import PlannerList from "./PlannerList";
 import PlannerNav from "./PlannerNav";
 
 //The list container
-export default function Main({ cards, onFormSubmit, moveCard, deleteCard, editCard, dragCard }) {
+export default function MainPlanner({ cards, onFormSubmit, moveCard, deleteCard, editCard, dragCard }) {
+  console.log("planner/MainPlanner.js || MainPlanner()");
   //drag and drop state. Declare the variable and updater function and send them to List, then send the variable to Card
   //In List, call the function onDrop and change the state to the header of the list the card is dropped on. The use the variable in
   //Card to set the list to whatever the variables state is.

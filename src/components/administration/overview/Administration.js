@@ -12,7 +12,6 @@ export default function Administration(props) {
   const [tool, setTool] = useState("");
   //const currentUser = AuthProvider();
 
-  console.log(tool);
   return (
     <section className="Administration">
       <div className="loading-page">

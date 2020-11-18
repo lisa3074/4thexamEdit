@@ -1,20 +1,8 @@
 const restDB = "https://frontend-22d4.restdb.io/rest/yakapp";
 const apiKey = "5e9581a6436377171a0c234f";
 
-/* export function getCards(callback) {
-  fetch(restDB, {
-    method: "get",
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      "x-apikey": apiKey,
-      "cache-control": "no-cache",
-    },
-  })
-    .then((e) => e.json())
-    .then((data) => callback(data));
-} */
-
 export async function getCards(callback) {
+  console.log("planner/modules/restdb.js || getCards()");
   let response = await fetch(restDB, {
     method: "get",
     headers: {
@@ -24,10 +12,11 @@ export async function getCards(callback) {
   });
   let data = await response.json();
   const sortedData = data.sort((a, b) => a.timeStamp - b.timeStamp);
-  console.log(sortedData);
+  //console.log("SORTEDDATA: " + JSON.stringify(sortedData));
   callback(sortedData);
 }
 export async function postCard(callback, data, cards) {
+  console.log("planner/modules/restdb.js || postCards()");
   console.log("submitted db1", data);
   const postData = JSON.stringify(data);
   console.log(postData);
@@ -45,6 +34,7 @@ export async function postCard(callback, data, cards) {
 }
 
 export async function deleteCard(_id) {
+  console.log("planner/modules/restdb.js || delete()");
   await fetch(`${restDB}/${_id}`, {
     method: "delete",
     headers: {
@@ -56,16 +46,9 @@ export async function deleteCard(_id) {
 }
 
 export async function moveCard(payload, _id) {
-  /*   let newCards = cards.filter((c) => {
-    if (c._id === _id) {
-      c.list = list;
-    }
-    return c;
-  });
-  newCards = newCards.sort((a, b) => a.timeStamp - b.timeStamp); */
-
+  console.log("planner/modules/restdb.js || moveCards()");
   const postData = JSON.stringify(payload);
-  console.log(postData);
+  console.log("POSTDATA: " + postData);
   await fetch(`${restDB}/${_id}`, {
     method: "put",
     headers: {
@@ -75,21 +58,12 @@ export async function moveCard(payload, _id) {
     },
     body: postData,
   });
-
-  /*   callback(newCards); */
 }
 
 export async function dragCard(payload, _id, list, cards, timeStamp) {
-  /*   let newCards = cards.filter((c) => {
-    if (c._id === _id) {
-      c.list = list;
-    }
-    return c;
-  });
-  newCards = newCards.sort((a, b) => a.timeStamp - b.timeStamp); */
-
+  console.log("planner/modules/restdb.js || dragCards()");
   const postData = JSON.stringify(payload);
-  console.log(postData);
+  console.log("POSTDATA: " + postData);
   await fetch(`${restDB}/${_id}`, {
     method: "put",
     headers: {
@@ -99,32 +73,10 @@ export async function dragCard(payload, _id, list, cards, timeStamp) {
     },
     body: postData,
   });
-  /* 
-  callback(newCards); */
 }
-async function editCard(
-  callback,
-  payload,
-  _id,
-  title,
-  list,
-  assignedTo,
-  color,
-  category,
-  description,
-  cards
-) {
-  console.log(
-    payload,
-    _id,
-    title,
-    list,
-    assignedTo,
-    color,
-    category,
-    description,
-    cards
-  );
+async function editCard(callback, payload, _id, title, list, assignedTo, color, category, description, due, cards) {
+  console.log("planner/modules/restdb.js || editCards()");
+  console.log(payload, _id, title, list, assignedTo, color, category, description, due, cards);
   const newCards = cards.filter((c) => {
     if (c._id === _id) {
       c.title = title;
@@ -133,11 +85,12 @@ async function editCard(
       c.color = color;
       c.description = description;
       c.assignedTo = assignedTo;
+      c.due = due;
     }
     return c;
   });
-  console.log(newCards);
-  console.log(payload);
+  console.log("NEWCARDS: " + newCards);
+  console.log("PAYLAOD: " + payload);
 
   const postData = JSON.stringify(payload);
   console.log(postData);
@@ -152,7 +105,6 @@ async function editCard(
   });
 
   callback(newCards);
-  console.log("editCard i restDB.js");
 }
 
 export const RestDb = {

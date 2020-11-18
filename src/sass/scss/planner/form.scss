@@ -73,7 +73,7 @@
     margin-bottom: 0;
   }
   .addForm {
-    padding: 1rem 2rem;
+    padding: 2rem 2rem;
 
     @supports (-webkit-touch-callout: none) {
       height: 80vh;
@@ -111,10 +111,14 @@
   .float-btn.cancel {
     background-color: var(--secondary);
   }
+  .flex .float-btn.cancel {
+    width: 40px;
+  }
   .float-btn.save {
     background-color: var(--primary);
   }
-  #form .flex-wrapper {
+  #form .flex-wrapper,
+  .form .flex-wrapper {
     position: absolute;
     bottom: 2rem;
     width: calc(100% - 4rem);
@@ -131,13 +135,14 @@
     align-items: center;
     justify-content: center;
   }
-  .bg h1 {
+  .bg h1,
+  .editWrapper h1 {
     font-size: 1.25rem;
-    line-height: 48px;
     margin: 0;
     color: var(--dark-text);
-    padding-left: 0rem;
+    padding: 0 0 1rem 0;
   }
+
   @media (max-width: 600px) {
     .addForm {
       overflow: scroll;

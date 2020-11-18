@@ -3,16 +3,20 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: white;
+    background: white;
     width: 100vw;
     height: calc(var(--vh, 1vh) * 100);
-    z-index: 20;
+    z-index: 130;
+    padding: 2rem;
+  }
+  .panelMargin[data-state="visible"] .editContainer .flex-wrapper {
+    display: flex;
   }
   .editContainer p {
-    width: calc(100% - 40px);
+    width: 100%;
     height: 4rem;
     text-align: right;
-    padding: 1rem 2rem 0 0;
+    padding: 0;
     font-size: 2rem;
     cursor: pointer;
     margin: 0;
@@ -23,6 +27,9 @@
     flex-wrap: nowrap;
     flex-direction: row;
     width: 100%;
+    h1 {
+      width: 100%;
+    }
   }
 
   .editTask {
@@ -32,8 +39,8 @@
   }
 
   .flex {
-    width: calc(100% - 40px);
-    height: calc(100% - 8rem);
+    width: 100%;
+    height: 100%;
     display: flex;
     justify-content: center;
     margin-top: 0rem;
@@ -48,7 +55,7 @@
   .description {
     overflow: hidden;
   }
-  @media (max-width: 600px) {
+  /*  @media (max-width: 600px) {
     .editContainer {
       width: 100%;
     }
@@ -56,5 +63,5 @@
     .editWrapper {
       width: calc(100% - 40px);
     }
-  }
+  } */
 }

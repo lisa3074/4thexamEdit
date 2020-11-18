@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import NewTask from "./NewTask";
 import MainPlanner from "./MainPlanner";
+import NewTask from "./NewTask";
 import { RestDb } from "./modules/restdb";
 import { init } from "./modules/mobNavigation";
 import { scroll } from "./modules/scroll";
@@ -15,16 +15,17 @@ import "../../sass/scss/planner/animations.scss";
 import "../../sass/scss/planner/navigation.scss";
 
 export default function Planner(props) {
+  console.log("planner/Planner.js || Planner()");
   const [cards, setCards] = useState([]);
   scroll();
 
   //RestDb.function is a function imported from the restdb.js module
   async function onFormSubmit(data) {
-    console.log("submitted db1", data);
+    console.log("planner/Planner.js || onFormSubmit()");
     RestDb.postCard(setCards, data, cards);
   }
   async function deleteCard(_id) {
-    console.log("delete clicked");
+    console.log("planner/Planner.js || deleteCard()");
     //deletes the card from the UI right away
     const newCards = cards.filter((c) => c._id !== _id);
     setCards(newCards);
@@ -33,11 +34,10 @@ export default function Planner(props) {
   }
 
   async function moveCard(payload, _id, list) {
-    console.log("move clicked");
+    console.log("planner/Planner.js || moveCard()");
     let newCards = cards.filter((c) => {
       if (c._id === _id) {
         c.list = list;
-        console.log(c);
       }
       return c;
     });
@@ -45,22 +45,22 @@ export default function Planner(props) {
     RestDb.moveCard(payload, _id);
   }
   async function dragCard(payload, _id, list, timeStamp) {
-    console.log("dragged");
-    console.log(list);
+    console.log("planner/Planner.js || dragCard()");
     let newCards = cards.filter((c) => {
       if (c._id === _id) {
         c.list = list;
-        /*        console.log(c); */
       }
       return c;
     });
+
     setCards(newCards);
     RestDb.dragCard(payload, _id, list, cards, timeStamp);
   }
-  async function editCard(payload, _id, title, list, assignedTo, color, category, description) {
-    console.log(_id);
-    console.log("payload " + JSON.stringify(payload));
-    RestDb.editCard(setCards, payload, _id, title, list, assignedTo, color, category, description, cards);
+  async function editCard(payload, _id, title, list, assignedTo, color, category, description, due) {
+    console.log("planner/Planner.js || editCard()");
+    console.log("ID: " + _id);
+    console.log("PAYLOAD " + JSON.stringify(payload));
+    RestDb.editCard(setCards, payload, _id, title, list, assignedTo, color, category, description, due, cards);
   }
   useEffect(() => {
     RestDb.getCards(setCards);
@@ -88,7 +88,9 @@ export default function Planner(props) {
     <main className="Planner hide">
       <section className="planner-wrapper">
         {cards === "" && <h1>LOADING</h1>}
-        <NewTask onFormSubmit={onFormSubmit} />
+        <nav className="NewTask showNew hide">
+          <NewTask onFormSubmit={onFormSubmit} />
+        </nav>
         <MainPlanner
           deleteCard={deleteCard}
           moveCard={moveCard}

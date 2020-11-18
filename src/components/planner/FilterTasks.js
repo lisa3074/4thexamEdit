@@ -5,16 +5,18 @@ import Select from "@material-ui/core/Select";
 import "../../sass/scss/filterUsers.scss";
 
 export default function FilterTasks() {
+  console.log("planner/FilterTasks.js || FilterTasks()");
   const [category, setCategory] = useState("");
   const [emplpyee, setEmployee] = useState("");
   const handleCategoryChange = (event) => {
+    console.log("planner/FilterTasks.js || handleCategoryChange()");
     setCategory(event.target.value);
   };
   const handleEmployeeChange = (event) => {
+    console.log("planner/FilterTasks.js || handleEmployeeChange()");
     setEmployee(event.target.value);
   };
 
-  console.log(category);
   return (
     <nav className="FilterTasks hide">
       <div className="filter-wrapper">

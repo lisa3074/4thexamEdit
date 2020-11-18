@@ -15,7 +15,7 @@ export default function FilterUsers() {
     setHours(event.target.value);
   };
 
-  console.log(division);
+  // console.log(division);
   return (
     <nav className="FilterUsers hide">
       <div className="filter-wrapper">

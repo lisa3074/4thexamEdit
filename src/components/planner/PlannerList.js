@@ -2,15 +2,8 @@ import React from "react";
 import Card from "./Card";
 /* import { useState } from "react"; */
 
-export default //Remember to always write "props" as properties, if you need to reference some property
-function List(props) {
-  function onDragOver(e) {
-    e.preventDefault();
-  }
-
-  //running through the array (map), to get each entry by itself (like forEach)
-  //For each card we place a <Card> with the data for this one card entry. We destructure the data before passing it {...card}
-  //Here we are sending the whole entry (one card) to the Cards function, which then "appends" the child.
+export default function List(props) {
+  console.log("planner/List.js || List()");
 
   const mappedCards = props.cards.map((card) => (
     <Card
@@ -24,6 +17,11 @@ function List(props) {
       dropList={props.dropList}
     />
   ));
+
+  function onDragOver(e) {
+    console.log("planner/List.js || onDragOver()");
+    e.preventDefault();
+  }
 
   return (
     <section

@@ -75,7 +75,6 @@
 
   @media (max-width: 600px) {
     .show {
-      z-index: 11;
       width: calc(100% - 1rem);
       transform: "" /* translateX(0) */;
       transition: 1s;
@@ -89,7 +88,6 @@
     }
 
     .hidden {
-      z-index: 10;
       opacity: 0;
       transform: translateX(100vw);
       transition: 1s;
