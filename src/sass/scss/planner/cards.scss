@@ -25,6 +25,10 @@
     padding-bottom: 0;
     .description {
       scrollbar-width: 2px;
+      height: max-content;
+      max-height: 200px;
+      overflow-y: scroll;
+      white-space: pre-wrap;
       &::-webkit-scrollbar {
         width: 2px;
       }
@@ -46,8 +50,9 @@
     .due {
       text-align: right;
       font-size: 0.7rem;
-      font-family: "IBMPlexSans-Medium";
+      font-family: "IBMPlexSans-Regular";
       color: var(--light-text);
+      transform: translateY(3px);
     }
   }
   .panelMargin[data-state="visible"] .flex-wrapper {
@@ -64,12 +69,11 @@
     width: 100%;
   }
   .panelMargin[data-state="visible"] .bottom-wrapper {
-    padding-top: 1rem;
+    padding: 1rem 0;
   }
 
-  .expandCard p,
   .assignedTo {
-    padding: 1rem 0;
+    padding: 1.5rem 0;
   }
 
   .panelMargin[data-state="hidden"] .assignedTo {
@@ -79,6 +83,7 @@
   .container .MuiFormControl-root {
     margin: 1rem 0;
   }
+
   header h1,
   .assignedTo {
     width: 100%;
@@ -86,15 +91,16 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  header h1 {
-    padding: 0 0 0.5rem 0;
-  }
+  .panelMargin[data-state="visible"] .assignedTo,
   .panelMargin[data-state="visible"] header h1 {
-    padding: 0.5rem 0 0.5rem 0;
+    white-space: initial;
+    overflow: visible;
+    text-overflow: initial;
+  }
+
+  .panelMargin[data-state="visible"] header h1 {
+    padding: 0rem 0 1rem 0;
     width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .hideAlways {
@@ -123,11 +129,7 @@
   .mui-panel {
     padding: 0;
   }
-  .description {
-    height: 7.5rem;
-    overflow-y: scroll;
-    white-space: pre-wrap;
-  }
+
   .panelMargin[data-state="visible"] .bottom-wrapper {
     display: flex;
     align-items: center;

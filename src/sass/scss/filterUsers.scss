@@ -1,10 +1,15 @@
+.FilterTasks,
+.TopBar {
+  margin-bottom: 1rem;
+  border-radius: var(--border-radius);
+}
+
 .FilterUsers,
 .FilterTasks,
 .TopBar {
   background-color: white;
   box-shadow: var(--card-shadow);
-  border-radius: var(--border-radius);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   padding: 1rem;
 
   .filter-wrapper {
@@ -57,7 +62,8 @@
   }
 }
 .FilterTasks {
-  margin-bottom: 0;
+  padding: 0 1rem;
+  border-radius: 0;
 }
 @media (min-width: 1000px) {
   .TopBar .searchUsers .MuiInputLabel-shrink,

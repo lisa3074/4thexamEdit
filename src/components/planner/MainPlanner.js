@@ -37,8 +37,8 @@ export default function MainPlanner({ cards, onFormSubmit, moveCard, deleteCard,
           onFormSubmit={onFormSubmit}
           setDropList={setDropList}
           dropList={dropList}
-          header="Doing"
-          cards={cards.filter((c) => c.list === "Doing")}
+          header="in progress"
+          cards={cards.filter((c) => c.list === "In progress")}
         />
         <PlannerList
           deleteCard={deleteCard}

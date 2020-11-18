@@ -1,5 +1,5 @@
 .MuiMenu-list,
-.MuiMenu-paper,
+.MuiMenu-paper:not(.MuiPopover-paper),
 .MuiPopover-root {
   width: 100%;
 }
@@ -37,6 +37,9 @@
       fill: white;
     }
   }
+}
+.MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
+  transform: translateY(20px);
 }
 @media (min-width: 1000px) {
   .Planner .PlannerNav {

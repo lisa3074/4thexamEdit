@@ -7,6 +7,7 @@ import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import ChatBubbleRoundedIcon from "@material-ui/icons/ChatBubbleRounded";
 import PersonAddRoundedIcon from "@material-ui/icons/PersonAddRounded";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
+import { addTask } from "../planner/modules/mobNavigation";
 export default function TopBar(props) {
   console.log(props);
   const [division, setDivision] = useState("");
@@ -77,7 +78,7 @@ export default function TopBar(props) {
             </FormControl>
             <FormControl className="select">
               <InputLabel htmlFor="employee">Employee</InputLabel>
-              <Select native id="employee" value={employee} onChange={handleEmployee} label="Emplyoee">
+              <Select native id="employee" value={employee} onChange={handleEmployee} label="Employee">
                 <option aria-label="None" value="" />
                 <option value="Lisa Søndergaard">Lisa Søndergaard</option>
                 <option value="Christina Jørgensen">Christina Jørgensen </option>
@@ -87,7 +88,7 @@ export default function TopBar(props) {
           </div>
           <div className="input-wrapper"></div>
 
-          <AddRoundedIcon className="add-task" />
+          <AddRoundedIcon className="add-task" onClick={addTask} />
           <div className="float-btn">
             <ChatBubbleRoundedIcon />
           </div>

@@ -15,6 +15,7 @@ import {
   delegation,
   searchUsers,
   closeSearch,
+  resetFilterNav,
 } from "../../jsModules/displayFunctions/subMenuNavigation";
 import { addTask } from "../planner/modules/mobNavigation";
 
@@ -27,6 +28,7 @@ export default function SubMenu(props) {
         className="menuIcon"
         onClick={() => {
           openMenu();
+          resetFilterNav();
           tool === "planner" ? resetSubmenu() : openMenu();
         }}>
         <MenuRoundedIcon />

@@ -3,10 +3,10 @@
     margin: 0;
   }
 
-  form input,
+  /*   form input,
   form textarea {
     margin-bottom: 0.5rem;
-  }
+  } */
 
   form {
     padding-bottom: 2rem;
@@ -74,6 +74,7 @@
   }
   .addForm {
     padding: 2rem 2rem;
+    width: calc(100vw - 1.4rem);
 
     @supports (-webkit-touch-callout: none) {
       height: 80vh;
@@ -136,14 +137,20 @@
     justify-content: center;
   }
   .bg h1,
-  .editWrapper h1 {
+  .editContainer h1 {
     font-size: 1.25rem;
     margin: 0;
     color: var(--dark-text);
     padding: 0 0 1rem 0;
   }
+}
 
-  @media (max-width: 600px) {
+li.MuiButtonBase-root.MuiListItem-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiListItem-gutters.MuiListItem-button {
+  padding: 0.5rem 1rem;
+}
+
+@media (max-width: 600px) {
+  .Planner {
     .addForm {
       overflow: scroll;
     }

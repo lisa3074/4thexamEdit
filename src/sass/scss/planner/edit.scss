@@ -20,13 +20,6 @@
     font-size: 2rem;
     cursor: pointer;
     margin: 0;
-  }
-
-  .editWrapper {
-    display: flex;
-    flex-wrap: nowrap;
-    flex-direction: row;
-    width: 100%;
     h1 {
       width: 100%;
     }
@@ -53,6 +46,13 @@
   }
 
   .description {
+    overflow: hidden;
+  }
+
+  .MuiInputBase-root.MuiInputBase-multiline.MuiInput-multiline {
+    overflow: scroll;
+  }
+  .MuiInputBase-input.MuiInput-inputMultiline {
     overflow: hidden;
   }
   /*  @media (max-width: 600px) {

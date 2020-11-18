@@ -12,7 +12,7 @@
     animation-timing-function: ease-in;
     white-space: nowrap;
   }
-
+  /* 
   .fade_out {
     transition: 0.5s;
     opacity: 0;
@@ -21,8 +21,8 @@
   .fade_in {
     transition: 1s;
     opacity: 1;
-  }
-  .fade_out_fast {
+  } */
+  /*   .fade_out_fast {
     //transition: 0s;
     opacity: 0;
   }
@@ -30,15 +30,34 @@
   .fade_in_fast {
     transition: 0.6s;
     opacity: 1;
-  }
+  } */
 
   .smaller {
-    height: 95px;
-    transition: 0.8s;
+    max-height: 95px;
+    transition: 0.5s;
+    .flex-wrapper {
+      padding-bottom: 0.5rem;
+    }
+    .description,
+    .MuiFormControl-root,
+    .option-wrapper {
+      max-height: 0px;
+      transition: 0.5s;
+    }
   }
   .bigger {
-    height: 375px;
+    max-height: 550px;
+    //height: min-content;
     transition: 0.5s;
+    .flex-wrapper {
+      padding-bottom: 0rem;
+    }
+    .description,
+    .MuiFormControl-root,
+    .option-wrapper {
+      max-height: 200px;
+      transition: 0.5s;
+    }
   }
 
   /***************************************************

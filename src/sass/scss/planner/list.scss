@@ -5,7 +5,7 @@
   }
 
   .Done,
-  .Doing,
+  .progress,
   .To.Do,
   .Barrier {
     display: flex;
@@ -17,7 +17,7 @@
     padding-bottom: 0rem;
   }
   .Done h1,
-  .Doing h1,
+  .progress h1,
   .To.Do h1,
   .bg h2,
   .Barrier h1 {
@@ -31,7 +31,7 @@
     font-size: 0.85rem;
   }
   .Done,
-  .Doing,
+  .progress,
   .To.Do,
   .Barrier,
   .bg {
@@ -40,7 +40,7 @@
   .Done1 .Done h1,
   .To.Do1 .To.Do h1,
   .Barrier1 .Barrier,
-  .Doing1 .Doing {
+  .progress1 .progress {
     display: none;
   }
 
@@ -67,23 +67,40 @@
     }
     .To.Do,
     .Done,
-    .Doing,
+    .progress,
     .Barrier {
       width: 100%;
     }
   }
 }
+@media (min-width: 600px) {
+  .dropdown-wrapper {
+    display: none;
+  }
+  .planner-wrapper .relativeContainer {
+    padding: 0.5rem 0;
+    column-gap: 0;
+    grid-column-gap: 0;
+  }
+  .scrollList ul {
+    margin: 0 0.6rem;
+  }
+}
 
 @media (min-width: 1000px) {
+  .planner-wrapper .relativeContainer {
+    padding: 1.5rem 1.8rem;
+    width: calc(100% + 9rem);
+  }
   .Planner {
     .Done1 .Done h1,
     .To.Do1 .To.Do h1,
     .Barrier1 .Barrier,
-    .Doing1 .Doing {
+    .progress1 .progress {
       display: block;
     }
     .Done,
-    .Doing,
+    .progress,
     .To.Do,
     .Barrier {
       padding-bottom: 0.2rem;

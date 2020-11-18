@@ -9,7 +9,7 @@ import "./sass/scss/viewProfile.scss";
 import "./sass/scss/filterUsers.scss";
 import "./sass/main.scss";
 import "./sass/scss/adminOverview.scss";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { AuthProvider } from "./jsModules/firebase/auth";
 import Login from "./components/login/Login";

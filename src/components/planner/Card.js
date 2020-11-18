@@ -10,14 +10,15 @@ import FormControl from "@material-ui/core/FormControl";
 
 export default function Card(props) {
   console.log("planner/Cards.js || Cards()");
-
+  console.log(props.due);
   const [list, setList] = useState("");
   const listChanged = (e) => {
     console.log("planner/Cards.js || listChanged()");
     setList(e.target.value);
     onClickMove(e.target.value);
   };
-
+  const comma = props.assignedTo.toString().indexOf(",");
+  console.log(comma);
   const cardDragged = (e, id) => {
     console.log("planner/Cards.js || cardDragged()");
     e.preventDefault();
@@ -60,6 +61,7 @@ export default function Card(props) {
       }}>
       <div className="category-color" style={colorCat}></div>
       <li className="container" id={"a" + props._id} key={props._id}>
+        {/*         <div className="scrollable"> */}
         <div className="expandCard" onClick={clickOnCard}>
           <header>
             <h1 className="smallerFont" title={props.title}>
@@ -70,7 +72,9 @@ export default function Card(props) {
           <p className="hideAlways fade_out hide">{props.color}</p>
           <p className="hideAlways fade_out hide">{props.list}</p>
         </div>
-        <p className="assignedTo">{props.assignedTo}</p>
+        <p className="assignedTo" onClick={clickOnCard}>
+          {props.assignedTo.join(", ")}
+        </p>
 
         <FormControl className="fade_out hide">
           <InputLabel id="select-list">Choose list</InputLabel>
@@ -82,14 +86,15 @@ export default function Card(props) {
             name="input"
             label="List">
             <MenuItem value="To Do">To do</MenuItem>
-            <MenuItem value="Doing">Doing</MenuItem>
+            <MenuItem value="In progress">In progress</MenuItem>
             <MenuItem value="Done">Done</MenuItem>
             <MenuItem value="Barrier">Barrier</MenuItem>
           </Select>
         </FormControl>
+        {/*        </div> */}
         <div className="bottom-wrapper">
           <div className="flex-wrapper" onClick={clickOnCard}>
-            <p className="due">Due: {props.due !== undefined ? props.due.substring(0, 10) : "No due date"}</p>
+            <p className="due">Due: {props.due != undefined ? props.due.substring(0, 10) : "No due date"}</p>
             <p style={colorText}>{props.category}</p>
           </div>
           <div className="option_wrapper">

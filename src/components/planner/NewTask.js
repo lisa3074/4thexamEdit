@@ -8,6 +8,10 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { closeNewTask } from "./modules/mobNavigation";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
+import "date-fns";
+import DateFnsUtils from "@date-io/date-fns";
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
+import Grid from "@material-ui/core/Grid";
 
 export default function NewTask(props) {
   console.log("planner/NewTask.js || NewTask()");
@@ -16,7 +20,7 @@ export default function NewTask(props) {
   const [description, setDescription] = useState("");
   const [color, setColor] = useState("#ffffff");
   const [assignedTo, setAssigned] = useState([]);
-  const [due, setDue] = useState("");
+  const [due, setDue] = useState();
   let [list, setList] = useState("");
 
   const titleChanged = (e) => {
@@ -53,8 +57,8 @@ export default function NewTask(props) {
   };
   const dueChanged = (e) => {
     console.log("planner/NewTask.js || dueChanged()");
-    setDue(e.target.value);
-    console.log(e.target.value);
+    setDue(e);
+    console.log(e);
   };
 
   const outline = {
@@ -154,6 +158,11 @@ export default function NewTask(props) {
     { category: "Research", color: "#34d0d5" },
     { category: "Documentation", color: "#b4b256" },
   ];
+  /*   const [selectedDate, setSelectedDate] = React.useState(new Date("2014-08-18T21:11:54"));
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  }; */
   return (
     <>
       <form className="addForm" id="form" onSubmit={submit}>
@@ -204,13 +213,35 @@ export default function NewTask(props) {
           <InputLabel id="select-list">Choose list</InputLabel>
           <Select labelId="select-list" name="input" label="List" onChange={listChanged} value={list}>
             <MenuItem value="To Do">To do</MenuItem>
-            <MenuItem value="Doing">Doing</MenuItem>
+            <MenuItem value="In progress">In progress</MenuItem>
             <MenuItem value="Done">Done</MenuItem>
             <MenuItem value="Barrier">Barrier</MenuItem>
           </Select>
         </FormControl>
-        <TextField className="due" label="Due date" onChange={dueChanged} name="Due" value={due} />
 
+        {/*  <TextField className="due" label="Due date" onChange={dueChanged} name="Due" value={due} /> */}
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container justify="space-around">
+            <KeyboardDatePicker
+              disableToolbar
+              variant="inline"
+              format="dd/MM/yyyy"
+              margin="normal"
+              label="Date picker inline"
+              value={due}
+              className="due"
+              label="Due date"
+              onChange={dueChanged}
+              name="Due"
+              disablePast
+              error={false}
+              helperText={null}
+              KeyboardButtonProps={{
+                "aria-label": "change date",
+              }}
+            />
+          </Grid>
+        </MuiPickersUtilsProvider>
         <Autocomplete
           className="category"
           label="Category"

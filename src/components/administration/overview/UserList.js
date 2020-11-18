@@ -9,6 +9,11 @@ export default function UserList() {
         <UserCard></UserCard>
         <UserCard></UserCard>
         <UserCard></UserCard>
+        <UserCard></UserCard>
+        <UserCard></UserCard>
+        <UserCard></UserCard>
+        <UserCard></UserCard>
+        <UserCard></UserCard>
       </div>
     </section>
   );

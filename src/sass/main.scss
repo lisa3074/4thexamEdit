@@ -121,8 +121,8 @@ label .MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLa
   cursor: progress;
   pointer-events: none;
 }
-button,
-button.MuiButton-root {
+button:not(.MuiIconButton-root),
+button.MuiButton-root:not(.MuiIconButton-root) {
   font-family: "IBMPlexSans-Medium";
   color: white;
   font-size: 0.85rem;

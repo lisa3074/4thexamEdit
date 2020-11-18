@@ -28,7 +28,7 @@ export default function PlannerNav() {
     width: "100vw",
   };
   return (
-    <div>
+    <div className="dropdown-wrapper">
       <div
         className="PlannerNav"
         aria-controls="customized-menu"

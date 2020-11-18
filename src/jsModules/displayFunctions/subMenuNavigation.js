@@ -45,3 +45,10 @@ export function closeSearch(tool) {
 
   //RESET LIST/SEARCH
 }
+export function resetFilterNav() {
+  console.log("resetFilterNav");
+  document.querySelector(".menuClose").classList.add("hide");
+  document.querySelector(".FilterTasks").classList.add("hide");
+  document.querySelector(".FilterUsers").classList.add("hide");
+  document.querySelector(".menuSearch").classList.remove("hide");
+}

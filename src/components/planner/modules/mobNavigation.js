@@ -1,7 +1,7 @@
 import { closeExpand } from "./closeExpand";
 export function init() {
   console.log("planner/modules/mobNavigation.js || init()");
-  document.querySelectorAll(".Doing1.scrollList, .Done1.scrollList, .Barrier1.scrollList").forEach((list) => {
+  document.querySelectorAll(".progress1.scrollList, .Done1.scrollList, .Barrier1.scrollList").forEach((list) => {
     list.classList.add("hidden2");
   });
   document.querySelector(".To").classList = "To Do1 scrollList show";
@@ -10,7 +10,7 @@ export function init() {
 export function done() {
   console.log("planner/modules/mobNavigation.js || done()");
   document.querySelector(".Done1").classList = "Done1 scrollList show";
-  document.querySelector(".Doing1").classList = "Doing1 scrollList hidden";
+  document.querySelector(".progress1").classList = "progress1 scrollList hidden";
   document.querySelector(".Do1").classList = "To Do1 scrollList hidden";
   document.querySelector(".Barrier1").classList = "Barrier1 scrollList hidden";
   document.querySelector(".NewTask").classList = "NewTask hidden";
@@ -23,19 +23,19 @@ export function done() {
 export function doing() {
   console.log("planner/modules/mobNavigation.js || doing()");
   document.querySelector(".Done1").classList = "Done1 scrollList hidden";
-  document.querySelector(".Doing1").classList = "Doing1 scrollList show";
+  document.querySelector(".progress1").classList = "progress1 scrollList show";
   document.querySelector(".Do1").classList = "To Do1 scrollList hidden";
   document.querySelector(".Barrier1").classList = "Barrier1 scrollList hidden";
   document.querySelector(".NewTask").classList = "NewTask hidden";
-  document.querySelector(".Doing1").addEventListener("transitionend", function () {
-    document.querySelector(".Doing1").style.transform = "";
+  document.querySelector(".progress1").addEventListener("transitionend", function () {
+    document.querySelector(".progress1").style.transform = "";
   });
   closeExpand();
 }
 export function todo() {
   console.log("planner/modules/mobNavigation.js || todo()");
   document.querySelector(".Done1").classList = "Done1 scrollList hidden";
-  document.querySelector(".Doing1").classList = "Doing1 scrollList hidden";
+  document.querySelector(".progress1").classList = "progress1 scrollList hidden";
   document.querySelector(".Do1").classList = "To Do1 scrollList show";
   document.querySelector(".Barrier1").classList = "Barrier1 scrollList hidden";
   document.querySelector(".NewTask").classList = "NewTask hidden";
@@ -47,7 +47,7 @@ export function todo() {
 export function barrier() {
   console.log("planner/modules/mobNavigation.js || barrier()");
   document.querySelector(".Done1").classList = "Done1 scrollList hidden";
-  document.querySelector(".Doing1").classList = "Doing1 scrollList hidden";
+  document.querySelector(".progress1").classList = "progress1 scrollList hidden";
   document.querySelector(".Do1").classList = "To Do1 scrollList hidden";
   document.querySelector(".Barrier1").classList = "Barrier1 scrollList show";
   document.querySelector(".NewTask").classList = "NewTask hidden";
