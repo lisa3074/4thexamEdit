@@ -7,25 +7,39 @@ import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import ChatBubbleRoundedIcon from "@material-ui/icons/ChatBubbleRounded";
 import PersonAddRoundedIcon from "@material-ui/icons/PersonAddRounded";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 import { addTask } from "../planner/modules/mobNavigation";
 export default function TopBar(props) {
   console.log(props);
   const [division, setDivision] = useState("");
   const [hours, setHours] = useState("");
-  const [category, setCategory] = useState("");
-  const [employee, setEmployee] = useState("");
+
   const handleDivision = (event) => {
     setDivision(event.target.value);
   };
-  const handleHours = (event) => {
-    setHours(event.target.value);
+  const handleHours = (e) => {
+    setHours(e.target.value);
   };
-  const handleCategory = (event) => {
-    setCategory(event.target.value);
+  const handleCategory = (e) => {
+    props.setChosenCat(e.target.innerText);
   };
-  const handleEmployee = (event) => {
-    setEmployee(event.target.value);
+  const handleEmployee = (e) => {
+    props.setChosenEmployee(e.target.innerText);
   };
+
+  const categories = [
+    { category: "Design", color: "#374d62" },
+    { category: "Support", color: "#f44336" },
+    { category: "Development", color: "#1ec69a" },
+    { category: "Finance", color: "#9b9b9b" },
+    { category: "Sales", color: "#fb6126" },
+    { category: "Test", color: "#f0c75d" },
+    { category: "UX", color: "#d98c6a" },
+    { category: "Marketing", color: "#222224" },
+    { category: "Research", color: "#34d0d5" },
+    { category: "Documentation", color: "#b4b256" },
+  ];
+  const users = ["Lisa Søndergaard", "Rune Jensen", "Mikkel Hansen", "Anja Andersen", "Gry Trampedach", "Bob Hund"];
 
   return (
     <nav className="TopBar">
@@ -67,24 +81,31 @@ export default function TopBar(props) {
         <div className="grid-wrapper">
           <h2 className="sorted">Sorted by</h2>
           <div className="filter-wrapper">
-            <FormControl className="select">
-              <InputLabel htmlFor="category">Category</InputLabel>
-              <Select native id="category" value={category} onChange={handleCategory} label="Category">
-                <option aria-label="None" value="" />
-                <option value="Design">Design</option>
-                <option value="Development">Development</option>
-                <option value="Finance">Finance</option>
-              </Select>
-            </FormControl>
-            <FormControl className="select">
-              <InputLabel htmlFor="employee">Employee</InputLabel>
-              <Select native id="employee" value={employee} onChange={handleEmployee} label="Employee">
-                <option aria-label="None" value="" />
-                <option value="Lisa Søndergaard">Lisa Søndergaard</option>
-                <option value="Christina Jørgensen">Christina Jørgensen </option>
-                <option value="Louie Marino">Louie Marino</option>
-              </Select>
-            </FormControl>
+            <Autocomplete
+              className="category"
+              label="Category"
+              name="Category"
+              options={categories}
+              getOptionLabel={(option) => (option.category ? option.category : "")}
+              getOptionSelected={(option, value) => option.category === value.category}
+              filterSelectedOptions
+              onChange={(option) => {
+                handleCategory(option);
+              }}
+              renderInput={(params) => <TextField {...params} variant="standard" label="Category" placeholder="" />}
+            />
+
+            <Autocomplete
+              className="select"
+              options={users}
+              getOptionLabel={(option) => (option ? option : "")}
+              getOptionSelected={(option, value) => option === value}
+              filterSelectedOptions
+              onChange={(values) => {
+                handleEmployee(values);
+              }}
+              renderInput={(params) => <TextField {...params} variant="standard" label="Employee" placeholder="" />}
+            />
           </div>
           <div className="input-wrapper"></div>
 

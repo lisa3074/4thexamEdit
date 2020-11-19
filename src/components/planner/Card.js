@@ -10,15 +10,14 @@ import FormControl from "@material-ui/core/FormControl";
 
 export default function Card(props) {
   console.log("planner/Cards.js || Cards()");
-  console.log(props.due);
+
   const [list, setList] = useState("");
   const listChanged = (e) => {
     console.log("planner/Cards.js || listChanged()");
     setList(e.target.value);
     onClickMove(e.target.value);
   };
-  const comma = props.assignedTo.toString().indexOf(",");
-  console.log(comma);
+
   const cardDragged = (e, id) => {
     console.log("planner/Cards.js || cardDragged()");
     e.preventDefault();
@@ -94,7 +93,7 @@ export default function Card(props) {
         {/*        </div> */}
         <div className="bottom-wrapper">
           <div className="flex-wrapper" onClick={clickOnCard}>
-            <p className="due">Due: {props.due != undefined ? props.due.substring(0, 10) : "No due date"}</p>
+            <p className="due">Due: {props.due !== undefined ? props.due.substring(0, 10) : "No due date"}</p>
             <p style={colorText}>{props.category}</p>
           </div>
           <div className="option_wrapper">

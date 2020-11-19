@@ -1,23 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import FilterTasks from "./FilterTasks";
 import PlannerList from "./PlannerList";
 import PlannerNav from "./PlannerNav";
 
 //The list container
-export default function MainPlanner({ cards, onFormSubmit, moveCard, deleteCard, editCard, dragCard }) {
+export default function MainPlanner({
+  cards,
+  onFormSubmit,
+  moveCard,
+  deleteCard,
+  editCard,
+  dragCard,
+  chosenEmployee,
+  chosenCat,
+  setChosenEmployee,
+  setChosenCat,
+}) {
   console.log("planner/MainPlanner.js || MainPlanner()");
-  //drag and drop state. Declare the variable and updater function and send them to List, then send the variable to Card
-  //In List, call the function onDrop and change the state to the header of the list the card is dropped on. The use the variable in
-  //Card to set the list to whatever the variables state is.
+  console.log(chosenEmployee + " " + chosenCat);
+
   const [dropList, setDropList] = React.useState("");
   return (
     <main className="Main">
       <PlannerNav />
-      <FilterTasks />
+      <FilterTasks
+        setChosenCat={setChosenCat}
+        setChosenEmployee={setChosenEmployee}
+        chosenCat={chosenCat}
+        chosenEmployee={chosenEmployee}
+      />
       <section className="relativeContainer">
-        {/*header is a prop I decided to use. This prop can be referenced by writing {props.header}
-      This is a good level to filter data, so we dont pass along too much (save speed)
-      Here I say: let cards be all enrties in the card array that match the filter, here the filter is on the list*/}
         <PlannerList
           deleteCard={deleteCard}
           moveCard={moveCard}
@@ -27,7 +39,17 @@ export default function MainPlanner({ cards, onFormSubmit, moveCard, deleteCard,
           setDropList={setDropList}
           dropList={dropList}
           header="To Do"
-          cards={cards.filter((c) => c.list === "To Do")}
+          cards={
+            chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
+              ? cards.filter(
+                  (c) => c.list === "To Do" && c.assignedTo.includes(chosenEmployee) && c.category.includes(chosenCat)
+                )
+              : chosenCat !== (undefined && "")
+              ? cards.filter((c) => c.list === "To Do" && c.category.includes(chosenCat))
+              : chosenEmployee !== (undefined && "")
+              ? cards.filter((c) => c.list === "To Do" && c.assignedTo.includes(chosenEmployee))
+              : cards.filter((c) => c.list === "To Do")
+          }
         />
         <PlannerList
           deleteCard={deleteCard}
@@ -38,7 +60,18 @@ export default function MainPlanner({ cards, onFormSubmit, moveCard, deleteCard,
           setDropList={setDropList}
           dropList={dropList}
           header="in progress"
-          cards={cards.filter((c) => c.list === "In progress")}
+          cards={
+            chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
+              ? cards.filter(
+                  (c) =>
+                    c.list === "In progress" && c.assignedTo.includes(chosenEmployee) && c.category.includes(chosenCat)
+                )
+              : chosenCat !== (undefined && "")
+              ? cards.filter((c) => c.list === "In progress" && c.category.includes(chosenCat))
+              : chosenEmployee !== (undefined && "")
+              ? cards.filter((c) => c.list === "In progress" && c.assignedTo.includes(chosenEmployee))
+              : cards.filter((c) => c.list === "In progress")
+          }
         />
         <PlannerList
           deleteCard={deleteCard}
@@ -49,7 +82,17 @@ export default function MainPlanner({ cards, onFormSubmit, moveCard, deleteCard,
           setDropList={setDropList}
           dropList={dropList}
           header="Barrier"
-          cards={cards.filter((c) => c.list === "Barrier")}
+          cards={
+            chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
+              ? cards.filter(
+                  (c) => c.list === "Barrier" && c.assignedTo.includes(chosenEmployee) && c.category.includes(chosenCat)
+                )
+              : chosenCat !== (undefined && "")
+              ? cards.filter((c) => c.list === "Barrier" && c.category.includes(chosenCat))
+              : chosenEmployee !== (undefined && "")
+              ? cards.filter((c) => c.list === "Barrier" && c.assignedTo.includes(chosenEmployee))
+              : cards.filter((c) => c.list === "Barrier")
+          }
         />
         <PlannerList
           deleteCard={deleteCard}
@@ -60,7 +103,17 @@ export default function MainPlanner({ cards, onFormSubmit, moveCard, deleteCard,
           setDropList={setDropList}
           dropList={dropList}
           header="Done"
-          cards={cards.filter((c) => c.list === "Done")}
+          cards={
+            chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
+              ? cards.filter(
+                  (c) => c.list === "Done" && c.assignedTo.includes(chosenEmployee) && c.category.includes(chosenCat)
+                )
+              : chosenCat !== (undefined && "")
+              ? cards.filter((c) => c.list === "Done" && c.category.includes(chosenCat))
+              : chosenEmployee !== (undefined && "")
+              ? cards.filter((c) => c.list === "Done" && c.assignedTo.includes(chosenEmployee))
+              : cards.filter((c) => c.list === "Done")
+          }
         />
       </section>
     </main>

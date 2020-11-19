@@ -74,6 +74,11 @@
   }
 }
 @media (min-width: 600px) {
+  .Planner {
+    .scrollList {
+      min-width: 300px;
+    }
+  }
   .dropdown-wrapper {
     display: none;
   }
@@ -90,7 +95,8 @@
 @media (min-width: 1000px) {
   .planner-wrapper .relativeContainer {
     padding: 1.5rem 1.8rem;
-    width: calc(100% + 9rem);
+    // width: calc(100% + 9rem);
+    width: calc(100vw + 235px);
   }
   .Planner {
     .Done1 .Done h1,
@@ -105,5 +111,15 @@
     .Barrier {
       padding-bottom: 0.2rem;
     }
+  }
+}
+@media (min-width: 1250px) {
+  .planner-wrapper .relativeContainer {
+    width: calc(100vw);
+  }
+}
+@media (min-width: 1300px) {
+  .planner-wrapper .relativeContainer {
+    width: calc(100vw - 250px);
   }
 }

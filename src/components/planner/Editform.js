@@ -181,109 +181,111 @@ export default function EditForm(props) {
         <EditRoundedIcon />
       </div>
       <article className="editContainer hide" id={"b" + props.id}>
-        <h1 className="editTask">Edit task</h1>
-        <form className="form" onSubmit={submit}>
-          <TextField
-            className="title"
-            style={titleBorderStyle}
-            label="title task"
-            onFocus={titleFocusChanged}
-            onChange={titleChanged}
-            name="title"
-            value={title}
-          />
-          <Autocomplete
-            multiple
-            options={users}
-            getOptionLabel={(option) => option}
-            getOptionSelected={(option, value) => option === value}
-            filterSelectedOptions
-            value={assignedTo}
-            onChange={(e, values) => {
-              console.log(values);
-              setAssigned(values);
-            }}
-            renderInput={(params) => (
-              <TextField {...params} variant="standard" label="Add collaborators" placeholder="" />
-            )}
-          />
-
-          <TextField
-            className="description"
-            label="Description"
-            onChange={descriptionChanged}
-            name="Description"
-            value={description}
-            multiline
-            rows={4}
-          />
-          <FormControl className="list">
-            <InputLabel id="select-list">Choose list</InputLabel>
-            <Select labelId="select-list" name="input" label="List" onChange={listChanged} value={list}>
-              <MenuItem value="To Do">To do</MenuItem>
-              <MenuItem value="In progress">In progress</MenuItem>
-              <MenuItem value="Done">Done</MenuItem>
-              <MenuItem value="Barrier">Barrier</MenuItem>
-            </Select>
-          </FormControl>
-          {/*    <TextField className="due" label="Due date" onChange={dueChanged} name="Due" value={due} /> */}
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid container justify="space-around">
-              <KeyboardDatePicker
-                disableToolbar
-                variant="inline"
-                format="dd/MM/yyyy"
-                margin="normal"
-                label="Date picker inline"
-                value={due}
-                className="due"
-                label="Due date"
-                onChange={dueChanged}
-                name="Due"
-                disablePast
-                error={false}
-                helperText={null}
-                KeyboardButtonProps={{
-                  "aria-label": "change date",
-                }}
+        <div className="flex">
+          <div className="edit-wrapper">
+            <h1 className="editTask">Edit task</h1>
+            <form className="form" onSubmit={submit}>
+              <TextField
+                className="title"
+                style={titleBorderStyle}
+                label="title task"
+                onFocus={titleFocusChanged}
+                onChange={titleChanged}
+                name="title"
+                value={title}
               />
-            </Grid>
-          </MuiPickersUtilsProvider>
-          <Autocomplete
-            className="category"
-            label="Category"
-            name="Category"
-            options={categories}
-            getOptionLabel={(option) => (option.category ? option.category : "")}
-            getOptionSelected={(option, value) => option.category === value.category}
-            filterSelectedOptions
-            // defaultValue={props.category}
-            onFocus={catFocusChanged}
-            onChange={(option) => {
-              catChanged(option);
-              colorChanged(option, categories);
-            }}
-            renderInput={(params) => <TextField {...params} variant="standard" label="Category" placeholder="" />}
-          />
+              <Autocomplete
+                multiple
+                options={users}
+                getOptionLabel={(option) => option}
+                getOptionSelected={(option, value) => option === value}
+                filterSelectedOptions
+                value={assignedTo}
+                onChange={(e, values) => {
+                  console.log(values);
+                  setAssigned(values);
+                }}
+                renderInput={(params) => (
+                  <TextField {...params} variant="standard" label="Add collaborators" placeholder="" />
+                )}
+              />
 
-          <div className="flex-wrapper">
-            <button style={disabled} className="float-btn save">
-              <CheckRoundedIcon />
-            </button>
-            <div className="float-btn cancel" onClick={() => close("#b" + props.id)}>
-              <CloseRoundedIcon />
-            </div>
+              <TextField
+                className="description"
+                label="Description"
+                onChange={descriptionChanged}
+                name="Description"
+                value={description}
+                multiline
+                rows={4}
+              />
+              <FormControl className="list">
+                <InputLabel id="select-list">Choose list</InputLabel>
+                <Select labelId="select-list" name="input" label="List" onChange={listChanged} value={list}>
+                  <MenuItem value="To Do">To do</MenuItem>
+                  <MenuItem value="In progress">In progress</MenuItem>
+                  <MenuItem value="Done">Done</MenuItem>
+                  <MenuItem value="Barrier">Barrier</MenuItem>
+                </Select>
+              </FormControl>
+              {/*    <TextField className="due" label="Due date" onChange={dueChanged} name="Due" value={due} /> */}
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <Grid container justify="space-around">
+                  <KeyboardDatePicker
+                    disableToolbar
+                    variant="inline"
+                    format="dd/MM/yyyy"
+                    margin="normal"
+                    label="Date picker inline"
+                    value={due}
+                    className="due"
+                    label="Due date"
+                    onChange={dueChanged}
+                    name="Due"
+                    disablePast
+                    error={false}
+                    helperText={null}
+                    KeyboardButtonProps={{
+                      "aria-label": "change date",
+                    }}
+                  />
+                </Grid>
+              </MuiPickersUtilsProvider>
+              <Autocomplete
+                className="category"
+                label="Category"
+                name="Category"
+                options={categories}
+                getOptionLabel={(option) => (option.category ? option.category : "")}
+                getOptionSelected={(option, value) => option.category === value.category}
+                filterSelectedOptions
+                // defaultValue={props.category}
+                onFocus={catFocusChanged}
+                onChange={(option) => {
+                  catChanged(option);
+                  colorChanged(option, categories);
+                }}
+                renderInput={(params) => <TextField {...params} variant="standard" label="Category" placeholder="" />}
+              />
+
+              <div className="flex-wrapper">
+                <button style={disabled} className="float-btn save">
+                  <CheckRoundedIcon />
+                </button>
+                <div className="float-btn cancel" onClick={() => close("#b" + props.id)}>
+                  <CloseRoundedIcon />
+                </div>
+              </div>
+              <div className="task-sent" style={succes}>
+                <svg height="100px" viewBox="0 0 512 512" width="100px" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="m245.332031 341.332031c-4.09375 0-8.191406-1.554687-11.304687-4.691406l-69.335938-69.332031c-6.25-6.253906-6.25-16.386719 0-22.636719 6.253906-6.25 16.386719-6.25 22.636719 0l58.027344 58.027344 106.027343-106.027344c6.25-6.25 16.382813-6.25 22.632813 0s6.25 16.382813 0 22.636719l-117.332031 117.332031c-3.160156 3.136719-7.253906 4.691406-11.351563 4.691406zm0 0"
+                    className="succes-1"></path>
+                </svg>
+              </div>
+            </form>
           </div>
-          <div className="task-sent" style={succes}>
-            <svg height="100px" viewBox="0 0 512 512" width="100px" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="m245.332031 341.332031c-4.09375 0-8.191406-1.554687-11.304687-4.691406l-69.335938-69.332031c-6.25-6.253906-6.25-16.386719 0-22.636719 6.253906-6.25 16.386719-6.25 22.636719 0l58.027344 58.027344 106.027343-106.027344c6.25-6.25 16.382813-6.25 22.632813 0s6.25 16.382813 0 22.636719l-117.332031 117.332031c-3.160156 3.136719-7.253906 4.691406-11.351563 4.691406zm0 0"
-                className="succes-1"></path>
-            </svg>
-          </div>
-        </form>
-        {/*  </div>
-        </div> */}
+        </div>
       </article>
     </>
   );

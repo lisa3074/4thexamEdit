@@ -37,6 +37,7 @@ export function searchUsers(tool) {
     : document.querySelector(".FilterTasks").classList.remove("hide");
 }
 export function closeSearch(tool) {
+  console.log("close menu");
   document.querySelector(".menuSearch").classList.remove("hide");
   document.querySelector(".menuClose").classList.add("hide");
   tool === "admin"

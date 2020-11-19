@@ -10,6 +10,8 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 export default function Administration(props) {
   console.log("administration/Administration.js || Administration.js");
   const [tool, setTool] = useState("");
+  const [chosenCat, setChosenCat] = useState(undefined);
+  const [chosenEmployee, setChosenEmployee] = useState(undefined);
   //const currentUser = AuthProvider();
 
   return (
@@ -19,12 +21,21 @@ export default function Administration(props) {
           <CircularProgress color="primary" />
         </div>
       </div>
-      <TopBar endpoint={props.endpoint}></TopBar>
-      <Menu innerWidth={props.innerWidth} setEndpoint={props.setEndpoint} setTool={setTool}></Menu>
-      <MainAdmin innerWidth={props.innerWidth}></MainAdmin>
-      <Planner />
+      <TopBar endpoint={props.endpoint} setChosenCat={setChosenCat} setChosenEmployee={setChosenEmployee}></TopBar>
+      <Menu setEndpoint={props.setEndpoint} setTool={setTool}></Menu>
+      <MainAdmin setChosenCat={setChosenCat} setChosenEmployee={setChosenEmployee}></MainAdmin>
+      <Planner
+        chosenCat={chosenCat}
+        chosenEmployee={chosenEmployee}
+        setChosenCat={setChosenCat}
+        setChosenEmployee={setChosenEmployee}
+      />
       <UserForm />
-      <SubMenu endpoint={props.endpoint} tool={tool}></SubMenu>
+      <SubMenu
+        endpoint={props.endpoint}
+        tool={tool}
+        setChosenCat={setChosenCat}
+        setChosenEmployee={setChosenEmployee}></SubMenu>
       {/* 
       <p>{credentials != undefined ? credentials.email : ""}</p> */}
     </section>

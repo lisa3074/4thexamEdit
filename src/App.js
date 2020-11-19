@@ -38,14 +38,16 @@ const theme = createMuiTheme({
 
 export default function App() {
   console.log("App");
-  let [innerWidth, setInnerWidth] = useState(window.innerWidth);
+
   const [endpoint, setEndpoint] = useState("administration");
 
-  window.addEventListener("resize", resizeHandler);
-  function resizeHandler() {
-    setInnerWidth(window.innerWidth);
-  }
-  console.log(innerWidth);
+  window.addEventListener("resize", function (event) {
+    console.log("resize");
+    if (window.innerWidth > 1000 && window.innerWidth < 1050) {
+      window.location.reload();
+    }
+  });
+
   const Credentials = {
     email: "",
     password: "",
@@ -69,15 +71,13 @@ export default function App() {
                 exact
                 path="/administration"
                 credentials={credentials}
-                component={() => (
-                  <Administration innerWidth={innerWidth} endpoint={endpoint} setEndpoint={setEndpoint} />
-                )}
+                component={() => <Administration endpoint={endpoint} setEndpoint={setEndpoint} />}
               />
               <PrivateRoute
                 exact
                 path="/planner"
                 credentials={credentials}
-                component={() => <Planner endpoint={endpoint} setEndpoint={setEndpoint} innerWidth={innerWidth} />}
+                component={() => <Planner endpoint={endpoint} setEndpoint={setEndpoint} />}
               />
               <Route exact path="/signup" component={() => <SignUp saveCredentials={saveCredentials} />}></Route>
               <Route exact path="/login" component={() => <Login saveCredentials={saveCredentials} />}></Route>

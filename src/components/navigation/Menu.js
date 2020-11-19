@@ -5,12 +5,12 @@ import Profile from "./Profile";
 export default function Menu(props) {
   return (
     <>
-      <nav className={props.innerWidth < 1000 ? "Menu" : "Menu MenuDesktop"}>
+      <nav className={window.innerWidth < 1000 ? "Menu" : "Menu MenuDesktop"}>
         <div className="logo-name">
           <h1>SkatteGuiden</h1>
         </div>
         <Profile></Profile>
-        <MenuNav innerWidth={props.innerWidth} setEndpoint={props.setEndpoint} setTool={props.setTool}></MenuNav>
+        <MenuNav setEndpoint={props.setEndpoint} setTool={props.setTool}></MenuNav>
       </nav>
     </>
   );

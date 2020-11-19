@@ -1,9 +1,11 @@
 export function administration(innerWidth) {
-  console.log(innerWidth);
+  console.log();
   console.log("admin");
-  if (innerWidth < 1000) {
+  if (window.innerWidth < 1000) {
     document.querySelector(".Menu").classList.add("hide");
   }
+  /*   document.querySelector(".MainAdmin").setAttribute("data-state", "chosen"); */
+  /*   document.querySelector(".Planner").removeAttribute("data-state", "chosen"); */
   document.querySelector(".MainAdmin").classList.remove("hide");
   document.querySelector(".SubMenu").classList.remove("hide");
   document.querySelector(".UserList").classList.remove("hide");
@@ -12,13 +14,15 @@ export function administration(innerWidth) {
   document.querySelector(".ViewProfile").classList.add("hide");
   document.querySelector(".planner-top").classList.add("hide");
 }
-export function planner(innerWidth) {
+export function planner() {
   console.log("planner");
-  if (innerWidth < 1000) {
+  if (window.innerWidth < 1000) {
     document.querySelector(".Menu").classList.add("hide");
     document.querySelector(".newUserIcon").classList.add("hide");
     document.querySelector(".menuAddTask").classList.remove("hide");
   }
+  /*  document.querySelector(".MainAdmin").removeAttribute("data-state", "chosen");
+  document.querySelector(".Planner").setAttribute("data-state", "chosen"); */
   document.querySelector(".MainAdmin").classList.add("hide");
   document.querySelector(".admin-top").classList.add("hide");
   document.querySelector(".Planner").classList.remove("hide");

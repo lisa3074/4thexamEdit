@@ -16,7 +16,7 @@ export default function MenuNav(props) {
         <Link
           to="/administration"
           onClick={() => {
-            administration(innerWidth);
+            administration();
             props.setTool("admin");
           }}>
           <li>

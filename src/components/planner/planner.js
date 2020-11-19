@@ -67,10 +67,6 @@ export default function Planner(props) {
   }, []);
 
   if (cards.length === 0) {
-    setTimeout(() => {
-      document.querySelector(".go-to-planner").classList.add("progress");
-    }, 500);
-
     return (
       <div className="load_container hide">
         <h1 className="loading">LOADING</h1>
@@ -78,14 +74,13 @@ export default function Planner(props) {
     );
   } else {
     setTimeout(() => {
-      document.querySelector(".go-to-planner").classList.remove("progress");
       document.querySelector(".loading-page").classList.add("hide");
       init();
     }, 10);
   }
 
   return (
-    <main className="Planner hide">
+    <main className="Planner hide" data-state="chosen">
       <section className="planner-wrapper">
         {cards === "" && <h1>LOADING</h1>}
         <nav className="NewTask showNew hide">
@@ -97,6 +92,10 @@ export default function Planner(props) {
           editCard={editCard}
           dragCard={dragCard}
           cards={cards}
+          chosenCat={props.chosenCat}
+          chosenEmployee={props.chosenEmployee}
+          setChosenCat={props.setChosenCat}
+          setChosenEmployee={props.setChosenEmployee}
         />
       </section>
     </main>

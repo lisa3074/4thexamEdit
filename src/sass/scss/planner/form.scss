@@ -37,9 +37,13 @@
   .float-btn.delete {
     background-color: var(--secondary);
     margin-right: 1rem;
+    width: 40px;
+    height: 40px;
   }
   .float-btn.edit {
     background-color: var(--primary);
+    width: 40px;
+    height: 40px;
   }
 
   .colorLabel,
@@ -115,6 +119,7 @@
   .flex .float-btn.cancel {
     width: 40px;
   }
+
   .float-btn.save {
     background-color: var(--primary);
   }
@@ -153,6 +158,13 @@ li.MuiButtonBase-root.MuiListItem-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiL
   .Planner {
     .addForm {
       overflow: scroll;
+    }
+  }
+}
+@media (min-width: 1000px) {
+  .Planner {
+    .flex .float-btn.cancel {
+      width: 50px;
     }
   }
 }

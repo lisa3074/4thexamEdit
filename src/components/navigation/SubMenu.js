@@ -55,6 +55,8 @@ export default function SubMenu(props) {
           className="menuClose hide"
           onClick={() => {
             closeSearch(props.tool);
+            props.setChosenCat(undefined);
+            props.setChosenEmployee(undefined);
           }}>
           <CloseRoundedIcon />
         </div>
