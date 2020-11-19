@@ -6,6 +6,7 @@ import SubMenu from "../../navigation/SubMenu";
 import UserForm from "../form/UserForm";
 import Planner from "../../planner/Planner";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Chat from "../../chat/Chat";
 
 export default function Administration(props) {
   console.log("administration/Administration.js || Administration.js");
@@ -30,6 +31,7 @@ export default function Administration(props) {
         setChosenCat={setChosenCat}
         setChosenEmployee={setChosenEmployee}
       />
+      <Chat />
       <UserForm />
       <SubMenu
         endpoint={props.endpoint}

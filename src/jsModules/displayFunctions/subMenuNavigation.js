@@ -4,7 +4,7 @@ export function newUser() {
 export function openMenu() {
   document.querySelector(".Planner").classList.add("hide");
   document.querySelector(".MainAdmin").classList.add("hide");
-
+  document.querySelector(".Chat").classList.add("hide");
   document.querySelector(".SubMenu").classList.add("hide");
   document.querySelector(".Menu").classList.remove("hide");
 }

@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^12.2.0",
     "@welldone-software/why-did-you-render": "^6.0.0-rc.1",
     "date-fns": "^2.16.1",
+    "dayjs": "^1.9.6",
     "firebase": "^8.0.1",
     "firebase-admin": "^9.3.0",
     "jquery": "^3.5.1",

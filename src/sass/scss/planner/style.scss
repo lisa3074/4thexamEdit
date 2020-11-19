@@ -162,7 +162,7 @@
   .Main {
     height: calc(100vh - 60px);
     overflow: hidden;
-    overflow-x: scroll;
+
     padding-bottom: 3rem;
   }
 
@@ -280,6 +280,7 @@
     .Main {
       width: calc(100vw - 250px);
       padding-bottom: 0;
+      overflow-x: scroll;
     }
     .relativeContainer {
       column-gap: 0.7rem;

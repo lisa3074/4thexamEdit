@@ -7,6 +7,7 @@ import "./sass/scss/login.scss";
 import "./sass/scss/newUserForm.scss";
 import "./sass/scss/viewProfile.scss";
 import "./sass/scss/filterUsers.scss";
+import "./sass/scss/chat.scss";
 import "./sass/main.scss";
 import "./sass/scss/adminOverview.scss";
 import React, { useState } from "react";

@@ -4,8 +4,7 @@ export function administration(innerWidth) {
   if (window.innerWidth < 1000) {
     document.querySelector(".Menu").classList.add("hide");
   }
-  /*   document.querySelector(".MainAdmin").setAttribute("data-state", "chosen"); */
-  /*   document.querySelector(".Planner").removeAttribute("data-state", "chosen"); */
+
   document.querySelector(".MainAdmin").classList.remove("hide");
   document.querySelector(".SubMenu").classList.remove("hide");
   document.querySelector(".UserList").classList.remove("hide");
@@ -13,6 +12,7 @@ export function administration(innerWidth) {
   document.querySelector(".Planner").classList.add("hide");
   document.querySelector(".ViewProfile").classList.add("hide");
   document.querySelector(".planner-top").classList.add("hide");
+  document.querySelector(".Chat").classList.add("hide");
 }
 export function planner() {
   console.log("planner");
@@ -21,13 +21,28 @@ export function planner() {
     document.querySelector(".newUserIcon").classList.add("hide");
     document.querySelector(".menuAddTask").classList.remove("hide");
   }
-  /*  document.querySelector(".MainAdmin").removeAttribute("data-state", "chosen");
-  document.querySelector(".Planner").setAttribute("data-state", "chosen"); */
+
   document.querySelector(".MainAdmin").classList.add("hide");
   document.querySelector(".admin-top").classList.add("hide");
   document.querySelector(".Planner").classList.remove("hide");
   document.querySelector(".planner-top").classList.remove("hide");
   document.querySelector(".SubMenu").classList.remove("hide");
+  document.querySelector(".Chat").classList.add("hide");
+}
+export function chat() {
+  console.log("chat");
+  if (window.innerWidth < 1000) {
+    document.querySelector(".Menu").classList.add("hide");
+    document.querySelector(".newUserIcon").classList.add("hide");
+    document.querySelector(".menuAddTask").classList.add("hide");
+    document.querySelector(".MainAdmin").classList.add("hide");
+    document.querySelector(".admin-top").classList.add("hide");
+    document.querySelector(".Planner").classList.add("hide");
+    document.querySelector(".planner-top").classList.add("hide");
+    document.querySelector(".SubMenu").classList.add("hide");
+  }
+
+  document.querySelector(".Chat").classList.remove("hide");
 }
 export function newUser() {
   document.querySelector(".UserForm").classList.remove("hide");

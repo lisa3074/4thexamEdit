@@ -1,0 +1,152 @@
+.ChatNav {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  width: calc(100% - 2rem);
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.6937149859943977) 48%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  height: calc(1rem + 40px);
+  .float-btn {
+    background-color: var(--primary);
+    box-shadow: var(--card-shadow);
+    justify-self: flex-end;
+    border-radius: 50%;
+    padding: 0;
+  }
+  .nav-wrapper {
+    display: grid;
+    grid-template-columns: 48px auto 48px;
+  }
+
+  .text-btn {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    align-self: center;
+    justify-self: center;
+    max-width: 250px;
+    padding: 0 3rem 0 1rem;
+    height: 2rem;
+    box-shadow: var(--card-shadow);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--dark-text);
+    border-bottom-width: 0;
+    position: relative;
+
+    .MuiInputBase-input {
+      font-family: "IBMPlexSans-Medium";
+    }
+    svg {
+      fill: var(--primary);
+      position: absolute;
+      right: 1rem;
+      top: 0.1rem;
+      //margin-left: 1rem;
+    }
+    .MuiFormControl-marginNormal {
+      margin: 0;
+    }
+
+    .MuiInput-underline:before,
+    .MuiInput-underline:after {
+      border-bottom-width: 0px;
+      border-bottom-color: white;
+      transition-property: none;
+      left: auto;
+      right: auto;
+      bottom: auto;
+    }
+  }
+  .MuiIconButton-root {
+    padding-left: 0;
+    padding-right: 0.4rem;
+  }
+}
+
+.Chat {
+  padding: 1rem;
+  p {
+    font-size: 0.85rem;
+  }
+}
+
+.MessageBoard {
+  height: calc(100vh - 130px);
+  .messageList {
+    height: 100%;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+    ul {
+      height: auto;
+    }
+  }
+}
+
+.Message {
+  width: 100%;
+  .message-container {
+    display: grid;
+    margin-bottom: 2rem;
+    img {
+      height: 55px;
+      width: 55px;
+      grid-area: img;
+    }
+    .message-wrapper {
+      grid-area: text;
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      .name {
+        font-size: 0.875rem;
+        padding-bottom: 0.3rem;
+      }
+      .time {
+        font-size: 0.6875rem;
+        color: var(--light-text);
+        padding-bottom: 0.5rem;
+      }
+    }
+    &[data-user="me"] {
+      grid-template-columns: auto 4rem;
+      grid-template-areas: "text img";
+      .message-wrapper {
+        background-color: var(--chat-me);
+        margin-right: 1rem;
+      }
+    }
+    &[data-user="you"] {
+      grid-template-columns: 4rem auto;
+      grid-template-areas: "img text";
+      .message-wrapper {
+        background-color: var(--chat-you);
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+.NewMessage {
+  position: relative;
+  svg {
+    fill: var(--primary);
+    position: absolute;
+    transform: translate(calc(100vw - 5rem), 30px);
+    width: 35px;
+    height: 35px;
+  }
+  textarea {
+    padding: 0 2.5rem 0 0;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+  .MuiOutlinedInput-multiline {
+    padding: 0.5rem 1rem;
+  }
+}
