@@ -9,7 +9,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 
 export default function Card(props) {
-  console.log("planner/Cards.js || Cards()");
+  // console.log("planner/Cards.js || Cards()");
 
   const [list, setList] = useState("");
   const listChanged = (e) => {

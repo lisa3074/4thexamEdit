@@ -2,7 +2,6 @@ import { logRoles } from "@testing-library/react";
 import React from "react";
 import image from "../../images/lisa2020.jpg";
 export default function Message(props) {
-  console.log(props);
   return (
     <>
       <article className="Message">

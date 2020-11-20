@@ -14,21 +14,21 @@ import { fetchAll } from "../../jsModules/displayFunctions/subMenuNavigation";
 import ChatNav from "../chat/ChatNav";
 import { chat, scrollToBottom } from "../../jsModules/displayFunctions/mainMenuNavigation";
 export default function TopBar(props) {
-  console.log(props);
-  const [division, setDivision] = useState("");
-  const [hours, setHours] = useState("");
-
   const handleDivision = (event) => {
-    setDivision(event.target.value);
+    props.setChosenDivision(event.target.value);
   };
+
   const handleHours = (e) => {
-    setHours(e.target.value);
+    props.setChosenHours(e.target.value);
   };
   const handleCategory = (e) => {
     props.setChosenCat(e.target.innerText);
   };
   const handleEmployee = (e) => {
     props.setChosenEmployee(e.target.innerText);
+  };
+  const handleSearch = (e) => {
+    props.setSearch(e.target.value);
   };
 
   const categories = [
@@ -53,16 +53,22 @@ export default function TopBar(props) {
           <div className="filter-wrapper">
             <FormControl className="division">
               <InputLabel htmlFor="division">Division</InputLabel>
-              <Select native id="division" value={division} onChange={handleDivision} displayEmpty label="Division">
+              <Select native id="division" onChange={handleDivision} displayEmpty label="Division">
                 <option aria-label="None" value="" />
                 <option value="Design">Design</option>
                 <option value="Development">Development</option>
+                <option value="Support">Support</option>
                 <option value="Finance">Finance</option>
+                <option value="Sales">Sales</option>
+                <option value="Research">Research</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Board">Board members</option>
+                <option value="Executives">Executives</option>
               </Select>
             </FormControl>
             <FormControl className="hours">
               <InputLabel htmlFor="workHours">Work hours</InputLabel>
-              <Select native id="workHours" value={hours} onChange={handleHours} label="Division">
+              <Select native id="workHours" onChange={handleHours} label="Division">
                 <option aria-label="None" value="" />
                 <option value="Full time">Full time</option>
                 <option value="Part time">Part time</option>
@@ -71,7 +77,7 @@ export default function TopBar(props) {
             </FormControl>
           </div>
           <div className="input-wrapper">
-            <TextField name="Position" className="searchUsers" label="Search" />
+            <TextField name="Position" className="searchUsers" label="Search" onChange={handleSearch} />
             <SearchRoundedIcon className="search-icon" />
           </div>
 

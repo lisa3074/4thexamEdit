@@ -1,27 +1,29 @@
 import React from "react";
 
-export default function Work() {
+export default function Work(props) {
   return (
     <article className="Work userCard">
       <h2 className="heading">WORK</h2>
       <div className="info-wrapper">
         <h2>POSITION</h2>
-        <p className="position">Frontend developer</p>
+        <p className="position">{props.position}</p>
 
         <h2>DIVISION</h2>
-        <p className="division">Development</p>
+        <p className="division">{props.division}</p>
 
         <h2>COUNTRY / CITY</h2>
-        <p className="countryCity">Denmark / Copenhagen</p>
+        <p className="countryCity">
+          {props.country} / {props.city}
+        </p>
 
         <h2>WORK HOURS</h2>
-        <p className="workHours">Full time</p>
+        <p className="workHours">{props.workHours}</p>
 
         <h2>ON BOARD SINCE</h2>
-        <p className="hireDate">01.11.2020</p>
+        <p className="hireDate">{props.startDate}</p>
 
         <h2>USER RIGHTS</h2>
-        <p className="userRights">Admin</p>
+        <p className="userRights">{props.userLevel}</p>
       </div>
     </article>
   );

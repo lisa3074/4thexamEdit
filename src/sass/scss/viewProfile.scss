@@ -195,17 +195,17 @@
       width: 0;
     }
   }
-  .Person {
+  .viewPerson {
     grid-row-start: 1;
     grid-column-start: 1;
     grid-row-end: span 3;
   }
-  .Work {
+  .viewWork {
     grid-row-start: 1;
     grid-column-start: 2;
     grid-row-end: span 5;
   }
-  .Contact {
+  .viewContact {
     grid-row-start: 4;
     grid-column-start: 1;
     grid-row-end: span 2;
@@ -216,7 +216,7 @@
     grid-row-end: span 5;
   }
 
-  .Private.userCard {
+  .viewPrivate.userCard {
     background-color: transparent;
     box-shadow: none;
     height: 23.5rem;
@@ -246,27 +246,33 @@
       height: 150px;
     }
   }
-  .Person {
+  .viewPerson {
     grid-row-start: 1;
     grid-column-start: 1;
     grid-row-end: span 3;
+    .Person {
+      padding-bottom: 1.75rem;
+    }
   }
-  .Work {
+  .viewWork {
     grid-row-start: 1;
     grid-column-start: 3;
     grid-row-end: span 5;
   }
-  .Contact {
+  .viewContact {
     grid-row-start: 1;
     grid-column-start: 2;
     grid-row-end: span 2;
+    .Contact {
+      padding-bottom: 2.5rem;
+    }
   }
   .WorkLoad {
     grid-row-start: 3;
     grid-column-start: 2;
     grid-row-end: span 5;
   }
-  .Private.userCard {
+  .viewPrivate.userCard {
     background-color: transparent;
     box-shadow: none;
     height: 23.5rem;

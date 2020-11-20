@@ -17,7 +17,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import Grid from "@material-ui/core/Grid";
 
 export default function EditForm(props) {
-  console.log("planner/EditForm.js || EditForm()");
+  // console.log("planner/EditForm.js || EditForm()");
 
   function onClickDelete() {
     console.log("planner/EditForm.js || cilckOnDelete()");

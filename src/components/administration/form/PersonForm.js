@@ -4,7 +4,6 @@ import image from "../../../images/placeholder.png";
 import $ from "jquery";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 export default function PersonForm(props) {
-  console.log(props);
   /*   const [focus, setFocus] = useState(false);
 
   function nameFocus(e) {
