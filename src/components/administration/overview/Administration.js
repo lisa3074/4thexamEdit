@@ -33,6 +33,7 @@ export default function Administration(props) {
       />
       <Chat />
       <UserForm />
+
       <SubMenu
         endpoint={props.endpoint}
         tool={tool}

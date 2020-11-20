@@ -6,9 +6,13 @@ import Select from "@material-ui/core/Select";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import ChatBubbleRoundedIcon from "@material-ui/icons/ChatBubbleRounded";
 import PersonAddRoundedIcon from "@material-ui/icons/PersonAddRounded";
+import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { addTask } from "../planner/modules/mobNavigation";
+import { fetchAll } from "../../jsModules/displayFunctions/subMenuNavigation";
+import ChatNav from "../chat/ChatNav";
+import { chat, scrollToBottom } from "../../jsModules/displayFunctions/mainMenuNavigation";
 export default function TopBar(props) {
   console.log(props);
   const [division, setDivision] = useState("");
@@ -72,7 +76,12 @@ export default function TopBar(props) {
           </div>
 
           <PersonAddRoundedIcon className="add-user" />
-          <div className="float-btn">
+          <div
+            className="float-btn"
+            onClick={() => {
+              chat();
+              scrollToBottom();
+            }}>
             <ChatBubbleRoundedIcon />
           </div>
         </div>
@@ -110,8 +119,26 @@ export default function TopBar(props) {
           <div className="input-wrapper"></div>
 
           <AddRoundedIcon className="add-task" onClick={addTask} />
-          <div className="float-btn">
+          <div
+            className="float-btn"
+            onClick={() => {
+              chat();
+              scrollToBottom();
+            }}>
             <ChatBubbleRoundedIcon />
+          </div>
+        </div>
+      </div>
+      <div className="chat-top hide">
+        <div className="grid-wrapper">
+          <h2 className="sorted">Sorted by</h2>
+          <div className="filter-wrapper">
+            <ChatNav />
+          </div>
+
+          <div className="float-btn all" onClick={fetchAll}>
+            {/*   <p>All</p> */}
+            <AllInclusiveIcon />
           </div>
         </div>
       </div>

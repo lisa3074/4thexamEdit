@@ -53,3 +53,15 @@ export function resetFilterNav() {
   document.querySelector(".FilterUsers").classList.add("hide");
   document.querySelector(".menuSearch").classList.remove("hide");
 }
+
+//TOP MENU
+
+export function sortByDate() {
+  document.querySelector(".ChatNav .MuiInputBase-root").style.color = "var(--dark-text)";
+  document.querySelector("nav.TopBar > div.chat-top > div > div.float-btn.all").style.filter = "grayscale(0.8)";
+}
+
+export function fetchAll() {
+  document.querySelector("nav.TopBar > div.chat-top > div > div.float-btn.all").style.filter = "grayscale(0)";
+  document.querySelector(".ChatNav .MuiInputBase-root").style.color = "var(--light-text";
+}

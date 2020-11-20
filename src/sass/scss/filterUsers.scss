@@ -1,7 +1,7 @@
 .FilterTasks,
 .TopBar {
   margin-bottom: 1rem;
-  border-radius: var(--border-radius);
+  // border-radius: var(--border-radius);
 }
 
 .FilterUsers,
@@ -122,6 +122,10 @@
       }
       .add-user {
         stroke: none;
+      }
+
+      .add-task {
+        transform: translateY(-7px);
       }
     }
     .planner-top .grid-wrapper {

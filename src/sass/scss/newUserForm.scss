@@ -127,6 +127,7 @@ input[type="file"] {
     right: 1.5rem;
     padding: 0;
     z-index: 104;
+
     .check {
       z-index: 105;
     }
@@ -163,9 +164,18 @@ input[type="file"] {
 .UserForm .Form {
   margin: 1.2rem auto 0;
 }
+.UserForm .float-btn svg {
+  width: 25px;
+  height: 25px;
+}
 
 .input-wrapper {
   width: 100%;
+}
+@media (min-width: 500px) {
+  .UserForm .FormPath .line {
+    width: 15%;
+  }
 }
 @media (max-height: 730px) {
   .previewImg {
@@ -197,5 +207,34 @@ input[type="file"] {
       max-height: 600px;
       overflow: hidden;
     }
+  }
+}
+@media (min-height: 850px) {
+  .UserForm {
+    padding-top: 5vh;
+  }
+}
+
+@media (min-width: 1000px) {
+  .UserForm .FormPath,
+  .UserForm .Form {
+    min-width: 700px;
+  }
+  .UserForm .PersonForm,
+  .UserForm .WorkForm,
+  .UserForm .PrivateForm {
+    padding: 1.5rem 3rem 1rem;
+  }
+  .UserForm .FormPath {
+    padding: 1.5rem 3rem 1rem;
+    height: 8rem;
+  }
+  .UserForm .FormPath .line {
+    width: 20%;
+  }
+}
+@media (min-height: 1000px) and (min-width: 1200px) {
+  .UserForm .Form {
+    max-height: 800px;
   }
 }

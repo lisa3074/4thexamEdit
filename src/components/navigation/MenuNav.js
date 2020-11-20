@@ -6,18 +6,15 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
 import LockIcon from "@material-ui/icons/Lock";
 import { firebaseConfig } from "../../jsModules/firebase/firebase";
-import { administration, newUser, planner, chat } from "../../jsModules/displayFunctions/mainMenuNavigation";
+import {
+  administration,
+  newUser,
+  planner,
+  chat,
+  scrollToBottom,
+} from "../../jsModules/displayFunctions/mainMenuNavigation";
 export default function MenuNav(props) {
   let innerWidth = props.innerWidth;
-  function scrollToBottom() {
-    console.log("scroll");
-    setTimeout(() => {
-      const ul = document.querySelector(".MessageBoard ul");
-      const list = document.querySelector(".messageList");
-      console.log(ul.scrollHeight);
-      list.scrollTo({ top: ul.scrollHeight, left: 0, behavior: "smooth" }); //////scroll to bottom (for desktop)
-    }, 400);
-  }
 
   return (
     <div className="MenuNav">

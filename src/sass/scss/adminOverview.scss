@@ -18,35 +18,41 @@
 
 .UserCard {
   width: 100%;
-  height: 11rem;
+  grid-template-areas:
+    "image info info"
+    "image division button";
+  grid-template-columns: 100px auto 120px;
+  grid-template-rows: 65% 35%;
+  height: 10.5rem;
   padding: 1.5rem;
   margin-bottom: 1.2rem;
   border-radius: var(--border-radius);
   box-shadow: 0px 1px 15px #384d6228;
   background-color: #fff;
   display: grid;
-  grid-template-columns: 75% 25%;
-  grid-template-rows: 60% 40%;
-  grid-template-areas:
-    "info image"
-    "info button";
-  .info-container {
-    grid-area: info;
-  }
+
   img {
-    grid-area: image;
-    justify-self: center;
-    align-self: flex-start;
-    width: 50px;
-    height: 50px;
     object-fit: cover;
+    grid-area: image;
+    width: 90px;
+    height: 90px;
+    align-self: center;
+    justify-self: center;
   }
-  button {
+  .info-container {
+    display: block;
+    grid-area: info;
+    padding-left: 1rem;
+    .info-wrapper {
+      padding-bottom: 0.8rem;
+    }
+  }
+  button.usercard.btn {
     grid-area: button;
     padding: 0.4rem 1rem;
     width: 5rem;
     height: 2rem;
-    justify-self: center;
+    justify-self: flex-end;
     align-self: flex-end;
   }
   h1,
@@ -65,32 +71,60 @@
   }
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 700px) {
   .UserList {
     height: auto;
+    padding: 0.5rem 0.5rem;
   }
   .MainAdmin {
     min-height: 100%;
+    height: 100vh;
     overflow-y: scroll;
-    padding: 2rem;
+    padding: 0.2rem 0.2rem 3.5rem 0.2rem;
     .UserCard {
+      width: 100%;
+      margin-bottom: 1.2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0px 1px 15px #384d6228;
+      background-color: #fff;
+      display: grid;
       height: auto;
       padding: 0.7rem;
       grid-template-areas: "image info button";
       grid-template-columns: 5rem auto 7rem;
       grid-template-rows: 100%;
+      button.usercard.btn {
+        align-self: center;
+        grid-area: button;
+        padding: 0.4rem 1rem;
+        width: 5rem;
+        height: 2rem;
+        justify-self: center;
+      }
+      img {
+        grid-area: image;
+        justify-self: center;
+        align-self: flex-start;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
       p,
       h1 {
+        color: var(--dark-text);
         font-size: 0.85rem;
       }
       h2 {
+        color: var(--light-text);
+        font-size: 0.65rem;
         padding-bottom: 0.3rem;
       }
       .info-container {
+        grid-area: info;
         display: grid;
         grid-template-columns: 33% 40% auto;
         grid-template-rows: 100%;
-        padding-left: 2rem;
+
         .info-wrapper {
           padding: 0;
           display: flex;
@@ -105,44 +139,73 @@
     }
   }
 }
-@media (min-width: 1450px) {
-  .UserList {
-    .grid-wrapper {
-      display: grid;
-      grid-template-columns: calc((100% - 2.6rem) / 3) calc((100% - 2.6rem) / 3) calc((100% - 2.6rem) / 3);
-      column-gap: 1.2rem;
+@media (min-width: 1000px) {
+  .MainAdmin {
+    padding: 2rem;
+    .UserList {
+      padding: 0.5rem 0.5rem 3.2rem;
     }
+  }
+}
+@media (min-width: 1200px) {
+  .MainAdmin {
     .UserCard {
-      grid-template-areas:
-        "image info info"
-        "image division button";
-      grid-template-columns: 100px auto 120px;
-      grid-template-rows: 65% 35%;
-      height: 10.5rem;
-      padding: 1.5rem;
-      img {
-        grid-area: image;
-        width: 90px;
-        height: 90px;
-        align-self: center;
-        justify-self: center;
-      }
       .info-container {
-        display: block;
-        grid-area: info;
-        padding-left: 1rem;
         .info-wrapper {
-          padding-bottom: 0.8rem;
+          padding-left: 1rem;
         }
       }
-      .info-wrapper:nth-child(3) {
-        grid-area: division;
+    }
+  }
+}
+@media (min-width: 1450px) {
+  .MainAdmin {
+    min-height: auto;
+    height: auto;
+    max-height: calc(100vh - 80px);
+
+    .UserList {
+      padding: 0.5rem 0.5rem 0;
+      .grid-wrapper {
+        display: grid;
+        grid-template-columns: calc((100% - 2.6rem) / 3) calc((100% - 2.6rem) / 3) calc((100% - 2.6rem) / 3);
+        column-gap: 1.2rem;
       }
-      button {
-        grid-area: button;
-        align-self: flex-end;
-        justify-self: flex-end;
+      .UserCard {
+        grid-template-areas:
+          "image info info"
+          "image division button";
+        grid-template-columns: 100px auto 120px;
+        grid-template-rows: 65% 35%;
+        height: 10.5rem;
+        padding: 1.5rem;
+        img {
+          grid-area: image;
+          width: 90px;
+          height: 90px;
+          align-self: center;
+          justify-self: center;
+        }
+        .info-container {
+          display: block;
+          grid-area: info;
+          padding-left: 0rem;
+          .info-wrapper {
+            padding-bottom: 0.8rem;
+          }
+        }
+        .info-wrapper:nth-child(3) {
+          grid-area: division;
+        }
+        button {
+          grid-area: button;
+          align-self: flex-end;
+          justify-self: flex-end;
+        }
       }
+    }
+    .UserCard button.usercard.btn {
+      justify-self: flex-end;
     }
   }
 }

@@ -121,8 +121,8 @@ label .MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLa
   cursor: progress;
   pointer-events: none;
 }
-button:not(.MuiIconButton-root),
-button.MuiButton-root:not(.MuiIconButton-root) {
+button:not(.MuiIconButton-root):not(.float-btn),
+button.MuiButton-root:not(.MuiIconButton-root):not(.float-btn) {
   font-family: "IBMPlexSans-Medium";
   color: white;
   font-size: 0.85rem;
@@ -136,6 +136,7 @@ button.MuiButton-root:not(.MuiIconButton-root) {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -241,7 +242,8 @@ span.MuiFormLabel-asterisk.Mui-error,
     grid-area: topbar;
   }
   .MainAdmin,
-  .Planner {
+  .Planner,
+  .Chat {
     grid-area: content;
   }
 }

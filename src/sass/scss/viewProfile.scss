@@ -187,38 +187,42 @@
   .ViewProfile {
     padding: 0;
     display: grid;
+    height: 100%;
     grid-column-gap: 1.3rem;
-    grid-template-columns: calc((100% - 1.3rem) / 2) calc((100% - 1.3rem) / 2);
-    grid-template-rows: 20% 20% 20% 20% 20% 20 20% 20% 20% 20%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(20, 5rem);
+    &::-webkit-scrollbar {
+      width: 0;
+    }
   }
   .Person {
     grid-row-start: 1;
     grid-column-start: 1;
-    grid-row-end: span 2;
+    grid-row-end: span 3;
   }
   .Work {
     grid-row-start: 1;
     grid-column-start: 2;
-    grid-row-end: span 3;
+    grid-row-end: span 5;
   }
   .Contact {
-    grid-row-start: 3;
+    grid-row-start: 4;
     grid-column-start: 1;
-    grid-row-end: span 1;
+    grid-row-end: span 2;
   }
   .WorkLoad {
-    grid-row-start: 4;
+    grid-row-start: 6;
     grid-column-start: 2;
-    grid-row-end: span 6;
+    grid-row-end: span 5;
   }
 
   .Private.userCard {
     background-color: transparent;
     box-shadow: none;
     height: 23.5rem;
-    grid-row-start: 4;
+    grid-row-start: 6;
     grid-column-start: 1;
-    grid-row-end: span 6;
+    grid-row-end: span 5;
     display: block;
     padding: 0;
     .private-wrapper {
@@ -235,8 +239,8 @@
 }
 @media (min-width: 1300px) {
   .ViewProfile {
-    grid-template-columns: calc((100% - 1.3rem) / 3) calc((100% - 1.3rem) / 3) calc((100% - 1.3rem) / 3);
-    grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(20, 5.5rem);
     img {
       width: 150px;
       height: 150px;
@@ -245,20 +249,20 @@
   .Person {
     grid-row-start: 1;
     grid-column-start: 1;
-    grid-row-end: span 4;
+    grid-row-end: span 3;
   }
   .Work {
     grid-row-start: 1;
     grid-column-start: 3;
-    grid-row-end: span 7;
+    grid-row-end: span 5;
   }
   .Contact {
     grid-row-start: 1;
     grid-column-start: 2;
-    grid-row-end: span 3;
+    grid-row-end: span 2;
   }
   .WorkLoad {
-    grid-row-start: 4;
+    grid-row-start: 3;
     grid-column-start: 2;
     grid-row-end: span 5;
   }
@@ -266,9 +270,9 @@
     background-color: transparent;
     box-shadow: none;
     height: 23.5rem;
-    grid-row-start: 5;
+    grid-row-start: 4;
     grid-column-start: 1;
-    grid-row-end: span 6;
+    grid-row-end: span 5;
     display: block;
     padding: 0;
     .private-wrapper {
