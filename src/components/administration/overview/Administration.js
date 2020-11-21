@@ -21,9 +21,9 @@ export default function Administration(props) {
   const [search, setSearch] = useState("");
   //const currentUser = AuthProvider();
   const [users, setUsers] = useState([]);
-  const [user, setUser] = useState();
+  /*   const [user, setUser] = useState(); */
 
-  const [name, setName] = useState();
+  /*  const [name, setName] = useState();
   const [image, setImage] = useState();
   const [city, setCity] = useState();
   const [country, setCountry] = useState();
@@ -41,13 +41,13 @@ export default function Administration(props) {
   const [cpr, setCpr] = useState();
   const [education, setEducation] = useState();
   const [postal, setPostal] = useState();
-  const [address, setAddress] = useState();
+  const [address, setAddress] = useState(); */
   useEffect(() => {
     console.log("get ændret");
     getUsers(setUsers);
   }, []);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     console.log("User ændret");
     setName(user !== undefined ? user[0].name : "");
     setName(user !== undefined ? user[0].name : "");
@@ -69,7 +69,7 @@ export default function Administration(props) {
     setCpr(user !== undefined ? user[0].cpr : "");
     setPostal(user !== undefined ? user[0].postalCode : "");
     setAddress(user !== undefined ? user[0].streetAndNumber : "");
-  }, [user]);
+  }, [user]); */
 
   async function deleteUser(id) {
     console.log("delete clicked " + id);
@@ -79,11 +79,11 @@ export default function Administration(props) {
     //then deletes it from the DB
     deleteProfile(id);
   }
-  function editProfile(id) {
+  /*   function editProfile(id) {
     console.log("edit cicked");
     const user = users.filter((user) => user.id === id);
     setUser(user);
-  }
+  } */
 
   //kaldes herfra med payload fra ovenstående useStates
   async function editUser(payload, id, name, workHours, division, position) {
@@ -123,7 +123,7 @@ export default function Administration(props) {
         setChosenEmployee={setChosenEmployee}
       />
       <Chat />
-      <UserForm
+      {/*  <UserForm
         user={user}
         setUser={setUser}
         name={name}
@@ -161,7 +161,7 @@ export default function Administration(props) {
         postal={postal}
         address={address}
       />
-
+ */}
       <SubMenu
         endpoint={props.endpoint}
         tool={tool}
