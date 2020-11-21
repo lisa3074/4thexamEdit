@@ -3,13 +3,22 @@ import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import { editUser } from "../../../jsModules/displayFunctions/displayEditForm";
 
-export default function ProfileNav() {
+export default function ProfileNav(props) {
   return (
     <div className="ProfileNav">
       <div className="float-btn">
-        <DeleteRoundedIcon />
+        <DeleteRoundedIcon
+          onClick={() => {
+            props.deleteUser(props.id);
+          }}
+        />
       </div>
-      <div className="float-btn" onClick={editUser}>
+      <div
+        className="float-btn"
+        onClick={() => {
+          editUser();
+          props.editProfile(props.id);
+        }}>
         <EditRoundedIcon />
       </div>
     </div>

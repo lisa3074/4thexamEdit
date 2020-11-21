@@ -15,7 +15,6 @@ export default function ViewProfile(props) {
 
   return (
     <section className="ViewProfile hide">
-      {/* <Person users={props.users.filter((person) => person.id === props.id)} /> */}
       <ul className="viewPerson">{mappedPerson}</ul>
       <ul className="viewWork">{mappedWork}</ul>
       <ul className="viewContact">{mappedContact}</ul>
@@ -23,7 +22,7 @@ export default function ViewProfile(props) {
       <ul className="viewPrivate">{mappedPrivate}</ul>
 
       <div className="empty"></div>
-      <ProfileNav />
+      <ProfileNav id={props.id} deleteUser={props.deleteUser} editProfile={props.editProfile} />
     </section>
   );
 }

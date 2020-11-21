@@ -9,14 +9,17 @@ export default function UserCard(props) {
     setSubmMenu();
     props.setId(userId);
   }
-
+  const firstSpace = props.name.indexOf(" ");
+  const firstName = props.name.substring(0, firstSpace + 1);
+  const lastSpace = props.name.lastIndexOf(" ");
+  const lastName = props.name.substring(lastSpace);
   return (
     <article className="UserCard" data-user={props.id}>
       <img src={image} alt="" />
       <div className="info-container">
         <div className="info-wrapper">
           <h2>NAME</h2>
-          <h1 className="usercard name">{props.name}</h1>
+          <h1 className="usercard name">{`${firstName} ${lastName}`}</h1>
         </div>
         <div className="info-wrapper">
           <h2>POSITION</h2>

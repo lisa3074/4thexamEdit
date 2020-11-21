@@ -9,7 +9,6 @@ export default function MainAdmin(props) {
     <main className={window.innerWidth < 1000 ? "MainAdmin hide" : "MainAdmin"}>
       <FilterUsers setChosenCat={props.setChosenCat} setChosenEmployee={props.setChosenEmployee}></FilterUsers>
       <UserList
-        // users={props.users}
         setId={setId}
         users={
           props.chosenHours !== (undefined && "") &&
@@ -32,7 +31,12 @@ export default function MainAdmin(props) {
             : props.users
         }
       />
-      <ViewProfile users={props.users.filter((person) => person.id === id)} id={id} />
+      <ViewProfile
+        users={props.users.filter((person) => person.id === id)}
+        id={id}
+        deleteUser={props.deleteUser}
+        editProfile={props.editProfile}
+      />
     </main>
   );
 }

@@ -4,12 +4,24 @@ import image from "../../../images/placeholder.png";
 import $ from "jquery";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 export default function PersonForm(props) {
-  /*   const [focus, setFocus] = useState(false);
+  const { user } = props;
+  // console.log(user !== undefined ? user[0].name : "");
 
-  function nameFocus(e) {
-    setFocus(true);
-  } */
+  const handleName = (e) => {
+    props.setName(e.target.value);
+    console.log("changed");
+  };
+  const handleCountry = (e) => {
+    props.setCountry(e.target.value);
+  };
+  const handleCity = (e) => {
+    props.setCity(e.target.value);
+  };
+  const handleImage = (e) => {
+    props.setImage(e.target.value);
+  };
 
+  //image prewiev
   function preview(e) {
     console.log("preview");
     const file = $("input[type=file]").get(0).files[0];
@@ -33,22 +45,40 @@ export default function PersonForm(props) {
           name="Name"
           className="name"
           label="First and last name"
-          value={props.text}
+          value={props.name}
           required
           onFocus={() => {
             props.setFocus(true);
           }}
           error={props.text === "" && props.focus}
-          onChange={props.handleName}
-          helperText={props.text === "" && props.focus ? "You need to fill out your name" : " "}
+          onChange={(e) => {
+            handleName(e);
+          }}
+          helperText={props.name === "" && props.focus ? "You need to fill out your name" : " "}
         />
       </div>
       <div className="flex-wrapper">
         <div className="input-wrapper">
-          <TextField name="Country" className="country" label="Country" />
+          <TextField
+            name="Country"
+            className="country"
+            label="Country"
+            value={props.country}
+            onChange={(e) => {
+              handleCountry(e);
+            }}
+          />
         </div>
         <div className="input-wrapper">
-          <TextField name="City" className="city" label="City" />
+          <TextField
+            name="City"
+            className="city"
+            label="City"
+            value={props.city}
+            onChange={(e) => {
+              handleCity(e);
+            }}
+          />
         </div>
       </div>
       <div className="upload-wrapper">
@@ -57,9 +87,17 @@ export default function PersonForm(props) {
             <button className="upload-image float-btn">
               <PublishRoundedIcon />
             </button>
-            <p>Upload image</p>
+            <p>{props.image === "" ? "Upload image" : props.image}</p>
           </div>
-          <input id="file-upload" type="file" name="image" onChange={preview} />
+          <input
+            id="file-upload"
+            type="file"
+            name="image"
+            onChange={(e) => {
+              preview(e);
+              handleImage(e);
+            }}
+          />
         </label>
       </div>
 

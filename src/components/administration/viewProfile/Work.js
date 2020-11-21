@@ -1,6 +1,14 @@
 import React from "react";
 
 export default function Work(props) {
+  let today;
+  props.startDate !== undefined ? (today = new Date(props.startDate)) : (today = new Date());
+  const dd = String(today.getDate()).padStart(2, "0");
+  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  const yyyy = today.getFullYear();
+  console.log(`${yyyy}-${mm}-${dd}`);
+  const startDate = `${yyyy}-${mm}-${dd}`;
+  console.log(new Date().getTime());
   return (
     <article className="Work userCard">
       <h2 className="heading">WORK</h2>
@@ -20,7 +28,7 @@ export default function Work(props) {
         <p className="workHours">{props.workHours}</p>
 
         <h2>ON BOARD SINCE</h2>
-        <p className="hireDate">{props.startDate}</p>
+        <p className="hireDate">{startDate}</p>
 
         <h2>USER RIGHTS</h2>
         <p className="userRights">{props.userLevel}</p>

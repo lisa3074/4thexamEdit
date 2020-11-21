@@ -7,7 +7,28 @@ import { clearUserForm } from "../../../jsModules/displayFunctions/displayEditFo
 import { forwards } from "../../../jsModules/displayFunctions/formNavigation";
 import { backwards } from "../../../jsModules/displayFunctions/formNavigation";
 
-export default function FormNav() {
+export default function FormNav(props) {
+  function resetForm() {
+    props.setImage("");
+    props.setCity("");
+    props.setName("");
+    props.setCountry("");
+    props.setPosition("");
+    props.setDivision("");
+    props.setHours("");
+    props.setDate("");
+    props.setLevel("");
+    props.setEmail("");
+    props.setTel("");
+    props.setAccount("");
+    props.setContact("");
+    props.setCpr("");
+    props.setEducation("");
+    props.setPostal("");
+    props.setAddress("");
+    props.setUser(undefined);
+  }
+  console.log(props.user);
   function submit(e) {
     e.preventDefault();
     console.log("submited");
@@ -17,12 +38,18 @@ export default function FormNav() {
     ) {
     } else {
       clearUserForm();
+      resetForm();
     }
   }
 
   return (
     <nav className="FormNav">
-      <div className="float-btn" onClick={clearUserForm}>
+      <div
+        className="float-btn"
+        onClick={() => {
+          clearUserForm();
+          resetForm();
+        }}>
         <ClearRoundedIcon />
       </div>
       <div className="float-btn forward" onClick={forwards}>

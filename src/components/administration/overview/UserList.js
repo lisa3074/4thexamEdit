@@ -5,9 +5,7 @@ export default function UserList(props) {
   const mappedUsers = props.users.map((user) => <UserCard key={user.id} {...user} setId={props.setId} />);
   return (
     <section className="UserList">
-      <div className="grid-wrapper">
-        <ul>{mappedUsers}</ul>
-      </div>
+      <div className="grid-wrapper">{mappedUsers}</div>
     </section>
   );
 }
