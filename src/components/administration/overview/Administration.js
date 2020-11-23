@@ -19,16 +19,11 @@ export default function Administration(props) {
   const [search, setSearch] = useState("");
   //const currentUser = AuthProvider();
   const [users, setUsers] = useState([]);
-  const [sortBy, setSortby] = useState("NAMES_ASC");
 
-  const SORT_OPTIONS = {
-    NAMES_ASC: { column: "name", direction: "asc" },
-  };
   useEffect(() => {
     console.log("get ændret");
-
-    getUsers(setUsers, sortBy, SORT_OPTIONS);
-  }, [sortBy, chosenDivision, chosenHours]);
+    getUsers(setUsers);
+  }, []);
 
   return (
     <section className="Administration">
