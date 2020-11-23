@@ -23,6 +23,7 @@ export function clearUserForm() {
   $(".check").classList.add("hide");
   $(".back").classList.add("hide");
   $("form").reset();
+  $(".PrivateForm .password-safety").classList.remove("hide");
   $(".previewImg").src = placeholder;
   $(".float-btn.three").style.backgroundColor = "var(--tietery)";
   $(".float-btn.two").style.backgroundColor = "var(--tietery)";

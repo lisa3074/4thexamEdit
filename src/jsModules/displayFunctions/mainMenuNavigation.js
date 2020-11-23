@@ -1,4 +1,4 @@
-export function administration(innerWidth) {
+export function administration() {
   console.log();
   console.log("admin");
   if (window.innerWidth < 1000) {

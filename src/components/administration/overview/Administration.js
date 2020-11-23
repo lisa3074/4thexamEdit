@@ -7,7 +7,6 @@ import Planner from "../../planner/Planner";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Chat from "../../chat/Chat";
 import { getUsers } from "../../../jsModules/dbData/getData";
-import { editProfile } from "../../../jsModules/dbData/editData";
 
 export default function Administration(props) {
   console.log("administration/Administration.js || Administration.js");
@@ -19,10 +18,19 @@ export default function Administration(props) {
   const [search, setSearch] = useState("");
   //const currentUser = AuthProvider();
   const [users, setUsers] = useState([]);
+<<<<<<< HEAD
+=======
+  const sortBy = "NAMES_ASC";
+>>>>>>> lisa21
 
   useEffect(() => {
     console.log("get ændret");
+<<<<<<< HEAD
     getUsers(setUsers);
+=======
+
+    getUsers(setUsers, sortBy, SORT_OPTIONS);
+>>>>>>> lisa21
   }, []);
 
   return (
@@ -47,8 +55,7 @@ export default function Administration(props) {
         setUsers={setUsers}
         chosenDivision={chosenDivision}
         chosenHours={chosenHours}
-        search={search}
-        editProfile={editProfile}></MainAdmin>
+        search={search}></MainAdmin>
       <Planner
         chosenCat={chosenCat}
         chosenEmployee={chosenEmployee}
