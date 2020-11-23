@@ -170,7 +170,23 @@ input[type="file"] {
   width: 25px;
   height: 25px;
 }
-
+.succes {
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 132;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  #loader {
+    height: 1rem;
+    width: 50%;
+  }
+}
 .input-wrapper {
   width: 100%;
 }

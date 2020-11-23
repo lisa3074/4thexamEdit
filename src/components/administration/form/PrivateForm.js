@@ -9,7 +9,7 @@ export default function PrivateForm(props) {
       const lastBackSlash = e.target.value.lastIndexOf("\\") + 1;
       const fileName = e.target.value.substring(lastBackSlash, 50);
       document.querySelector(".PrivateForm > .upload-wrapper > label > div > p").textContent = fileName;
-      props.setContract(e.target.value);
+      props.setContract(fileName);
     }, 100);
   }
 

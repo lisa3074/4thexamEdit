@@ -9,10 +9,10 @@ export function getData(userId) {
 export const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: true });
 // getting data live
-export function getUsers(callback, sortBy, SORT_OPTIONS) {
+export function getUsers(callback) {
   const unsubsribe = db
     .collection("users")
-    .orderBy(SORT_OPTIONS[sortBy].column, SORT_OPTIONS[sortBy].direction)
+    .orderBy("name")
     .onSnapshot((snapshot) => {
       const users = snapshot.docs.map((doc) => ({
         id: doc.id,

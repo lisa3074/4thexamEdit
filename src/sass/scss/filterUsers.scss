@@ -15,6 +15,7 @@
   .filter-wrapper {
     display: flex;
     justify-content: space-between;
+    padding: 0 0.5rem;
   }
   .division,
   .hours,
@@ -79,7 +80,7 @@
     .grid-wrapper {
       display: grid;
       grid-template-areas: "sorted filter . search add chat";
-      grid-template-columns: 6rem 15rem auto 10rem 5rem 50px;
+      grid-template-columns: 6rem 20rem auto 9rem 4rem 50px;
       align-content: center;
       align-items: center;
       height: 100%;
@@ -137,6 +138,11 @@
       }
       grid-template-columns: 6rem 20rem auto 0rem 5rem 50px;
     }
+  }
+}
+@media (min-width: 1100px) {
+  .TopBar .grid-wrapper {
+    grid-template-columns: 6rem 20rem auto 10rem 5rem 50px;
   }
 }
 @media (min-width: 1200px) {

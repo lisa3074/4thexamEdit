@@ -11,10 +11,13 @@ export function forwards() {
     $(".PersonForm").classList.add("hide");
     $(".float-btn.two").style.backgroundColor = "var(--secondary)";
   } else if (
-    ($(".position input").value === "" ||
-      $(".division input").value === "" ||
-      $(".hours input").value === "" ||
-      $(".email input").value === "") &&
+    ($(".level").dataset.chosen === false ||
+      $(".division").dataset.chosen === false ||
+      $(".hours").dataset.chosen === false ||
+      $(".email input").value === "" ||
+      $(".startDate input").value === "" ||
+      $(".phone input").value === "" ||
+      $(".position input").value === "") &&
     !$(".WorkForm").classList.contains("hide")
   ) {
   } else if (!$(".WorkForm").classList.contains("hide")) {

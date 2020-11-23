@@ -1,8 +1,5 @@
-import React, { useState } from "react";
-import InputLabel from "@material-ui/core/InputLabel";
+import React from "react";
 import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import ChatBubbleRoundedIcon from "@material-ui/icons/ChatBubbleRounded";
 import PersonAddRoundedIcon from "@material-ui/icons/PersonAddRounded";
@@ -15,11 +12,11 @@ import ChatNav from "../chat/ChatNav";
 import { chat, scrollToBottom } from "../../jsModules/displayFunctions/mainMenuNavigation";
 export default function TopBar(props) {
   const handleDivision = (event) => {
-    props.setChosenDivision(event.target.value);
+    props.setChosenDivision(event.target.innerText);
   };
 
   const handleHours = (e) => {
-    props.setChosenHours(e.target.value);
+    props.setChosenHours(e.target.innerText);
   };
   const handleCategory = (e) => {
     props.setChosenCat(e.target.innerText);
@@ -44,37 +41,52 @@ export default function TopBar(props) {
     { category: "Documentation", color: "#b4b256" },
   ];
   const users = ["Lisa Søndergaard", "Rune Jensen", "Mikkel Hansen", "Anja Andersen", "Gry Trampedach", "Bob Hund"];
-
+  const divisions = [
+    "Design",
+    "Support",
+    "Development",
+    "Finance",
+    "Sales",
+    "UX/test",
+    "Marketing",
+    "Research",
+    "Board members",
+    "Executive",
+  ];
+  const workHours = ["Full time", "Part time", "Hourly"];
   return (
     <nav className="TopBar">
       <div className="admin-top">
         <div className="grid-wrapper">
           <h2 className="sorted">Sorted by</h2>
           <div className="filter-wrapper">
-            <FormControl className="division">
-              <InputLabel htmlFor="division">Division</InputLabel>
-              <Select native id="division" onChange={handleDivision} displayEmpty label="Division">
-                <option aria-label="None" value="" />
-                <option value="Design">Design</option>
-                <option value="Development">Development</option>
-                <option value="Support">Support</option>
-                <option value="Finance">Finance</option>
-                <option value="Sales">Sales</option>
-                <option value="Research">Research</option>
-                <option value="Marketing">Marketing</option>
-                <option value="Board">Board members</option>
-                <option value="Executives">Executives</option>
-              </Select>
-            </FormControl>
-            <FormControl className="hours">
-              <InputLabel htmlFor="workHours">Work hours</InputLabel>
-              <Select native id="workHours" onChange={handleHours} label="Division">
-                <option aria-label="None" value="" />
-                <option value="Full time">Full time</option>
-                <option value="Part time">Part time</option>
-                <option value="Hourly">Hourly</option>
-              </Select>
-            </FormControl>
+            <Autocomplete
+              name="Division"
+              className="division"
+              label="Division"
+              required
+              options={divisions}
+              getOptionLabel={(option) => (option ? option : "")}
+              getOptionSelected={(option, value) => option === value}
+              onChange={(option) => {
+                handleDivision(option);
+              }}
+              renderInput={(params) => <TextField {...params} variant="standard" label="Division" placeholder="" />}
+            />
+
+            <Autocomplete
+              name="Work hours"
+              className="hours"
+              label="Work hours"
+              required
+              options={workHours}
+              getOptionLabel={(option) => (option ? option : "")}
+              getOptionSelected={(option, value) => option === value}
+              onChange={(option) => {
+                handleHours(option);
+              }}
+              renderInput={(params) => <TextField {...params} variant="standard" label="Work hours" placeholder="" />}
+            />
           </div>
           <div className="input-wrapper">
             <TextField name="Position" className="searchUsers" label="Search" onChange={handleSearch} />

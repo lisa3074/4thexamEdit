@@ -18,15 +18,9 @@ export default function Administration(props) {
   const [search, setSearch] = useState("");
   //const currentUser = AuthProvider();
   const [users, setUsers] = useState([]);
-  const sortBy = "NAMES_ASC";
 
-  const SORT_OPTIONS = {
-    NAMES_ASC: { column: "name", direction: "asc" },
-  };
   useEffect(() => {
-    console.log("get ændret");
-
-    getUsers(setUsers, sortBy, SORT_OPTIONS);
+    getUsers(setUsers);
   }, []);
 
   return (
@@ -45,13 +39,14 @@ export default function Administration(props) {
         setSearch={setSearch}></TopBar>
       <Menu setEndpoint={props.setEndpoint} setTool={setTool}></Menu>
       <MainAdmin
-        setChosenCat={setChosenCat}
-        setChosenEmployee={setChosenEmployee}
+        setChosenDivision={setChosenDivision}
+        setChosenHours={setChosenHours}
         users={users}
         setUsers={setUsers}
         chosenDivision={chosenDivision}
         chosenHours={chosenHours}
-        search={search}></MainAdmin>
+        search={search}
+        setSearch={setSearch}></MainAdmin>
       <Planner
         chosenCat={chosenCat}
         chosenEmployee={chosenEmployee}

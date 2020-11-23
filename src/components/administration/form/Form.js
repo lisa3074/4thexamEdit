@@ -4,19 +4,20 @@ import PersonForm from "./PersonForm";
 import PrivateForm from "./PrivateForm";
 import WorkForm from "./WorkForm";
 import { postUser } from "../../../jsModules/dbData/postData";
+import { storeImage } from "../../../jsModules/dbData/postData";
 import { editUser } from "../../../jsModules/dbData/editData";
 import {
   clearUserForm,
   editUserResetForm,
   newUserResetForm,
 } from "../../../jsModules/displayFunctions/displayEditForm";
-import { id } from "date-fns/locale";
 
 export default function Form(props) {
   console.log(props);
   const [focus, setFocus] = useState(false);
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState("avatar.jpg");
+  const [imageFile, setImageFile] = useState();
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
 
@@ -35,6 +36,15 @@ export default function Form(props) {
   const [postal, setPostal] = useState("");
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    let today;
+    date ? (today = new Date(date)) : (today = new Date());
+    const dd = String(today.getDate()).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    setDate(`${yyyy}-${mm}-${dd}`);
+  }, [date]);
 
   const { user, setUser } = props;
 
@@ -56,7 +66,8 @@ export default function Form(props) {
     setEducation("");
     setPostal("");
     setAddress("");
-    setUser(); //undefined??
+    setImageFile();
+    setUser();
   }
 
   function submit(e) {
@@ -69,7 +80,7 @@ export default function Form(props) {
       console.log("no password");
     } else if (!document.querySelector(".password-safety").classList.contains("hide")) {
       console.log("new user submitted");
-      postUser({
+      onFormSubmit({
         image: image,
         city: city,
         name: name,
@@ -88,9 +99,9 @@ export default function Form(props) {
         postalCode: postal,
         streetAndNumber: address,
       });
+      storeImage(imageFile, email);
+      document.querySelector(".succes").classList.remove("hide");
       setTimeout(() => {
-        newUserResetForm();
-        clearUserForm();
         resetForm();
       }, 2000);
     } else {
@@ -115,11 +126,14 @@ export default function Form(props) {
         streetAndNumber: address,
         id: props.id,
       });
-      editUserResetForm();
-      clearUserForm();
-      resetForm();
+      storeImage(imageFile, email);
+      document.querySelector(".succes").classList.remove("hide");
+      setTimeout(() => {
+        resetForm();
+      }, 2000);
     }
   }
+
   function clear() {
     if (!document.querySelector(".password-safety").classList.contains("hide")) {
       newUserResetForm();
@@ -133,8 +147,6 @@ export default function Form(props) {
   }
   //kaldes herfra med payload fra ovenstående useStates
   async function editProfile(payload) {
-    console.log("edit clicked " + id);
-    //console.log("payload " + JSON.stringify(payload));
     editUser(payload);
   }
   async function onFormSubmit(payload) {
@@ -147,7 +159,7 @@ export default function Form(props) {
       setName(user[0].name);
       setCountry(user[0].country);
       setCity(user[0].city);
-      setImage(user[0].image);
+      setImage(user[0].image ? user[0].image : "avatar.jpg");
 
       setPosition(user[0].position);
       setDivision(user[0].division);
@@ -167,74 +179,62 @@ export default function Form(props) {
   }, [user]);
 
   return (
-    <form className="Form">
-      <PersonForm
-        setFocus={setFocus}
-        focus={focus}
-        name={name}
-        setName={setName}
-        setCountry={setCountry}
-        country={country}
-        city={city}
-        setCity={setCity}
-        image={image}
-        setImage={setImage}
-      />
-      <WorkForm
-        setPosition={setPosition}
-        setDivision={setDivision}
-        setHours={setHours}
-        setDate={setDate}
-        setLevel={setLevel}
-        setEmail={setEmail}
-        setTel={setTel}
-        division={division}
-        email={email}
-        position={position}
-        date={date}
-        tel={tel}
-        level={level}
-        hours={hours}
-      />
-      <PrivateForm
-        setAccount={setAccount}
-        setContract={setContract}
-        setCpr={setCpr}
-        setEducation={setEducation}
-        setPostal={setPostal}
-        setAddress={setAddress}
-        account={account}
-        cpr={cpr}
-        education={education}
-        contract={contract}
-        postal={postal}
-        address={address}
-        passwrd={password}
-        setPassword={setPassword}
-      />
-      <FormNav
-        user={user}
-        setUser={setUser}
-        /*       setImage={setImage}
-        setCity={setCity}
-        setName={setName}
-        setCountry={setCountry}
-        setPosition={setPosition}
-        setDivision={setDivision}
-        setHours={setHours}
-        setDate={setDate}
-        setLevel={setLevel}
-        setEmail={setEmail}
-        setTel={setTel}
-        setAccount={setAccount}
-        setContract={setContract}
-        setCpr={setCpr}
-        setEducation={setEducation}
-        setPostal={setPostal}
-        setAddress={setAddress} */
-        submit={submit}
-        clear={clear}
-      />
-    </form>
+    <>
+      <form className="Form">
+        <PersonForm
+          setFocus={setFocus}
+          focus={focus}
+          name={name}
+          setName={setName}
+          setCountry={setCountry}
+          country={country}
+          city={city}
+          setCity={setCity}
+          image={image}
+          setImage={setImage}
+          setImageFile={setImageFile}
+        />
+        <WorkForm
+          setPosition={setPosition}
+          setDivision={setDivision}
+          setHours={setHours}
+          setDate={setDate}
+          setLevel={setLevel}
+          setEmail={setEmail}
+          setTel={setTel}
+          division={division}
+          email={email}
+          position={position}
+          date={date}
+          tel={tel}
+          level={level}
+          hours={hours}
+        />
+        <PrivateForm
+          setAccount={setAccount}
+          setContract={setContract}
+          setCpr={setCpr}
+          setEducation={setEducation}
+          setPostal={setPostal}
+          setAddress={setAddress}
+          account={account}
+          cpr={cpr}
+          education={education}
+          contract={contract}
+          postal={postal}
+          address={address}
+          passwrd={password}
+          setPassword={setPassword}
+        />
+        <FormNav user={user} setUser={setUser} submit={submit} clear={clear} />
+      </form>
+
+      <article className="succes hide">
+        <progress value="0" max="100" id="loader">
+          0%
+        </progress>
+        <p>Sending</p>
+      </article>
+    </>
   );
 }

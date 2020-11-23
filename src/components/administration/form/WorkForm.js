@@ -4,21 +4,23 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import FormControl from "@material-ui/core/FormControl";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
 export default function WorkForm(props) {
   const { user, level, hours } = props;
-  let today;
-  props.date !== undefined ? (today = new Date(props.date)) : (today = new Date());
-  const dd = String(today.getDate()).padStart(2, "0");
-  const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-  const yyyy = today.getFullYear();
-  props.setDate(`${yyyy}-${mm}-${dd}`);
 
   const handleHoursChange = (e) => {
-    props.setHours(e.target.value);
+    props.setHours(e.target.innerText);
+    e.target.innerText
+      ? document.querySelector(".UserForm .hours").setAttribute("data-chosen", true)
+      : document.querySelector(".UserForm .hours").setAttribute("data-chosen", false);
   };
   const handleLevelChange = (e) => {
-    props.setLevel(e.target.value);
+    props.setLevel(e.target.innerText);
+    console.log(e.target.innerText);
+    e.target.innerText
+      ? document.querySelector(".UserForm .level").setAttribute("data-chosen", true)
+      : document.querySelector(".UserForm .level").setAttribute("data-chosen", false);
   };
 
   const handleDateChange = (e) => {
@@ -29,7 +31,11 @@ export default function WorkForm(props) {
     props.setPosition(e.target.value);
   };
   const handleDivisionChange = (e) => {
-    props.setDivision(e.target.value);
+    console.log(e.target);
+    props.setDivision(e.target.innerText);
+    e.target.innerText
+      ? document.querySelector(".UserForm .division").setAttribute("data-chosen", true)
+      : document.querySelector(".UserForm .division").setAttribute("data-chosen", false);
   };
   const handleEmailChange = (e) => {
     props.setEmail(e.target.value);
@@ -37,6 +43,21 @@ export default function WorkForm(props) {
   const handleTelChange = (e) => {
     props.setTel(e.target.value);
   };
+
+  const divisions = [
+    "Design",
+    "Support",
+    "Development",
+    "Finance",
+    "Sales",
+    "UX/test",
+    "Marketing",
+    "Research",
+    "Board members",
+    "Executive",
+  ];
+  const workHours = ["Full time", "Part time", "Hourly"];
+  const userLevel = ["Administrator", "Regular user", "Board member"];
 
   console.log(props.hours);
   return (
@@ -53,35 +74,38 @@ export default function WorkForm(props) {
         />
       </div>
       <div className="input-wrapper">
-        <TextField
+        <Autocomplete
           name="Division"
           className="division"
           label="Division"
           required
-          value={props.division}
-          onChange={handleDivisionChange}
+          options={divisions}
+          getOptionLabel={(option) => (option ? option : "")}
+          getOptionSelected={(option, value) => option === value}
+          onChange={(option) => {
+            handleDivisionChange(option);
+          }}
+          renderInput={(params) => <TextField {...params} variant="standard" label="Division" placeholder="" />}
         />
       </div>
 
       <div className="input-wrapper">
-        <FormControl>
-          <InputLabel id="hours">Work hours</InputLabel>
-          <Select
+        <div className="input-wrapper">
+          <Autocomplete
             name="Work hours"
             className="hours"
-            labelId="hours"
-            value={hours}
-            onChange={(e) => {
-              handleHoursChange(e);
+            label="Work hours"
+            required
+            autoSelect={true}
+            options={workHours}
+            getOptionLabel={(option) => (option ? option : "")}
+            getOptionSelected={(option, value) => option === value}
+            onChange={(option) => {
+              handleHoursChange(option);
             }}
-            required>
-            {console.log(hours)}
-            <MenuItem value=" ">Choose</MenuItem>
-            <MenuItem value="Full time">Full time</MenuItem>
-            <MenuItem value="Part time">Part time</MenuItem>
-            <MenuItem value="Hourly">Hourly</MenuItem>
-          </Select>
-        </FormControl>
+            renderInput={(params) => <TextField {...params} variant="standard" label="Work hours" placeholder="" />}
+          />
+        </div>
       </div>
       <div className="input-wrapper">
         <TextField
@@ -97,16 +121,21 @@ export default function WorkForm(props) {
           }}
         />
       </div>
+
       <div className="input-wrapper">
-        <FormControl>
-          <InputLabel htmlFor="level">User level</InputLabel>
-          <Select name="User level" className="level" id="level" value={level} onChange={handleLevelChange} required>
-            {console.log(level)}
-            <MenuItem value="Admin">Administrator</MenuItem>
-            <MenuItem value="Regular">Regular user</MenuItem>
-            <MenuItem value="Board">Board member</MenuItem>
-          </Select>
-        </FormControl>
+        <Autocomplete
+          name="User level"
+          className="level"
+          label="User level"
+          required
+          options={userLevel}
+          getOptionLabel={(option) => (option ? option : "")}
+          getOptionSelected={(option, value) => option === value}
+          onChange={(option) => {
+            handleLevelChange(option);
+          }}
+          renderInput={(params) => <TextField {...params} variant="standard" label="User level" placeholder="" />}
+        />
       </div>
       <div className="input-wrapper">
         <TextField

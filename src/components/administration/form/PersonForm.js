@@ -16,15 +16,16 @@ export default function PersonForm(props) {
   const handleCity = (e) => {
     props.setCity(e.target.value);
   };
-  /*   const handleImage = (e) => {
-    props.setImage(e.target.value);
-  }; */
+
   console.log(props.image);
 
   //image prewiev
   function preview(e) {
     console.log("preview");
     const file = $("input[type=file]").get(0).files[0];
+
+    console.log(file);
+
     if (file) {
       const reader = new FileReader();
       reader.onload = function () {
@@ -35,7 +36,8 @@ export default function PersonForm(props) {
         const lastBackSlash = e.target.value.lastIndexOf("\\") + 1;
         const fileName = e.target.value.substring(lastBackSlash, 50);
         document.querySelector(".PersonForm > .upload-wrapper > label > div > p").textContent = fileName;
-        props.setImage(fileName);
+        props.setImage(fileName ? fileName : "");
+        props.setImageFile(file);
         console.log(fileName);
       }, 100);
     }
@@ -99,7 +101,6 @@ export default function PersonForm(props) {
             name="image"
             onChange={(e) => {
               preview(e);
-              /*   handleImage(e); */
             }}
           />
         </label>

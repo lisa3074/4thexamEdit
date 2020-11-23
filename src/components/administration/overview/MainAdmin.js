@@ -4,11 +4,13 @@ import ViewProfile from "../viewProfile/ViewProfile";
 import FilterUsers from "../../navigation/FilterUsers";
 export default function MainAdmin(props) {
   const [id, setId] = useState();
-  console.log(props.chosenDivision);
-  console.log(props.chosenHours);
+
   return (
     <main className={window.innerWidth < 1000 ? "MainAdmin hide" : "MainAdmin"}>
-      <FilterUsers setChosenCat={props.setChosenCat} setChosenEmployee={props.setChosenEmployee}></FilterUsers>
+      <FilterUsers
+        setChosenDivision={props.setChosenDivision}
+        setChosenHours={props.setChosenHours}
+        setSearch={props.setSearch}></FilterUsers>
       <UserList
         setId={setId}
         users={
