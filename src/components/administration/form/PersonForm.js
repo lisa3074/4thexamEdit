@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import TextField from "@material-ui/core/TextField";
 import image from "../../../images/placeholder.png";
 import $ from "jquery";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 export default function PersonForm(props) {
-  const { user } = props;
   // console.log(user !== undefined ? user[0].name : "");
 
   const handleName = (e) => {
@@ -17,9 +16,10 @@ export default function PersonForm(props) {
   const handleCity = (e) => {
     props.setCity(e.target.value);
   };
-  const handleImage = (e) => {
+  /*   const handleImage = (e) => {
     props.setImage(e.target.value);
-  };
+  }; */
+  console.log(props.image);
 
   //image prewiev
   function preview(e) {
@@ -31,10 +31,14 @@ export default function PersonForm(props) {
         $(".previewImg").attr("src", reader.result);
       };
       reader.readAsDataURL(file);
+      setTimeout(() => {
+        const lastBackSlash = e.target.value.lastIndexOf("\\") + 1;
+        const fileName = e.target.value.substring(lastBackSlash, 50);
+        document.querySelector(".PersonForm > .upload-wrapper > label > div > p").textContent = fileName;
+        props.setImage(fileName);
+        console.log(fileName);
+      }, 100);
     }
-    const lastBackSlash = e.target.value.lastIndexOf("\\") + 1;
-    const fileName = e.target.value.substring(lastBackSlash, 50);
-    document.querySelector(".PersonForm > .upload-wrapper > label > div > p").textContent = fileName;
   }
   return (
     <fieldset name="Person" className="PersonForm">
@@ -87,7 +91,7 @@ export default function PersonForm(props) {
             <button className="upload-image float-btn">
               <PublishRoundedIcon />
             </button>
-            <p>{props.image === "" ? "Upload image" : props.image}</p>
+            <p>{props.image ? props.image : "Upload image"}</p>
           </div>
           <input
             id="file-upload"
@@ -95,7 +99,7 @@ export default function PersonForm(props) {
             name="image"
             onChange={(e) => {
               preview(e);
-              handleImage(e);
+              /*   handleImage(e); */
             }}
           />
         </label>

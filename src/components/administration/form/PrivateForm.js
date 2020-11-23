@@ -2,10 +2,15 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 export default function PrivateForm(props) {
+  console.log(props);
+
   function findFileName(e) {
-    const lastBackSlash = e.target.value.lastIndexOf("\\") + 1;
-    const fileName = e.target.value.substring(lastBackSlash, 50);
-    document.querySelector(".PrivateForm > .upload-wrapper > label > div > p").textContent = fileName;
+    setTimeout(() => {
+      const lastBackSlash = e.target.value.lastIndexOf("\\") + 1;
+      const fileName = e.target.value.substring(lastBackSlash, 50);
+      document.querySelector(".PrivateForm > .upload-wrapper > label > div > p").textContent = fileName;
+      props.setContract(e.target.value);
+    }, 100);
   }
 
   const handleCprChange = (e) => {
@@ -15,9 +20,9 @@ export default function PrivateForm(props) {
   const handleAccountChange = (e) => {
     props.setAccount(e.target.value);
   };
-  const handleContractChange = (e) => {
+  /*  const handleContractChange = (e) => {
     props.setContract(e.target.value);
-  };
+  }; */
   const handleAddressChange = (e) => {
     props.setAddress(e.target.value);
   };
@@ -27,6 +32,14 @@ export default function PrivateForm(props) {
   const handleEducationChange = (e) => {
     props.setEducation(e.target.value);
   };
+  const handlePasswordChange = (e) => {
+    props.setPassword(e.target.value);
+  };
+  console.log(props.cpr);
+  console.log(props.account);
+  console.log(props.address);
+  console.log(props.postal);
+  console.log(props.education);
 
   return (
     <fieldset className="PrivateForm hide">
@@ -44,11 +57,11 @@ export default function PrivateForm(props) {
       </div>
       <div className="input-wrapper">
         <TextField
-          name="Account number"
+          name="Account"
           className="account"
           label="Account number"
           value={props.account}
-          onClick={handleAccountChange}
+          onChange={handleAccountChange}
         />
       </div>
       <div className="input-wrapper">
@@ -57,7 +70,7 @@ export default function PrivateForm(props) {
           className="address"
           label="Street / house number"
           value={props.address}
-          onClick={handleAddressChange}
+          onChange={handleAddressChange}
         />
       </div>
       <div className="input-wrapper">
@@ -67,7 +80,7 @@ export default function PrivateForm(props) {
           className="postal"
           label="Postal code"
           value={props.postal}
-          onClick={handlePostalChange}
+          onChange={handlePostalChange}
         />
       </div>
       <div className="input-wrapper">
@@ -76,7 +89,7 @@ export default function PrivateForm(props) {
           className="education"
           label="Education"
           value={props.education}
-          onClick={handleEducationChange}
+          onChange={handleEducationChange}
         />
       </div>
 
@@ -87,7 +100,7 @@ export default function PrivateForm(props) {
           label="Password"
           required
           value={props.password}
-          onClick={handleContractChange}
+          onChange={handlePasswordChange}
         />
       </div>
       <div className="upload-wrapper">
@@ -96,7 +109,7 @@ export default function PrivateForm(props) {
             <button className="upload-image float-btn">
               <PublishRoundedIcon />
             </button>
-            <p>{props.contract}</p>
+            <p>{props.contract ? props.contract : "Upload contract"}</p>
           </div>
           <input id="pdf-upload" type="file" name="image" onChange={findFileName} />
         </label>

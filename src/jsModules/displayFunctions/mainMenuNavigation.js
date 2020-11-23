@@ -50,7 +50,8 @@ export function chat() {
   });
 }
 export function newUser() {
-  document.querySelector(".UserForm").classList.remove("hide");
+  document.querySelector(".ViewProfile").classList.remove("hide");
+  document.querySelector(".ViewProfile .UserForm").classList.remove("hide");
 }
 
 export function scrollToBottom() {

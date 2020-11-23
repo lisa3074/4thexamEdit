@@ -5,35 +5,17 @@ export function editUser() {
   const $ = document.querySelector.bind(document);
   $(".UserForm").classList.remove("hide");
   $(".FormPath > h2").textContent = "Edit user";
-  /*  $(".PersonForm .name input").value = "Lisa Søndergaard";
-  $(".PersonForm .country input").value = "Denmark";
-  $(".PersonForm .city input").value = "Copenhagen K";
-  $(".PersonForm .upload-wrapper p").textContent = "lisa2020.jpg"; */
   $(".PersonForm img").src = image;
-
-  //work
-  /*   $(".WorkForm .position input").value = "Frontend developer";
-  $(".WorkForm .division input").value = "Development";
-  $(".WorkForm .hours input").value = "full time";
-  $(".WorkForm .startDate input").value = "2020-11-01";
-  $(".WorkForm .level input").value = "admin";
-  $(".WorkForm .email input").value = "lisa@skatteguiden.dk";
-  $(".WorkForm .phone input").value = "+45 31495969"; */
-  //Private
-  /*   $(".PrivateForm .cpr input").value = "130284-3232";
-  $(".PrivateForm .account input").value = "1234 12345678";
-  $(".PrivateForm .address input").value = "Rørholmsgade 15, st th.";
-  $(".PrivateForm .postal input").value = "1352";
-  $(".PrivateForm .education input").value = "Multimedia Designer";*/
   $(".PrivateForm .password input").value = "password";
   $(".PrivateForm .password input").setAttribute("required", false);
   $(".PrivateForm .password-safety").classList.add("hide");
-  $(".PrivateForm .upload-wrapper p").textContent = "contract-lisa-søndergaard.pdf";
+  $(".PrivateForm .upload-wrapper p").textContent = "Upload contract (.pdf)";
 }
 export function clearUserForm() {
   const $ = document.querySelector.bind(document);
   $(".FormPath > h2").textContent = "Add user";
-
+  $(".ViewProfile").classList.add("hide");
+  $(".UserList").classList.remove("hide");
   $(".UserForm").classList.add("hide");
   $(".PersonForm").classList.remove("hide");
   $(".WorkForm").classList.add("hide");
@@ -46,4 +28,15 @@ export function clearUserForm() {
   $(".float-btn.two").style.backgroundColor = "var(--tietery)";
   document.querySelector(".PrivateForm > .upload-wrapper > label > div > p").textContent = "Upload contract";
   document.querySelector(".PersonForm > .upload-wrapper > label > div > p").textContent = "Upload image";
+}
+
+export function newUserResetForm() {
+  const $ = document.querySelector.bind(document);
+  $(".ViewProfile").classList.add("hide");
+  $(".UserList").classList.remove("hide");
+}
+export function editUserResetForm() {
+  const $ = document.querySelector.bind(document);
+  $(".ViewProfile").classList.remove("hide");
+  $(".UserList").classList.add("hide");
 }

@@ -4,7 +4,8 @@ import ViewProfile from "../viewProfile/ViewProfile";
 import FilterUsers from "../../navigation/FilterUsers";
 export default function MainAdmin(props) {
   const [id, setId] = useState();
-
+  console.log(props.chosenDivision);
+  console.log(props.chosenHours);
   return (
     <main className={window.innerWidth < 1000 ? "MainAdmin hide" : "MainAdmin"}>
       <FilterUsers setChosenCat={props.setChosenCat} setChosenEmployee={props.setChosenEmployee}></FilterUsers>
@@ -32,9 +33,10 @@ export default function MainAdmin(props) {
         }
       />
       <ViewProfile
-        users={props.users.filter((person) => person.id === id)}
+        user={props.users.filter((person) => person.id === id)}
+        users={props.users}
         id={id}
-        deleteUser={props.deleteUser}
+        setUsers={props.setUsers}
         editProfile={props.editProfile}
       />
     </main>

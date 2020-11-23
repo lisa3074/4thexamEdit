@@ -3,52 +3,141 @@ import FormNav from "./FormNav";
 import PersonForm from "./PersonForm";
 import PrivateForm from "./PrivateForm";
 import WorkForm from "./WorkForm";
+import { postUser } from "../../../jsModules/dbData/postData";
+import {
+  clearUserForm,
+  editUserResetForm,
+  newUserResetForm,
+} from "../../../jsModules/displayFunctions/displayEditForm";
 export default function Form(props) {
   const [focus, setFocus] = useState(false);
-  const [name, setName] = useState();
-  const [image, setImage] = useState();
-  const [city, setCity] = useState();
-  const [country, setCountry] = useState();
+  const [name, setName] = useState("");
+  const [image, setImage] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
 
-  const [division, setDivision] = useState();
-  const [email, setEmail] = useState();
-  const [position, setPosition] = useState();
-  const [date, setDate] = useState();
-  const [tel, setTel] = useState();
-  const [level, setLevel] = useState();
-  const [hours, setHours] = useState();
+  const [division, setDivision] = useState("");
+  const [email, setEmail] = useState("");
+  const [position, setPosition] = useState("");
+  const [date, setDate] = useState("");
+  const [tel, setTel] = useState("");
+  const [level, setLevel] = useState("");
+  const [hours, setHours] = useState("");
 
-  const [account, setAccount] = useState();
-  const [contact, setContact] = useState();
-  const [cpr, setCpr] = useState();
-  const [education, setEducation] = useState();
-  const [postal, setPostal] = useState();
-  const [address, setAddress] = useState();
+  const [account, setAccount] = useState("");
+  const [contract, setContract] = useState("");
+  const [cpr, setCpr] = useState("");
+  const [education, setEducation] = useState("");
+  const [postal, setPostal] = useState("");
+  const [address, setAddress] = useState("");
+  const [password, setPassword] = useState("");
 
   const { user, setUser } = props;
 
+  function resetForm() {
+    setImage("");
+    setCity("");
+    setName("");
+    setCountry("");
+    setPosition("");
+    setDivision("");
+    setHours("");
+    setDate("");
+    setLevel("");
+    setEmail("");
+    setTel("");
+    setAccount("");
+    setContract("");
+    setCpr("");
+    setEducation("");
+    setPostal("");
+    setAddress("");
+    setUser(); //undefined??
+  }
+
+  function submit(e) {
+    e.preventDefault();
+    console.log("submited");
+    if (
+      !document.querySelector(".password-safety").classList.contains("hide") &&
+      document.querySelector(".password input").value === ""
+    ) {
+      console.log("no password");
+    } else if (!document.querySelector(".password-safety").classList.contains("hide")) {
+      console.log("new user submitted");
+      onFormSubmit({
+        image: image,
+        city: city,
+        name: name,
+        country: country,
+        position: position,
+        division: division,
+        workHours: hours,
+        startDate: date,
+        userLevel: level,
+        email: email,
+        tel: tel,
+        accountNumber: account,
+        contract: contract,
+        cpr: cpr,
+        education: education,
+        postalCode: postal,
+        streetAndNumber: address,
+      });
+      setTimeout(() => {
+        newUserResetForm();
+        clearUserForm();
+        resetForm();
+      }, 2000);
+    } else {
+      console.log("old user putted");
+      editUserResetForm();
+      clearUserForm();
+      resetForm();
+    }
+  }
+  function clear() {
+    if (!document.querySelector(".password-safety").classList.contains("hide")) {
+      newUserResetForm();
+      clearUserForm();
+      resetForm();
+    } else {
+      editUserResetForm();
+      clearUserForm();
+      resetForm();
+    }
+  }
+
+  async function onFormSubmit(payload) {
+    console.log("submitted db1", payload);
+    postUser(payload);
+  }
+
   useEffect(() => {
-    console.log("User ændret");
-    setName(user !== undefined ? user[0].name : "");
-    setName(user !== undefined ? user[0].name : "");
-    setCountry(user !== undefined ? user[0].country : "");
-    setCity(user !== undefined ? user[0].city : "");
-    setImage(user !== undefined ? user[0].image : "");
+    if (user) {
+      console.log(user !== undefined ? user[0].id : "no user");
+      console.log(user !== undefined ? props.id : "no props.id");
+      console.log("User ændret");
+      setName(user[0].name);
+      setCountry(user[0].country);
+      setCity(user[0].city);
+      setImage(user[0].image);
 
-    setPosition(user !== undefined ? user[0].position : "");
-    setDivision(user !== undefined ? user[0].division : "");
-    setHours(user !== undefined ? user[0].workHours : "");
-    setDate(user !== undefined ? user[0].startDate : "");
-    setLevel(user !== undefined ? user[0].userLevel : "");
-    setEmail(user !== undefined ? user[0].email : "");
-    setTel(user !== undefined ? user[0].tel : "");
+      setPosition(user[0].position);
+      setDivision(user[0].division);
+      setHours(user[0].workHours);
+      setDate(user[0].startDate);
+      setLevel(user[0].userLevel);
+      setEmail(user[0].email);
+      setTel(user[0].tel);
 
-    setAccount(user !== undefined ? user[0].accountNumber : "");
-    setContact(user !== undefined ? user[0].contract : "");
-    setEducation(user !== undefined ? user[0].education : "");
-    setCpr(user !== undefined ? user[0].cpr : "");
-    setPostal(user !== undefined ? user[0].postalCode : "");
-    setAddress(user !== undefined ? user[0].streetAndNumber : "");
+      setAccount(user[0].accountNumber);
+      setContract(user[0].contract);
+      setEducation(user[0].education);
+      setCpr(user[0].cpr);
+      setPostal(user[0].postalCode);
+      setAddress(user[0].streetAndNumber);
+    }
   }, [user]);
 
   return (
@@ -83,7 +172,7 @@ export default function Form(props) {
       />
       <PrivateForm
         setAccount={setAccount}
-        setContact={setContact}
+        setContract={setContract}
         setCpr={setCpr}
         setEducation={setEducation}
         setPostal={setPostal}
@@ -91,14 +180,16 @@ export default function Form(props) {
         account={account}
         cpr={cpr}
         education={education}
-        contact={contact}
+        contract={contract}
         postal={postal}
         address={address}
+        passwrd={password}
+        setPassword={setPassword}
       />
       <FormNav
         user={user}
         setUser={setUser}
-        setImage={setImage}
+        /*       setImage={setImage}
         setCity={setCity}
         setName={setName}
         setCountry={setCountry}
@@ -110,11 +201,13 @@ export default function Form(props) {
         setEmail={setEmail}
         setTel={setTel}
         setAccount={setAccount}
-        setContact={setContact}
+        setContract={setContract}
         setCpr={setCpr}
         setEducation={setEducation}
         setPostal={setPostal}
-        setAddress={setAddress}
+        setAddress={setAddress} */
+        submit={submit}
+        clear={clear}
       />
     </form>
   );

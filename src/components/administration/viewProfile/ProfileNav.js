@@ -9,7 +9,7 @@ export default function ProfileNav(props) {
       <div className="float-btn">
         <DeleteRoundedIcon
           onClick={() => {
-            props.deleteUser(props.id);
+            props.deleteProfile(props.id);
           }}
         />
       </div>
