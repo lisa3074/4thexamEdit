@@ -4,12 +4,16 @@ import PersonForm from "./PersonForm";
 import PrivateForm from "./PrivateForm";
 import WorkForm from "./WorkForm";
 import { postUser } from "../../../jsModules/dbData/postData";
+import { editUser } from "../../../jsModules/dbData/editData";
 import {
   clearUserForm,
   editUserResetForm,
   newUserResetForm,
 } from "../../../jsModules/displayFunctions/displayEditForm";
+import { id } from "date-fns/locale";
+
 export default function Form(props) {
+  console.log(props);
   const [focus, setFocus] = useState(false);
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
@@ -65,7 +69,7 @@ export default function Form(props) {
       console.log("no password");
     } else if (!document.querySelector(".password-safety").classList.contains("hide")) {
       console.log("new user submitted");
-      onFormSubmit({
+      postUser({
         image: image,
         city: city,
         name: name,
@@ -91,6 +95,26 @@ export default function Form(props) {
       }, 2000);
     } else {
       console.log("old user putted");
+      editProfile({
+        image: image,
+        city: city,
+        name: name,
+        country: country,
+        position: position,
+        division: division,
+        workHours: hours,
+        startDate: date,
+        userLevel: level,
+        email: email,
+        tel: tel,
+        accountNumber: account,
+        contract: contract,
+        cpr: cpr,
+        education: education,
+        postalCode: postal,
+        streetAndNumber: address,
+        id: props.id,
+      });
       editUserResetForm();
       clearUserForm();
       resetForm();
@@ -107,16 +131,18 @@ export default function Form(props) {
       resetForm();
     }
   }
-
+  //kaldes herfra med payload fra ovenstående useStates
+  async function editProfile(payload) {
+    console.log("edit clicked " + id);
+    //console.log("payload " + JSON.stringify(payload));
+    editUser(payload);
+  }
   async function onFormSubmit(payload) {
-    console.log("submitted db1", payload);
     postUser(payload);
   }
 
   useEffect(() => {
     if (user) {
-      console.log(user !== undefined ? user[0].id : "no user");
-      console.log(user !== undefined ? props.id : "no props.id");
       console.log("User ændret");
       setName(user[0].name);
       setCountry(user[0].country);

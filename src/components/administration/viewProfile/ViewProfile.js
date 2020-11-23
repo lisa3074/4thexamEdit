@@ -15,28 +15,18 @@ export default function ViewProfile(props) {
   const mappedWork = props.user.map((user) => <Work key={user.id} {...user} />);
   const mappedContact = props.user.map((user) => <Contact key={user.id} {...user} />);
   const mappedPrivate = props.user.map((user) => <Private key={user.id} {...user} />);
-  console.log(props);
+
   function editProfile(id) {
     console.log("edit cicked");
     const user = props.users.filter((user) => user.id === id);
     setUser(user);
   }
-  console.log(props);
+
   async function deleteProfile(id) {
     console.log("delete clicked " + id);
-    //deletes the card from the UI right away
-    const newUsers = props.users.filter((user) => user.id !== id);
-    props.setUsers(newUsers);
-    //then deletes it from the DB
     deleteUser(id);
   }
 
-  //kaldes herfra med payload fra ovenstående useStates
-  async function editUser(payload, id, name, workHours, division, position) {
-    console.log("edit clicked " + id);
-    //console.log("payload " + JSON.stringify(payload));
-    editProfile(props.setUsers, payload, id, name, workHours, division, position, props.users);
-  }
   return (
     <section className="ViewProfile hide">
       <ul className="viewPerson">{mappedPerson}</ul>

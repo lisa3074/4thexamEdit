@@ -17,11 +17,11 @@ export default function MainAdmin(props) {
           props.search !== (undefined && "")
             ? props.users.filter(
                 (user) =>
-                  (user.division.includes(props.chosenDivision) &&
-                    user.workHours.includes(props.chosenHours) &&
-                    user.name.toLowerCase().includes(props.search.toLowerCase())) ||
-                  user.position.toLowerCase().includes(props.search.toLowerCase()) ||
-                  user.workHours.toLowerCase().includes(props.search.toLowerCase())
+                  user.division.includes(props.chosenDivision) &&
+                  user.workHours.includes(props.chosenHours) &&
+                  (user.name.toLowerCase().includes(props.search.toLowerCase()) ||
+                    user.position.toLowerCase().includes(props.search.toLowerCase()) ||
+                    user.workHours.toLowerCase().includes(props.search.toLowerCase()))
               )
             : props.chosenHours !== (undefined && "")
             ? props.users.filter((user) => user.workHours.includes(props.chosenHours))
@@ -37,7 +37,6 @@ export default function MainAdmin(props) {
         users={props.users}
         id={id}
         setUsers={props.setUsers}
-        editProfile={props.editProfile}
       />
     </main>
   );
