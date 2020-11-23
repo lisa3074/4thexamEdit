@@ -18,19 +18,12 @@ export default function Administration(props) {
   const [search, setSearch] = useState("");
   //const currentUser = AuthProvider();
   const [users, setUsers] = useState([]);
-<<<<<<< HEAD
-=======
   const sortBy = "NAMES_ASC";
->>>>>>> lisa21
 
   useEffect(() => {
     console.log("get ændret");
-<<<<<<< HEAD
-    getUsers(setUsers);
-=======
 
     getUsers(setUsers, sortBy, SORT_OPTIONS);
->>>>>>> lisa21
   }, []);
 
   return (
