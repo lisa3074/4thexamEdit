@@ -38,8 +38,14 @@ export default function WorkForm(props) {
       : document.querySelector(".UserForm .division").setAttribute("data-chosen", false);
   };
   const handleEmailChange = (e) => {
-    props.setEmail(e.target.value);
+    console.log(e.target.parentNode.parentNode.dataset);
+    if (e.target.parentNode.parentNode.dataset !== "edit") {
+      props.setEmail(e.target.value);
+    } else {
+      //document.querySelector(".WorkForm .email input").disabled = true;
+    }
   };
+  console.log(props.email);
   const handleTelChange = (e) => {
     props.setTel(e.target.value);
   };
@@ -58,7 +64,12 @@ export default function WorkForm(props) {
   ];
   const workHours = ["Full time", "Part time", "Hourly"];
   const userLevel = ["Administrator", "Regular user", "Board member"];
-
+  const isDisabled = (e) => {
+    console.log(e);
+    const edit = document.querySelector(".WorkForm .email").dataset === "edit" ? true : false;
+    console.log(edit);
+    return edit;
+  };
   console.log(props.hours);
   return (
     <fieldset name="Work" className="WorkForm hide">
@@ -143,7 +154,6 @@ export default function WorkForm(props) {
           className="email"
           type="email"
           label="Email"
-          required
           value={props.email}
           onChange={handleEmailChange}
         />

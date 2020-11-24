@@ -93,7 +93,7 @@ export default function TopBar(props) {
             <SearchRoundedIcon className="search-icon" />
           </div>
 
-          <PersonAddRoundedIcon className="add-user" />
+          <PersonAddRoundedIcon className="add-user admin" />
           <div
             className="float-btn"
             onClick={() => {

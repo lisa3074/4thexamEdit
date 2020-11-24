@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     firebaseConfig.auth().onAuthStateChanged(setCurrentUser);
+    console.log(currentUser);
   }, []);
 
   //The logged in user

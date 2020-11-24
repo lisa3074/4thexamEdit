@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { firebaseConfig } from "../../../jsModules/firebase/firebase";
 import FormNav from "./FormNav";
 import PersonForm from "./PersonForm";
 import PrivateForm from "./PrivateForm";
@@ -12,7 +13,7 @@ import {
   newUserResetForm,
 } from "../../../jsModules/displayFunctions/displayEditForm";
 
-export default function Form(props) {
+export default function Form(props, { history, saveCredentials }) {
   console.log(props);
   const [focus, setFocus] = useState(false);
   const [name, setName] = useState("");
@@ -36,6 +37,8 @@ export default function Form(props) {
   const [postal, setPostal] = useState("");
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
+
+  const [error, setError] = useState([null]);
 
   useEffect(() => {
     let today;
@@ -68,8 +71,9 @@ export default function Form(props) {
     setAddress("");
     setImageFile();
     setUser();
+    setPassword("");
   }
-
+  console.log(password);
   function submit(e) {
     e.preventDefault();
     console.log("submited");
@@ -80,6 +84,12 @@ export default function Form(props) {
       console.log("no password");
     } else if (!document.querySelector(".password-safety").classList.contains("hide")) {
       console.log("new user submitted");
+      handleSignUp();
+      /*     setTimeout(() => {
+        if (error) {
+          console.log(error);
+          <div className="errorDiv">{error}</div>;
+        } else { */
       onFormSubmit({
         image: image,
         city: city,
@@ -98,12 +108,15 @@ export default function Form(props) {
         education: education,
         postalCode: postal,
         streetAndNumber: address,
+        password: password,
       });
       storeImage(imageFile, email);
       document.querySelector(".succes").classList.remove("hide");
       setTimeout(() => {
         resetForm();
       }, 2000);
+      /*    }
+      }, 100); */
     } else {
       console.log("old user putted");
       editProfile({
@@ -130,7 +143,7 @@ export default function Form(props) {
       document.querySelector(".succes").classList.remove("hide");
       setTimeout(() => {
         resetForm();
-      }, 2000);
+      }, 20000);
     }
   }
 
@@ -178,6 +191,20 @@ export default function Form(props) {
     }
   }, [user]);
 
+  const handleSignUp = useCallback(
+    async (e) => {
+      console.log(password);
+      console.log(email);
+      try {
+        await firebaseConfig.auth().createUserWithEmailAndPassword(email.toString().trim(), password.toString().trim());
+        history.push("/");
+      } catch (error) {
+        setError(error.message);
+      }
+    },
+    [history, email]
+  );
+
   return (
     <>
       <form className="Form">
@@ -223,7 +250,7 @@ export default function Form(props) {
           contract={contract}
           postal={postal}
           address={address}
-          passwrd={password}
+          password={password}
           setPassword={setPassword}
         />
         <FormNav user={user} setUser={setUser} submit={submit} clear={clear} />
@@ -237,4 +264,5 @@ export default function Form(props) {
       </article>
     </>
   );
+  /*   }; */
 }

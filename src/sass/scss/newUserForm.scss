@@ -83,6 +83,15 @@
   }
   .WorkForm {
     z-index: 102;
+    .email[data-state="edit"] {
+      pointer-events: none;
+      input {
+        color: rgb(153, 153, 153);
+      }
+    }
+    .input-wrapper:nth-child(7) {
+      cursor: not-allowed;
+    }
   }
   .PrivateForm {
     z-index: 103;

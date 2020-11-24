@@ -10,6 +10,7 @@ export function editUser() {
   $(".PrivateForm .password input").setAttribute("required", false);
   $(".PrivateForm .password-safety").classList.add("hide");
   $(".PrivateForm .upload-wrapper p").textContent = "Upload contract (.pdf)";
+  $(".WorkForm .email").setAttribute("data-state", "edit");
 }
 export function clearUserForm() {
   const $ = document.querySelector.bind(document);

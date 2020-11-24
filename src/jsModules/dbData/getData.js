@@ -24,6 +24,21 @@ export function getUsers(callback) {
     });
   return () => unsubsribe();
 }
+export function getSignedinUser(callback, email) {
+  const unsubsribe = db
+    .collection("users")
+    .where("email", "==", email)
+    .onSnapshot((snapshot) => {
+      const SignedIn = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      console.log(SignedIn);
+
+      callback(SignedIn);
+    });
+  return () => unsubsribe();
+}
 //Getting not live data
 /* export function getUsers(callback) {
   db.collection("users")

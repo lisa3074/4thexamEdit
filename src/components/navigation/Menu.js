@@ -9,7 +9,7 @@ export default function Menu(props) {
         <div className="logo-name">
           <h1>SkatteGuiden</h1>
         </div>
-        <Profile></Profile>
+        <Profile signedinUser={props.signedinUser} setId={props.setId}></Profile>
         <MenuNav setEndpoint={props.setEndpoint} setTool={props.setTool}></MenuNav>
       </nav>
     </>

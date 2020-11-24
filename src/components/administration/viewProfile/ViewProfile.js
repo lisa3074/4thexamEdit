@@ -11,6 +11,7 @@ import { deleteUser } from "../../../jsModules/dbData/deleteData";
 
 export default function ViewProfile(props) {
   const [user, setUser] = useState();
+  console.log(props.user);
   const mappedPerson = props.user.map((user) => <Person key={user.id} {...user} />);
   const mappedWork = props.user.map((user) => <Work key={user.id} {...user} />);
   const mappedContact = props.user.map((user) => <Contact key={user.id} {...user} />);
@@ -33,7 +34,7 @@ export default function ViewProfile(props) {
       <ul className="viewWork">{mappedWork}</ul>
       <ul className="viewContact">{mappedContact}</ul>
       <WorkLoad users={props.users.filter((person) => person.id === props.id)} />
-      <ul className="viewPrivate">{mappedPrivate}</ul>
+      <ul className="viewPrivate admin">{mappedPrivate}</ul>
 
       <div className="empty"></div>
       <ProfileNav id={props.id} deleteProfile={deleteProfile} editProfile={editProfile} />

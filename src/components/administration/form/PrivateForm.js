@@ -83,16 +83,6 @@ export default function PrivateForm(props) {
           onChange={handlePostalChange}
         />
       </div>
-      <div className="input-wrapper">
-        <TextField
-          name="Education"
-          className="education"
-          label="Education"
-          value={props.education}
-          onChange={handleEducationChange}
-        />
-      </div>
-
       <div className="input-wrapper password-safety">
         <TextField
           name="Password"
@@ -103,6 +93,16 @@ export default function PrivateForm(props) {
           onChange={handlePasswordChange}
         />
       </div>
+      <div className="input-wrapper">
+        <TextField
+          name="Education"
+          className="education"
+          label="Education"
+          value={props.education}
+          onChange={handleEducationChange}
+        />
+      </div>
+
       <div className="upload-wrapper">
         <label className="custom-upload" htmlFor="pdf-upload">
           <div className="flex-wrapper">

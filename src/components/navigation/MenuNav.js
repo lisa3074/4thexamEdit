@@ -31,6 +31,7 @@ export default function MenuNav(props) {
           </li>
         </Link>
         <li
+          className="admin"
           onClick={() => {
             newUser();
           }}>
@@ -58,7 +59,12 @@ export default function MenuNav(props) {
         </li>
         <li>
           <LockIcon />
-          <h3 className="sign-out-link" onClick={() => firebaseConfig.auth().signOut()}>
+          <h3
+            className="sign-out-link"
+            onClick={() => {
+              firebaseConfig.auth().signOut();
+              localStorage.clear();
+            }}>
             Sign out
           </h3>
         </li>

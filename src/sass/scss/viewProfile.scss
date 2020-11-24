@@ -25,6 +25,9 @@
     display: grid;
     grid-template-areas: "left right";
   }
+  .Private.userCard {
+    grid-template-areas: "left";
+  }
 
   h2 {
     font-size: 0.69rem;
@@ -43,6 +46,7 @@
     justify-content: flex-end;
     height: 1rem;
     padding-right: 0;
+    grid-area: right;
     svg.MuiSvgIcon-root {
       margin: 1rem;
       width: 20px;

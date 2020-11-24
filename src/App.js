@@ -10,7 +10,7 @@ import "./sass/scss/filterUsers.scss";
 import "./sass/scss/chat.scss";
 import "./sass/main.scss";
 import "./sass/scss/adminOverview.scss";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 import { AuthProvider } from "./jsModules/firebase/auth";
 import Login from "./components/login/Login";
@@ -55,7 +55,6 @@ export default function App() {
   };
   const [credentials, setCredentials] = useState([]);
   const credentialsObject = Object.create(Credentials);
-
   const saveCredentials = () => {
     credentialsObject.email = document.querySelector(".email").value;
     credentialsObject.password = document.querySelector(".password").value;

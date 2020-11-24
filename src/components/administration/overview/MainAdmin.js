@@ -3,7 +3,7 @@ import UserList from "./UserList";
 import ViewProfile from "../viewProfile/ViewProfile";
 import FilterUsers from "../../navigation/FilterUsers";
 export default function MainAdmin(props) {
-  const [id, setId] = useState();
+  /* const [id, setId] = useState(); */
 
   return (
     <main className={window.innerWidth < 1000 ? "MainAdmin hide" : "MainAdmin"}>
@@ -12,7 +12,8 @@ export default function MainAdmin(props) {
         setChosenHours={props.setChosenHours}
         setSearch={props.setSearch}></FilterUsers>
       <UserList
-        setId={setId}
+        setId={props.setId}
+        signedinUser={props.signedinUser}
         users={
           props.chosenHours !== (undefined && "") &&
           props.chosenDivision !== (undefined && "") &&
@@ -35,9 +36,9 @@ export default function MainAdmin(props) {
         }
       />
       <ViewProfile
-        user={props.users.filter((person) => person.id === id)}
+        user={props.users.filter((person) => person.id === props.id)}
         users={props.users}
-        id={id}
+        id={props.id}
         setUsers={props.setUsers}
       />
     </main>

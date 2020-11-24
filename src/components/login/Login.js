@@ -38,6 +38,12 @@ const Login = ({ history }) => {
     document.querySelector(".Question").classList.toggle("hide");
   }
 
+  const handleEmail = (e) => {
+    console.log(e.target.value);
+    localStorage.setItem("email", e.target.value);
+  };
+  console.log(localStorage);
+
   return (
     <main className="login-wrapper">
       <div className="login">
@@ -52,7 +58,14 @@ const Login = ({ history }) => {
                 <AlternateEmailOutlinedIcon />
               </Grid>
               <Grid item>
-                <TextField id="email" label="Email" className="email" name="email" type="email" />
+                <TextField
+                  id="email"
+                  label="Email"
+                  className="email"
+                  name="email"
+                  type="email"
+                  onChange={handleEmail}
+                />
               </Grid>
             </Grid>
           </div>

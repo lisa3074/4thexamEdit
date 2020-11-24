@@ -1,11 +1,14 @@
 import React from "react";
 import image from "../../../images/lisa2020.jpg";
 import { displayProfile, setSubmMenu } from "../../../jsModules/displayFunctions/displayProfile";
+import { whichUser } from "../../../jsModules/displayFunctions/commenceUserLevel";
 export default function UserCard(props) {
   function detectId(e) {
     console.log(e.target.parentNode.dataset.user);
     const userId = e.target.parentNode.dataset.user;
     displayProfile(userId);
+    console.log("CARD CLICKED");
+    whichUser(e, userId, props.signedinUser ? props.signedinUser[0].userLevel : "");
     setSubmMenu();
     props.setId(userId);
   }

@@ -6,8 +6,8 @@ import { administration } from "../../../jsModules/displayFunctions/mainMenuNavi
 
 export default function ProfileNav(props) {
   return (
-    <div className="ProfileNav">
-      <div className="float-btn">
+    <div className="ProfileNav admin">
+      <div className="float-btn delete">
         <DeleteRoundedIcon
           onClick={() => {
             props.deleteProfile(props.id);

@@ -31,6 +31,10 @@
     h1 {
       font-size: 1.15rem;
       padding: 1.5rem 0 0.2rem;
+      width: 80%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     h3 {
       font-size: 0.85rem;
