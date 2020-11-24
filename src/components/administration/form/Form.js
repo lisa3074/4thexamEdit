@@ -37,6 +37,8 @@ export default function Form(props, { history, saveCredentials }) {
   const [postal, setPostal] = useState("");
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
+  const [fileUrl, setFileUrl] = useState("");
+  const [filePath, setFilePath] = useState("");
 
   const [error, setError] = useState([null]);
 
@@ -73,6 +75,31 @@ export default function Form(props, { history, saveCredentials }) {
     setUser();
     setPassword("");
   }
+  //virker med post , ikke med edit. Prøve igen at lave en useeffect med editform()
+  useEffect(() => {
+    filePath
+      ? onFormSubmit({
+          image: filePath,
+          city: city,
+          name: name,
+          country: country,
+          position: position,
+          division: division,
+          workHours: hours,
+          startDate: date,
+          userLevel: level,
+          email: email,
+          tel: tel,
+          accountNumber: account,
+          contract: contract,
+          cpr: cpr,
+          education: education,
+          postalCode: postal,
+          streetAndNumber: address,
+          password: password,
+        })
+      : console.log(filePath);
+  }, [filePath]);
   console.log(password);
   function submit(e) {
     e.preventDefault();
@@ -85,37 +112,40 @@ export default function Form(props, { history, saveCredentials }) {
     } else if (!document.querySelector(".password-safety").classList.contains("hide")) {
       console.log("new user submitted");
       handleSignUp();
-      /*     setTimeout(() => {
+      /*      setTimeout(() => {
         if (error) {
           console.log(error);
           <div className="errorDiv">{error}</div>;
         } else { */
-      onFormSubmit({
-        image: image,
-        city: city,
-        name: name,
-        country: country,
-        position: position,
-        division: division,
-        workHours: hours,
-        startDate: date,
-        userLevel: level,
-        email: email,
-        tel: tel,
-        accountNumber: account,
-        contract: contract,
-        cpr: cpr,
-        education: education,
-        postalCode: postal,
-        streetAndNumber: address,
-        password: password,
-      });
-      storeImage(imageFile, email);
+      storeImage(imageFile, email, setFilePath);
+      setTimeout(() => {
+        /*   onFormSubmit({
+          image: filePath,
+          city: city,
+          name: name,
+          country: country,
+          position: position,
+          division: division,
+          workHours: hours,
+          startDate: date,
+          userLevel: level,
+          email: email,
+          tel: tel,
+          accountNumber: account,
+          contract: contract,
+          cpr: cpr,
+          education: education,
+          postalCode: postal,
+          streetAndNumber: address,
+          password: password,
+        }); */
+      }, 2000);
+
       document.querySelector(".succes").classList.remove("hide");
       setTimeout(() => {
         resetForm();
-      }, 2000);
-      /*    }
+      }, 4000);
+      /*         }
       }, 100); */
     } else {
       console.log("old user putted");
@@ -202,7 +232,7 @@ export default function Form(props, { history, saveCredentials }) {
         setError(error.message);
       }
     },
-    [history, email]
+    [history, email, password]
   );
 
   return (

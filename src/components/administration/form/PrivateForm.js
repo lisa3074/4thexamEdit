@@ -35,11 +35,6 @@ export default function PrivateForm(props) {
   const handlePasswordChange = (e) => {
     props.setPassword(e.target.value);
   };
-  console.log(props.cpr);
-  console.log(props.account);
-  console.log(props.address);
-  console.log(props.postal);
-  console.log(props.education);
 
   return (
     <fieldset className="PrivateForm hide">

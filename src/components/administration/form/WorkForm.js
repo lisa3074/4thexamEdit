@@ -38,12 +38,7 @@ export default function WorkForm(props) {
       : document.querySelector(".UserForm .division").setAttribute("data-chosen", false);
   };
   const handleEmailChange = (e) => {
-    console.log(e.target.parentNode.parentNode.dataset);
-    if (e.target.parentNode.parentNode.dataset !== "edit") {
-      props.setEmail(e.target.value);
-    } else {
-      //document.querySelector(".WorkForm .email input").disabled = true;
-    }
+    props.setEmail(e.target.value);
   };
   console.log(props.email);
   const handleTelChange = (e) => {

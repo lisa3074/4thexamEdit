@@ -36,9 +36,11 @@ export function newUserResetForm() {
   const $ = document.querySelector.bind(document);
   $(".ViewProfile").classList.add("hide");
   $(".UserList").classList.remove("hide");
+  $(".WorkForm .email").setAttribute("data-state", "");
 }
 export function editUserResetForm() {
   const $ = document.querySelector.bind(document);
   $(".ViewProfile").classList.remove("hide");
   $(".UserList").classList.add("hide");
+  $(".WorkForm .email").setAttribute("data-state", "");
 }

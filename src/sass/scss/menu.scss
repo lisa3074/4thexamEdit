@@ -20,6 +20,7 @@
   }
   .Profile {
     padding-top: 4rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,7 +32,9 @@
     h1 {
       font-size: 1.15rem;
       padding: 1.5rem 0 0.2rem;
-      width: 80%;
+      width: 100%;
+      max-width: calc(100% - 2rem);
+      text-align: center;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;

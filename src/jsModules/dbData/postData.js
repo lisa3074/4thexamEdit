@@ -32,10 +32,33 @@ export function postUser(payload) {
   });
 }
 
-export function storeImage(file, email) {
+export function storeImage(file, email, callback) {
   const loader = document.querySelector("#loader");
   const storageRef = firebase.storage().ref("profile_pictures/" + email);
   const profilePicture = storageRef.put(file);
+
+  //const filePath = await storageRef.getDownloadURL();
+  let image;
+  const filePath = storageRef.getDownloadURL();
+  let ref = firebase.storage().ref();
+  const imgRef = ref.child("profile_pictures/" + email);
+  imgRef.getDownloadURL().then(function (url) {
+    image = url.toString();
+    console.log(image);
+    callback(image);
+  });
+  /*   storageRef
+    .getDownloadURL()
+    .then(function (url) {
+      console.log(url);
+      callback(url);
+      // Get the download URL for 'images/stars.jpg'
+      // This can be inserted into an <img> tag
+      // This can also be downloaded directly
+    })
+    .catch(function (error) {
+      // Handle any errors
+    }); */
 
   profilePicture.on(
     "state_changed",
