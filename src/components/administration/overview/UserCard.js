@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../../../images/lisa2020.jpg";
+
 import { displayProfile, setSubmMenu } from "../../../jsModules/displayFunctions/displayProfile";
 import { whichUser } from "../../../jsModules/displayFunctions/commenceUserLevel";
 export default function UserCard(props) {
@@ -18,7 +18,7 @@ export default function UserCard(props) {
   const lastName = props.name.substring(lastSpace);
   return (
     <article className="UserCard" data-user={props.id}>
-      <img src={image} alt="" />
+      <img src={props.image} alt="" />
       <div className="info-container">
         <div className="info-wrapper">
           <h2>NAME</h2>

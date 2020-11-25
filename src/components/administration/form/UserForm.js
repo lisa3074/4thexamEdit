@@ -9,7 +9,7 @@ export default function UserForm(props) {
   return (
     <section className="UserForm hide ">
       <FormPath />
-      <Form user={props.user} setUser={props.setUser} id={props.id} />
+      <Form user={props.user} setUser={props.setUser} id={props.id} state={props.state} setState={props.setState} />
     </section>
   );
 }

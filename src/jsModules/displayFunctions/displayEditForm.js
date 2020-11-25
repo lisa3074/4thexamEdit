@@ -5,12 +5,13 @@ export function editUser() {
   const $ = document.querySelector.bind(document);
   $(".UserForm").classList.remove("hide");
   $(".FormPath > h2").textContent = "Edit user";
-  $(".PersonForm img").src = image;
-  $(".PrivateForm .password input").value = "password";
+
   $(".PrivateForm .password input").setAttribute("required", false);
   $(".PrivateForm .password-safety").classList.add("hide");
   $(".PrivateForm .upload-wrapper p").textContent = "Upload contract (.pdf)";
   $(".WorkForm .email").setAttribute("data-state", "edit");
+  $(".UserForm").setAttribute("data-state", "edit");
+  $(".previewImg").setAttribute("data-state", "edit");
 }
 export function clearUserForm() {
   const $ = document.querySelector.bind(document);
@@ -37,10 +38,14 @@ export function newUserResetForm() {
   $(".ViewProfile").classList.add("hide");
   $(".UserList").classList.remove("hide");
   $(".WorkForm .email").setAttribute("data-state", "");
+  $(".UserForm").setAttribute("data-state", "");
+  $(".previewImg").setAttribute("data-state", "");
 }
 export function editUserResetForm() {
   const $ = document.querySelector.bind(document);
   $(".ViewProfile").classList.remove("hide");
   $(".UserList").classList.add("hide");
   $(".WorkForm .email").setAttribute("data-state", "");
+  $(".UserForm").setAttribute("data-state", "");
+  $(".previewImg").setAttribute("data-state", "");
 }

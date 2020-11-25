@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TextField from "@material-ui/core/TextField";
-import image from "../../../images/placeholder.png";
+import picture from "../../../images/placeholder.png";
 import $ from "jquery";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 export default function PersonForm(props) {
@@ -8,30 +8,28 @@ export default function PersonForm(props) {
 
   const handleName = (e) => {
     props.setName(e.target.value);
-    console.log("changed");
+    console.log(" administration/form || PersonForm.js | handleName()");
   };
   const handleCountry = (e) => {
+    console.log(" administration/form || PersonForm.js | handleCountry()");
     props.setCountry(e.target.value);
   };
   const handleCity = (e) => {
+    console.log(" administration/form || PersonForm.js | handleCity()");
     props.setCity(e.target.value);
   };
 
-  console.log(props.image);
-
   //image prewiev
   function preview(e) {
-    console.log("preview");
+    console.log(" administration/form || PersonForm.js | preview()");
     const file = $("input[type=file]").get(0).files[0];
-
-    console.log(file);
-
     if (file) {
       const reader = new FileReader();
       reader.onload = function () {
         $(".previewImg").attr("src", reader.result);
       };
       reader.readAsDataURL(file);
+      props.setUploadedImage(file);
       setTimeout(() => {
         const lastBackSlash = e.target.value.lastIndexOf("\\") + 1;
         const fileName = e.target.value.substring(lastBackSlash, 50);
@@ -42,6 +40,7 @@ export default function PersonForm(props) {
       }, 100);
     }
   }
+  console.log("uploaded: " + props.uploadedImage, "props:" + props.image, "placeholder: " + picture);
   return (
     <fieldset name="Person" className="PersonForm">
       <h2>PERSON</h2>
@@ -106,7 +105,18 @@ export default function PersonForm(props) {
         </label>
       </div>
 
-      <img className="previewImg" src={image} alt="Placeholder"></img>
+      <img
+        className="previewImg"
+        src={
+          props.uploadedImage
+            ? props.uploadedImage
+            : props.image
+            ? props.image
+            : props.uploadedImage
+            ? props.uploadedImage
+            : picture
+        }
+        alt={props.state === "edit" ? props.name : "Avatar"}></img>
     </fieldset>
   );
 }

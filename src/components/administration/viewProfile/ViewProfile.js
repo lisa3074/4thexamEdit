@@ -11,6 +11,7 @@ import { deleteUser } from "../../../jsModules/dbData/deleteData";
 
 export default function ViewProfile(props) {
   const [user, setUser] = useState();
+  const [state, setState] = useState();
   console.log(props.user);
   const mappedPerson = props.user.map((user) => <Person key={user.id} {...user} />);
   const mappedWork = props.user.map((user) => <Work key={user.id} {...user} />);
@@ -21,6 +22,7 @@ export default function ViewProfile(props) {
     console.log("edit cicked");
     const user = props.users.filter((user) => user.id === id);
     setUser(user);
+    setState("edit");
   }
 
   async function deleteProfile(id) {
@@ -38,7 +40,7 @@ export default function ViewProfile(props) {
 
       <div className="empty"></div>
       <ProfileNav id={props.id} deleteProfile={deleteProfile} editProfile={editProfile} />
-      <UserForm user={user} setUser={setUser} id={props.id} />
+      <UserForm user={user} setUser={setUser} id={props.id} state={state} setState={setState} />
     </section>
   );
 }

@@ -7,13 +7,15 @@ import WorkForm from "./WorkForm";
 import { postUser } from "../../../jsModules/dbData/postData";
 import { storeImage } from "../../../jsModules/dbData/postData";
 import { editUser } from "../../../jsModules/dbData/editData";
+import picture from "../../../images/placeholder.png";
 import {
   clearUserForm,
   editUserResetForm,
   newUserResetForm,
 } from "../../../jsModules/displayFunctions/displayEditForm";
 
-export default function Form(props, { history, saveCredentials }) {
+export default function Form(props, { history }) {
+  console.log(" administration/form || Form.js | Form()");
   console.log(props);
   const [focus, setFocus] = useState(false);
   const [name, setName] = useState("");
@@ -39,6 +41,7 @@ export default function Form(props, { history, saveCredentials }) {
   const [password, setPassword] = useState("");
   const [fileUrl, setFileUrl] = useState("");
   const [filePath, setFilePath] = useState("");
+  const [uploadedImage, setUploadedImage] = useState();
 
   const [error, setError] = useState([null]);
 
@@ -54,6 +57,7 @@ export default function Form(props, { history, saveCredentials }) {
   const { user, setUser } = props;
 
   function resetForm() {
+    console.log(" administration/form || Form.js | resetForm()");
     setImage("");
     setCity("");
     setName("");
@@ -73,9 +77,13 @@ export default function Form(props, { history, saveCredentials }) {
     setAddress("");
     setImageFile();
     setUser();
+    setFilePath("");
+    setFileUrl("");
     setPassword("");
+    props.setState("");
+    setUploadedImage("");
   }
-  //virker med post , ikke med edit. Prøve igen at lave en useeffect med editform()
+
   useEffect(() => {
     filePath
       ? onFormSubmit({
@@ -100,27 +108,12 @@ export default function Form(props, { history, saveCredentials }) {
         })
       : console.log(filePath);
   }, [filePath]);
-  console.log(password);
-  function submit(e) {
-    e.preventDefault();
-    console.log("submited");
-    if (
-      !document.querySelector(".password-safety").classList.contains("hide") &&
-      document.querySelector(".password input").value === ""
-    ) {
-      console.log("no password");
-    } else if (!document.querySelector(".password-safety").classList.contains("hide")) {
-      console.log("new user submitted");
-      handleSignUp();
-      /*      setTimeout(() => {
-        if (error) {
-          console.log(error);
-          <div className="errorDiv">{error}</div>;
-        } else { */
-      storeImage(imageFile, email, setFilePath);
-      setTimeout(() => {
-        /*   onFormSubmit({
-          image: filePath,
+
+  useEffect(() => {
+    /*   setTimeout(() => { */
+    fileUrl
+      ? editProfile({
+          image: fileUrl,
           city: city,
           name: name,
           country: country,
@@ -137,47 +130,95 @@ export default function Form(props, { history, saveCredentials }) {
           education: education,
           postalCode: postal,
           streetAndNumber: address,
-          password: password,
-        }); */
-      }, 2000);
+          id: props.id,
+        })
+      : console.log(fileUrl);
+    /*     }, 100); */
+  }, [fileUrl]);
+
+  useEffect(() => {
+    console.log(fileUrl);
+  }, [fileUrl]);
+  function submit(e) {
+    console.log(" administration/form || Form.js | submit()");
+    e.preventDefault();
+    if (
+      !document.querySelector(".password-safety").classList.contains("hide") &&
+      document.querySelector(".password input").value === ""
+    ) {
+      console.log("no password");
+    } else if (!document.querySelector(".password-safety").classList.contains("hide")) {
+      console.log("new user submitted");
+      handleSignUp();
+      storeImage(imageFile, email, setFilePath, image);
+
+      /*  const isImageReady = setInterval(() => {
+        filePath
+          ? onFormSubmit({
+              image: filePath,
+              city: city,
+              name: name,
+              country: country,
+              position: position,
+              division: division,
+              workHours: hours,
+              startDate: date,
+              userLevel: level,
+              email: email,
+              tel: tel,
+              accountNumber: account,
+              contract: contract,
+              cpr: cpr,
+              education: education,
+              postalCode: postal,
+              streetAndNumber: address,
+              password: password,
+            }) && clearInterval(isImageReady)
+          : console.log("no image yet");
+      }, 200); */
 
       document.querySelector(".succes").classList.remove("hide");
       setTimeout(() => {
         resetForm();
-      }, 4000);
-      /*         }
-      }, 100); */
+      }, 1000);
     } else {
       console.log("old user putted");
-      editProfile({
-        image: image,
-        city: city,
-        name: name,
-        country: country,
-        position: position,
-        division: division,
-        workHours: hours,
-        startDate: date,
-        userLevel: level,
-        email: email,
-        tel: tel,
-        accountNumber: account,
-        contract: contract,
-        cpr: cpr,
-        education: education,
-        postalCode: postal,
-        streetAndNumber: address,
-        id: props.id,
-      });
-      storeImage(imageFile, email);
+      console.log(image);
+      storeImage(imageFile, email, setFileUrl, image);
+      /*    console.log(fileUrl);
+      const isImageReady = setInterval(() => {
+        fileUrl
+          ? editProfile({
+              image: fileUrl,
+              city: city,
+              name: name,
+              country: country,
+              position: position,
+              division: division,
+              workHours: hours,
+              startDate: date,
+              userLevel: level,
+              email: email,
+              tel: tel,
+              accountNumber: account,
+              contract: contract,
+              cpr: cpr,
+              education: education,
+              postalCode: postal,
+              streetAndNumber: address,
+              id: props.id,
+            }) && clearInterval(isImageReady)
+          : console.log("no image yet");
+      }, 200); */
       document.querySelector(".succes").classList.remove("hide");
       setTimeout(() => {
         resetForm();
-      }, 20000);
+      }, 1000);
     }
   }
 
   function clear() {
+    console.log(" administration/form || Form.js | clear()");
     if (!document.querySelector(".password-safety").classList.contains("hide")) {
       newUserResetForm();
       clearUserForm();
@@ -190,9 +231,11 @@ export default function Form(props, { history, saveCredentials }) {
   }
   //kaldes herfra med payload fra ovenstående useStates
   async function editProfile(payload) {
+    console.log(" administration/form || Form.js | editProfile()");
     editUser(payload);
   }
   async function onFormSubmit(payload) {
+    console.log(" administration/form || Form.js | onFormSubmit()");
     postUser(payload);
   }
 
@@ -223,8 +266,7 @@ export default function Form(props, { history, saveCredentials }) {
 
   const handleSignUp = useCallback(
     async (e) => {
-      console.log(password);
-      console.log(email);
+      console.log(" administration/form || Form.js | handleSignUp()");
       try {
         await firebaseConfig.auth().createUserWithEmailAndPassword(email.toString().trim(), password.toString().trim());
         history.push("/");
@@ -250,6 +292,10 @@ export default function Form(props, { history, saveCredentials }) {
           image={image}
           setImage={setImage}
           setImageFile={setImageFile}
+          imageFile={imageFile}
+          state={props.state}
+          uploadedImage={uploadedImage}
+          setUploadedImage={setUploadedImage}
         />
         <WorkForm
           setPosition={setPosition}
@@ -294,5 +340,4 @@ export default function Form(props, { history, saveCredentials }) {
       </article>
     </>
   );
-  /*   }; */
 }

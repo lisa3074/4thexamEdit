@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../../images/lisa2020.jpg";
+import image from "../../images/placeholder.png";
 import { whichUser } from "../../jsModules/displayFunctions/commenceUserLevel";
 import { displayProfile } from "../../jsModules/displayFunctions/displayProfile";
 
@@ -10,9 +10,11 @@ export default function Profile(props) {
   const lastSpace = name.lastIndexOf(" ");
   const lastName = name.substring(lastSpace);
 
+  const picture = props.signedinUser ? props.signedinUser[0].image : image;
+
   return (
     <div className="Profile">
-      <img src={image} alt="" onClick={() => displayProfile(props.signedinUser ? props.signedinUser[0].id : "")} />
+      <img src={picture} alt="" onClick={() => displayProfile(props.signedinUser ? props.signedinUser[0].id : "")} />
       <h1>{props.signedinUser ? firstName + lastName : ""}</h1>
       <h3>{props.signedinUser ? props.signedinUser[0].position : ""}</h3>
       <button

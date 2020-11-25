@@ -52,6 +52,8 @@ export function chat() {
 export function newUser() {
   document.querySelector(".ViewProfile").classList.remove("hide");
   document.querySelector(".ViewProfile .UserForm").classList.remove("hide");
+  document.querySelector(".UserForm").setAttribute("data-state", "new");
+  document.querySelector(".previewImg").setAttribute("data-state", "new");
 }
 
 export function scrollToBottom() {
