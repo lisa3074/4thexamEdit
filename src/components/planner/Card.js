@@ -10,7 +10,7 @@ import FormControl from "@material-ui/core/FormControl";
 
 export default function Card(props) {
   // console.log("planner/Cards.js || Cards()");
-
+  console.log(props);
   const [list, setList] = useState("");
   const listChanged = (e) => {
     console.log("planner/Cards.js || listChanged()");
@@ -27,20 +27,16 @@ export default function Card(props) {
 
   function onClickMove(list) {
     console.log("planner/Cards.js || onClickMove()");
-    console.log(list);
-    console.log(props._id);
-    props.moveCard({ _id: props._id, list: list, timeStamp: Date.now() }, props._id, list, Date.now());
+    props.dragCard({ id: props.id, list: list, timeStamp: Date.now() }, props.id);
   }
   function dragMove(id, list) {
     console.log("planner/Cards.js || dragMove()");
-    console.log(list);
-    console.log(id);
-    props.dragCard({ _id: id, list: list, timeStamp: Date.now() }, id, list, Date.now());
+    props.dragCard({ id: id, list: list, timeStamp: Date.now() }, id);
   }
   function clickOnCard() {
     console.log("planner/Cards.js || clickOnCard()");
-    closeExpand(props._id);
-    expand(props._id);
+    closeExpand(props.id);
+    expand(props.id);
   }
 
   const colorCat = {
@@ -52,15 +48,14 @@ export default function Card(props) {
 
   return (
     <Panel
-      className={"panelMargin smaller a" + props._id}
+      className={"panelMargin smaller a" + props.id}
       data-state="hidden"
       draggable
       onDragEnd={(e) => {
-        cardDragged(e, props._id);
+        cardDragged(e, props.id);
       }}>
       <div className="category-color" style={colorCat}></div>
-      <li className="container" id={"a" + props._id} key={props._id}>
-        {/*         <div className="scrollable"> */}
+      <li className="container" id={"a" + props.id} key={props.id}>
         <div className="expandCard" onClick={clickOnCard}>
           <header>
             <h1 className="smallerFont" title={props.title}>
@@ -98,7 +93,7 @@ export default function Card(props) {
           </div>
           <div className="option_wrapper">
             <EditForm
-              className={"a" + props._id}
+              className={"a" + props.id}
               deleteCard={props.deleteCard}
               editCard={props.editCard}
               title={props.title}
@@ -108,7 +103,7 @@ export default function Card(props) {
               category={props.category}
               description={props.description}
               due={props.due}
-              id={props._id}
+              id={props.id}
             />
           </div>
         </div>

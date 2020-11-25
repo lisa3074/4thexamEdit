@@ -7,7 +7,7 @@ export default function List(props) {
 
   const mappedCards = props.cards.map((card) => (
     <Card
-      key={card._id}
+      key={card.id}
       {...card}
       deleteCard={props.deleteCard}
       moveCard={props.moveCard}

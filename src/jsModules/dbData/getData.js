@@ -1,14 +1,10 @@
-/* import db from "./firebase"; */
 import firebase from "firebase/app";
 import "firebase/firestore";
-
-export function getData(userId) {
-  //console.log(userId);
-}
 
 export const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: true });
 // getting data live
+// ADMIN-SYS
 export function getUsers(callback) {
   const unsubsribe = db
     .collection("users")
@@ -39,17 +35,20 @@ export function getSignedinUser(callback, email) {
     });
   return () => unsubsribe();
 }
-//Getting not live data
-/* export function getUsers(callback) {
-  db.collection("users")
-    .get()
-    .then((snapshot) => {
-      const users = snapshot.docs.map((doc) => ({
+
+//PLANNER
+export function getCards(callback) {
+  const unsubsribe = db
+    .collection("planner")
+    .orderBy("due")
+    .onSnapshot((snapshot) => {
+      const cards = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
-      console.log(users);
+      console.log(cards);
 
-      callback(users);
+      callback(cards);
     });
-} */
+  return () => unsubsribe();
+}

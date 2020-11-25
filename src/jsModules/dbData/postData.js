@@ -1,13 +1,13 @@
-import { QueueSharp } from "@material-ui/icons";
 import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/storage";
-import FilterTasks from "../../components/planner/FilterTasks";
+
 import { clearUserForm, editUserResetForm, newUserResetForm } from "../displayFunctions/displayEditForm";
 
 export const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: true });
 
+//ADMIN-SYS
 export function postUser(payload) {
   console.log("postUser");
 
@@ -32,6 +32,7 @@ export function postUser(payload) {
   });
 }
 
+//IMAGE
 export function storeImage(file, email, callback, image) {
   if (!file && !image) {
     const loader = document.querySelector("#loader");
@@ -112,4 +113,21 @@ export function storeImage(file, email, callback, image) {
       }, 1000);
     }
   }
+}
+
+//PLANNER
+export function postCard(data, cards) {
+  console.log("postCard");
+
+  db.collection("planner").add({
+    title: data.title,
+    list: data.list,
+    added: Date.now(),
+    assignedTo: data.assignedTo,
+    color: data.color,
+    category: data.category,
+    description: data.description,
+    due: data.due,
+    timeStamp: Date.now(),
+  });
 }

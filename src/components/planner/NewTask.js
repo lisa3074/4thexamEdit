@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -22,6 +22,15 @@ export default function NewTask(props) {
   const [assignedTo, setAssigned] = useState([]);
   const [due, setDue] = useState();
   let [list, setList] = useState("");
+
+  useEffect(() => {
+    let today;
+    due ? (today = new Date(due)) : (today = new Date());
+    const dd = String(today.getDate()).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    setDue(`${yyyy}-${mm}-${dd}`);
+  }, [due]);
 
   const titleChanged = (e) => {
     console.log("planner/NewTask.js || titleChanged()");

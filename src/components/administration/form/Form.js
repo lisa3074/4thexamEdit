@@ -110,7 +110,6 @@ export default function Form(props, { history }) {
   }, [filePath]);
 
   useEffect(() => {
-    /*   setTimeout(() => { */
     fileUrl
       ? editProfile({
           image: fileUrl,
@@ -133,7 +132,6 @@ export default function Form(props, { history }) {
           id: props.id,
         })
       : console.log(fileUrl);
-    /*     }, 100); */
   }, [fileUrl]);
 
   useEffect(() => {
@@ -151,32 +149,6 @@ export default function Form(props, { history }) {
       console.log("new user submitted");
       handleSignUp();
       storeImage(imageFile, email, setFilePath, image);
-
-      /*  const isImageReady = setInterval(() => {
-        filePath
-          ? onFormSubmit({
-              image: filePath,
-              city: city,
-              name: name,
-              country: country,
-              position: position,
-              division: division,
-              workHours: hours,
-              startDate: date,
-              userLevel: level,
-              email: email,
-              tel: tel,
-              accountNumber: account,
-              contract: contract,
-              cpr: cpr,
-              education: education,
-              postalCode: postal,
-              streetAndNumber: address,
-              password: password,
-            }) && clearInterval(isImageReady)
-          : console.log("no image yet");
-      }, 200); */
-
       document.querySelector(".succes").classList.remove("hide");
       setTimeout(() => {
         resetForm();
@@ -185,31 +157,6 @@ export default function Form(props, { history }) {
       console.log("old user putted");
       console.log(image);
       storeImage(imageFile, email, setFileUrl, image);
-      /*    console.log(fileUrl);
-      const isImageReady = setInterval(() => {
-        fileUrl
-          ? editProfile({
-              image: fileUrl,
-              city: city,
-              name: name,
-              country: country,
-              position: position,
-              division: division,
-              workHours: hours,
-              startDate: date,
-              userLevel: level,
-              email: email,
-              tel: tel,
-              accountNumber: account,
-              contract: contract,
-              cpr: cpr,
-              education: education,
-              postalCode: postal,
-              streetAndNumber: address,
-              id: props.id,
-            }) && clearInterval(isImageReady)
-          : console.log("no image yet");
-      }, 200); */
       document.querySelector(".succes").classList.remove("hide");
       setTimeout(() => {
         resetForm();

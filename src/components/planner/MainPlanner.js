@@ -59,7 +59,7 @@ export default function MainPlanner({
           onFormSubmit={onFormSubmit}
           setDropList={setDropList}
           dropList={dropList}
-          header="in progress"
+          header="In progress"
           cards={
             chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
               ? cards.filter(

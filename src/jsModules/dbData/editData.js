@@ -4,6 +4,7 @@ import "firebase/firestore";
 export const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: true });
 
+//ADMIN-SYS
 export function editUser(payload) {
   console.log("jsModules || editData.js | editProfile()");
 
@@ -25,5 +26,27 @@ export function editUser(payload) {
     education: payload.education,
     postalCode: payload.postalCode,
     streetAndNumber: payload.streetAndNumber,
+  });
+}
+
+//PLANNER
+export function editACard(payload) {
+  console.log("jsModules || editData.js | editACard()");
+  db.collection("planner").doc(payload.id).update({
+    title: payload.title,
+    list: payload.list,
+    assignedTo: payload.assignedTo,
+    color: payload.color,
+    category: payload.category,
+    description: payload.description,
+    due: payload.due,
+    id: payload.id,
+  });
+}
+export function dragACard(payload, id) {
+  console.log("jsModules || editData.js | dragACard()");
+  db.collection("planner").doc(id).update({
+    id: payload.id,
+    list: payload.list,
   });
 }
