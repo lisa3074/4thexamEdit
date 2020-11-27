@@ -15,14 +15,18 @@ import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import Grid from "@material-ui/core/Grid";
+import DeleteModal from "./DeleteModal";
+import { areYouSure } from "../../jsModules/displayFunctions/mainMenuNavigation";
 
 export default function EditForm(props) {
+  const { users } = props;
+  console.log(users);
   // console.log("planner/EditForm.js || EditForm()");
 
-  function onClickDelete() {
+  /*   function onClickDelete() {
     console.log("planner/EditForm.js || cilckOnDelete()");
     props.deleteCard(props.id);
-  }
+  } */
 
   function editTask() {
     console.log("planner/EditForm.js || editTask()");
@@ -83,7 +87,6 @@ export default function EditForm(props) {
     console.log(e);
   };
 
-  const users = ["Lisa Søndergaard", "Rune Jensen", "Mikkel Hansen", "Anja Andersen", "Gry Trampedach", "Bob Hund"];
   const categories = [
     { category: "Design", color: "#374d62" },
     { category: "Support", color: "#f44336" },
@@ -174,12 +177,13 @@ export default function EditForm(props) {
 
   return (
     <>
-      <div className={"delete float-btn btn fade_out hide"} onClick={onClickDelete}>
+      <div className={"delete float-btn btn fade_out hide"} onClick={areYouSure}>
         <DeleteRoundedIcon />
       </div>
       <div className={"edit float-btn btn fade_out hide"} onClick={editTask}>
         <EditRoundedIcon />
       </div>
+      <DeleteModal deleteCard={props.deleteCard} id={props.id} />
       <article className="editContainer hide" id={"b" + props.id}>
         <div className="flex">
           <div className="edit-wrapper">
@@ -194,19 +198,26 @@ export default function EditForm(props) {
                 name="title"
                 value={title}
               />
+
               <Autocomplete
                 multiple
                 options={users}
-                getOptionLabel={(option) => option}
-                getOptionSelected={(option, value) => option === value}
-                filterSelectedOptions
+                getOptionLabel={(option) => option.name}
+                getOptionSelected={(option, value) => option.name === value.name}
                 value={assignedTo}
+                filterSelectedOptions
                 onChange={(e, values) => {
                   console.log(values);
                   setAssigned(values);
                 }}
                 renderInput={(params) => (
-                  <TextField {...params} variant="standard" label="Add collaborators" placeholder="" />
+                  <TextField
+                    className="collaborators"
+                    {...params}
+                    variant="standard"
+                    label="Add collaborators"
+                    placeholder=""
+                  />
                 )}
               />
 

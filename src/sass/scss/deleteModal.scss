@@ -1,0 +1,61 @@
+.ViewProfile,
+.panelMargin {
+  .areYouSure {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #384d628e;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  .modal {
+    max-width: 400px;
+    background-color: #fff;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 3fr 1fr;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    line-height: 1.2rem;
+    column-gap: 1rem;
+    grid-template-areas:
+      "text text"
+      "buttonNo buttonYes";
+    h1,
+    h3,
+    p {
+      padding: 0 0 1rem;
+    }
+    h1 {
+      font-size: 1.1rem;
+    }
+    h3 {
+      font-size: 0.9rem;
+    }
+    .modal-text {
+      grid-area: text;
+      padding: 0 0 0.5rem;
+    }
+    .delete {
+      grid-area: buttonYes;
+      background: var(--orange);
+      justify-self: flex-end;
+    }
+    .cancel.text-btn {
+      grid-area: buttonNo;
+      justify-self: flex-start;
+    }
+    button.text-btn {
+      height: 2.5rem;
+      align-self: flex-end;
+      width: 100%;
+      padding: 0.3rem 1.5rem;
+      border-radius: var(--border-button);
+    }
+  }
+}

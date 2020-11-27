@@ -15,6 +15,7 @@ export default function List(props) {
       dragCard={props.dragCard}
       header={props.header}
       dropList={props.dropList}
+      users={props.users}
     />
   ));
 

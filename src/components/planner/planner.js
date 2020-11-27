@@ -67,7 +67,7 @@ export default function Planner(props) {
       <section className="planner-wrapper">
         {cards === "" && <h1>LOADING</h1>}
         <nav className="NewTask showNew hide">
-          <NewTask onFormSubmit={onFormSubmit} />
+          <NewTask onFormSubmit={onFormSubmit} users={props.users} />
         </nav>
         <MainPlanner
           deleteCard={deleteCard}
@@ -79,6 +79,7 @@ export default function Planner(props) {
           chosenEmployee={props.chosenEmployee}
           setChosenCat={props.setChosenCat}
           setChosenEmployee={props.setChosenEmployee}
+          users={props.users}
         />
       </section>
     </main>

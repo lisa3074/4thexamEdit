@@ -15,6 +15,7 @@ export default function MainPlanner({
   chosenCat,
   setChosenEmployee,
   setChosenCat,
+  users,
 }) {
   console.log("planner/MainPlanner.js || MainPlanner()");
   console.log(chosenEmployee + " " + chosenCat);
@@ -37,6 +38,7 @@ export default function MainPlanner({
           dragCard={dragCard}
           onFormSubmit={onFormSubmit}
           setDropList={setDropList}
+          users={users}
           dropList={dropList}
           header="To Do"
           cards={
@@ -57,6 +59,7 @@ export default function MainPlanner({
           editCard={editCard}
           dragCard={dragCard}
           onFormSubmit={onFormSubmit}
+          users={users}
           setDropList={setDropList}
           dropList={dropList}
           header="In progress"
@@ -79,6 +82,7 @@ export default function MainPlanner({
           editCard={editCard}
           dragCard={dragCard}
           onFormSubmit={onFormSubmit}
+          users={users}
           setDropList={setDropList}
           dropList={dropList}
           header="Barrier"
@@ -100,6 +104,7 @@ export default function MainPlanner({
           editCard={editCard}
           dragCard={dragCard}
           onFormSubmit={onFormSubmit}
+          users={users}
           setDropList={setDropList}
           dropList={dropList}
           header="Done"

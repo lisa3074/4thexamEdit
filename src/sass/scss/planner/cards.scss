@@ -77,11 +77,12 @@
   }
 
   .assignedTo {
-    padding: 1.5rem 0;
+    padding: 0.5rem 0;
   }
 
   .panelMargin[data-state="hidden"] .assignedTo {
     padding: 0.3rem 0;
+    display: none;
   }
 
   .container .MuiFormControl-root {
@@ -100,6 +101,7 @@
     white-space: initial;
     overflow: visible;
     text-overflow: initial;
+    display: block;
   }
 
   .panelMargin[data-state="visible"] header h1 {
@@ -141,9 +143,43 @@
   .panelMargin[data-state="hidden"] .option_wrapper {
     display: none;
   }
-  @media (min-width: 600px) {
-    .Planner .mui-panel.panelMargin {
-      margin: 0.1rem 1.1rem 0.5rem;
-    }
+}
+
+.pic-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
+  div {
+    width: 30px;
+    height: 40px;
+    display: flex;
+    padding: 1rem 0 0.5rem;
+  }
+  img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+  }
+}
+.smaller .pic-wrapper {
+  display: flex;
+  width: 100%;
+  padding-bottom: 0rem;
+  div {
+    width: 25px;
+    display: flex;
+    padding: 0.3rem 0;
+    height: auto;
+  }
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+@media (min-width: 600px) {
+  .Planner .mui-panel.panelMargin {
+    margin: 0.1rem 1.1rem 0.5rem;
   }
 }

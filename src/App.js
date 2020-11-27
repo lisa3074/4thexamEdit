@@ -6,8 +6,9 @@ import "./sass/scss/menu.scss";
 import "./sass/scss/login.scss";
 import "./sass/scss/newUserForm.scss";
 import "./sass/scss/viewProfile.scss";
-import "./sass/scss/filterUsers.scss";
 import "./sass/scss/chat.scss";
+import "./sass/scss/filterUsers.scss";
+import "./sass/scss/deleteModal.scss";
 import "./sass/main.scss";
 import "./sass/scss/adminOverview.scss";
 import React, { useEffect, useState } from "react";
@@ -68,20 +69,18 @@ export default function App() {
           <Router>
             <Switch>
               <PrivateRoute
-                exact
                 path="/administration"
                 credentials={credentials}
                 component={() => <Administration endpoint={endpoint} setEndpoint={setEndpoint} />}
               />
               <PrivateRoute
-                exact
                 path="/planner"
                 credentials={credentials}
                 component={() => <Planner endpoint={endpoint} setEndpoint={setEndpoint} />}
               />
-              <Route exact path="/signup" component={() => <SignUp saveCredentials={saveCredentials} />}></Route>
-              <Route exact path="/login" component={() => <Login saveCredentials={saveCredentials} />}></Route>
-              <Route exact path="/" component={() => <Login saveCredentials={saveCredentials} />}></Route>
+              <Route path="/signup" component={() => <SignUp saveCredentials={saveCredentials} />}></Route>
+              <Route path="/login" component={() => <Login saveCredentials={saveCredentials} />}></Route>
+              <Route path="/" component={() => <Login saveCredentials={saveCredentials} />}></Route>
             </Switch>
           </Router>
         </AuthProvider>
@@ -89,6 +88,3 @@ export default function App() {
     </section>
   );
 }
-
-//Call all that only admin shoud see for className="private" and className"board" for only boardmembers
-//and className="regular" for regular users (only the things the others shouldn't see)

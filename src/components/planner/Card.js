@@ -7,6 +7,7 @@ import EditForm from "./Editform";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
+import Tooltip from "@material-ui/core/Tooltip";
 
 export default function Card(props) {
   // console.log("planner/Cards.js || Cards()");
@@ -45,6 +46,15 @@ export default function Card(props) {
   const colorText = {
     color: props.color,
   };
+  //const mappedAssigned = props.assignedTo.map((user) => <p key={user.id}>{user.name}</p>);
+
+  const mappedAssignedImg = props.assignedTo.map((user) => (
+    <Tooltip title={user.name}>
+      <div key={user.id}>
+        <img src={user.image} alt={user.name} />
+      </div>
+    </Tooltip>
+  ));
 
   return (
     <Panel
@@ -66,9 +76,9 @@ export default function Card(props) {
           <p className="hideAlways fade_out hide">{props.color}</p>
           <p className="hideAlways fade_out hide">{props.list}</p>
         </div>
-        <p className="assignedTo" onClick={clickOnCard}>
-          {props.assignedTo.join(", ")}
-        </p>
+        <div className="pic-wrapper" onClick={clickOnCard}>
+          {mappedAssignedImg}
+        </div>
 
         <FormControl className="fade_out hide">
           <InputLabel id="select-list">Choose list</InputLabel>
@@ -85,7 +95,7 @@ export default function Card(props) {
             <MenuItem value="Barrier">Barrier</MenuItem>
           </Select>
         </FormControl>
-        {/*        </div> */}
+
         <div className="bottom-wrapper">
           <div className="flex-wrapper" onClick={clickOnCard}>
             <p className="due">Due: {props.due !== undefined ? props.due.substring(0, 10) : "No due date"}</p>
@@ -104,6 +114,7 @@ export default function Card(props) {
               description={props.description}
               due={props.due}
               id={props.id}
+              users={props.users}
             />
           </div>
         </div>

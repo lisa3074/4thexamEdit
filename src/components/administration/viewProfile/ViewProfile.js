@@ -10,6 +10,7 @@ import WorkLoad from "./WorkLoad";
 import { deleteUser } from "../../../jsModules/dbData/deleteData";
 
 export default function ViewProfile(props) {
+  console.log(props);
   const [user, setUser] = useState();
   const [state, setState] = useState();
   console.log(props.user);

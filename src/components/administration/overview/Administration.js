@@ -71,6 +71,7 @@ export default function Administration(props) {
         chosenEmployee={chosenEmployee}
         setChosenCat={setChosenCat}
         setChosenEmployee={setChosenEmployee}
+        users={users}
       />
       <Chat />
 

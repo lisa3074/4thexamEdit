@@ -1,3 +1,17 @@
+export function areYouSure() {
+  console.log("sure");
+  setTimeout(() => {
+    document.querySelectorAll(".modal-wrapper").forEach((modal) => {
+      modal.classList.remove("hide");
+    });
+  }, 100);
+}
+export function notSure() {
+  document.querySelectorAll(".modal-wrapper").forEach((modal) => {
+    modal.classList.add("hide");
+  });
+}
+
 export function administration() {
   console.log();
   console.log("admin");

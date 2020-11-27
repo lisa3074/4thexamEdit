@@ -22,6 +22,7 @@ export default function NewTask(props) {
   const [assignedTo, setAssigned] = useState([]);
   const [due, setDue] = useState();
   let [list, setList] = useState("");
+  const { users } = props;
 
   useEffect(() => {
     let today;
@@ -145,15 +146,6 @@ export default function NewTask(props) {
   const succes = {
     display: correct === true ? "flex" : "none",
   };
-  const users = [
-    "Lisa Søndergaard",
-    "Rune Jensen",
-    "The Godfather: Part II",
-    "The Dark Knight",
-    "12 Angry Men",
-    "Schindler's List",
-  ];
-  /*   const assigned = ["Lisa Søndergaard", "Rune Jensen"]; */
 
   const categories = [
     { category: "Design", color: "#374d62" },
@@ -167,11 +159,7 @@ export default function NewTask(props) {
     { category: "Research", color: "#34d0d5" },
     { category: "Documentation", color: "#b4b256" },
   ];
-  /*   const [selectedDate, setSelectedDate] = React.useState(new Date("2014-08-18T21:11:54"));
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  }; */
   return (
     <>
       <form className="addForm" id="form" onSubmit={submit}>
@@ -191,7 +179,8 @@ export default function NewTask(props) {
         <Autocomplete
           multiple
           options={users}
-          getOptionLabel={(option) => option}
+          getOptionLabel={(option) => option.name}
+          getOptionSelected={(option, value) => option.name === value.name}
           value={assignedTo}
           filterSelectedOptions
           onChange={(e, values) => {
