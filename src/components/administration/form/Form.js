@@ -13,6 +13,7 @@ import {
   editUserResetForm,
   newUserResetForm,
 } from "../../../jsModules/displayFunctions/displayEditForm";
+import { forwards } from "../../../jsModules/displayFunctions/formNavigation";
 
 export default function Form(props, { history }) {
   console.log(" administration/form || Form.js | Form()");
@@ -51,7 +52,7 @@ export default function Form(props, { history }) {
     const dd = String(today.getDate()).padStart(2, "0");
     const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
     const yyyy = today.getFullYear();
-    setDate(`${yyyy}-${mm}-${dd}`);
+    setDate(date ? `${yyyy}-${mm}-${dd}` : "");
   }, [date]);
 
   const { user, setUser } = props;
@@ -82,6 +83,9 @@ export default function Form(props, { history }) {
     setPassword("");
     props.setState("");
     setUploadedImage("");
+    document.querySelectorAll(".error").forEach((error) => {
+      error.classList.add("hide");
+    });
   }
 
   useEffect(() => {
@@ -139,19 +143,27 @@ export default function Form(props, { history }) {
   }, [fileUrl]);
   function submit(e) {
     console.log(" administration/form || Form.js | submit()");
+    const $ = document.querySelector.bind(document);
     e.preventDefault();
+    forwards();
     if (
-      !document.querySelector(".password-safety").classList.contains("hide") &&
-      document.querySelector(".password input").value === ""
+      ($(".cpr input").value === "" ||
+        $(".account input").value === "" ||
+        $(".address input").value === "" ||
+        $(".postal input").value === "" ||
+        $(".education input").value === "" ||
+        $("#pdf-upload").files.length === 0 ||
+        $(".password input").value === "") &&
+      !document.querySelector(".password-safety").classList.contains("hide")
     ) {
-      console.log("no password");
+      console.log("missing value");
     } else if (!document.querySelector(".password-safety").classList.contains("hide")) {
       console.log("new user submitted");
       handleSignUp();
       storeImage(imageFile, email, setFilePath, image);
       document.querySelector(".succes").classList.remove("hide");
       setTimeout(() => {
-        resetForm();
+        clear();
       }, 1000);
     } else {
       console.log("old user putted");
@@ -159,7 +171,7 @@ export default function Form(props, { history }) {
       storeImage(imageFile, email, setFileUrl, image);
       document.querySelector(".succes").classList.remove("hide");
       setTimeout(() => {
-        resetForm();
+        clear();
       }, 1000);
     }
   }
@@ -167,6 +179,9 @@ export default function Form(props, { history }) {
   function clear() {
     console.log(" administration/form || Form.js | clear()");
     if (!document.querySelector(".password-safety").classList.contains("hide")) {
+      if (window.innerWidth < 1000) {
+        document.querySelector(".SubMenu").classList.remove("hide");
+      }
       newUserResetForm();
       clearUserForm();
       resetForm();

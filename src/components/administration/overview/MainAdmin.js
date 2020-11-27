@@ -40,6 +40,8 @@ export default function MainAdmin(props) {
         users={props.users}
         id={props.id}
         setUsers={props.setUsers}
+        setSystemPart={props.setSystemPart}
+        systemPart={props.systemPart}
       />
     </main>
   );

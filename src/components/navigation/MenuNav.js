@@ -34,6 +34,7 @@ export default function MenuNav(props) {
           className="admin"
           onClick={() => {
             newUser();
+            props.setTool("admin");
           }}>
           <PersonAddIcon />
           <h3 className="new-user-link">New user</h3>

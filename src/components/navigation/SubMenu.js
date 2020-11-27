@@ -9,19 +9,27 @@ import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import { editUser } from "../../jsModules/displayFunctions/displayEditForm";
 import { resetSubmenu } from "../../jsModules/displayFunctions/subMenuNavigation";
+import { areYouSure } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import {
-  newUser,
   openMenu,
   delegation,
   searchUsers,
   closeSearch,
   resetFilterNav,
 } from "../../jsModules/displayFunctions/subMenuNavigation";
+import { newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { addTask } from "../planner/modules/mobNavigation";
 
 export default function SubMenu(props) {
   const tool = props.tool;
   const endpoint = props.endpoint;
+  console.log(props.edit);
+
+  function removeDelete() {
+    document.querySelectorAll(".modal-wrapper").forEach((modal) => {
+      modal.classList.add("hide");
+    });
+  }
   return (
     <nav className="SubMenu hide">
       <div
@@ -37,6 +45,7 @@ export default function SubMenu(props) {
         className="menuBack hide"
         onClick={() => {
           delegation(tool);
+          removeDelete();
         }}>
         <ArrowBackIosRoundedIcon />
       </div>
@@ -48,7 +57,12 @@ export default function SubMenu(props) {
           }}>
           <SearchRoundedIcon />
         </div>
-        <div className="menuEdit hide" onClick={editUser}>
+        <div
+          className="menuEdit hide"
+          onClick={() => {
+            editUser();
+            removeDelete();
+          }}>
           <EditRoundedIcon />
         </div>
         <div
@@ -61,10 +75,20 @@ export default function SubMenu(props) {
           <CloseRoundedIcon />
         </div>
       </div>
-      <div className="newUserIcon" onClick={newUser}>
+      <div
+        className="newUserIcon"
+        onClick={() => {
+          newUser();
+          console.log("clikec");
+        }}>
         <PersonAddRoundedIcon />
       </div>
-      <div className="menuDelete hide">
+      <div
+        className="menuDelete hide"
+        onClick={() => {
+          areYouSure();
+          props.setSystemPart("admin");
+        }}>
         <DeleteRoundedIcon />
       </div>
       <div className="menuAddTask hide" onClick={addTask}>

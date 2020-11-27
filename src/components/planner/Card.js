@@ -115,6 +115,8 @@ export default function Card(props) {
               due={props.due}
               id={props.id}
               users={props.users}
+              setSystemPart={props.setSystemPart}
+              systemPart={props.systemPart}
             />
           </div>
         </div>

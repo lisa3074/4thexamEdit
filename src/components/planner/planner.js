@@ -80,6 +80,8 @@ export default function Planner(props) {
           setChosenCat={props.setChosenCat}
           setChosenEmployee={props.setChosenEmployee}
           users={props.users}
+          setSystemPart={props.setSystemPart}
+          systemPart={props.systemPart}
         />
       </section>
     </main>

@@ -7,6 +7,7 @@ export function areYouSure() {
   }, 100);
 }
 export function notSure() {
+  console.log("not sure");
   document.querySelectorAll(".modal-wrapper").forEach((modal) => {
     modal.classList.add("hide");
   });
@@ -64,6 +65,11 @@ export function chat() {
   });
 }
 export function newUser() {
+  console.log("new user");
+  if (window.innerWidth < 1000) {
+    document.querySelector(".Menu").classList.add("hide");
+    document.querySelector(".MainAdmin").classList.remove("hide");
+  }
   document.querySelector(".ViewProfile").classList.remove("hide");
   document.querySelector(".ViewProfile .UserForm").classList.remove("hide");
   document.querySelector(".UserForm").setAttribute("data-state", "new");

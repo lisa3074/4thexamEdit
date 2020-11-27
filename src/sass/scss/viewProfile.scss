@@ -11,6 +11,7 @@
   img {
     width: 130px;
     height: 130px;
+    object-fit: cover;
   }
   h1 {
     padding-top: 1.5rem;
@@ -170,59 +171,6 @@
       padding-top: 0.35rem;
     }
   }
-  /* .areYouSure {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #384d628e;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .modal {
-    background-color: #fff;
-    padding: 2rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 3fr 1fr;
-    border-radius: var(--border-radius);
-    box-shadow: var(--card-shadow);
-    line-height: 1.2rem;
-    grid-template-areas:
-      "text text"
-      "buttonNo buttonYes";
-    h1,
-    h3,
-    p {
-      padding: 0 0 1rem;
-    }
-    h1 {
-      font-size: 1.1rem;
-    }
-    h3 {
-      font-size: 0.9rem;
-    }
-    .modal-text {
-      grid-area: text;
-      padding: 0 0 0rem;
-    }
-    .delete {
-      grid-area: buttonYes;
-      background: var(--orange);
-      justify-self: flex-end;
-    }
-    .cancel.text-btn {
-      grid-area: buttonNo;
-      justify-self: flex-start;
-    }
-    button.text-btn {
-      height: 2.5rem;
-      align-self: flex-end;
-      padding: 0.3rem 1.5rem;
-    }
-  } */
 }
 
 .ProfileNav {

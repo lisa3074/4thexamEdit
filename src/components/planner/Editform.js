@@ -15,7 +15,7 @@ import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import Grid from "@material-ui/core/Grid";
-import DeleteModal from "./DeleteModal";
+import DeleteModal from "../administration/overview/DeleteModal";
 import { areYouSure } from "../../jsModules/displayFunctions/mainMenuNavigation";
 
 export default function EditForm(props) {
@@ -177,13 +177,18 @@ export default function EditForm(props) {
 
   return (
     <>
-      <div className={"delete float-btn btn fade_out hide"} onClick={areYouSure}>
+      <div
+        className={"delete float-btn btn fade_out hide"}
+        onClick={() => {
+          areYouSure();
+          props.setSystemPart("planner");
+        }}>
         <DeleteRoundedIcon />
       </div>
       <div className={"edit float-btn btn fade_out hide"} onClick={editTask}>
         <EditRoundedIcon />
       </div>
-      <DeleteModal deleteCard={props.deleteCard} id={props.id} />
+      <DeleteModal deleteCard={props.deleteCard} id={props.id} systemPart={props.systemPart} />
       <article className="editContainer hide" id={"b" + props.id}>
         <div className="flex">
           <div className="edit-wrapper">

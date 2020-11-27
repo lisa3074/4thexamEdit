@@ -10,30 +10,34 @@ export default function PrivateForm(props) {
       const fileName = e.target.value.substring(lastBackSlash, 50);
       document.querySelector(".PrivateForm > .upload-wrapper > label > div > p").textContent = fileName;
       props.setContract(fileName);
+      document.querySelector(".PrivateForm > div.upload-wrapper > p").classList.add("hide");
     }, 100);
   }
 
   const handleCprChange = (e) => {
     props.setCpr(e.target.value);
-    console.log("changed");
+    document.querySelector("fieldset.PrivateForm > div:nth-child(2) > p").classList.add("hide");
   };
   const handleAccountChange = (e) => {
     props.setAccount(e.target.value);
+    document.querySelector("fieldset.PrivateForm > div:nth-child(3) > p").classList.add("hide");
   };
-  /*  const handleContractChange = (e) => {
-    props.setContract(e.target.value);
-  }; */
+
   const handleAddressChange = (e) => {
     props.setAddress(e.target.value);
+    document.querySelector(".PrivateForm > div:nth-child(4) > p").classList.add("hide");
   };
   const handlePostalChange = (e) => {
     props.setPostal(e.target.value);
+    document.querySelector(".PrivateForm > div:nth-child(5) > p").classList.add("hide");
   };
   const handleEducationChange = (e) => {
     props.setEducation(e.target.value);
+    document.querySelector(".PrivateForm > div:nth-child(7) > p").classList.add("hide");
   };
   const handlePasswordChange = (e) => {
     props.setPassword(e.target.value);
+    document.querySelector(".PrivateForm > div.input-wrapper.password-safety > p").classList.add("hide");
   };
 
   return (
@@ -49,6 +53,7 @@ export default function PrivateForm(props) {
           value={props.cpr}
           onChange={handleCprChange}
         />
+        <p className="error hide">Fill out a cpr number or something equalient if the employee is not Danish</p>
       </div>
       <div className="input-wrapper">
         <TextField
@@ -58,6 +63,7 @@ export default function PrivateForm(props) {
           value={props.account}
           onChange={handleAccountChange}
         />
+        <p className="error hide">Fill out an account number for the employee</p>
       </div>
       <div className="input-wrapper">
         <TextField
@@ -67,6 +73,7 @@ export default function PrivateForm(props) {
           value={props.address}
           onChange={handleAddressChange}
         />
+        <p className="error hide">Fill in the employees address (street and house number)</p>
       </div>
       <div className="input-wrapper">
         <TextField
@@ -77,6 +84,7 @@ export default function PrivateForm(props) {
           value={props.postal}
           onChange={handlePostalChange}
         />
+        <p className="error hide">Fill in the employee's postal code</p>
       </div>
       <div className="input-wrapper password-safety">
         <TextField
@@ -87,6 +95,7 @@ export default function PrivateForm(props) {
           value={props.password}
           onChange={handlePasswordChange}
         />
+        <p className="error hide">Fill in a temperary password to the account (should be changed by employee later)</p>
       </div>
       <div className="input-wrapper">
         <TextField
@@ -96,6 +105,7 @@ export default function PrivateForm(props) {
           value={props.education}
           onChange={handleEducationChange}
         />
+        <p className="error hide">Fill in the employee's education and school</p>
       </div>
 
       <div className="upload-wrapper">
@@ -108,6 +118,7 @@ export default function PrivateForm(props) {
           </div>
           <input id="pdf-upload" type="file" name="image" onChange={findFileName} />
         </label>
+        <p className="error hide">Upload a contract (.pdf, .jpg or .png)</p>
       </div>
     </fieldset>
   );

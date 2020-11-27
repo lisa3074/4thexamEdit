@@ -4,14 +4,18 @@ import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import { editUser } from "../../../jsModules/displayFunctions/displayEditForm";
 import { administration, areYouSure, notSure } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
+import { Delete } from "@material-ui/icons";
+import DeleteModal from "../overview/DeleteModal";
 
 export default function ProfileNav(props) {
+  console.log(props);
   return (
     <div className="ProfileNav admin">
       <div className="float-btn delete">
         <DeleteRoundedIcon
           onClick={() => {
             areYouSure();
+            props.setSystemPart("admin");
           }}
         />
       </div>
@@ -23,30 +27,8 @@ export default function ProfileNav(props) {
         }}>
         <EditRoundedIcon />
       </div>
-      <div className="modal-wrapper hide">
-        <div className="areYouSure">
-          <ClickAwayListener onClickAway={notSure}>
-            <div className="modal">
-              <div className="modal-text">
-                <h1>You are about to delete a profile!</h1>
-                <p>If you do this, the user will no longer be able to log in to the system. </p>
-                <h3> Are you sure you want to delete this profile?</h3>
-              </div>
-              <button
-                className="delete text-btn"
-                onClick={() => {
-                  props.deleteProfile(props.id);
-                  administration();
-                }}>
-                Yes, delete it
-              </button>
-              <button className="cancel text-btn" onClick={notSure}>
-                No, go back
-              </button>
-            </div>
-          </ClickAwayListener>
-        </div>
-      </div>
+
+      <DeleteModal deleteProfile={props.deleteProfile} id={props.id} systemPart={props.systemPart} />
     </div>
   );
 }

@@ -7,16 +7,19 @@ export default function PersonForm(props) {
   // console.log(user !== undefined ? user[0].name : "");
 
   const handleName = (e) => {
-    props.setName(e.target.value);
     console.log(" administration/form || PersonForm.js | handleName()");
+    props.setName(e.target.value);
+    document.querySelector("fieldset.PersonForm > div.input-wrapper > p").classList.add("hide");
   };
   const handleCountry = (e) => {
     console.log(" administration/form || PersonForm.js | handleCountry()");
     props.setCountry(e.target.value);
+    document.querySelector("fieldset.PersonForm > div.flex-wrapper > div:nth-child(1) > p").classList.add("hide");
   };
   const handleCity = (e) => {
     console.log(" administration/form || PersonForm.js | handleCity()");
     props.setCity(e.target.value);
+    document.querySelector("fieldset.PersonForm > div.flex-wrapper > div:nth-child(2) > p").classList.add("hide");
   };
 
   //image prewiev
@@ -55,35 +58,46 @@ export default function PersonForm(props) {
           onFocus={() => {
             props.setFocus(true);
           }}
-          error={props.text === "" && props.focus}
+          /*      error
+          helperText="Just to remember how" */
           onChange={(e) => {
             handleName(e);
           }}
-          helperText={props.name === "" && props.focus ? "You need to fill out your name" : " "}
         />
+        <p className="error hide">You have to fill in a name of the employee</p>
       </div>
       <div className="flex-wrapper">
         <div className="input-wrapper">
           <TextField
+            required
             name="Country"
             className="country"
             label="Country"
             value={props.country}
+            onFocus={() => {
+              props.setFocus(true);
+            }}
             onChange={(e) => {
               handleCountry(e);
             }}
           />
+          <p className="error hide">Fill in a country</p>
         </div>
         <div className="input-wrapper">
           <TextField
+            required
             name="City"
             className="city"
             label="City"
             value={props.city}
+            onFocus={() => {
+              props.setFocus(true);
+            }}
             onChange={(e) => {
               handleCity(e);
             }}
           />
+          <p className="error hide">Fill in a city</p>
         </div>
       </div>
       <div className="upload-wrapper">

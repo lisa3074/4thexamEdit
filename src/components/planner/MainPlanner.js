@@ -16,6 +16,8 @@ export default function MainPlanner({
   setChosenEmployee,
   setChosenCat,
   users,
+  setSystemPart,
+  systemPart,
 }) {
   console.log("planner/MainPlanner.js || MainPlanner()");
   console.log(chosenEmployee + " " + chosenCat);
@@ -40,6 +42,8 @@ export default function MainPlanner({
           setDropList={setDropList}
           users={users}
           dropList={dropList}
+          setSystemPart={setSystemPart}
+          systemPart={systemPart}
           header="To Do"
           cards={
             chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
@@ -62,6 +66,8 @@ export default function MainPlanner({
           users={users}
           setDropList={setDropList}
           dropList={dropList}
+          setSystemPart={setSystemPart}
+          systemPart={systemPart}
           header="In progress"
           cards={
             chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
@@ -85,6 +91,8 @@ export default function MainPlanner({
           users={users}
           setDropList={setDropList}
           dropList={dropList}
+          setSystemPart={setSystemPart}
+          systemPart={systemPart}
           header="Barrier"
           cards={
             chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
@@ -107,6 +115,8 @@ export default function MainPlanner({
           users={users}
           setDropList={setDropList}
           dropList={dropList}
+          setSystemPart={setSystemPart}
+          systemPart={systemPart}
           header="Done"
           cards={
             chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")

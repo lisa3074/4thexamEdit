@@ -7,7 +7,7 @@ export default function UserCard(props) {
     console.log(e.target.parentNode.dataset.user);
     const userId = e.target.parentNode.dataset.user;
     displayProfile(userId);
-    console.log("CARD CLICKED");
+    console.log(userId);
     whichUser(e, userId, props.signedinUser ? props.signedinUser[0].userLevel : "");
     setSubmMenu();
     props.setId(userId);

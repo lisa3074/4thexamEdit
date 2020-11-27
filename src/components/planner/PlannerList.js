@@ -16,6 +16,8 @@ export default function List(props) {
       header={props.header}
       dropList={props.dropList}
       users={props.users}
+      setSystemPart={props.setSystemPart}
+      systemPart={props.systemPart}
     />
   ));
 

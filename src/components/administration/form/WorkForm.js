@@ -1,9 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import TextField from "@material-ui/core/TextField";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import Select from "@material-ui/core/Select";
-import FormControl from "@material-ui/core/FormControl";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 export default function WorkForm(props) {
@@ -11,12 +7,14 @@ export default function WorkForm(props) {
 
   const handleHoursChange = (e) => {
     props.setHours(e.target.innerText);
+    document.querySelector("fieldset.WorkForm > div:nth-child(4) > p").classList.add("hide");
     e.target.innerText
       ? document.querySelector(".UserForm .hours").setAttribute("data-chosen", true)
       : document.querySelector(".UserForm .hours").setAttribute("data-chosen", false);
   };
   const handleLevelChange = (e) => {
     props.setLevel(e.target.innerText);
+    document.querySelector("fieldset.WorkForm > div:nth-child(6) > p").classList.add("hide");
     console.log(e.target.innerText);
     e.target.innerText
       ? document.querySelector(".UserForm .level").setAttribute("data-chosen", true)
@@ -25,24 +23,29 @@ export default function WorkForm(props) {
 
   const handleDateChange = (e) => {
     props.setDate(e.target.value);
+    document.querySelector("fieldset.WorkForm > div:nth-child(5) > p").classList.add("hide");
   };
 
   const handlePositionChange = (e) => {
     props.setPosition(e.target.value);
+    document.querySelector("fieldset.WorkForm > div:nth-child(2) > p").classList.add("hide");
   };
   const handleDivisionChange = (e) => {
     console.log(e.target);
     props.setDivision(e.target.innerText);
+    document.querySelector("fieldset.WorkForm > div:nth-child(3) > p").classList.add("hide");
     e.target.innerText
       ? document.querySelector(".UserForm .division").setAttribute("data-chosen", true)
       : document.querySelector(".UserForm .division").setAttribute("data-chosen", false);
   };
   const handleEmailChange = (e) => {
     props.setEmail(e.target.value);
+    document.querySelector("fieldset.WorkForm > div:nth-child(7) > p").classList.add("hide");
   };
   console.log(props.email);
   const handleTelChange = (e) => {
     props.setTel(e.target.value);
+    document.querySelector("fieldset.WorkForm > div:nth-child(8) > p").classList.add("hide");
   };
 
   const divisions = [
@@ -71,6 +74,7 @@ export default function WorkForm(props) {
       <h2>WORK</h2>
       <div className="input-wrapper">
         <TextField
+          required
           name="Position"
           className="position"
           label="Position"
@@ -78,9 +82,11 @@ export default function WorkForm(props) {
           value={props.position}
           onChange={handlePositionChange}
         />
+        <p className="error hide">Fill in a position</p>
       </div>
       <div className="input-wrapper">
         <Autocomplete
+          required
           name="Division"
           className="division"
           label="Division"
@@ -91,30 +97,34 @@ export default function WorkForm(props) {
           onChange={(option) => {
             handleDivisionChange(option);
           }}
-          renderInput={(params) => <TextField {...params} variant="standard" label="Division" placeholder="" />}
+          renderInput={(params) => <TextField {...params} variant="standard" label="Division *" placeholder="" />}
+          data-chosen={false}
         />
+        <p className="error hide">Fill in a division</p>
       </div>
 
       <div className="input-wrapper">
-        <div className="input-wrapper">
-          <Autocomplete
-            name="Work hours"
-            className="hours"
-            label="Work hours"
-            required
-            autoSelect={true}
-            options={workHours}
-            getOptionLabel={(option) => (option ? option : "")}
-            getOptionSelected={(option, value) => option === value}
-            onChange={(option) => {
-              handleHoursChange(option);
-            }}
-            renderInput={(params) => <TextField {...params} variant="standard" label="Work hours" placeholder="" />}
-          />
-        </div>
+        <Autocomplete
+          data-chosen={false}
+          required
+          name="Work hours"
+          className="hours"
+          label="Work hours"
+          required
+          autoSelect={true}
+          options={workHours}
+          getOptionLabel={(option) => (option ? option : "")}
+          getOptionSelected={(option, value) => option === value}
+          onChange={(option) => {
+            handleHoursChange(option);
+          }}
+          renderInput={(params) => <TextField {...params} variant="standard" label="Work hours *" placeholder="" />}
+        />
+        <p className="error hide">Fill how many hours the employee works</p>
       </div>
       <div className="input-wrapper">
         <TextField
+          required
           className="startDate"
           name="Start date"
           id="date"
@@ -126,10 +136,13 @@ export default function WorkForm(props) {
             shrink: true,
           }}
         />
+        <p className="error hide">Fill in a start date</p>
       </div>
 
       <div className="input-wrapper">
         <Autocomplete
+          data-chosen={false}
+          required
           name="User level"
           className="level"
           label="User level"
@@ -140,11 +153,13 @@ export default function WorkForm(props) {
           onChange={(option) => {
             handleLevelChange(option);
           }}
-          renderInput={(params) => <TextField {...params} variant="standard" label="User level" placeholder="" />}
+          renderInput={(params) => <TextField {...params} variant="standard" label="User level *" placeholder="" />}
         />
+        <p className="error hide">Fill in the employee's user level clearance for this system</p>
       </div>
       <div className="input-wrapper">
         <TextField
+          required
           name="Email"
           className="email"
           type="email"
@@ -152,9 +167,11 @@ export default function WorkForm(props) {
           value={props.email}
           onChange={handleEmailChange}
         />
+        <p className="error hide">Fill in an email</p>
       </div>
       <div className="input-wrapper">
         <TextField
+          required
           name="Phone"
           className="phone"
           type="tel"
@@ -162,6 +179,7 @@ export default function WorkForm(props) {
           value={props.tel}
           onChange={handleTelChange}
         />
+        <p className="error hide">Fill in a phone number</p>
       </div>
     </fieldset>
   );

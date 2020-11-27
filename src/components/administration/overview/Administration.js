@@ -22,6 +22,7 @@ export default function Administration(props) {
   const [users, setUsers] = useState([]);
   const [signedinUser, setSignedinUser] = useState();
   const [id, setId] = useState();
+  const [systemPart, setSystemPart] = useState();
 
   useEffect(() => {
     getUsers(setUsers);
@@ -65,13 +66,17 @@ export default function Administration(props) {
         setSearch={setSearch}
         setId={setId}
         id={id}
-        signedinUser={signedinUser}></MainAdmin>
+        signedinUser={signedinUser}
+        setSystemPart={setSystemPart}
+        systemPart={systemPart}></MainAdmin>
       <Planner
         chosenCat={chosenCat}
         chosenEmployee={chosenEmployee}
         setChosenCat={setChosenCat}
         setChosenEmployee={setChosenEmployee}
         users={users}
+        setSystemPart={setSystemPart}
+        systemPart={systemPart}
       />
       <Chat />
 
@@ -79,9 +84,10 @@ export default function Administration(props) {
         endpoint={props.endpoint}
         tool={tool}
         setChosenCat={setChosenCat}
-        setChosenEmployee={setChosenEmployee}></SubMenu>
-      {/* 
-      <p>{credentials != undefined ? credentials.email : ""}</p> */}
+        setChosenEmployee={setChosenEmployee}
+        id={id}
+        setSystemPart={setSystemPart}
+        systemPart={systemPart}></SubMenu>
     </section>
   );
 }

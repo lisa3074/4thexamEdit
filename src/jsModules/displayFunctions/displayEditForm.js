@@ -16,8 +16,7 @@ export function editUser() {
 export function clearUserForm() {
   const $ = document.querySelector.bind(document);
   $(".FormPath > h2").textContent = "Add user";
-  $(".ViewProfile").classList.add("hide");
-  $(".UserList").classList.remove("hide");
+
   $(".UserForm").classList.add("hide");
   $(".PersonForm").classList.remove("hide");
   $(".WorkForm").classList.add("hide");
