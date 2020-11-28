@@ -1,5 +1,5 @@
 export function closeExpand(theId) {
-  console.log("planner/modules/closeExpand.js || closeExpand()");
+  console.log("planner/modules || closeExpand.js | closeExpand()");
   const theIdClass = `a${theId}`;
   document.querySelectorAll(".mui-panel.panelMargin").forEach((panel) => {
     if (!panel.classList.contains(theIdClass)) {

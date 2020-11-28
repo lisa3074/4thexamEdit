@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 export default function WorkForm(props) {
+  console.log("administration/form || WorkForm.js | WorkForm()");
   const { user, level, hours } = props;
 
   const handleHoursChange = (e) => {
@@ -15,7 +16,7 @@ export default function WorkForm(props) {
   const handleLevelChange = (e) => {
     props.setLevel(e.target.innerText);
     document.querySelector("fieldset.WorkForm > div:nth-child(6) > p").classList.add("hide");
-    console.log(e.target.innerText);
+
     e.target.innerText
       ? document.querySelector(".UserForm .level").setAttribute("data-chosen", true)
       : document.querySelector(".UserForm .level").setAttribute("data-chosen", false);
@@ -31,7 +32,6 @@ export default function WorkForm(props) {
     document.querySelector("fieldset.WorkForm > div:nth-child(2) > p").classList.add("hide");
   };
   const handleDivisionChange = (e) => {
-    console.log(e.target);
     props.setDivision(e.target.innerText);
     document.querySelector("fieldset.WorkForm > div:nth-child(3) > p").classList.add("hide");
     e.target.innerText
@@ -42,7 +42,6 @@ export default function WorkForm(props) {
     props.setEmail(e.target.value);
     document.querySelector("fieldset.WorkForm > div:nth-child(7) > p").classList.add("hide");
   };
-  console.log(props.email);
   const handleTelChange = (e) => {
     props.setTel(e.target.value);
     document.querySelector("fieldset.WorkForm > div:nth-child(8) > p").classList.add("hide");
@@ -62,13 +61,12 @@ export default function WorkForm(props) {
   ];
   const workHours = ["Full time", "Part time", "Hourly"];
   const userLevel = ["Administrator", "Regular user", "Board member"];
-  const isDisabled = (e) => {
-    console.log(e);
+  /*   const isDisabled = (e) => {
+
     const edit = document.querySelector(".WorkForm .email").dataset === "edit" ? true : false;
     console.log(edit);
     return edit;
-  };
-  console.log(props.hours);
+  }; */
   return (
     <fieldset name="Work" className="WorkForm hide">
       <h2>WORK</h2>

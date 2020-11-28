@@ -1,6 +1,6 @@
 import { closeExpand } from "./closeExpand";
 export function init() {
-  console.log("planner/modules/mobNavigation.js || init()");
+  console.log("planner/modules || mobNavigation.js | init()");
   document.querySelectorAll(".progress1.scrollList, .Done1.scrollList, .Barrier1.scrollList").forEach((list) => {
     list.classList.add("hidden2");
   });
@@ -8,7 +8,7 @@ export function init() {
 }
 
 export function done() {
-  console.log("planner/modules/mobNavigation.js || done()");
+  console.log("planner/modules || mobNavigation.js | done()");
   document.querySelector(".Done1").classList = "Done1 scrollList show";
 
   document.querySelector(".progress1").classList = "progress1 scrollList hidden";
@@ -27,7 +27,7 @@ export function done() {
 }
 
 export function doing() {
-  console.log("planner/modules/mobNavigation.js || doing()");
+  console.log("planner/modules || mobNavigation.js | doing()");
   document.querySelector(".Done1").classList = "Done1 scrollList hidden";
   document.querySelector(".progress1").classList = "progress1 scrollList show";
   document.querySelector(".Do1").classList = "To Do1 scrollList hidden";
@@ -44,7 +44,7 @@ export function doing() {
   closeExpand();
 }
 export function todo() {
-  console.log("planner/modules/mobNavigation.js || todo()");
+  console.log("planner/modules || mobNavigation.js | todo()");
   document.querySelector(".Done1").classList = "Done1 scrollList hidden";
   document.querySelector(".progress1").classList = "progress1 scrollList hidden";
   document.querySelector(".Do1").classList = "To Do1 scrollList show";
@@ -78,19 +78,13 @@ export function barrier() {
   closeExpand();
 }
 export function addTask() {
-  console.log("planner/modules/mobNavigation.js || addTask()");
+  console.log("planner/modules || mobNavigation.js | addTask()");
   document.querySelector(".NewTask").classList = "NewTask showNew";
-  /*   document.querySelector(".NewTask").addEventListener("transitionend", function () {
-    document.querySelector(".NewTask").style.transform = "";
-  }); */
   closeExpand();
 }
 
 export function closeNewTask() {
-  console.log("planner/modules/mobNavigation.js || closeNewTask()");
+  console.log("planner/modules || mobNavigation.js | closeNewTask()");
   document.querySelector(".NewTask").classList = "NewTask hidden hide";
-  /*  document.querySelector(".NewTask").addEventListener("transitionend", function () {
-    document.querySelector(".NewTask").style.transform = "";
-  }); */
   closeExpand();
 }

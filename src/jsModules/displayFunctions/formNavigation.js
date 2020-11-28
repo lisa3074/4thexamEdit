@@ -1,7 +1,7 @@
 import image from "../../images/placeholder.png";
 
 export function forwards() {
-  console.log("forwards");
+  console.log("jsModules || formNavigation.js | forwards()");
   const $ = document.querySelector.bind(document);
   //PERSON FORM VALIDATION
   if (
@@ -135,7 +135,7 @@ export function forwards() {
   }, 100);
 }
 export function backwards() {
-  console.log("backwards");
+  console.log("jsModules || formNavigation.js | backwards()");
   const $ = document.querySelector.bind(document);
   if (!$(".WorkForm").classList.contains("hide")) {
     $(".PersonForm").classList.remove("hide");
@@ -155,6 +155,7 @@ export function backwards() {
 }
 
 export function person() {
+  console.log("jsModules || formNavigation.js | person()");
   const $ = document.querySelector.bind(document);
   $(".PersonForm").classList.remove("hide");
   $(".WorkForm").classList.add("hide");
@@ -163,6 +164,7 @@ export function person() {
   $(".float-btn.three").style.backgroundColor = "var(--tietery)";
 }
 export function work() {
+  console.log("jsModules || formNavigation.js | work()");
   const $ = document.querySelector.bind(document);
   $(".WorkForm").classList.remove("hide");
   $(".PersonForm").classList.add("hide");
@@ -171,6 +173,7 @@ export function work() {
   $(".float-btn.three").style.backgroundColor = "var(--tietery)";
 }
 export function privat() {
+  console.log("jsModules || formNavigation.js | privat()");
   const $ = document.querySelector.bind(document);
   $(".PrivateForm").classList.remove("hide");
   $(".PersonForm").classList.add("hide");

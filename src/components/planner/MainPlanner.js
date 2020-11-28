@@ -19,8 +19,7 @@ export default function MainPlanner({
   setSystemPart,
   systemPart,
 }) {
-  console.log("planner/MainPlanner.js || MainPlanner()");
-  console.log(chosenEmployee + " " + chosenCat);
+  console.log("planner || MainPlanner.js | MainPlanner()");
 
   const [dropList, setDropList] = React.useState("");
   return (

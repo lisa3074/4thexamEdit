@@ -12,25 +12,15 @@ import DeleteModal from "../overview/DeleteModal";
 import { showCardList } from "../../../jsModules/displayFunctions/subMenuNavigation";
 
 export default function ViewProfile(props) {
-  console.log(props);
-  const [user, setUser] = useState();
-  const [state, setState] = useState();
-  console.log(props.user);
+  console.log("administration/viewProfile || ViewProfile.js | ViewProfile()");
+
   const mappedPerson = props.user.map((user) => <Person key={user.id} {...user} />);
   const mappedWork = props.user.map((user) => <Work key={user.id} {...user} />);
   const mappedContact = props.user.map((user) => <Contact key={user.id} {...user} />);
   const mappedPrivate = props.user.map((user) => <Private key={user.id} {...user} />);
 
-  function editProfile(id) {
-    console.log("edit cicked");
-    const user = props.users.filter((user) => user.id === id);
-    setUser(user);
-    setState("edit");
-    console.log(id);
-  }
-
   async function deleteProfile(id) {
-    console.log("delete clicked " + id);
+    console.log("administration/viewProfile || ViewProfile.js | deleteProfile()");
     deleteUser(id);
     document.querySelector(".ViewProfile").classList.add("hide");
     document.querySelector(".UserList").classList.remove("hide");
@@ -47,14 +37,14 @@ export default function ViewProfile(props) {
       <ul className="viewPrivate admin">{mappedPrivate}</ul>
 
       <div className="empty"></div>
-      <ProfileNav
+      <ProfileNav id={props.id} editProfile={props.editProfile} setSystemPart={props.setSystemPart} />
+      <UserForm
+        chosenUser={props.chosenUser}
+        setChosenUser={props.setChosenUser}
         id={props.id}
-        deleteProfile={deleteProfile}
-        editProfile={editProfile}
-        setSystemPart={props.setSystemPart}
-        systemPart={props.systemPart}
+        state={props.state}
+        setState={props.setState}
       />
-      <UserForm user={user} setUser={setUser} id={props.id} state={state} setState={setState} />
       <DeleteModal deleteProfile={deleteProfile} id={props.id} systemPart={props.systemPart} />
     </section>
   );

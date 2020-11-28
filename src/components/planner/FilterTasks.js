@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import "../../sass/scss/filterUsers.scss";
 
 export default function FilterTasks(props) {
-  console.log("planner/FilterTasks.js || FilterTasks()");
+  console.log("planner || FilterTasks.js | FilterTasks()");
 
   const handleCategory = (e) => {
     const value = e.target.innerText === "All" ? undefined : e.target.innerText;
@@ -15,17 +15,7 @@ export default function FilterTasks(props) {
     const value = e.target.innerText === "All" ? undefined : e.target.innerText;
     props.setChosenEmployee(value);
   };
-  function clear() {
-    const close = document.querySelector(".menuClose");
-    const categoryValue = document.querySelector(".filter-wrapper .category input > *");
-    if (close) {
-      close.addEventListener("click", () => {
-        if (categoryValue) {
-          categoryValue.value = categories[0];
-        }
-      });
-    }
-  }
+
   const categories = [
     { category: "All", color: "" },
     { category: "Design", color: "#374d62" },

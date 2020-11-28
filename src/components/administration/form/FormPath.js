@@ -1,6 +1,7 @@
 import React from "react";
 import { person, work, privat } from "../../../jsModules/displayFunctions/formNavigation";
 export default function FormPath() {
+  console.log("administration/form || FormPath.js | FormPath()");
   const $ = document.querySelector.bind(document);
 
   return (

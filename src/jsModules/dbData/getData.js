@@ -6,6 +6,7 @@ db.settings({ timestampsInSnapshots: true });
 // getting data live
 // ADMIN-SYS
 export function getUsers(callback) {
+  console.log("jsModules || getData.js | getUsers()");
   const unsubsribe = db
     .collection("users")
     .orderBy("name")
@@ -21,6 +22,7 @@ export function getUsers(callback) {
   return () => unsubsribe();
 }
 export function getSignedinUser(callback, email) {
+  console.log("jsModules || getData.js | getSignedinUser()");
   const unsubsribe = db
     .collection("users")
     .where("email", "==", email)
@@ -38,6 +40,7 @@ export function getSignedinUser(callback, email) {
 
 //PLANNER
 export function getCards(callback) {
+  console.log("jsModules || getData.js | getCards()");
   const unsubsribe = db
     .collection("planner")
     .orderBy("due")

@@ -3,6 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
 
 export default function NewMessage() {
+  console.log("chat || NewMessage.js | NewMessage()");
   return (
     <section className="NewMessage">
       <SendRoundedIcon />

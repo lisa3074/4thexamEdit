@@ -14,7 +14,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import Grid from "@material-ui/core/Grid";
 
 export default function NewTask(props) {
-  console.log("planner/NewTask.js || NewTask()");
+  console.log("planner || NewTask.js | NewTask()");
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState({});
   const [description, setDescription] = useState("");
@@ -34,26 +34,20 @@ export default function NewTask(props) {
   }, [due]);
 
   const titleChanged = (e) => {
-    console.log("planner/NewTask.js || titleChanged()");
     setTitle(e.target.value);
   };
 
   const descriptionChanged = (e) => {
-    console.log("planner/NewTask.js || descriptionChanged()");
     setDescription(e.target.value);
   };
-  console.log(color);
 
   const catChanged = (option) => {
-    console.log("planner/NewTask.js || catChanged()");
     setCategory((category) => {
       return option.target.innerText;
     });
   };
-  console.log(category);
 
   const colorChanged = (option, categories) => {
-    console.log("planner/NewTask.js || colorChanged()");
     let object = categories.filter((entry) => entry.category === option.target.innerText);
     let newColor = object.map((entry) => entry.color);
     setColor((color) => {
@@ -61,14 +55,10 @@ export default function NewTask(props) {
     });
   };
   const listChanged = (e) => {
-    console.log("planner/NewTask.js || listChanged()");
     setList(e.target.value);
-    console.log(e.target.value);
   };
   const dueChanged = (e) => {
-    console.log("planner/NewTask.js || dueChanged()");
     setDue(e);
-    console.log(e);
   };
 
   const outline = {
@@ -76,9 +66,8 @@ export default function NewTask(props) {
   };
 
   function submit(evt) {
-    console.log("planner/NewTask.js || submit()");
+    console.log("planner || NewTask.js | submit()");
     evt.preventDefault();
-    console.log(props.header);
     setTitleFocusOn(false);
     setCatFocusOn(false);
     props.onFormSubmit({
@@ -111,22 +100,18 @@ export default function NewTask(props) {
   const [correct, setCorrect] = useState("false");
 
   const correctTrue = (e) => {
-    console.log("planner/NewTask.js || correctTrue()");
     setCorrect(true);
     setTimeout(() => {
       correctFalse();
     }, 3000);
   };
   const correctFalse = (e) => {
-    console.log("planner/NewTask.js || correctFalse()");
     setCorrect(false);
   };
   const titleFocusChanged = (e) => {
-    console.log("planner/NewTask.js || titleFocusChanged()");
     setTitleFocusOn(true);
   };
   const catFocusChanged = (e) => {
-    console.log("planner/NewTask.js || catFocusChanged()");
     setCatFocusOn(true);
   };
 
@@ -184,7 +169,6 @@ export default function NewTask(props) {
           value={assignedTo}
           filterSelectedOptions
           onChange={(e, values) => {
-            console.log(values);
             setAssigned(values);
           }}
           renderInput={(params) => (

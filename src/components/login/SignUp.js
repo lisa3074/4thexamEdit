@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { firebaseConfig } from "../../jsModules/firebase/firebase";
 
 const SignUp = ({ history, saveCredentials }) => {
+  console.log("login || SignUp.js | SignUp()");
   const [error, setError] = useState([null]);
   const handleSignUp = useCallback(
     async (e) => {

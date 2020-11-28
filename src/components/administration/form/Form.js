@@ -7,7 +7,7 @@ import WorkForm from "./WorkForm";
 import { postUser } from "../../../jsModules/dbData/postData";
 import { storeImage } from "../../../jsModules/dbData/postData";
 import { editUser } from "../../../jsModules/dbData/editData";
-import picture from "../../../images/placeholder.png";
+
 import {
   clearUserForm,
   editUserResetForm,
@@ -17,7 +17,6 @@ import { forwards } from "../../../jsModules/displayFunctions/formNavigation";
 
 export default function Form(props, { history }) {
   console.log(" administration/form || Form.js | Form()");
-  console.log(props);
   const [focus, setFocus] = useState(false);
   const [name, setName] = useState("");
   const [image, setImage] = useState("avatar.jpg");
@@ -55,7 +54,7 @@ export default function Form(props, { history }) {
     setDate(date ? `${yyyy}-${mm}-${dd}` : "");
   }, [date]);
 
-  const { user, setUser } = props;
+  const { chosenUser, setChosenUser } = props;
 
   function resetForm() {
     console.log(" administration/form || Form.js | resetForm()");
@@ -77,7 +76,7 @@ export default function Form(props, { history }) {
     setPostal("");
     setAddress("");
     setImageFile();
-    setUser();
+    setChosenUser();
     setFilePath("");
     setFileUrl("");
     setPassword("");
@@ -138,13 +137,13 @@ export default function Form(props, { history }) {
       : console.log(fileUrl);
   }, [fileUrl]);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     console.log(fileUrl);
-  }, [fileUrl]);
+  }, [fileUrl]); */
   function submit(e) {
+    e.preventDefault();
     console.log(" administration/form || Form.js | submit()");
     const $ = document.querySelector.bind(document);
-    e.preventDefault();
     forwards();
     if (
       ($(".cpr input").value === "" ||
@@ -156,9 +155,7 @@ export default function Form(props, { history }) {
         $(".password input").value === "") &&
       !document.querySelector(".password-safety").classList.contains("hide")
     ) {
-      console.log("missing value");
     } else if (!document.querySelector(".password-safety").classList.contains("hide")) {
-      console.log("new user submitted");
       handleSignUp();
       storeImage(imageFile, email, setFilePath, image);
       document.querySelector(".succes").classList.remove("hide");
@@ -166,12 +163,10 @@ export default function Form(props, { history }) {
         clear();
       }, 1000);
     } else {
-      console.log("old user putted");
-      console.log(image);
       storeImage(imageFile, email, setFileUrl, image);
       document.querySelector(".succes").classList.remove("hide");
       setTimeout(() => {
-        clear();
+        resetForm();
       }, 1000);
     }
   }
@@ -189,6 +184,9 @@ export default function Form(props, { history }) {
       editUserResetForm();
       clearUserForm();
       resetForm();
+      setTimeout(() => {
+        document.querySelector(".ViewProfile").classList.remove("hide");
+      }, 2000);
     }
   }
   //kaldes herfra med payload fra ovenstående useStates
@@ -202,29 +200,28 @@ export default function Form(props, { history }) {
   }
 
   useEffect(() => {
-    if (user) {
-      console.log("User ændret");
-      setName(user[0].name);
-      setCountry(user[0].country);
-      setCity(user[0].city);
-      setImage(user[0].image ? user[0].image : "avatar.jpg");
+    if (chosenUser) {
+      setName(chosenUser[0].name);
+      setCountry(chosenUser[0].country);
+      setCity(chosenUser[0].city);
+      setImage(chosenUser[0].image ? chosenUser[0].image : "avatar.jpg");
 
-      setPosition(user[0].position);
-      setDivision(user[0].division);
-      setHours(user[0].workHours);
-      setDate(user[0].startDate);
-      setLevel(user[0].userLevel);
-      setEmail(user[0].email);
-      setTel(user[0].tel);
+      setPosition(chosenUser[0].position);
+      setDivision(chosenUser[0].division);
+      setHours(chosenUser[0].workHours);
+      setDate(chosenUser[0].startDate);
+      setLevel(chosenUser[0].userLevel);
+      setEmail(chosenUser[0].email);
+      setTel(chosenUser[0].tel);
 
-      setAccount(user[0].accountNumber);
-      setContract(user[0].contract);
-      setEducation(user[0].education);
-      setCpr(user[0].cpr);
-      setPostal(user[0].postalCode);
-      setAddress(user[0].streetAndNumber);
+      setAccount(chosenUser[0].accountNumber);
+      setContract(chosenUser[0].contract);
+      setEducation(chosenUser[0].education);
+      setCpr(chosenUser[0].cpr);
+      setPostal(chosenUser[0].postalCode);
+      setAddress(chosenUser[0].streetAndNumber);
     }
-  }, [user]);
+  }, [chosenUser]);
 
   const handleSignUp = useCallback(
     async (e) => {
@@ -291,7 +288,7 @@ export default function Form(props, { history }) {
           password={password}
           setPassword={setPassword}
         />
-        <FormNav user={user} setUser={setUser} submit={submit} clear={clear} />
+        <FormNav user={chosenUser} setUser={setChosenUser} submit={submit} clear={clear} />
       </form>
 
       <article className="succes hide">

@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Person(props) {
+  console.log("administration/viewProfile || Person.js | Person()");
   return (
     <article className="Person userCard">
       <img src={props.image} alt={props.name} />

@@ -1,6 +1,5 @@
 export function expand(theId) {
-  console.log("planner/modules/expand.js || expand()");
-  console.log("the class: " + theId);
+  console.log("planner/modules || expand.js | expand()");
   const theIdClass = `#a${theId}`;
   const theIdClassName = `.a${theId}`;
 

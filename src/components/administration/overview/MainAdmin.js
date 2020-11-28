@@ -3,7 +3,7 @@ import UserList from "./UserList";
 import ViewProfile from "../viewProfile/ViewProfile";
 import FilterUsers from "../../navigation/FilterUsers";
 export default function MainAdmin(props) {
-  /* const [id, setId] = useState(); */
+  console.log("administration/MainAdmin.js || MainAdmin()");
 
   return (
     <main className={window.innerWidth < 1000 ? "MainAdmin hide" : "MainAdmin"}>
@@ -42,6 +42,11 @@ export default function MainAdmin(props) {
         setUsers={props.setUsers}
         setSystemPart={props.setSystemPart}
         systemPart={props.systemPart}
+        editProfile={props.editProfile}
+        chosenUser={props.chosenUser}
+        setChosenUser={props.setChosenUser}
+        state={props.state}
+        setState={props.setState}
       />
     </main>
   );

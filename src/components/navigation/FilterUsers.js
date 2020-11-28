@@ -4,9 +4,8 @@ import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 export default function FilterUsers(props) {
-  /*   const [division, setDivision] = useState("");
-  const [hours, setHours] = useState(""); */
-  console.log(props);
+  console.log("navigation || FilterUsers.js | FilterUsers()");
+
   const handleDivisionChange = (event) => {
     props.setChosenDivision(event.target.innerText);
   };

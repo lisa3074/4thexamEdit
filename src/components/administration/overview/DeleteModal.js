@@ -1,7 +1,7 @@
 import { notSure } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 
 export default function DeleteModal(props) {
-  console.log(props.deleteProfile);
+  console.log("administration/DeleteModal.js || DeleteModal()");
   return (
     <div className="modal-wrapper hide">
       <div className="areYouSure">
@@ -18,7 +18,6 @@ export default function DeleteModal(props) {
           <button
             className="delete text-btn"
             onClick={() => {
-              console.log("deleted");
               props.systemPart === "planner" ? props.deleteCard(props.id) : props.deleteProfile(props.id);
             }}>
             Yes, delete it

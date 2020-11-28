@@ -14,6 +14,7 @@ var customParseFormat = require("dayjs/plugin/customParseFormat");
 dayjs.extend(customParseFormat);
 
 export default function ChatNav() {
+  console.log("chat || ChatNav.js | ChatNav()");
   let [date, setDate] = useState(new Date());
   const dateChanged = (e) => {
     setDate(e);

@@ -6,7 +6,7 @@ db.settings({ timestampsInSnapshots: true });
 
 //ADMIN-SYS
 export function editUser(payload) {
-  console.log("jsModules || editData.js | editProfile()");
+  console.log("jsModules || editData.js | editUser()");
 
   db.collection("users").doc(payload.id).update({
     image: payload.image,

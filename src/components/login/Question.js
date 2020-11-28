@@ -1,5 +1,6 @@
 import React from "react";
 export default function Question() {
+  console.log("login || Question.js | Question()");
   return (
     <div className="Question hide">
       <h2>Why can I not sign up?</h2>

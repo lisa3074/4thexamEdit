@@ -3,7 +3,7 @@ import Card from "./Card";
 /* import { useState } from "react"; */
 
 export default function List(props) {
-  // console.log("planner/List.js || List()");
+  console.log("planner || List.js | List()");
 
   const mappedCards = props.cards.map((card) => (
     <Card
@@ -22,7 +22,7 @@ export default function List(props) {
   ));
 
   function onDragOver(e) {
-    console.log("planner/List.js || onDragOver()");
+    console.log("planner || List.js | onDragOver()");
     e.preventDefault();
   }
 

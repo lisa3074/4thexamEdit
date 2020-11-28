@@ -1,6 +1,5 @@
 export function commenceUserLevel(userLevel) {
-  console.log("checkUserLevel");
-  console.log(userLevel);
+  console.log("jsModules || commenceUserLevel.js | commenceUserLevel()");
   if (userLevel === "Administrator") {
     document.querySelectorAll(".admin").forEach((admin) => {
       admin.style.display = null;
@@ -17,7 +16,7 @@ export function commenceUserLevel(userLevel) {
 }
 
 export function whichUser(e, id, level) {
-  console.log("CLICKED");
+  console.log("jsModules || commenceUserLevel.js | whichUser()");
   if (level === "Administrator") {
     document.querySelector(".ViewProfile .ProfileNav.admin .delete").style.display = null;
   }
@@ -36,6 +35,5 @@ export function whichUser(e, id, level) {
     document.querySelector(".ViewProfile[data-user=" + id + "] .ProfileNav.admin").style.display = "flex";
     document.querySelector(".ViewProfile[data-user=" + id + "] .ProfileNav.admin .delete").style.display = "none";
     document.querySelector(".ViewProfile[data-user=" + id + "] .viewPrivate.admin").style.display = "grid";
-    console.log(document.querySelector(".ViewProfile[data-user=" + id + "] .Private.admin"));
   }
 }

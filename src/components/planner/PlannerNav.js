@@ -8,17 +8,17 @@ import CachedRoundedIcon from "@material-ui/icons/CachedRounded";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 
 export default function PlannerNav() {
-  console.log("planner/PlannerNav.js || PlannerNav()");
+  console.log("planner || PlannerNav.js | PlannerNav()");
   const [anchorEl, setAnchorEl] = useState(null);
   const [list, setList] = useState("To do");
 
   const handleClick = (event) => {
-    console.log("planner/PlannerNav.js || handleClick()");
+    console.log("planner || PlannerNav.js | handleClick()");
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = (e) => {
-    console.log("planner/PlannerNav.js || handleClose()");
+    console.log("planner || PlannerNav.js | handleClose()");
     setAnchorEl(null);
     e.target.textContent === "" ? setList(list) : setList(e.target.textContent);
   };

@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 export default function PrivateForm(props) {
-  console.log(props);
+  console.log("administration/form || PrivateForm.js | PrivateForm()");
 
   function findFileName(e) {
     setTimeout(() => {
@@ -48,8 +48,7 @@ export default function PrivateForm(props) {
           name="CPR"
           className="cpr"
           label="CPR or equalient"
-          /*      error
-          helperText="Just to remember how" */
+          required
           value={props.cpr}
           onChange={handleCprChange}
         />
@@ -57,6 +56,7 @@ export default function PrivateForm(props) {
       </div>
       <div className="input-wrapper">
         <TextField
+          required
           name="Account"
           className="account"
           label="Account number"
@@ -67,6 +67,7 @@ export default function PrivateForm(props) {
       </div>
       <div className="input-wrapper">
         <TextField
+          required
           name="Street / house number"
           className="address"
           label="Street / house number"
@@ -77,6 +78,7 @@ export default function PrivateForm(props) {
       </div>
       <div className="input-wrapper">
         <TextField
+          required
           name="Postal number"
           type="number"
           className="postal"
@@ -88,6 +90,7 @@ export default function PrivateForm(props) {
       </div>
       <div className="input-wrapper password-safety">
         <TextField
+          required
           name="Password"
           className="password"
           label="Password"
@@ -99,6 +102,7 @@ export default function PrivateForm(props) {
       </div>
       <div className="input-wrapper">
         <TextField
+          required
           name="Education"
           className="education"
           label="Education"
@@ -114,7 +118,7 @@ export default function PrivateForm(props) {
             <button className="upload-image float-btn">
               <PublishRoundedIcon />
             </button>
-            <p>{props.contract ? props.contract : "Upload contract"}</p>
+            <p>{props.contract ? props.contract : "Upload contract*"}</p>
           </div>
           <input id="pdf-upload" type="file" name="image" onChange={findFileName} />
         </label>

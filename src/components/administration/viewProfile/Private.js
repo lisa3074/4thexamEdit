@@ -5,6 +5,7 @@ import VisibilityOffRoundedIcon from "@material-ui/icons/VisibilityOffRounded";
 import VisibilityRoundedIcon from "@material-ui/icons/VisibilityRounded";
 
 export default function Private(props) {
+  console.log("administration/viewProfile || Private.js | Private()");
   return (
     <article className="Private userCard">
       <div className="private-wrapper">

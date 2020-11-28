@@ -10,6 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import Question from "./Question";
 
 const Login = ({ history }) => {
+  console.log("login || Login.js | Login()");
   const [error, setError] = useState([null]);
 
   const handleLogin = useCallback(
@@ -39,10 +40,9 @@ const Login = ({ history }) => {
   }
 
   const handleEmail = (e) => {
-    console.log(e.target.value);
     localStorage.setItem("email", e.target.value);
   };
-  console.log(localStorage);
+  // console.log(localStorage);
 
   return (
     <main className="login-wrapper">

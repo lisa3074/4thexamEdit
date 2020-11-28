@@ -9,8 +9,7 @@ db.settings({ timestampsInSnapshots: true });
 
 //ADMIN-SYS
 export function postUser(payload) {
-  console.log("postUser");
-
+  console.log("jsModules || postData.js | postUser()");
   db.collection("users").add({
     image: payload.image,
     city: payload.city,
@@ -34,6 +33,7 @@ export function postUser(payload) {
 
 //IMAGE
 export function storeImage(file, email, callback, image) {
+  console.log("jsModules || postData.js | storeImage()");
   if (!file && !image) {
     const loader = document.querySelector("#loader");
     loader.value = 100;
@@ -116,8 +116,8 @@ export function storeImage(file, email, callback, image) {
 }
 
 //PLANNER
-export function postCard(data, cards) {
-  console.log("postCard");
+export function postCard(data) {
+  console.log("jsModules || postData.js | postCard()");
 
   db.collection("planner").add({
     title: data.title,

@@ -4,7 +4,7 @@ import picture from "../../../images/placeholder.png";
 import $ from "jquery";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 export default function PersonForm(props) {
-  // console.log(user !== undefined ? user[0].name : "");
+  console.log("administration/form || PersonForm.js | PersonForm()");
 
   const handleName = (e) => {
     console.log(" administration/form || PersonForm.js | handleName()");
@@ -39,11 +39,10 @@ export default function PersonForm(props) {
         document.querySelector(".PersonForm > .upload-wrapper > label > div > p").textContent = fileName;
         props.setImage(fileName ? fileName : "");
         props.setImageFile(file);
-        console.log(fileName);
       }, 100);
     }
   }
-  console.log("uploaded: " + props.uploadedImage, "props:" + props.image, "placeholder: " + picture);
+
   return (
     <fieldset name="Person" className="PersonForm">
       <h2>PERSON</h2>
@@ -58,8 +57,6 @@ export default function PersonForm(props) {
           onFocus={() => {
             props.setFocus(true);
           }}
-          /*      error
-          helperText="Just to remember how" */
           onChange={(e) => {
             handleName(e);
           }}
@@ -106,7 +103,7 @@ export default function PersonForm(props) {
             <button className="upload-image float-btn">
               <PublishRoundedIcon />
             </button>
-            <p>{props.image ? props.image : "Upload image"}</p>
+            <p>{props.image ? "Change your profile picture" : "Upload image"}</p>
           </div>
           <input
             id="file-upload"

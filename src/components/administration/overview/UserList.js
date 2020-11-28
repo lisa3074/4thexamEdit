@@ -1,7 +1,7 @@
 import React from "react";
 import UserCard from "./UserCard";
 export default function UserList(props) {
-  console.log(props.users);
+  console.log("administration/UserList.js || UserList()");
   const mappedUsers = props.users.map((user) => (
     <UserCard key={user.id} signedinUser={props.signedinUser} {...user} setId={props.setId} />
   ));

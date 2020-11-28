@@ -19,21 +19,14 @@ import DeleteModal from "../administration/overview/DeleteModal";
 import { areYouSure } from "../../jsModules/displayFunctions/mainMenuNavigation";
 
 export default function EditForm(props) {
+  console.log("planner || EditForm.js | EditForm()");
   const { users } = props;
-  console.log(users);
-  // console.log("planner/EditForm.js || EditForm()");
-
-  /*   function onClickDelete() {
-    console.log("planner/EditForm.js || cilckOnDelete()");
-    props.deleteCard(props.id);
-  } */
 
   function editTask() {
     console.log("planner/EditForm.js || editTask()");
     popUp("#b" + props.id);
     setUpForm();
   }
-  //  console.log(props);
 
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState({});
@@ -52,25 +45,19 @@ export default function EditForm(props) {
     setColor(props.color);
     setList(props.list);
     setDue(props.due);
-    console.log(props.category);
   }
-  //console.log(`${title} ${category} ${description} ${color} ${assignedTo} ${list}`);
 
   const titleChanged = (e) => {
-    console.log("planner/EditForm.js || titleChanged()");
     setTitle(e.target.value);
   };
 
   const catChanged = (e) => {
-    console.log("planner/EditForm.js || catChanged()");
     setCategory(e.target.innerText);
   };
   const descriptionChanged = (e) => {
-    console.log("planner/EditForm.js || descriptionChanged()");
     setDescription(e.target.value);
   };
   const colorChanged = (option, categories) => {
-    console.log("planner/EditForm.js || colorChanged()");
     let object = categories.filter((entry) => entry.category === option.target.innerText);
     let newColor = object.map((entry) => entry.color);
     setColor((color) => {
@@ -78,13 +65,10 @@ export default function EditForm(props) {
     });
   };
   const listChanged = (e) => {
-    console.log("planner/EditForm.js || listChanged()");
     setList(e.target.value);
   };
   const dueChanged = (e) => {
-    console.log("planner/EditForm.js || dueChanged()");
     setDue(e);
-    console.log(e);
   };
 
   const categories = [
@@ -114,7 +98,6 @@ export default function EditForm(props) {
   function submit(evt) {
     console.log("planner/EditForm.js || submit()");
     evt.preventDefault();
-    console.log(props.header);
     props.editCard(payload, props.id, title, list, assignedTo, color, category, description, due);
     setTitle("");
     setColor("#ffffff");
@@ -135,27 +118,19 @@ export default function EditForm(props) {
   const [correct, setCorrect] = useState("false");
 
   const correctTrue = (e) => {
-    console.log("planner/EditForm.js || correctTrue()");
-    console.log("correctChanged");
     setCorrect(true);
     setTimeout(() => {
       correctFalse();
     }, 3000);
   };
   const correctFalse = (e) => {
-    console.log("planner/EditForm.js || correctFalse()");
-    console.log("correctChanged");
     setCorrect(false);
   };
 
   const titleFocusChanged = (e) => {
-    console.log("planner/EditForm.js || titleFocusChanged()");
-    console.log("focusChanged");
     setTitleFocusOn(true);
   };
   const catFocusChanged = (e) => {
-    console.log("planner/EditForm.js || catFocusChanged()");
-    console.log("catFocusChanged");
     setCatFocusOn(true);
   };
   const titleBorderStyle = {
@@ -212,7 +187,6 @@ export default function EditForm(props) {
                 value={assignedTo}
                 filterSelectedOptions
                 onChange={(e, values) => {
-                  console.log(values);
                   setAssigned(values);
                 }}
                 renderInput={(params) => (

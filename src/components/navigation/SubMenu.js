@@ -21,11 +21,12 @@ import { newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { addTask } from "../planner/modules/mobNavigation";
 
 export default function SubMenu(props) {
+  console.log("navigation || SubMenu.js | SubMenu()");
   const tool = props.tool;
   const endpoint = props.endpoint;
-  console.log(props.edit);
 
   function removeDelete() {
+    console.log("navigation || SubMenu.js | removeDelete()");
     document.querySelectorAll(".modal-wrapper").forEach((modal) => {
       modal.classList.add("hide");
     });
@@ -62,6 +63,7 @@ export default function SubMenu(props) {
           onClick={() => {
             editUser();
             removeDelete();
+            props.editProfile(props.id);
           }}>
           <EditRoundedIcon />
         </div>
@@ -79,7 +81,6 @@ export default function SubMenu(props) {
         className="newUserIcon"
         onClick={() => {
           newUser();
-          console.log("clikec");
         }}>
         <PersonAddRoundedIcon />
       </div>

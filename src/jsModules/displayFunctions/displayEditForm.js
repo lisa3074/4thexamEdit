@@ -1,7 +1,7 @@
-import image from "../../images/lisa2020.jpg";
 import placeholder from "../../images/placeholder.png";
 
 export function editUser() {
+  console.log("jsModules || displayEditForm.js | editUser()");
   const $ = document.querySelector.bind(document);
   $(".UserForm").classList.remove("hide");
   $(".FormPath > h2").textContent = "Edit user";
@@ -14,6 +14,7 @@ export function editUser() {
   $(".previewImg").setAttribute("data-state", "edit");
 }
 export function clearUserForm() {
+  console.log("jsModules || displayEditForm.js | clearUserForm()");
   const $ = document.querySelector.bind(document);
   $(".FormPath > h2").textContent = "Add user";
 
@@ -28,11 +29,12 @@ export function clearUserForm() {
   $(".previewImg").src = placeholder;
   $(".float-btn.three").style.backgroundColor = "var(--tietery)";
   $(".float-btn.two").style.backgroundColor = "var(--tietery)";
-  document.querySelector(".PrivateForm > .upload-wrapper > label > div > p").textContent = "Upload contract";
+  document.querySelector(".PrivateForm > .upload-wrapper > label > div > p").textContent = "Upload contract*";
   document.querySelector(".PersonForm > .upload-wrapper > label > div > p").textContent = "Upload image";
 }
 
 export function newUserResetForm() {
+  console.log("jsModules || displayEditForm.js | newUserResetForm()");
   const $ = document.querySelector.bind(document);
   $(".ViewProfile").classList.add("hide");
   $(".UserList").classList.remove("hide");
@@ -41,6 +43,7 @@ export function newUserResetForm() {
   $(".previewImg").setAttribute("data-state", "");
 }
 export function editUserResetForm() {
+  console.log("jsModules || displayEditForm.js | editUserResetForm()");
   const $ = document.querySelector.bind(document);
   $(".ViewProfile").classList.remove("hide");
   $(".UserList").classList.add("hide");

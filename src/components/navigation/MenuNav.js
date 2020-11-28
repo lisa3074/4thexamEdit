@@ -14,6 +14,7 @@ import {
   scrollToBottom,
 } from "../../jsModules/displayFunctions/mainMenuNavigation";
 export default function MenuNav(props) {
+  console.log("navigation || MenuNav.js | MenuNav()");
   let innerWidth = props.innerWidth;
 
   return (

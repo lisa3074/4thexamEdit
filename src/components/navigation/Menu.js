@@ -3,6 +3,7 @@ import MenuNav from "./MenuNav";
 import Profile from "./Profile";
 
 export default function Menu(props) {
+  console.log("navigation || Menu.js | Menu()");
   return (
     <>
       <nav className={window.innerWidth < 1000 ? "Menu" : "Menu MenuDesktop"}>

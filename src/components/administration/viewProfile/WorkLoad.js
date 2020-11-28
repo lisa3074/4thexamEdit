@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function WorkLoad() {
+  console.log("administration/viewProfile || ViewProfile.js | WorkLoad()");
   return (
     <article className="WorkLoad userCard">
       <h2 className="heading">WORKLOAD</h2>

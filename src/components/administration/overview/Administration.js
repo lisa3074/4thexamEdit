@@ -8,21 +8,22 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Chat from "../../chat/Chat";
 import { getUsers, getSignedinUser } from "../../../jsModules/dbData/getData";
 import { commenceUserLevel } from "../../../jsModules/displayFunctions/commenceUserLevel";
-import { firebaseConfig } from "../../../jsModules/firebase/firebase";
 
 export default function Administration(props) {
-  console.log("administration/Administration.js || Administration.js");
+  console.log("administration/Administration.js || Administration()");
   const [tool, setTool] = useState("");
   const [chosenCat, setChosenCat] = useState(undefined);
   const [chosenEmployee, setChosenEmployee] = useState(undefined);
   const [chosenDivision, setChosenDivision] = useState("");
   const [chosenHours, setChosenHours] = useState("");
   const [search, setSearch] = useState("");
-  //const currentUser = AuthProvider();
   const [users, setUsers] = useState([]);
   const [signedinUser, setSignedinUser] = useState();
   const [id, setId] = useState();
   const [systemPart, setSystemPart] = useState();
+
+  const [chosenUser, setChosenUser] = useState();
+  const [state, setState] = useState();
 
   useEffect(() => {
     getUsers(setUsers);
@@ -36,9 +37,16 @@ export default function Administration(props) {
     }
   }, [signedinUser]);
 
-  console.log(id);
+  /*   console.log(id);
   console.log(localStorage);
-  console.log(signedinUser);
+  console.log(signedinUser); */
+
+  function editProfile(id) {
+    console.log("administration/Administration.js || editProfile()");
+    const user = users.filter((user) => user.id === id);
+    setChosenUser(user);
+    setState("edit");
+  }
 
   return (
     <section className="Administration">
@@ -68,7 +76,12 @@ export default function Administration(props) {
         id={id}
         signedinUser={signedinUser}
         setSystemPart={setSystemPart}
-        systemPart={systemPart}></MainAdmin>
+        systemPart={systemPart}
+        editProfile={editProfile}
+        chosenUser={chosenUser}
+        setChosenUser={setChosenUser}
+        state={state}
+        setState={setState}></MainAdmin>
       <Planner
         chosenCat={chosenCat}
         chosenEmployee={chosenEmployee}
@@ -87,7 +100,8 @@ export default function Administration(props) {
         setChosenEmployee={setChosenEmployee}
         id={id}
         setSystemPart={setSystemPart}
-        systemPart={systemPart}></SubMenu>
+        systemPart={systemPart}
+        editProfile={editProfile}></SubMenu>
     </section>
   );
 }

@@ -11,6 +11,7 @@ import { fetchAll } from "../../jsModules/displayFunctions/subMenuNavigation";
 import ChatNav from "../chat/ChatNav";
 import { chat, scrollToBottom } from "../../jsModules/displayFunctions/mainMenuNavigation";
 export default function TopBar(props) {
+  console.log("navigation || TopBar.js | TopBar()");
   const handleDivision = (event) => {
     props.setChosenDivision(event.target.innerText);
   };

@@ -10,32 +10,26 @@ import FormControl from "@material-ui/core/FormControl";
 import Tooltip from "@material-ui/core/Tooltip";
 
 export default function Card(props) {
-  // console.log("planner/Cards.js || Cards()");
-  console.log(props);
+  console.log("planner || Card.js | Card()");
   const [list, setList] = useState("");
   const listChanged = (e) => {
-    console.log("planner/Cards.js || listChanged()");
     setList(e.target.value);
     onClickMove(e.target.value);
   };
 
   const cardDragged = (e, id) => {
-    console.log("planner/Cards.js || cardDragged()");
     e.preventDefault();
     setList(props.dropList);
     dragMove(id, props.dropList);
   };
 
   function onClickMove(list) {
-    console.log("planner/Cards.js || onClickMove()");
     props.dragCard({ id: props.id, list: list, timeStamp: Date.now() }, props.id);
   }
   function dragMove(id, list) {
-    console.log("planner/Cards.js || dragMove()");
     props.dragCard({ id: id, list: list, timeStamp: Date.now() }, id);
   }
   function clickOnCard() {
-    console.log("planner/Cards.js || clickOnCard()");
     closeExpand(props.id);
     expand(props.id);
   }

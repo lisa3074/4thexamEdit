@@ -4,6 +4,7 @@ import MessageBoard from "./MessageBoard";
 import NewMessage from "./NewMessage";
 
 export default function Chat() {
+  console.log("chat || Chat.js | Chat()");
   const messages = [
     { name: "Lisa Søndergaard", message: "Hej med jer!", date: "20-11-2020", img: "image", id: "1", time: "11.56 AM" },
     {

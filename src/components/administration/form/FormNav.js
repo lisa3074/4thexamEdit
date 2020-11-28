@@ -7,6 +7,7 @@ import { forwards } from "../../../jsModules/displayFunctions/formNavigation";
 import { backwards } from "../../../jsModules/displayFunctions/formNavigation";
 
 export default function FormNav(props) {
+  console.log("administration/form || FormNav.js | FormNav()");
   return (
     <nav className="FormNav">
       <div
@@ -22,7 +23,12 @@ export default function FormNav(props) {
       <div className="float-btn back hide" onClick={backwards}>
         <ArrowBackRoundedIcon />
       </div>
-      <button className="float-btn check hide" onClick={props.submit}>
+      <button
+        type="submit"
+        className="float-btn check hide"
+        onClick={(e) => {
+          props.submit(e);
+        }}>
         <CheckRoundedIcon />
       </button>
     </nav>

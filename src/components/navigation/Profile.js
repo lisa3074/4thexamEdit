@@ -4,6 +4,7 @@ import { whichUser } from "../../jsModules/displayFunctions/commenceUserLevel";
 import { displayProfile } from "../../jsModules/displayFunctions/displayProfile";
 
 export default function Profile(props) {
+  console.log("navigation || Profile.js | Profile()");
   const name = props.signedinUser ? props.signedinUser[0].name : "";
   const firstSpace = name.indexOf(" ");
   const firstName = name.substring(0, firstSpace + 1);

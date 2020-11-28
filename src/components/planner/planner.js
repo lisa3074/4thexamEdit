@@ -18,35 +18,34 @@ import "../../sass/scss/planner/animations.scss";
 import "../../sass/scss/planner/navigation.scss";
 
 export default function Planner(props) {
-  console.log("planner/Planner.js || Planner()");
+  console.log("planner || Planner.js | Planner()");
   const [cards, setCards] = useState([]);
   scroll();
 
   //RestDb.function is a function imported from the restdb.js module
   async function onFormSubmit(data) {
-    console.log("planner/Planner.js || onFormSubmit()");
+    console.log("planner || Planner.js | onFormSubmit()");
     postCard(data, cards);
   }
   async function deleteCard(id) {
-    console.log("planner/Planner.js || deleteCard()");
+    console.log("planne || Planner.js | deleteCard()");
     deleteACard(id);
   }
 
   async function moveCard(payload, id) {
-    console.log("planner/Planner.js || moveCard()");
+    console.log("planner || Planner.js | moveCard()");
     dragACard(payload, id);
   }
   async function dragCard(payload, id) {
-    console.log("planner/Planner.js || dragCard()");
+    console.log("planner || Planner.js | dragCard()");
     dragACard(payload, id);
   }
   async function editCard(payload) {
-    console.log(payload);
+    console.log("planner || Planner.js | editCard()");
     editACard(payload);
   }
   useEffect(() => {
     getCards(setCards);
-    console.log(cards);
   }, []);
 
   if (cards.length === 0) {

@@ -3,11 +3,10 @@ import React from "react";
 import { displayProfile, setSubmMenu } from "../../../jsModules/displayFunctions/displayProfile";
 import { whichUser } from "../../../jsModules/displayFunctions/commenceUserLevel";
 export default function UserCard(props) {
+  console.log("administration/UserCard.js || UserCard()");
   function detectId(e) {
-    console.log(e.target.parentNode.dataset.user);
     const userId = e.target.parentNode.dataset.user;
     displayProfile(userId);
-    console.log(userId);
     whichUser(e, userId, props.signedinUser ? props.signedinUser[0].userLevel : "");
     setSubmMenu();
     props.setId(userId);
