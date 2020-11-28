@@ -8,6 +8,8 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Chat from "../../chat/Chat";
 import { getUsers, getSignedinUser } from "../../../jsModules/dbData/getData";
 import { commenceUserLevel } from "../../../jsModules/displayFunctions/commenceUserLevel";
+import { scrollToBottom } from "../../../jsModules/displayFunctions/mainMenuNavigation";
+import { getMessages } from "../../../jsModules/dbData/getData";
 
 export default function Administration(props) {
   console.log("administration/Administration.js || Administration()");
@@ -21,13 +23,19 @@ export default function Administration(props) {
   const [signedinUser, setSignedinUser] = useState();
   const [id, setId] = useState();
   const [systemPart, setSystemPart] = useState();
-
+  const [messages, setMessages] = useState();
   const [chosenUser, setChosenUser] = useState();
   const [state, setState] = useState();
 
   useEffect(() => {
     getUsers(setUsers);
   }, []);
+  useEffect(() => {
+    getMessages(setMessages);
+  }, [signedinUser]);
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
   useEffect(() => {
     getSignedinUser(setSignedinUser, localStorage.email);
   }, []);
@@ -91,7 +99,7 @@ export default function Administration(props) {
         setSystemPart={setSystemPart}
         systemPart={systemPart}
       />
-      <Chat />
+      <Chat signedinUser={signedinUser} users={users} messages={messages} />
 
       <SubMenu
         endpoint={props.endpoint}

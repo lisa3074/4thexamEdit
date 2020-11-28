@@ -1,19 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ChatNav from "./ChatNav";
 import MessageBoard from "./MessageBoard";
 import NewMessage from "./NewMessage";
+import { getMessages } from "../../jsModules/dbData/getData";
 
-export default function Chat() {
+export default function Chat(props) {
   console.log("chat || Chat.js | Chat()");
-  const messages = [
-    { name: "Lisa Søndergaard", message: "Hej med jer!", date: "20-11-2020", img: "image", id: "1", time: "11.56 AM" },
+  /* const [messages, setMessages] = useState(); */
+  const { signedinUser } = props;
+  //console.log(props.signedInUser);
+  /*   useEffect(() => {
+    getMessages(setMessages);
+  }, [signedinUser]); */
+
+  console.log(signedinUser);
+  /* const messages1 = [
+    { name: "Lisa Søndergaard", message: "Hej med jer!", date: "20-11-2020", img: "image", id: "1" },
     {
       name: "Anja Andersen",
       message: "Hvem er på arbejde i dag?",
-      date: "20-11-2020",
+      date: "1606392346268",
       img: "image",
       id: "2",
-      time: "08.46 AM",
     },
     {
       name: "Lisa Søndergaard",
@@ -21,7 +29,6 @@ export default function Chat() {
       date: "20-11-2020",
       img: "image",
       id: "3",
-      time: "08.50 AM",
     },
     {
       name: "Bob hund",
@@ -29,7 +36,6 @@ export default function Chat() {
       date: "20-11-2020",
       img: "image",
       id: "4",
-      time: "08.51 AM",
     },
     {
       name: "Anja Andersen",
@@ -38,7 +44,6 @@ export default function Chat() {
       date: "20-11-2020",
       img: "image",
       id: "5",
-      time: "09.15 AM",
     },
     { name: "Bob Hund", message: "Ja man har sgu da aldrig fri.", date: "20-11-2020", img: "image", id: "6" },
     {
@@ -47,7 +52,6 @@ export default function Chat() {
       date: "20-11-2020",
       img: "image",
       id: "7",
-      time: "09.30 AM",
     },
     {
       name: "Lisa Søndergaard",
@@ -55,17 +59,16 @@ export default function Chat() {
       date: "20-11-2020",
       img: "image",
       id: "8",
-      time: "11.56 AM",
     },
-    { name: "Mikkel Hansen", message: "Jeg er her også!", date: "20-11-2020", img: "image", id: "9", time: "01.34 PM" },
-    { name: "Rune Jensen", message: "Super!", date: "20-11-2020", img: "image", id: "10", time: "04.17 PM" },
-  ];
+    { name: "Mikkel Hansen", message: "Jeg er her også!", date: "20-11-2020", img: "image", id: "9" },
+    { name: "Rune Jensen", message: "Super!", date: "20-11-2020", img: "image", id: "10" },
+  ]; */
 
   return (
     <main className="Chat hide">
       <div className="chat-wrapper">
         <ChatNav />
-        <MessageBoard messages={messages} />
+        <MessageBoard messages={props.messages} users={props.users} signedinUser={signedinUser} />
         <NewMessage />
       </div>
     </main>

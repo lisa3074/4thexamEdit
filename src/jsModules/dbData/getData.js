@@ -55,3 +55,20 @@ export function getCards(callback) {
     });
   return () => unsubsribe();
 }
+//CHAT
+export function getMessages(callback) {
+  console.log("jsModules || getData.js | getMessages()");
+  const unsubsribe = db
+    .collection("chat")
+    .orderBy("date")
+    .onSnapshot((snapshot) => {
+      const messages = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      console.log(messages);
+
+      callback(messages);
+    });
+  return () => unsubsribe();
+}

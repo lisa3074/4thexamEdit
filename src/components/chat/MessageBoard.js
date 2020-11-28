@@ -2,7 +2,12 @@ import React from "react";
 import Message from "./Message";
 export default function MessageBoard(props) {
   console.log("chat || MessageBoard.js | MessageBoard()");
-  const mappedMessages = props.messages.map((message) => <Message key={message.id} {...message} />);
+
+  const mappedMessages = props.messages
+    ? props.messages.map((message) => (
+        <Message key={message.id} {...message} signedinUser={props.signedinUser} users={props.users} />
+      ))
+    : [];
 
   return (
     <article className="MessageBoard">
