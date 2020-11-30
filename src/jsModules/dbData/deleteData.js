@@ -16,3 +16,9 @@ export function deleteACard(id) {
   console.log(id);
   db.collection("planner").doc(id).delete();
 }
+//CHAT
+export function deleteAMessage(id) {
+  console.log("jsModules || deleteData.js | deleteAMessage()");
+  console.log(id);
+  db.collection("chat").doc(id).delete();
+}

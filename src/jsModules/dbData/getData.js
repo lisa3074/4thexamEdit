@@ -60,7 +60,7 @@ export function getMessages(callback) {
   console.log("jsModules || getData.js | getMessages()");
   const unsubsribe = db
     .collection("chat")
-    .orderBy("date")
+    .orderBy("date", "asc")
     .onSnapshot((snapshot) => {
       const messages = snapshot.docs.map((doc) => ({
         id: doc.id,

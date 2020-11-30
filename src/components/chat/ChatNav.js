@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
@@ -7,18 +7,22 @@ import Grid from "@material-ui/core/Grid";
 import { showMenu, sortByDate } from "../../jsModules/displayFunctions/subMenuNavigation";
 import DateRangeRoundedIcon from "@material-ui/icons/DateRangeRounded";
 import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
+import { scrollToBottom } from "../../jsModules/displayFunctions/mainMenuNavigation";
 
-import { fetchAll } from "../../jsModules/displayFunctions/subMenuNavigation";
 var dayjs = require("dayjs");
 var customParseFormat = require("dayjs/plugin/customParseFormat");
 dayjs.extend(customParseFormat);
 
-export default function ChatNav() {
+export default function ChatNav(props) {
   console.log("chat || ChatNav.js | ChatNav()");
-  let [date, setDate] = useState(new Date());
+
+  const { setSortDate } = props;
+  console.log(setSortDate);
   const dateChanged = (e) => {
-    setDate(e);
+    setSortDate(e.toString().substring(0, 15));
+    scrollToBottom();
   };
+
   return (
     <nav className="ChatNav">
       <div className="nav-wrapper">
@@ -33,7 +37,7 @@ export default function ChatNav() {
                 variant="inline"
                 format="MMMM do, yyyy"
                 margin="normal"
-                value={date}
+                value={props.sortDate}
                 className="date"
                 onChange={dateChanged}
                 name="Date"
@@ -47,8 +51,13 @@ export default function ChatNav() {
             </Grid>
           </MuiPickersUtilsProvider>
         </button>
-        <div className="float-btn all">
-          {/*   <p>All</p> */}
+        <div
+          className="float-btn all"
+          onClick={() => {
+            console.log("clicked");
+            setSortDate();
+            scrollToBottom();
+          }}>
           <AllInclusiveIcon />
         </div>
       </div>

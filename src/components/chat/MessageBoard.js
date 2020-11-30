@@ -5,7 +5,14 @@ export default function MessageBoard(props) {
 
   const mappedMessages = props.messages
     ? props.messages.map((message) => (
-        <Message key={message.id} {...message} signedinUser={props.signedinUser} users={props.users} />
+        <Message
+          key={message.id}
+          {...message}
+          id={message.id}
+          signedinUser={props.signedinUser}
+          users={props.users}
+          setEditMessage={props.setEditMessage}
+        />
       ))
     : [];
 

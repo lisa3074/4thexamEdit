@@ -31,6 +31,35 @@ export function postUser(payload) {
   });
 }
 
+//PLANNER
+export function postCard(data) {
+  console.log("jsModules || postData.js | postCard()");
+
+  db.collection("planner").add({
+    title: data.title,
+    list: data.list,
+    added: Date.now(),
+    assignedTo: data.assignedTo,
+    color: data.color,
+    category: data.category,
+    description: data.description,
+    due: data.due,
+    timeStamp: Date.now(),
+  });
+}
+//PLANNER
+export function postMessage(message, user) {
+  console.log("jsModules || postData.js | postMessage()");
+
+  db.collection("chat").add({
+    date: Date.now(),
+    message: message,
+    name: user,
+  });
+
+  console.log(message, user, Date.now());
+}
+
 //IMAGE
 export function storeImage(file, email, callback, image) {
   console.log("jsModules || postData.js | storeImage()");
@@ -113,21 +142,4 @@ export function storeImage(file, email, callback, image) {
       }, 1000);
     }
   }
-}
-
-//PLANNER
-export function postCard(data) {
-  console.log("jsModules || postData.js | postCard()");
-
-  db.collection("planner").add({
-    title: data.title,
-    list: data.list,
-    added: Date.now(),
-    assignedTo: data.assignedTo,
-    color: data.color,
-    category: data.category,
-    description: data.description,
-    due: data.due,
-    timeStamp: Date.now(),
-  });
 }

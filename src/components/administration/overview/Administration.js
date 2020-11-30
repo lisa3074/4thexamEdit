@@ -28,6 +28,7 @@ export default function Administration(props) {
   const [level, setLevel] = useState();
   const [viewingProfile, setViewingProfile] = useState(false);
   const [isUSerProfile, setisUSerProfile] = useState(false);
+  const [sortDate, setSortDate] = useState(new Date());
 
   useEffect(() => {
     getUsers(setUsers);
@@ -74,7 +75,9 @@ export default function Administration(props) {
         setSearch={setSearch}
         level={level}
         setTool={setTool}
-        viewingProfile={viewingProfile}></TopBar>
+        viewingProfile={viewingProfile}
+        setSortDate={setSortDate}
+        sortDate={sortDate}></TopBar>
       <Menu
         setEndpoint={props.setEndpoint}
         setTool={setTool}
@@ -114,7 +117,13 @@ export default function Administration(props) {
         setSystemPart={setSystemPart}
         systemPart={systemPart}
       />
-      <Chat signedinUser={signedinUser} users={users} messages={messages} />
+      <Chat
+        signedinUser={signedinUser}
+        users={users}
+        messages={messages}
+        setSortDate={setSortDate}
+        sortDate={sortDate}
+      />
 
       <SubMenu
         endpoint={props.endpoint}

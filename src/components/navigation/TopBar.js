@@ -7,7 +7,6 @@ import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { addTask } from "../planner/modules/mobNavigation";
-import { fetchAll } from "../../jsModules/displayFunctions/subMenuNavigation";
 import ChatNav from "../chat/ChatNav";
 import { chat, scrollToBottom, newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 export default function TopBar(props) {
@@ -164,13 +163,16 @@ export default function TopBar(props) {
       </div>
       <div className="chat-top hide">
         <div className="grid-wrapper">
-          <h2 className="sorted">Sorted by</h2>
           <div className="filter-wrapper">
-            <ChatNav />
+            <ChatNav setSortDate={props.setSortDate} sortDate={props.sortDate} />
           </div>
 
-          <div className="float-btn all" onClick={fetchAll}>
-            {/*   <p>All</p> */}
+          <div
+            className="float-btn all"
+            onClick={() => {
+              props.setSortDate();
+              scrollToBottom();
+            }}>
             <AllInclusiveIcon />
           </div>
         </div>

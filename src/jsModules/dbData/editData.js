@@ -49,4 +49,13 @@ export function dragACard(payload, id) {
     id: payload.id,
     list: payload.list,
   });
+} //CHAT
+export function editAMessage(payload) {
+  console.log("jsModules || editData.js | dragACard()");
+  db.collection("chat").doc(payload.id).update({
+    id: payload.id,
+    message: payload.message,
+    name: payload.name,
+    date: payload.date,
+  });
 }
