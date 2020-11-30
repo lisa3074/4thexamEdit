@@ -1,13 +1,16 @@
 import React from "react";
 
 import { displayProfile, setSubmMenu } from "../../../jsModules/displayFunctions/displayProfile";
-import { whichUser } from "../../../jsModules/displayFunctions/commenceUserLevel";
+
 export default function UserCard(props) {
   console.log("administration/UserCard.js || UserCard()");
   function detectId(e) {
     const userId = e.target.parentNode.dataset.user;
+    viewUser(e, userId);
+  }
+  function viewUser(e, userId) {
+    console.log(e, userId);
     displayProfile(userId);
-    whichUser(e, userId, props.signedinUser ? props.signedinUser[0].userLevel : "");
     setSubmMenu();
     props.setId(userId);
   }
@@ -16,7 +19,12 @@ export default function UserCard(props) {
   const lastSpace = props.name.lastIndexOf(" ");
   const lastName = props.name.substring(lastSpace);
   return (
-    <article className="UserCard" data-user={props.id}>
+    <article
+      className="UserCard"
+      data-user={props.id}
+      onClick={(e) => {
+        viewUser(e, props.id);
+      }}>
       <img src={props.image} alt="" />
       <div className="info-container">
         <div className="info-wrapper">
@@ -32,7 +40,12 @@ export default function UserCard(props) {
           <p className="usercard division">{props.division}</p>
         </div>
       </div>
-      <button className="usercard btn primary text-btn" onClick={(e) => detectId(e)}>
+      <button
+        className="usercard btn primary text-btn"
+        onClick={(e) => {
+          detectId(e);
+          props.setViewingProfile(true);
+        }}>
         View
       </button>
     </article>

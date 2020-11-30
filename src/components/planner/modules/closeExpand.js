@@ -20,7 +20,7 @@ export function closeExpand(theId) {
       }
     });
 
-    document.querySelectorAll(".assignedTo+.MuiFormControl-root").forEach((select) => {
+    document.querySelectorAll(".pic-wrapper+.MuiFormControl-root").forEach((select) => {
       if (!select.parentNode.parentNode.classList.contains(theIdClass)) {
         select.classList.add("hide");
       }

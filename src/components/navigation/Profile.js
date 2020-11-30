@@ -1,6 +1,6 @@
 import React from "react";
 import image from "../../images/placeholder.png";
-import { whichUser } from "../../jsModules/displayFunctions/commenceUserLevel";
+/* import { whichUser } from "../../jsModules/displayFunctions/commenceUserLevel"; */
 import { displayProfile } from "../../jsModules/displayFunctions/displayProfile";
 
 export default function Profile(props) {
@@ -23,7 +23,7 @@ export default function Profile(props) {
         onClick={(e) => {
           displayProfile(props.signedinUser ? props.signedinUser[0].id : "");
           props.setId(props.signedinUser ? props.signedinUser[0].id : "");
-          whichUser(e, props.signedinUser ? props.signedinUser[0].id : "");
+          props.setisUSerProfile(true);
         }}>
         Edit profile
       </button>

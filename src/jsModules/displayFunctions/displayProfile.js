@@ -3,6 +3,12 @@ export function displayProfile(userId) {
   document.querySelector(".ViewProfile").classList.remove("hide");
   document.querySelector(".ViewProfile").setAttribute("data-user", userId);
   document.querySelector(".UserList").classList.add("hide");
+  if (window.innerWidth < 1000) {
+    document.querySelector(".Menu").classList.add("hide");
+    document.querySelector(".MainAdmin").classList.remove("hide");
+    document.querySelector(".SubMenu").classList.remove("hide");
+    setSubmMenu();
+  }
 }
 export function hidePrivateInfo() {
   console.log("jsModules || displayProfile.js | hidePrivateInfo()");

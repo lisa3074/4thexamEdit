@@ -9,7 +9,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { addTask } from "../planner/modules/mobNavigation";
 import { fetchAll } from "../../jsModules/displayFunctions/subMenuNavigation";
 import ChatNav from "../chat/ChatNav";
-import { chat, scrollToBottom } from "../../jsModules/displayFunctions/mainMenuNavigation";
+import { chat, scrollToBottom, newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 export default function TopBar(props) {
   console.log("navigation || TopBar.js | TopBar()");
   const handleDivision = (event) => {
@@ -58,7 +58,7 @@ export default function TopBar(props) {
   return (
     <nav className="TopBar">
       <div className="admin-top">
-        <div className="grid-wrapper">
+        <div className={props.level === "Administrator" ? "grid-wrapper" : "grid-wrapper noNewUser"}>
           <h2 className="sorted">Sorted by</h2>
           <div className="filter-wrapper">
             <Autocomplete
@@ -66,6 +66,7 @@ export default function TopBar(props) {
               className="division"
               label="Division"
               required
+              disabled={props.viewingProfile ? true : false}
               options={divisions}
               getOptionLabel={(option) => (option ? option : "")}
               getOptionSelected={(option, value) => option === value}
@@ -80,6 +81,7 @@ export default function TopBar(props) {
               className="hours"
               label="Work hours"
               required
+              disabled={props.viewingProfile ? true : false}
               options={workHours}
               getOptionLabel={(option) => (option ? option : "")}
               getOptionSelected={(option, value) => option === value}
@@ -90,11 +92,23 @@ export default function TopBar(props) {
             />
           </div>
           <div className="input-wrapper">
-            <TextField name="Position" className="searchUsers" label="Search" onChange={handleSearch} />
+            <TextField
+              name="Position"
+              className="searchUsers"
+              label="Search"
+              onChange={handleSearch}
+              disabled={props.viewingProfile ? true : false}
+            />
             <SearchRoundedIcon className="search-icon" />
           </div>
 
-          <PersonAddRoundedIcon className="add-user admin" />
+          <PersonAddRoundedIcon
+            className={props.level === "Administrator" ? "add-user" : "add-user hiddenFromUser"}
+            onClick={() => {
+              newUser();
+              props.setTool("admin");
+            }}
+          />
           <div
             className="float-btn"
             onClick={() => {

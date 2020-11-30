@@ -31,6 +31,12 @@ export default function SubMenu(props) {
       modal.classList.add("hide");
     });
   }
+
+  const person = document.querySelector(".Person");
+  /* const isProfileShown = */
+  /*   person != (undefined && null) ? (person.classList.contains("hide") ? false : true) : console.log("nothing"); */
+  const isPrivateShown = document.querySelector(".Person");
+
   return (
     <nav className="SubMenu hide">
       <div
@@ -47,10 +53,19 @@ export default function SubMenu(props) {
         onClick={() => {
           delegation(tool);
           removeDelete();
+          props.setViewingProfile(false);
+          props.setisUSerProfile(false);
         }}>
         <ArrowBackIosRoundedIcon />
       </div>
-      <div className="float-btn">
+      <div
+        className={
+          props.level === "Administrator" || props.isUSerProfile
+            ? "float-btn"
+            : props.level !== "Administrator" && props.viewingProfile
+            ? "float-btn hiddenFromUser"
+            : "float-btn"
+        }>
         <div
           className="menuSearch"
           onClick={() => {
@@ -60,7 +75,7 @@ export default function SubMenu(props) {
         </div>
         <div
           className="menuEdit hide"
-          onClick={() => {
+          onClick={(e) => {
             editUser();
             removeDelete();
             props.editProfile(props.id);
@@ -78,14 +93,14 @@ export default function SubMenu(props) {
         </div>
       </div>
       <div
-        className="newUserIcon"
+        className={props.level === "Administrator" ? "newUserIcon" : "newUserIcon hiddenFromUser"}
         onClick={() => {
           newUser();
         }}>
         <PersonAddRoundedIcon />
       </div>
       <div
-        className="menuDelete hide"
+        className={props.level === "Administrator" ? "menuDelete hide" : "menuDelete hide hiddenFromUser"}
         onClick={() => {
           areYouSure();
           props.setSystemPart("admin");

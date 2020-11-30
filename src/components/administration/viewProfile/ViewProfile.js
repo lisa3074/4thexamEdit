@@ -14,10 +14,20 @@ import { showCardList } from "../../../jsModules/displayFunctions/subMenuNavigat
 export default function ViewProfile(props) {
   console.log("administration/viewProfile || ViewProfile.js | ViewProfile()");
 
-  const mappedPerson = props.user.map((user) => <Person key={user.id} {...user} />);
+  const mappedPerson = props.user.map((user) => (
+    <Person
+      key={user.id}
+      {...user}
+      editProfile={props.editProfile}
+      level={props.level}
+      isUSerProfile={props.isUSerProfile}
+    />
+  ));
   const mappedWork = props.user.map((user) => <Work key={user.id} {...user} />);
   const mappedContact = props.user.map((user) => <Contact key={user.id} {...user} />);
-  const mappedPrivate = props.user.map((user) => <Private key={user.id} {...user} />);
+  const mappedPrivate = props.user.map((user) => (
+    <Private key={user.id} {...user} level={props.level} isUSerProfile={props.isUSerProfile} />
+  ));
 
   async function deleteProfile(id) {
     console.log("administration/viewProfile || ViewProfile.js | deleteProfile()");
@@ -34,10 +44,16 @@ export default function ViewProfile(props) {
       <ul className="viewWork">{mappedWork}</ul>
       <ul className="viewContact">{mappedContact}</ul>
       <WorkLoad users={props.users.filter((person) => person.id === props.id)} />
-      <ul className="viewPrivate admin">{mappedPrivate}</ul>
+      <ul className="viewPrivate">{mappedPrivate}</ul>
 
       <div className="empty"></div>
-      <ProfileNav id={props.id} editProfile={props.editProfile} setSystemPart={props.setSystemPart} />
+      <ProfileNav
+        id={props.id}
+        editProfile={props.editProfile}
+        setSystemPart={props.setSystemPart}
+        level={props.level}
+        isUSerProfile={props.isUSerProfile}
+      />
       <UserForm
         chosenUser={props.chosenUser}
         setChosenUser={props.setChosenUser}

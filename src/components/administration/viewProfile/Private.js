@@ -7,7 +7,14 @@ import VisibilityRoundedIcon from "@material-ui/icons/VisibilityRounded";
 export default function Private(props) {
   console.log("administration/viewProfile || Private.js | Private()");
   return (
-    <article className="Private userCard">
+    <article
+      className={
+        props.level === "Administrator"
+          ? "Private userCard"
+          : props.isUSerProfile
+          ? "Private userCard"
+          : "Private usercard hiddenFromUser"
+      }>
       <div className="private-wrapper">
         <div className="heading heading-wrapper">
           <div className="visibilityOff" onClick={hidePrivateInfo}>

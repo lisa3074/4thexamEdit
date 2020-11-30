@@ -11,6 +11,7 @@ import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 import { popUp } from "./modules/editPopup";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
+
 import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
@@ -262,7 +263,11 @@ export default function EditForm(props) {
                 <button style={disabled} className="float-btn save">
                   <CheckRoundedIcon />
                 </button>
-                <div className="float-btn cancel" onClick={() => close("#b" + props.id)}>
+                <div
+                  className="float-btn cancel"
+                  onClick={() => {
+                    close("#b" + props.id);
+                  }}>
                   <CloseRoundedIcon />
                 </div>
               </div>

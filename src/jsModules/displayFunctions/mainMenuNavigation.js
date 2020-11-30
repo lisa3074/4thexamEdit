@@ -66,9 +66,14 @@ export function newUser() {
   document.querySelector(".ViewProfile .UserForm").classList.remove("hide");
   document.querySelector(".UserForm").setAttribute("data-state", "new");
   document.querySelector(".previewImg").setAttribute("data-state", "new");
+  document.querySelector(".MainAdmin").classList.remove("hide");
+  document.querySelector(".Chat").classList.add("hide");
+  document.querySelector(".admin-top").classList.remove("hide");
+  document.querySelector(".Planner").classList.add("hide");
+  document.querySelector(".planner-top").classList.add("hide");
+  document.querySelector(".chat-top").classList.add("hide");
   if (window.innerWidth < 1000) {
     document.querySelector(".Menu").classList.add("hide");
-    document.querySelector(".MainAdmin").classList.remove("hide");
   }
 }
 

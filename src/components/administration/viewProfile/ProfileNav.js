@@ -10,8 +10,15 @@ export default function ProfileNav(props) {
   console.log("administration/viewProfile || ProfileNav.js | ProfileNav()");
 
   return (
-    <div className="ProfileNav admin">
-      <div className="float-btn delete">
+    <div
+      className={
+        props.level === "Administrator"
+          ? "ProfileNav"
+          : props.isUSerProfile
+          ? "ProfileNav"
+          : "ProfileNav hiddenFromUser"
+      }>
+      <div className={props.level === "Administrator" ? "float-btn delete" : "float-btn delete hiddenFromUser"}>
         <DeleteRoundedIcon
           onClick={() => {
             areYouSure();

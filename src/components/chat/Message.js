@@ -20,9 +20,9 @@ export default function Message(props) {
       : console.log("no sending user yet");
   }, [sendingUser]);
 
-  console.log(sendingUser);
+  /*   console.log(sendingUser);
   console.log(signedinUser);
-  console.log(profilePic);
+  console.log(profilePic); */
 
   /* (
       <div key={user.id}>

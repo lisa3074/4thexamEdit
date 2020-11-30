@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { expand } from "../planner/modules/expand";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -244,7 +245,12 @@ export default function NewTask(props) {
           <button style={disabled} className="float-btn save">
             <CheckRoundedIcon />
           </button>
-          <div className="float-btn cancel" onClick={closeNewTask}>
+          <div
+            className="float-btn cancel"
+            onClick={() => {
+              closeNewTask();
+              /*    expand("1"); */
+            }}>
             <CloseRoundedIcon />
           </div>
         </div>

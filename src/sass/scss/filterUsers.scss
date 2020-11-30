@@ -72,11 +72,22 @@
     transform: translate(0px, -20000px) scale(0.75);
   }
   .TopBar {
+    .filter-wrapper,
+    .input-wrapper {
+      .Mui-disabled,
+      svg {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .TopBar {
     padding: 1rem 2rem 0;
     .admin-top,
     .planner-top {
       height: 100%;
     }
+
     .grid-wrapper {
       display: grid;
       grid-template-areas: "sorted filter . search add chat";
@@ -97,6 +108,10 @@
       .filter-wrapper,
       .input-wrapper {
         transform: translateY(-10px);
+      }
+      .MuiAutocomplete-endAdornment svg.MuiSvgIcon-root.MuiSvgIcon-fontSizeSmall {
+        fill: var(--orange);
+        stroke: var(--orange);
       }
       svg {
         fill: var(--tietery);
@@ -128,6 +143,10 @@
       .add-task {
         transform: translateY(-7px);
       }
+    }
+    .grid-wrapper.noNewUser {
+      grid-template-areas: "sorted filter . search chat";
+      grid-template-columns: 6rem 20rem auto 20rem 50px;
     }
     .planner-top .grid-wrapper {
       .select:nth-child(1) {

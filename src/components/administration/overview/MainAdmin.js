@@ -13,6 +13,7 @@ export default function MainAdmin(props) {
         setSearch={props.setSearch}></FilterUsers>
       <UserList
         setId={props.setId}
+        setViewingProfile={props.setViewingProfile}
         signedinUser={props.signedinUser}
         users={
           props.chosenHours !== (undefined && "") &&
@@ -47,6 +48,8 @@ export default function MainAdmin(props) {
         setChosenUser={props.setChosenUser}
         state={props.state}
         setState={props.setState}
+        level={props.level}
+        isUSerProfile={props.isUSerProfile}
       />
     </main>
   );

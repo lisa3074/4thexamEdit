@@ -7,7 +7,6 @@ import Planner from "../../planner/Planner";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Chat from "../../chat/Chat";
 import { getUsers, getSignedinUser } from "../../../jsModules/dbData/getData";
-import { commenceUserLevel } from "../../../jsModules/displayFunctions/commenceUserLevel";
 import { scrollToBottom } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 import { getMessages } from "../../../jsModules/dbData/getData";
 
@@ -26,6 +25,9 @@ export default function Administration(props) {
   const [messages, setMessages] = useState();
   const [chosenUser, setChosenUser] = useState();
   const [state, setState] = useState();
+  const [level, setLevel] = useState();
+  const [viewingProfile, setViewingProfile] = useState(false);
+  const [isUSerProfile, setisUSerProfile] = useState(false);
 
   useEffect(() => {
     getUsers(setUsers);
@@ -41,10 +43,10 @@ export default function Administration(props) {
   }, []);
   useEffect(() => {
     if (signedinUser) {
-      commenceUserLevel(signedinUser[0].userLevel, signedinUser[0].id);
+      setLevel(signedinUser[0].userLevel);
     }
   }, [signedinUser]);
-
+  console.log(viewingProfile);
   /*   console.log(id);
   console.log(localStorage);
   console.log(signedinUser); */
@@ -69,8 +71,18 @@ export default function Administration(props) {
         setChosenEmployee={setChosenEmployee}
         setChosenDivision={setChosenDivision}
         setChosenHours={setChosenHours}
-        setSearch={setSearch}></TopBar>
-      <Menu setEndpoint={props.setEndpoint} setTool={setTool} signedinUser={signedinUser} setId={setId}></Menu>
+        setSearch={setSearch}
+        level={level}
+        setTool={setTool}
+        viewingProfile={viewingProfile}></TopBar>
+      <Menu
+        setEndpoint={props.setEndpoint}
+        setTool={setTool}
+        signedinUser={signedinUser}
+        setId={setId}
+        level={level}
+        setisUSerProfile={setisUSerProfile}
+        setViewingProfile={setViewingProfile}></Menu>
       <MainAdmin
         setChosenDivision={setChosenDivision}
         setChosenHours={setChosenHours}
@@ -89,7 +101,10 @@ export default function Administration(props) {
         chosenUser={chosenUser}
         setChosenUser={setChosenUser}
         state={state}
-        setState={setState}></MainAdmin>
+        setState={setState}
+        setViewingProfile={setViewingProfile}
+        level={level}
+        isUSerProfile={isUSerProfile}></MainAdmin>
       <Planner
         chosenCat={chosenCat}
         chosenEmployee={chosenEmployee}
@@ -109,7 +124,12 @@ export default function Administration(props) {
         id={id}
         setSystemPart={setSystemPart}
         systemPart={systemPart}
-        editProfile={editProfile}></SubMenu>
+        editProfile={editProfile}
+        level={level}
+        viewingProfile={viewingProfile}
+        setViewingProfile={setViewingProfile}
+        isUSerProfile={props.isUSerProfile}
+        setisUSerProfile={setisUSerProfile}></SubMenu>
     </section>
   );
 }

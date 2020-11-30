@@ -212,6 +212,19 @@ span.MuiFormLabel-asterisk.Mui-error,
 .TopBar {
   display: none;
 }
+
+.hiddenFromUser {
+  display: none;
+}
+
+.MenuNav li.hiddenFromUser {
+  display: none;
+}
+
+.MuiSvgIcon-root.hiddenFromUser {
+  display: none;
+}
+
 @media (min-width: 1000px) {
   .SubMenu {
     display: none;

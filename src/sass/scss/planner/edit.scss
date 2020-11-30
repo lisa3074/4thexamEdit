@@ -33,7 +33,13 @@
       width: 100%;
     }
   }
-
+  .MuiInputBase-root.MuiInput-root.MuiInput-underline.MuiAutocomplete-inputRoot.MuiInputBase-fullWidth.MuiInput-fullWidth.MuiInputBase-formControl.MuiInput-formControl.MuiInputBase-adornedStart.MuiInputBase-adornedEnd {
+    max-height: 90px;
+    overflow-y: scroll;
+    &::before {
+      border-bottom-width: 0;
+    }
+  }
   .editTask {
     padding: 1.55rem 0 0 2rem;
     font-size: 24px;

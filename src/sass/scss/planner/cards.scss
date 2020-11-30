@@ -152,8 +152,8 @@
   flex-wrap: wrap;
   padding-bottom: 1rem;
   div {
-    width: 30px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     display: flex;
     padding: 1rem 0 0.5rem;
   }
@@ -165,17 +165,19 @@
 }
 .smaller .pic-wrapper {
   display: flex;
+  flex-wrap: nowrap;
   width: 100%;
+  overflow-x: scroll;
   padding-bottom: 0rem;
   div {
-    width: 25px;
+    width: 23px;
     display: flex;
-    padding: 0.3rem 0;
+    padding: 0.8rem 0 0.5rem;
     height: auto;
   }
   img {
-    width: 30px;
-    height: 30px;
+    width: 27px;
+    height: 27px;
   }
 }
 @media (min-width: 600px) {

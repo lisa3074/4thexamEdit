@@ -5,6 +5,8 @@ import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
 import LockIcon from "@material-ui/icons/Lock";
+import { addTask } from "../planner/modules/mobNavigation";
+import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 import { firebaseConfig } from "../../jsModules/firebase/firebase";
 import {
   administration,
@@ -25,6 +27,8 @@ export default function MenuNav(props) {
           onClick={() => {
             administration();
             props.setTool("admin");
+            props.setisUSerProfile(false);
+            props.setViewingProfile(false);
           }}>
           <li>
             <PeopleIcon />
@@ -32,10 +36,13 @@ export default function MenuNav(props) {
           </li>
         </Link>
         <li
-          className="admin"
+          className={props.level === "Administrator" ? "inset" : "inset hiddenFromUser"}
           onClick={() => {
             newUser();
+
             props.setTool("admin");
+            props.setisUSerProfile(false);
+            props.setViewingProfile(false);
           }}>
           <PersonAddIcon />
           <h3 className="new-user-link">New user</h3>
@@ -46,15 +53,31 @@ export default function MenuNav(props) {
           onClick={() => {
             planner(innerWidth);
             props.setTool("planner");
+            props.setisUSerProfile(false);
+            props.setViewingProfile(false);
           }}>
           <CalendarTodayIcon />
           <h3 className="planner-link">Planner</h3>
+        </li>
+        <li
+          className="addTask"
+          onClick={() => {
+            addTask();
+            planner(innerWidth);
+            props.setTool("planner");
+            props.setisUSerProfile(false);
+            props.setViewingProfile(false);
+          }}>
+          <AddCircleOutlineRoundedIcon />
+          <h3 className="task">New task</h3>
         </li>
 
         <li
           onClick={() => {
             chat();
             scrollToBottom();
+            props.setisUSerProfile(false);
+            props.setViewingProfile(false);
           }}>
           <ChatBubbleIcon />
           <h3 className="chat-link">Chat</h3>
@@ -66,6 +89,8 @@ export default function MenuNav(props) {
             onClick={() => {
               firebaseConfig.auth().signOut();
               localStorage.clear();
+              props.setisUSerProfile(false);
+              props.setViewingProfile(false);
             }}>
             Sign out
           </h3>
