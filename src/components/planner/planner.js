@@ -20,6 +20,7 @@ import "../../sass/scss/planner/navigation.scss";
 export default function Planner(props) {
   console.log("planner || Planner.js | Planner()");
   const [cards, setCards] = useState([]);
+  const [anchorEl, setAnchorEl] = useState(null);
   scroll();
 
   //RestDb.function is a function imported from the restdb.js module
@@ -81,6 +82,8 @@ export default function Planner(props) {
           users={props.users}
           setSystemPart={props.setSystemPart}
           systemPart={props.systemPart}
+          tool={props.tool}
+          setTool={props.setTool}
         />
       </section>
     </main>

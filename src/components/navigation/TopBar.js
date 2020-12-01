@@ -9,6 +9,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import { addTask } from "../planner/modules/mobNavigation";
 import ChatNav from "../chat/ChatNav";
 import { chat, scrollToBottom, newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
+import { fetchAll } from "../../jsModules/displayFunctions/subMenuNavigation";
 export default function TopBar(props) {
   console.log("navigation || TopBar.js | TopBar()");
   const handleDivision = (event) => {
@@ -172,6 +173,7 @@ export default function TopBar(props) {
             onClick={() => {
               props.setSortDate();
               scrollToBottom();
+              fetchAll();
             }}>
             <AllInclusiveIcon />
           </div>

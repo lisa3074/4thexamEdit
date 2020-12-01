@@ -11,7 +11,7 @@ dayjs.extend(customParseFormat);
 
 export default function Message(props) {
   console.log("chat || Message.js | Message()");
-  const { signedinUser, users, id } = props;
+  const { signedinUser, users, id, checked, setChecked } = props;
   console.log(props);
 
   const [sendingUser, setSendingUser] = useState();
@@ -33,14 +33,39 @@ export default function Message(props) {
         : console.log("no sending user yet")
       : console.log("no sending user yet");
   }, [sendingUser]);
-
+  console.log(sendingUser);
   function handleText(e) {
     setEditText(e.target.value);
     setEditMessage({ id: id, message: e.target.value, name: props.name, date: props.date });
   }
 
-  function submitEdit() {
+  function submitEdit(e) {
+    e.preventDefault();
     editAMessage(editMessage);
+  }
+
+  function submitIfChecked(e) {
+    e.preventDefault();
+    console.log("checked");
+    setEditMessage({
+      id: id,
+      message: editText,
+      name: props.name,
+      date: props.date,
+    });
+    setEditClicked(false);
+    submitEdit(e);
+  }
+
+  function doNothing() {
+    console.log("do nothing");
+  }
+  function onKeyDown(e) {
+    console.log("key");
+    if (e.keyCode === 13) {
+      console.log("enter");
+      submitIfChecked(e);
+    }
   }
 
   return (
@@ -54,7 +79,14 @@ export default function Message(props) {
         <div
           className="message-container"
           data-user={signedinUser ? (props.name === signedinUser[0].name ? "me" : "you") : "you"}>
-          <img src={profilePic ? profilePic : "image"} alt={props.name} />
+          <img
+            src={
+              profilePic
+                ? profilePic
+                : "https://firebasestorage.googleapis.com/v0/b/mmdfinalexam.appspot.com/o/profile_pictures%2Fplaceholder.png?alt=media&token=c06d8e7a-6812-45d0-bff1-af790d20f5b8"
+            }
+            alt={props.name}
+          />
 
           <div className="message-wrapper">
             <div className="edit-wrapper">
@@ -88,19 +120,30 @@ export default function Message(props) {
             <h2 className="time">{time}</h2>
 
             <p className={editClicked ? "message hiddenFromUser" : "message"}>{props.message}</p>
-            <div className={editClicked ? "textarea-wrapper" : "textarea-wrapper hiddenFromUser"}>
+            <form
+              className={editClicked ? "textarea-wrapper" : "textarea-wrapper hiddenFromUser"}
+              onSubmit={(e) => {
+                checked ? submitIfChecked(e) : doNothing();
+              }}
+              onKeyDown={(e) => {
+                checked ? onKeyDown(e) : doNothing();
+              }}>
               <textarea type="text" className="edit-form" value={editMessage.message} onChange={handleText} />
               <div className="btn-wrapper">
                 <button
+                  type=""
                   className="float-btn"
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     setEditClicked(false);
                   }}>
                   <ClearRoundedIcon />
                 </button>
                 <button
+                  type={checked ? "submit" : ""}
                   className="float-btn"
-                  onClick={() => {
+                  onClick={(e) => {
+                    checked ? doNothing() : e.preventDefault();
                     setEditMessage({
                       id: id,
                       message: editText,
@@ -108,12 +151,12 @@ export default function Message(props) {
                       date: props.date,
                     });
                     setEditClicked(false);
-                    submitEdit();
+                    submitEdit(e);
                   }}>
                   <CheckRoundedIcon />
                 </button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </article>

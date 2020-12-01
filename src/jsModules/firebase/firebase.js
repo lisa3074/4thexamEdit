@@ -13,3 +13,14 @@ export const firebaseConfig = firebase.initializeApp({
   appId: "1:996080263297:web:a007d1c5f07bff80fa6d80",
   measurementId: "G-JE7NP69924",
 });
+export function resetPasswordMail(email) {
+  firebase
+    .auth()
+    .sendPasswordResetEmail(email)
+    .then(function () {
+      // Email sent.
+    })
+    .catch(function (error) {
+      // An error happened.
+    });
+}

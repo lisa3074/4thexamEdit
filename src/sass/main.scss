@@ -40,6 +40,7 @@
   --light-text: #9b9b9b;
   --yellow: #f0c75d;
   --orange: #d98c6a;
+  --danger: #b33600;
   --chat-you: #eaecef;
   --chat-me: #c9eee5;
 
@@ -121,8 +122,8 @@ label .MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLa
   cursor: progress;
   pointer-events: none;
 }
-button:not(.MuiIconButton-root):not(.float-btn),
-button.MuiButton-root:not(.MuiIconButton-root):not(.float-btn) {
+button:not(.MuiIconButton-root):not(.float-btn):not(.sendMessage)/* :not(.ChatNav.text-btn) */,
+button.MuiButton-root:not(.MuiIconButton-root):not(.float-btn):not(.sendMessage) {
   font-family: "IBMPlexSans-Medium";
   color: white;
   font-size: 0.85rem;

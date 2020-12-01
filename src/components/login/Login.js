@@ -8,10 +8,13 @@ import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import LockIcon from "@material-ui/icons/Lock";
 import TextField from "@material-ui/core/TextField";
 import Question from "./Question";
+import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
+import { resetPasswordMail } from "../../jsModules/firebase/firebase";
 
 const Login = ({ history }) => {
   console.log("login || Login.js | Login()");
   const [error, setError] = useState([null]);
+  const [resetEmail, setResetEmail] = useState("");
 
   const handleLogin = useCallback(
     async (e) => {
@@ -43,7 +46,23 @@ const Login = ({ history }) => {
     localStorage.setItem("email", e.target.value);
   };
   // console.log(localStorage);
+  function openReset() {
+    document.querySelector(".forgot").classList.remove("hide");
+  }
 
+  function handleChange(e) {
+    setResetEmail(e.target.value);
+  }
+
+  function resetForm() {
+    document.querySelector(".resetSent").classList.remove("hide");
+    setResetEmail("");
+    setTimeout(() => {
+      document.querySelector(".resetSent").classList.add("hide");
+      document.querySelector(".forgot").classList.add("hide");
+    }, 1000);
+  }
+  console.log(resetEmail);
   return (
     <main className="login-wrapper">
       <div className="login">
@@ -81,7 +100,15 @@ const Login = ({ history }) => {
           </div>
 
           {error ? <p className="error">{error}</p> : null}
+
           <div className="button-wrapper">
+            <p
+              className="iForgot"
+              onClick={() => {
+                openReset();
+              }}>
+              Reset your password?
+            </p>
             <button className="loginButton text-btn btn" type="submit">
               Sign in
             </button>
@@ -92,6 +119,30 @@ const Login = ({ history }) => {
           <h3>?</h3>
         </div>
         <Question />
+      </div>
+      <div className="forgot hide">
+        <div className="forgot-wrapper">
+          <TextField
+            id="password"
+            label="Email"
+            className="forgotEmail"
+            name="forgot"
+            type="email"
+            value={resetEmail}
+            onChange={handleChange}
+          />
+          <button
+            className="text-btn"
+            onClick={(e) => {
+              resetPasswordMail(resetEmail);
+              resetForm();
+            }}>
+            Reset password
+          </button>
+          <div className="resetSent hide">
+            <CheckRoundedIcon />
+          </div>
+        </div>
       </div>
     </main>
   );

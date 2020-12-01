@@ -32,9 +32,19 @@
     padding: 1rem;
     h3 {
       color: white;
+      padding-right: 1rem;
     }
     svg {
       fill: white;
+    }
+  }
+  .list-wrapper {
+    display: flex;
+    align-items: center;
+    svg {
+      width: 25px;
+      height: 25px;
+      transform: translateX(-8px);
     }
   }
 }

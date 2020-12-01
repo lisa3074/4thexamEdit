@@ -6,8 +6,14 @@ import { done, doing, todo, barrier } from "./modules/mobNavigation";
 import PauseRoundedIcon from "@material-ui/icons/PauseRounded";
 import CachedRoundedIcon from "@material-ui/icons/CachedRounded";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
+import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
+import FilterListRoundedIcon from "@material-ui/icons/FilterListRounded";
+import SortRoundedIcon from "@material-ui/icons/SortRounded";
+import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 
-export default function PlannerNav() {
+import { searchUsers, closeSearch } from "../../jsModules/displayFunctions/subMenuNavigation";
+
+export default function PlannerNav(props) {
   console.log("planner || PlannerNav.js | PlannerNav()");
   const [anchorEl, setAnchorEl] = useState(null);
   const [list, setList] = useState("To do");
@@ -27,6 +33,7 @@ export default function PlannerNav() {
     left: "-16px",
     width: "100vw",
   };
+
   return (
     <div className="dropdown-wrapper">
       <div
@@ -34,10 +41,27 @@ export default function PlannerNav() {
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
-        color="primary"
-        onClick={handleClick}>
-        <h3>{list}</h3>
-        <ArrowDropDownRoundedIcon />
+        color="primary">
+        <div className="list-wrapper" onClick={handleClick}>
+          <ArrowDropDownRoundedIcon />
+          <h3>{list}</h3>
+        </div>
+        <div>
+          <div
+            className="close-wrapper"
+            onClick={() => {
+              searchUsers(props.tool);
+            }}>
+            <SearchRoundedIcon />
+          </div>
+          <div
+            className="search-wrapper hide"
+            onClick={() => {
+              closeSearch(props.tool);
+            }}>
+            <CloseRoundedIcon />
+          </div>
+        </div>
       </div>
       <Menu
         id="simple-menu"

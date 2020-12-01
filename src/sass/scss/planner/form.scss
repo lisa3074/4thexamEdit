@@ -141,6 +141,12 @@
     align-items: center;
     justify-content: center;
   }
+  section > nav > div > svg,
+  form > div.task-sent > svg {
+    width: 120px;
+    height: 120px;
+    fill: var(--primary);
+  }
   .bg h1,
   .editContainer h1 {
     font-size: 1.25rem;

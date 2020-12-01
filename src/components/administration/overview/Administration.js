@@ -28,7 +28,7 @@ export default function Administration(props) {
   const [level, setLevel] = useState();
   const [viewingProfile, setViewingProfile] = useState(false);
   const [isUSerProfile, setisUSerProfile] = useState(false);
-  const [sortDate, setSortDate] = useState(new Date());
+  const [sortDate, setSortDate] = useState();
 
   useEffect(() => {
     getUsers(setUsers);
@@ -116,6 +116,8 @@ export default function Administration(props) {
         users={users}
         setSystemPart={setSystemPart}
         systemPart={systemPart}
+        tool={tool}
+        setTool={setTool}
       />
       <Chat
         signedinUser={signedinUser}

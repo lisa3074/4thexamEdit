@@ -123,6 +123,7 @@ export default function WorkForm(props) {
       <div className="input-wrapper">
         <TextField
           required
+          onKeyDown="return false"
           className="startDate"
           name="Start date"
           id="date"

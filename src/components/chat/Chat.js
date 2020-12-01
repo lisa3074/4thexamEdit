@@ -7,6 +7,7 @@ export default function Chat(props) {
   console.log("chat || Chat.js | Chat()");
 
   const [message, setMessage] = useState();
+  const [checked, setChecked] = useState(false);
   /*  const [sortDate, setSortDate] = useState(new Date()); */
   const { signedinUser, setSortDate, sortDate } = props;
 
@@ -20,6 +21,8 @@ export default function Chat(props) {
         <MessageBoard
           users={props.users}
           signedinUser={signedinUser}
+          checked={checked}
+          setChecked={setChecked}
           messages={
             props.messages && sortDate
               ? props.messages.filter(
@@ -29,7 +32,14 @@ export default function Chat(props) {
               : props.messages
           }
         />
-        <NewMessage signedinUser={signedinUser} message={message} setMessage={setMessage} />
+        <NewMessage
+          signedinUser={signedinUser}
+          message={message}
+          setMessage={setMessage}
+          setSortDate={setSortDate}
+          checked={checked}
+          setChecked={setChecked}
+        />
       </div>
     </main>
   );

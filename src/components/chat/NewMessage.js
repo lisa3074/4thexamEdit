@@ -2,26 +2,64 @@ import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import { postMessage } from "../../jsModules/dbData/postData";
-import { editAMessage } from "../../jsModules/dbData/editData";
 
 export default function NewMessage(props) {
   console.log("chat || NewMessage.js | NewMessage()");
 
-  const { signedinUser, message, setMessage } = props;
+  const { signedinUser, message, setMessage, checked, setChecked } = props;
   function handleMessage(e) {
     setMessage(e.target.value);
   }
-  function submitMessage() {
-    console.log("submitted");
-    const user = signedinUser ? signedinUser[0].name : "unknown";
-    postMessage(message, user);
-    setMessage("");
+  function submitMessage(e) {
+    e.preventDefault();
+    if (message !== ("" || undefined)) {
+      const user = signedinUser ? signedinUser[0].name : "unknown";
+      postMessage(message, user);
+      setMessage("");
+      props.setSortDate();
+    } else {
+      document.querySelector(".NewMessage textarea").style.color = "var(--danger)";
+      setTimeout(() => {
+        document.querySelector(".NewMessage textarea").style.color = "var(--dark-text)";
+      }, 1500);
+    }
   }
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
+  function doNothing() {
+    console.log("do nothing");
+  }
+  function onKeyDown(e) {
+    console.log("key");
+    if (e.keyCode === 13) {
+      submitMessage(e);
+    }
+  }
+
   return (
-    <section className="NewMessage">
-      <div className="sendMessage" onClick={submitMessage}>
+    <form
+      className="NewMessage"
+      onSubmit={(e) => {
+        checked ? submitMessage(e) : doNothing();
+      }}
+      onKeyDown={(e) => {
+        checked ? onKeyDown(e) : doNothing();
+      }}>
+      <button
+        className="sendMessage"
+        type={checked ? "submit" : ""}
+        onClick={(e) => {
+          checked ? doNothing() : submitMessage(e);
+        }}>
         <SendRoundedIcon />
-      </div>
+      </button>
+
+      <p className="checkbox-wrapper">
+        <input id="check" type="checkbox" className="checked" onClick={handleChange} />{" "}
+        <label htmlFor="check">Press "enter" to send</label>
+      </p>
       <TextField
         id="outlined-textarea"
         placeholder="Write a message"
@@ -31,6 +69,6 @@ export default function NewMessage(props) {
         value={message}
         onChange={handleMessage}
       />
-    </section>
+    </form>
   );
 }

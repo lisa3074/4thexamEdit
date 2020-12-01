@@ -137,9 +137,6 @@ export default function Form(props, { history }) {
       : console.log(fileUrl);
   }, [fileUrl]);
 
-  /*   useEffect(() => {
-    console.log(fileUrl);
-  }, [fileUrl]); */
   function submit(e) {
     e.preventDefault();
     console.log(" administration/form || Form.js | submit()");

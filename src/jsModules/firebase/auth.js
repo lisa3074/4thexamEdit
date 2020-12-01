@@ -10,11 +10,32 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     firebaseConfig.auth().onAuthStateChanged(setCurrentUser);
     console.log(currentUser);
-  }, []);
+  }, [currentUser]);
+  if (currentUser != null) {
+    console.log(
+      /* currentUser.email,
 
+      currentUser.emailVerified,
+      currentUser.uid,
+      currentUser.password */
+      currentUser
+    );
+  }
   //The logged in user
   /*  let userId;
   currentUser != null ? (userId = currentUser.uid) : (userId = ""); */
 
   return <AuthContext.Provider value={{ currentUser }}>{children}</AuthContext.Provider>;
 };
+/* export function getUserAuth(email) {
+  admin
+    .auth()
+    .getUserByEmail(email)
+    .then((userRecord) => {
+      // See the UserRecord reference doc for the contents of userRecord.
+      console.log(`Successfully fetched user data: ${userRecord.toJSON()}`);
+    })
+    .catch((error) => {
+      console.log("Error fetching user data:", error);
+    });
+} */

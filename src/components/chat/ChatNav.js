@@ -43,9 +43,6 @@ export default function ChatNav(props) {
                 name="Date"
                 error={false}
                 helperText={null}
-                KeyboardButtonProps={{
-                  "aria-label": "change date",
-                }}
               />
               <DateRangeRoundedIcon />
             </Grid>

@@ -18,13 +18,15 @@ export default function MainPlanner({
   users,
   setSystemPart,
   systemPart,
+  tool,
+  setTool,
 }) {
   console.log("planner || MainPlanner.js | MainPlanner()");
 
   const [dropList, setDropList] = React.useState("");
   return (
     <main className="Main">
-      <PlannerNav />
+      <PlannerNav tool={tool} setTool={setTool} />
       <FilterTasks
         setChosenCat={setChosenCat}
         setChosenEmployee={setChosenEmployee}
