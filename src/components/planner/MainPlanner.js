@@ -23,8 +23,23 @@ export default function MainPlanner({
 }) {
   console.log("planner || MainPlanner.js | MainPlanner()");
   console.log(cards);
-  console.log(chosenEmployee);
+  // console.log(chosenEmployee);
   const [dropList, setDropList] = React.useState("");
+
+  function getFilteredCards(liste) {
+    return chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
+      ? cards.filter(
+          (card) =>
+            card.list === liste &&
+            card.assignedTo.some((obj) => obj.name === chosenEmployee) &&
+            card.category.includes(chosenCat)
+        )
+      : chosenCat !== (undefined && "")
+      ? cards.filter((card) => card.list === liste && card.category.includes(chosenCat))
+      : chosenEmployee !== (undefined && "")
+      ? cards.filter((card) => card.list === liste && card.assignedTo.some((obj) => obj.name === chosenEmployee))
+      : cards.filter((card) => card.list === liste);
+  }
   return (
     <main className="Main">
       <PlannerNav tool={tool} setTool={setTool} />
@@ -49,7 +64,8 @@ export default function MainPlanner({
           systemPart={systemPart}
           chosenEmployee={chosenEmployee}
           header="To Do"
-          cards={
+          cards={getFilteredCards("To Do")}
+          /*  cards={
             chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
               ? cards.filter(
                   (c) => c.list === "To Do" && c.assignedTo.includes(chosenEmployee) && c.category.includes(chosenCat)
@@ -59,7 +75,7 @@ export default function MainPlanner({
               : chosenEmployee !== (undefined && "")
               ? cards.filter((c) => c.list === "To Do" && c.assignedTo.includes(chosenEmployee))
               : cards.filter((c) => c.list === "To Do")
-          }
+          } */
         />
         <PlannerList
           deleteCard={deleteCard}
@@ -74,18 +90,7 @@ export default function MainPlanner({
           systemPart={systemPart}
           chosenEmployee={chosenEmployee}
           header="In progress"
-          cards={
-            chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
-              ? cards.filter(
-                  (c) =>
-                    c.list === "In progress" && c.assignedTo.includes(chosenEmployee) && c.category.includes(chosenCat)
-                )
-              : chosenCat !== (undefined && "")
-              ? cards.filter((c) => c.list === "In progress" && c.category.includes(chosenCat))
-              : chosenEmployee !== (undefined && "")
-              ? cards.filter((c) => c.list === "In progress" && c.assignedTo.includes(chosenEmployee))
-              : cards.filter((c) => c.list === "In progress")
-          }
+          cards={getFilteredCards("In progress")}
         />
         <PlannerList
           deleteCard={deleteCard}
@@ -100,17 +105,7 @@ export default function MainPlanner({
           systemPart={systemPart}
           chosenEmployee={chosenEmployee}
           header="Barrier"
-          cards={
-            chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
-              ? cards.filter(
-                  (c) => c.list === "Barrier" && c.assignedTo.includes(chosenEmployee) && c.category.includes(chosenCat)
-                )
-              : chosenCat !== (undefined && "")
-              ? cards.filter((c) => c.list === "Barrier" && c.category.includes(chosenCat))
-              : chosenEmployee !== (undefined && "")
-              ? cards.filter((c) => c.list === "Barrier" && c.assignedTo.includes(chosenEmployee))
-              : cards.filter((c) => c.list === "Barrier")
-          }
+          cards={getFilteredCards("Barrier")}
         />
         <PlannerList
           deleteCard={deleteCard}
@@ -125,17 +120,7 @@ export default function MainPlanner({
           systemPart={systemPart}
           chosenEmployee={chosenEmployee}
           header="Done"
-          cards={
-            chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
-              ? cards.filter(
-                  (c) => c.list === "Done" && c.assignedTo.includes(chosenEmployee) && c.category.includes(chosenCat)
-                )
-              : chosenCat !== (undefined && "")
-              ? cards.filter((c) => c.list === "Done" && c.category.includes(chosenCat))
-              : chosenEmployee !== (undefined && "")
-              ? cards.filter((c) => c.list === "Done" && c.assignedTo.includes(chosenEmployee))
-              : cards.filter((c) => c.list === "Done")
-          }
+          cards={getFilteredCards("Done")}
         />
       </section>
     </main>

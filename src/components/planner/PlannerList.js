@@ -3,7 +3,8 @@ import Card from "./Card";
 
 export default function List(props) {
   console.log("planner || List.js | List()");
-  console.log(props.chosenEmployee);
+  /*   console.log(props.chosenEmployee); */
+  console.log(props.cards);
   const mappedCards = props.cards.map((card) => (
     <Card
       key={card.id}
