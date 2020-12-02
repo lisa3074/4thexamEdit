@@ -13,7 +13,7 @@ import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import Grid from "@material-ui/core/Grid";
-import { taskValidation } from "../../jsModules/displayFunctions/taskValidation";
+import { hideError, taskValidation } from "../../jsModules/displayFunctions/taskValidation";
 
 export default function NewTask(props) {
   console.log("planner || NewTask.js | NewTask()");
@@ -26,6 +26,23 @@ export default function NewTask(props) {
   let [list, setList] = useState("");
   const { users } = props;
 
+  const categories = [
+    { category: "Design", color: "#374d62" },
+    { category: "Support", color: "#f44336" },
+    { category: "Development", color: "#1ec69a" },
+    { category: "Finance", color: "#9b9b9b" },
+    { category: "Sales", color: "#fb6126" },
+    { category: "Test", color: "#f0c75d" },
+    { category: "UX", color: "#d98c6a" },
+    { category: "Marketing", color: "#222224" },
+    { category: "Research", color: "#34d0d5" },
+    { category: "Documentation", color: "#b4b256" },
+  ];
+  const mappedCategories = categories.map((entry) => (
+    <MenuItem value={entry.category} key={entry.color}>
+      {entry.category}
+    </MenuItem>
+  ));
   useEffect(() => {
     let today;
     due ? (today = new Date(due)) : (today = new Date());
@@ -44,19 +61,14 @@ export default function NewTask(props) {
     setDescription(e.target.value);
   };
 
-  const catChanged = (option) => {
-    setCategory((category) => {
-      return option.target.innerText;
-    });
+  const catChanged = (e) => {
+    setCategory(e.target.value);
     document.querySelector(".addForm > div:nth-child(7) > p").classList.add("hide");
   };
 
-  const colorChanged = (option, categories) => {
-    let object = categories.filter((entry) => entry.category === option.target.innerText);
-    let newColor = object.map((entry) => entry.color);
-    setColor((color) => {
-      return newColor.toString();
-    });
+  const colorChanged = (e) => {
+    const colorMatch = categories.filter((entry) => e.target.value === entry.category);
+    setColor(colorMatch[0].color);
   };
   const listChanged = (e) => {
     setList(e.target.value);
@@ -94,8 +106,8 @@ export default function NewTask(props) {
       setTitle("");
       setColor("#ffffff");
       setDescription("");
-      setCategory({});
-      setList("To Do");
+      setCategory("");
+      setList("");
       setDue("");
       correctTrue();
       document.querySelector(".collaborators").value = "";
@@ -152,24 +164,16 @@ export default function NewTask(props) {
     display: correct === true ? "flex" : "none",
   };
 
-  const categories = [
-    { category: "Design", color: "#374d62" },
-    { category: "Support", color: "#f44336" },
-    { category: "Development", color: "#1ec69a" },
-    { category: "Finance", color: "#9b9b9b" },
-    { category: "Sales", color: "#fb6126" },
-    { category: "Test", color: "#f0c75d" },
-    { category: "UX", color: "#d98c6a" },
-    { category: "Marketing", color: "#222224" },
-    { category: "Research", color: "#34d0d5" },
-    { category: "Documentation", color: "#b4b256" },
-  ];
-
   function handleAssigned(e) {
     e.target.innerText
       ? document.querySelector(".addForm .collaborators").setAttribute("data-chosen", true)
       : document.querySelector(".addForm .collaborators").setAttribute("data-chosen", false);
     document.querySelector(".addForm > div:nth-child(3) > p").classList.add("hide");
+  }
+  function resetState() {
+    setCategory("");
+    setColor("#ffffff");
+    setList("");
   }
 
   return (
@@ -265,21 +269,21 @@ export default function NewTask(props) {
           </MuiPickersUtilsProvider>
         </div>{" "}
         <div className="input-wrapper">
-          <Autocomplete
-            className="category"
-            label="Category"
-            name="Category"
-            options={categories}
-            getOptionLabel={(option) => option.category}
-            getOptionSelected={(option, value) => option.category === value.category}
-            filterSelectedOptions
-            onFocus={catFocusChanged}
-            onChange={(option) => {
-              catChanged(option);
-              colorChanged(option, categories);
-            }}
-            renderInput={(params) => <TextField {...params} variant="standard" label="Category *" placeholder="" />}
-          />
+          <FormControl className="category">
+            <InputLabel id="select-category">Category *</InputLabel>
+            <Select
+              labelId="select-category"
+              name="Category"
+              label="Category"
+              onChange={(e) => {
+                catChanged(e);
+                colorChanged(e);
+                console.log(e.target.color);
+              }}
+              value={category}>
+              {mappedCategories}
+            </Select>
+          </FormControl>
           <p className="error hide">Chose which category the task mainly belongs to.</p>
         </div>
         <div className="flex-wrapper">
@@ -292,7 +296,8 @@ export default function NewTask(props) {
             className="float-btn cancel"
             onClick={() => {
               closeNewTask();
-              /*    expand("1"); */
+              resetState();
+              hideError();
             }}>
             <CloseRoundedIcon />
           </div>

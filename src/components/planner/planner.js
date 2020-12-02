@@ -75,6 +75,9 @@ export default function Planner(props) {
           editCard={editCard}
           dragCard={dragCard}
           cards={cards}
+          /* cards={cards.filter((c) => {
+            c.assignedTo.filter((entry) => console.log(entry.name.includes("Lisa"));
+          })} */
           chosenCat={props.chosenCat}
           chosenEmployee={props.chosenEmployee}
           setChosenCat={props.setChosenCat}

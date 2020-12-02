@@ -25,20 +25,38 @@ import { areYouSure } from "../../jsModules/displayFunctions/mainMenuNavigation"
 export default function EditForm(props) {
   console.log("planner || EditForm.js | EditForm()");
   const { users } = props;
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [color, setColor] = useState("#ffffff");
+  const [list, setList] = useState("");
+  const [assignedTo, setAssigned] = useState([]);
+  const [due, setDue] = useState("");
+
+  const categories = [
+    { category: "Design", color: "#374d62" },
+    { category: "Support", color: "#f44336" },
+    { category: "Development", color: "#1ec69a" },
+    { category: "Finance", color: "#9b9b9b" },
+    { category: "Sales", color: "#fb6126" },
+    { category: "Test", color: "#f0c75d" },
+    { category: "UX", color: "#d98c6a" },
+    { category: "Marketing", color: "#222224" },
+    { category: "Research", color: "#34d0d5" },
+    { category: "Documentation", color: "#b4b256" },
+  ];
+
+  const mappedCategories = categories.map((entry) => (
+    <MenuItem value={entry.category} key={entry.color}>
+      {entry.category}
+    </MenuItem>
+  ));
 
   function editTask() {
     console.log("planner/EditForm.js || editTask()");
     popUp("#b" + props.id);
     setUpForm();
   }
-
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState({});
-  const [description, setDescription] = useState("");
-  const [color, setColor] = useState("#ffffff");
-  const [assignedTo, setAssigned] = useState([]);
-  const [list, setList] = useState("");
-  const [due, setDue] = useState("");
 
   function setUpForm() {
     console.log("planner/EditForm.js || setUpForm()");
@@ -57,18 +75,16 @@ export default function EditForm(props) {
   };
 
   const catChanged = (e) => {
-    setCategory(e.target.innerText);
+    setCategory(e.target.value);
     document.querySelector(".editContainer form > div:nth-child(6) > p").classList.add("hide");
   };
+
   const descriptionChanged = (e) => {
     setDescription(e.target.value);
   };
-  const colorChanged = (option, categories) => {
-    let object = categories.filter((entry) => entry.category === option.target.innerText);
-    let newColor = object.map((entry) => entry.color);
-    setColor((color) => {
-      return newColor.toString();
-    });
+  const colorChanged = (e) => {
+    const colorMatch = categories.filter((entry) => e.target.value === entry.category);
+    setColor(colorMatch[0].color);
   };
   const listChanged = (e) => {
     setList(e.target.value);
@@ -77,19 +93,6 @@ export default function EditForm(props) {
   const dueChanged = (e) => {
     setDue(e);
   };
-
-  const categories = [
-    { category: "Design", color: "#374d62" },
-    { category: "Support", color: "#f44336" },
-    { category: "Development", color: "#1ec69a" },
-    { category: "Finance", color: "#9b9b9b" },
-    { category: "Sales", color: "#fb6126" },
-    { category: "Test", color: "#f0c75d" },
-    { category: "UX", color: "#d98c6a" },
-    { category: "Marketing", color: "#222224" },
-    { category: "Research", color: "#34d0d5" },
-    { category: "Documentation", color: "#b4b256" },
-  ];
 
   const payload = {
     title: title,
@@ -177,7 +180,11 @@ export default function EditForm(props) {
     document.querySelector(".editContainer form > div:nth-child(2) > p").classList.add("hide");
     console.log(e);
   }
-
+  function resetState() {
+    setCategory("");
+    setColor("#ffffff");
+    setList("");
+  }
   return (
     <>
       <div
@@ -284,7 +291,7 @@ export default function EditForm(props) {
                 </MuiPickersUtilsProvider>
               </div>{" "}
               <div className="input-wrapper">
-                <Autocomplete
+                {/* <Autocomplete
                   className="category"
                   label="Category"
                   name="Category"
@@ -299,7 +306,22 @@ export default function EditForm(props) {
                     colorChanged(option, categories);
                   }}
                   renderInput={(params) => <TextField {...params} variant="standard" label="Category" placeholder="" />}
-                />
+                /> */}
+                <FormControl className="category">
+                  <InputLabel id="select-category">Category *</InputLabel>
+                  <Select
+                    labelId="select-category"
+                    name="Category"
+                    label="Category"
+                    onChange={(e) => {
+                      catChanged(e);
+                      colorChanged(e);
+                      console.log(e.target.color);
+                    }}
+                    value={category}>
+                    {mappedCategories}
+                  </Select>
+                </FormControl>
                 <p className="error hide">Chose which category the task mainly belongs to.</p>
               </div>
               <div className="flex-wrapper">
@@ -313,6 +335,7 @@ export default function EditForm(props) {
                   onClick={() => {
                     close("#b" + props.id);
                     hideError();
+                    resetState();
                   }}>
                   <CloseRoundedIcon />
                 </div>

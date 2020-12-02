@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "./Card";
-/* import { useState } from "react"; */
 
 export default function List(props) {
   console.log("planner || List.js | List()");

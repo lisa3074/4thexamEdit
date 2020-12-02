@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "@material-ui/core/Select";
 import Panel from "muicss/lib/react/panel";
 import { expand } from "./modules/expand";
@@ -16,6 +16,10 @@ export default function Card(props) {
     setList(e.target.value);
     onClickMove(e.target.value);
   };
+
+  const { setAssignedTo } = props;
+
+  console.log(props);
 
   const cardDragged = (e, id) => {
     e.preventDefault();
@@ -41,10 +45,14 @@ export default function Card(props) {
     color: props.color,
   };
   //const mappedAssigned = props.assignedTo.map((user) => <p key={user.id}>{user.name}</p>);
+  /* console.log(props.assignedTo[0].name);
+  console.log(props.assignedTo.map((user) => user.name.toString().includes("Lisa"))); */
+  const user = props.assignedTo.map((user) => user.name.toString());
+  console.log(user);
 
   const mappedAssignedImg = props.assignedTo.map((user) => (
-    <Tooltip title={user.name}>
-      <div key={user.id}>
+    <Tooltip title={user.name} key={user.id}>
+      <div>
         <img src={user.image} alt={user.name} />
       </div>
     </Tooltip>
@@ -73,6 +81,7 @@ export default function Card(props) {
         <div className="pic-wrapper" onClick={clickOnCard}>
           {mappedAssignedImg}
         </div>
+        {/*  <p className="hideAlways assignedTo"></p> */}
 
         <FormControl className="fade_out hide">
           <InputLabel id="select-list">Choose list</InputLabel>

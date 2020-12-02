@@ -2,17 +2,23 @@ import React from "react";
 
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import TextField from "@material-ui/core/TextField";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
 import "../../sass/scss/filterUsers.scss";
 
 export default function FilterTasks(props) {
   console.log("planner || FilterTasks.js | FilterTasks()");
 
+  const { users } = props;
+
   const handleCategory = (e) => {
-    const value = e.target.innerText === "All" ? undefined : e.target.innerText;
+    const value = e.target.value === "All" ? undefined : e.target.value;
     props.setChosenCat(value);
   };
   const handleEmployee = (e) => {
-    const value = e.target.innerText === "All" ? undefined : e.target.innerText;
+    const value = e.target.value === "All" ? undefined : e.target.value;
     props.setChosenEmployee(value);
   };
 
@@ -29,45 +35,52 @@ export default function FilterTasks(props) {
     { category: "Research", color: "#34d0d5" },
     { category: "Documentation", color: "#b4b256" },
   ];
-  const users = [
-    "All",
-    "Lisa Søndergaard",
-    "Rune Jensen",
-    "Mikkel Hansen",
-    "Anja Andersen",
-    "Gry Trampedach",
-    "Bob Hund",
-  ];
+
+  const mappedUsers = users.map((user) => (
+    <MenuItem value={user.name} key={user.id}>
+      {user.name}
+    </MenuItem>
+  ));
+  const mappedCategories = categories.map((category) => (
+    <MenuItem value={category.category} key={category.category}>
+      {category.category}
+    </MenuItem>
+  ));
 
   return (
     <nav className="FilterTasks hide">
       <div className="filter-wrapper">
-        <Autocomplete
-          selectOnFocus={true}
-          defaultValue={categories[0]}
-          className="category"
-          label="Category"
-          name="Category"
-          options={categories}
-          getOptionLabel={(option) => (option.category ? option.category : "")}
-          getOptionSelected={(option, value) => option.category === value.category}
-          onChange={(option) => {
-            handleCategory(option);
-          }}
-          renderInput={(params) => <TextField {...params} variant="standard" label="Category" placeholder="" />}
-        />
-
-        <Autocomplete
-          className="select"
-          defaultValue={users[0]}
-          options={users}
-          getOptionLabel={(option) => (option ? option : "")}
-          getOptionSelected={(option, value) => option === value}
-          onChange={(values) => {
-            handleEmployee(values);
-          }}
-          renderInput={(params) => <TextField {...params} variant="standard" label="Employee" placeholder="" />}
-        />
+        <FormControl className="category">
+          <InputLabel id="select-category">Category</InputLabel>
+          <Select
+            selectOnFocus={true}
+            value={categories.category}
+            labelId="select-category"
+            name="category"
+            label="category"
+            onChange={(e) => {
+              handleCategory(e);
+            }}
+            value={props.chosenCat}>
+            {mappedCategories}
+          </Select>
+        </FormControl>
+        <FormControl className="employees">
+          <InputLabel id="select-employees">Employees</InputLabel>
+          <Select
+            labelId="select-employees"
+            name="Employees"
+            label="Employees"
+            onChange={(e) => {
+              handleEmployee(e);
+            }}
+            value={props.chosenEmployee}>
+            <MenuItem value="All" key="All">
+              All
+            </MenuItem>
+            {mappedUsers}
+          </Select>
+        </FormControl>
       </div>
     </nav>
   );

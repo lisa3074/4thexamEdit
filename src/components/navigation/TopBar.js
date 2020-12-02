@@ -41,7 +41,14 @@ export default function TopBar(props) {
     { category: "Research", color: "#34d0d5" },
     { category: "Documentation", color: "#b4b256" },
   ];
-  const users = ["Lisa Søndergaard", "Rune Jensen", "Mikkel Hansen", "Anja Andersen", "Gry Trampedach", "Bob Hund"];
+  const users = [
+    "Lisa Bianca Henning Søndergaard",
+    "Anita Larsen",
+    "Allan Poulsen",
+    "Fam Schelde",
+    "Gry Trampedach",
+    "Bob Hund",
+  ];
   const divisions = [
     "Design",
     "Support",

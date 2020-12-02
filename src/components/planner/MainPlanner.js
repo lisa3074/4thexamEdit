@@ -32,6 +32,7 @@ export default function MainPlanner({
         setChosenEmployee={setChosenEmployee}
         chosenCat={chosenCat}
         chosenEmployee={chosenEmployee}
+        users={users}
       />
       <section className="relativeContainer">
         <PlannerList
