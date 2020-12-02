@@ -13,6 +13,12 @@ export function notSure() {
   });
 }
 
+export function deleted() {
+  document.querySelectorAll(".modal-wrapper").forEach((modal) => {
+    modal.classList.add("hide");
+  });
+}
+
 export function administration() {
   console.log("jsModules || mainMenuNavigation.js | administration()");
   document.querySelector(".MainAdmin").classList.remove("hide");

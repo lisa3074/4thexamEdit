@@ -19,10 +19,10 @@ import "../../sass/scss/planner/navigation.scss";
 
 export default function Planner(props) {
   console.log("planner || Planner.js | Planner()");
-  const [cards, setCards] = useState([]);
+  const { cards } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   scroll();
-
+  console.log(props.chosenEmployee);
   //RestDb.function is a function imported from the restdb.js module
   async function onFormSubmit(data) {
     console.log("planner || Planner.js | onFormSubmit()");
@@ -45,9 +45,6 @@ export default function Planner(props) {
     console.log("planner || Planner.js | editCard()");
     editACard(payload);
   }
-  useEffect(() => {
-    getCards(setCards);
-  }, []);
 
   if (cards.length === 0) {
     return (
@@ -61,7 +58,7 @@ export default function Planner(props) {
       init();
     }, 10);
   }
-
+  console.log(props.chosenEmployee);
   return (
     <main className="Planner hide" data-state="chosen">
       <section className="planner-wrapper">
@@ -75,9 +72,6 @@ export default function Planner(props) {
           editCard={editCard}
           dragCard={dragCard}
           cards={cards}
-          /* cards={cards.filter((c) => {
-            c.assignedTo.filter((entry) => console.log(entry.name.includes("Lisa"));
-          })} */
           chosenCat={props.chosenCat}
           chosenEmployee={props.chosenEmployee}
           setChosenCat={props.setChosenCat}

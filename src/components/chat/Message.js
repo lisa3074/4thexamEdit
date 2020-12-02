@@ -60,7 +60,7 @@ export default function Message(props) {
   function doNothing() {
     console.log("do nothing");
   }
-  function onKeyDown(e) {
+  function handleOnKeyDown(e) {
     console.log("key");
     if (e.keyCode === 13) {
       console.log("enter");
@@ -126,7 +126,7 @@ export default function Message(props) {
                 checked ? submitIfChecked(e) : doNothing();
               }}
               onKeyDown={(e) => {
-                checked ? onKeyDown(e) : doNothing();
+                checked ? handleOnKeyDown(e) : doNothing();
               }}>
               <textarea type="text" className="edit-form" value={editMessage.message} onChange={handleText} />
               <div className="btn-wrapper">

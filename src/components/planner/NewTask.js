@@ -27,17 +27,18 @@ export default function NewTask(props) {
   const { users } = props;
 
   const categories = [
-    { category: "Design", color: "#374d62" },
-    { category: "Support", color: "#f44336" },
+    { category: "Design", color: "#fb6126" },
+    { category: "Support", color: "#3498DB" },
     { category: "Development", color: "#1ec69a" },
-    { category: "Finance", color: "#9b9b9b" },
-    { category: "Sales", color: "#fb6126" },
-    { category: "Test", color: "#f0c75d" },
-    { category: "UX", color: "#d98c6a" },
-    { category: "Marketing", color: "#222224" },
+    { category: "Finance", color: "#EA5974" },
+    { category: "Sales", color: "#374d62" },
+    { category: "Test", color: "#B4B256" },
+    { category: "UX", color: "#8567b2" },
+    { category: "Marketing", color: "#34d0d5" },
     { category: "Research", color: "#34d0d5" },
-    { category: "Documentation", color: "#b4b256" },
+    { category: "Management", color: "#ef5350" },
   ];
+
   const mappedCategories = categories.map((entry) => (
     <MenuItem value={entry.category} key={entry.color}>
       {entry.category}
@@ -76,7 +77,12 @@ export default function NewTask(props) {
   };
 
   const dueChanged = (e) => {
-    setDue(e);
+    let today = new Date(e);
+    const dd = String(today.getDate()).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    setDue(`${yyyy}-${mm}-${dd}`);
+    //setDue(e);
   };
 
   const outline = {
@@ -258,7 +264,6 @@ export default function NewTask(props) {
                 label="Due date"
                 onChange={dueChanged}
                 name="Due"
-                disablePast
                 error={false}
                 helperText={null}
                 KeyboardButtonProps={{

@@ -31,7 +31,7 @@ export default function NewMessage(props) {
   function doNothing() {
     console.log("do nothing");
   }
-  function onKeyDown(e) {
+  function handleOnKeyDown(e) {
     console.log("key");
     if (e.keyCode === 13) {
       submitMessage(e);
@@ -45,7 +45,7 @@ export default function NewMessage(props) {
         checked ? submitMessage(e) : doNothing();
       }}
       onKeyDown={(e) => {
-        checked ? onKeyDown(e) : doNothing();
+        checked ? handleOnKeyDown(e) : doNothing();
       }}>
       <button
         className="sendMessage"

@@ -88,6 +88,7 @@
   }
 
   .WorkLoad {
+    --height: 0;
     grid-template-areas:
       "heading"
       "bars";
@@ -139,21 +140,21 @@
     .todoBar {
       grid-area: todo;
       background-color: var(--orange);
-      height: 3rem;
+      height: calc(var(--height) * 6%);
       align-self: flex-end;
       justify-self: flex-end;
     }
     .progressBar {
       grid-area: progress;
       background-color: var(--yellow);
-      height: 2rem;
+      height: calc(var(--height) * 6%);
       align-self: flex-end;
       justify-self: center;
     }
     .doneBar {
       grid-area: done;
       background-color: var(--primary);
-      height: 10rem;
+      height: calc(var(--height) * 6%);
       align-self: flex-end;
       justify-self: flex-start;
     }
@@ -258,7 +259,7 @@
     }
   }
 }
-@media (min-width: 1300px) {
+@media (min-width: 1350px) {
   .ViewProfile {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(20, 5.5rem);

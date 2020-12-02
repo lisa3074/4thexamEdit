@@ -22,7 +22,8 @@ export default function MainPlanner({
   setTool,
 }) {
   console.log("planner || MainPlanner.js | MainPlanner()");
-
+  console.log(cards);
+  console.log(chosenEmployee);
   const [dropList, setDropList] = React.useState("");
   return (
     <main className="Main">
@@ -46,6 +47,7 @@ export default function MainPlanner({
           dropList={dropList}
           setSystemPart={setSystemPart}
           systemPart={systemPart}
+          chosenEmployee={chosenEmployee}
           header="To Do"
           cards={
             chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
@@ -70,6 +72,7 @@ export default function MainPlanner({
           dropList={dropList}
           setSystemPart={setSystemPart}
           systemPart={systemPart}
+          chosenEmployee={chosenEmployee}
           header="In progress"
           cards={
             chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
@@ -95,6 +98,7 @@ export default function MainPlanner({
           dropList={dropList}
           setSystemPart={setSystemPart}
           systemPart={systemPart}
+          chosenEmployee={chosenEmployee}
           header="Barrier"
           cards={
             chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
@@ -119,6 +123,7 @@ export default function MainPlanner({
           dropList={dropList}
           setSystemPart={setSystemPart}
           systemPart={systemPart}
+          chosenEmployee={chosenEmployee}
           header="Done"
           cards={
             chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")

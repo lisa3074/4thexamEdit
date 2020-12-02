@@ -13,7 +13,7 @@ import { showCardList } from "../../../jsModules/displayFunctions/subMenuNavigat
 
 export default function ViewProfile(props) {
   console.log("administration/viewProfile || ViewProfile.js | ViewProfile()");
-
+  console.log(props);
   const mappedPerson = props.user.map((user) => (
     <Person
       key={user.id}
@@ -43,7 +43,7 @@ export default function ViewProfile(props) {
       <ul className="viewPerson">{mappedPerson}</ul>
       <ul className="viewWork">{mappedWork}</ul>
       <ul className="viewContact">{mappedContact}</ul>
-      <WorkLoad users={props.users.filter((person) => person.id === props.id)} />
+      <WorkLoad users={props.users.filter((person) => person.id === props.id)} cards={props.cards} user={props.user} />
       <ul className="viewPrivate">{mappedPrivate}</ul>
 
       <div className="empty"></div>

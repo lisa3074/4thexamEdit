@@ -50,6 +50,7 @@ export default function MainAdmin(props) {
         setState={props.setState}
         level={props.level}
         isUSerProfile={props.isUSerProfile}
+        cards={props.cards}
       />
     </main>
   );

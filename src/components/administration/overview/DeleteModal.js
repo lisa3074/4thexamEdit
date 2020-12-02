@@ -1,4 +1,4 @@
-import { notSure } from "../../../jsModules/displayFunctions/mainMenuNavigation";
+import { notSure, deleted } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 
 export default function DeleteModal(props) {
   console.log("administration/DeleteModal.js || DeleteModal()");
@@ -19,6 +19,7 @@ export default function DeleteModal(props) {
             className="delete text-btn"
             onClick={() => {
               props.systemPart === "planner" ? props.deleteCard(props.id) : props.deleteProfile(props.id);
+              deleted();
             }}>
             Yes, delete it
           </button>

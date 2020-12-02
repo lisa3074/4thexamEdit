@@ -17,9 +17,8 @@ export default function Card(props) {
     onClickMove(e.target.value);
   };
 
-  const { setAssignedTo } = props;
-
   console.log(props);
+  console.log(props.chosenEmployee);
 
   const cardDragged = (e, id) => {
     e.preventDefault();
@@ -51,7 +50,7 @@ export default function Card(props) {
   console.log(user);
 
   const mappedAssignedImg = props.assignedTo.map((user) => (
-    <Tooltip title={user.name} key={user.id}>
+    <Tooltip title={user.name + " / " + user.position} key={user.id}>
       <div>
         <img src={user.image} alt={user.name} />
       </div>
@@ -59,7 +58,7 @@ export default function Card(props) {
   ));
 
   return (
-    <Panel
+    /* user.includes("Fam Schelde") ? */ <Panel
       className={"panelMargin smaller a" + props.id}
       data-state="hidden"
       draggable
@@ -81,7 +80,6 @@ export default function Card(props) {
         <div className="pic-wrapper" onClick={clickOnCard}>
           {mappedAssignedImg}
         </div>
-        {/*  <p className="hideAlways assignedTo"></p> */}
 
         <FormControl className="fade_out hide">
           <InputLabel id="select-list">Choose list</InputLabel>
@@ -125,5 +123,7 @@ export default function Card(props) {
         </div>
       </li>
     </Panel>
+    /* ) : (
+    "" */
   );
 }

@@ -21,6 +21,7 @@ export default function FilterTasks(props) {
     const value = e.target.value === "All" ? undefined : e.target.value;
     props.setChosenEmployee(value);
   };
+  console.log(props.chosenEmployee);
 
   const categories = [
     { category: "All", color: "" },
@@ -33,7 +34,7 @@ export default function FilterTasks(props) {
     { category: "UX", color: "#d98c6a" },
     { category: "Marketing", color: "#222224" },
     { category: "Research", color: "#34d0d5" },
-    { category: "Documentation", color: "#b4b256" },
+    { category: "Management", color: "#b4b256" },
   ];
 
   const mappedUsers = users.map((user) => (
@@ -53,7 +54,6 @@ export default function FilterTasks(props) {
         <FormControl className="category">
           <InputLabel id="select-category">Category</InputLabel>
           <Select
-            selectOnFocus={true}
             value={categories.category}
             labelId="select-category"
             name="category"
@@ -65,7 +65,7 @@ export default function FilterTasks(props) {
             {mappedCategories}
           </Select>
         </FormControl>
-        <FormControl className="employees">
+        <FormControl className="employee">
           <InputLabel id="select-employees">Employees</InputLabel>
           <Select
             labelId="select-employees"

@@ -50,6 +50,10 @@ export default function WorkForm(props) {
     document.querySelector("fieldset.WorkForm > div:nth-child(8) > p").classList.add("hide");
   };
 
+  const handleOnKeyDown = () => {
+    return;
+  };
+
   const divisions = [
     "Design",
     "Support",
@@ -133,7 +137,7 @@ export default function WorkForm(props) {
       <div className="input-wrapper">
         <TextField
           required
-          onKeyDown="return false"
+          onKeyDown={handleOnKeyDown}
           className="startDate"
           name="Start date"
           id="date"

@@ -6,7 +6,7 @@ import SubMenu from "../../navigation/SubMenu";
 import Planner from "../../planner/Planner";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Chat from "../../chat/Chat";
-import { getUsers, getSignedinUser } from "../../../jsModules/dbData/getData";
+import { getUsers, getSignedinUser, getCards } from "../../../jsModules/dbData/getData";
 import { scrollToBottom } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 import { getMessages } from "../../../jsModules/dbData/getData";
 
@@ -29,6 +29,7 @@ export default function Administration(props) {
   const [viewingProfile, setViewingProfile] = useState(false);
   const [isUSerProfile, setisUSerProfile] = useState(false);
   const [sortDate, setSortDate] = useState();
+  const [cards, setCards] = useState([]);
 
   useEffect(() => {
     getUsers(setUsers);
@@ -47,6 +48,10 @@ export default function Administration(props) {
       setLevel(signedinUser[0].userLevel);
     }
   }, [signedinUser]);
+
+  useEffect(() => {
+    getCards(setCards);
+  }, []);
   console.log(viewingProfile);
   /*   console.log(id);
   console.log(localStorage);
@@ -77,7 +82,8 @@ export default function Administration(props) {
         setTool={setTool}
         viewingProfile={viewingProfile}
         setSortDate={setSortDate}
-        sortDate={sortDate}></TopBar>
+        sortDate={sortDate}
+        users={users}></TopBar>
       <Menu
         setEndpoint={props.setEndpoint}
         setTool={setTool}
@@ -107,7 +113,9 @@ export default function Administration(props) {
         setState={setState}
         setViewingProfile={setViewingProfile}
         level={level}
-        isUSerProfile={isUSerProfile}></MainAdmin>
+        isUSerProfile={isUSerProfile}
+        cards={cards}></MainAdmin>
+
       <Planner
         chosenCat={chosenCat}
         chosenEmployee={chosenEmployee}
@@ -118,6 +126,7 @@ export default function Administration(props) {
         systemPart={systemPart}
         tool={tool}
         setTool={setTool}
+        cards={cards}
       />
       <Chat
         signedinUser={signedinUser}

@@ -6,6 +6,10 @@ import PersonAddRoundedIcon from "@material-ui/icons/PersonAddRounded";
 import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
 import { addTask } from "../planner/modules/mobNavigation";
 import ChatNav from "../chat/ChatNav";
 import { chat, scrollToBottom, newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
@@ -39,16 +43,16 @@ export default function TopBar(props) {
     { category: "UX", color: "#d98c6a" },
     { category: "Marketing", color: "#222224" },
     { category: "Research", color: "#34d0d5" },
-    { category: "Documentation", color: "#b4b256" },
+    { category: "Management", color: "#b4b256" },
   ];
-  const users = [
+  /*  const users = [
     "Lisa Bianca Henning Søndergaard",
     "Anita Larsen",
     "Allan Poulsen",
     "Fam Schelde",
     "Gry Trampedach",
     "Bob Hund",
-  ];
+  ]; */
   const divisions = [
     "Design",
     "Support",
@@ -145,9 +149,9 @@ export default function TopBar(props) {
             />
 
             <Autocomplete
-              className="select"
-              options={users}
-              getOptionLabel={(option) => (option ? option : "")}
+              className="select employee"
+              options={props.users}
+              getOptionLabel={(option) => (option.name ? option.name : "")}
               getOptionSelected={(option, value) => option === value}
               filterSelectedOptions
               onChange={(values) => {

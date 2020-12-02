@@ -34,16 +34,16 @@ export default function EditForm(props) {
   const [due, setDue] = useState("");
 
   const categories = [
-    { category: "Design", color: "#374d62" },
-    { category: "Support", color: "#f44336" },
-    { category: "Development", color: "#1ec69a" },
-    { category: "Finance", color: "#9b9b9b" },
-    { category: "Sales", color: "#fb6126" },
-    { category: "Test", color: "#f0c75d" },
-    { category: "UX", color: "#d98c6a" },
-    { category: "Marketing", color: "#222224" },
+    { category: "Design", color: "#e2835e" },
+    { category: "Support", color: "#5d9ec9" },
+    { category: "Development", color: "#6fc4ad" },
+    { category: "Finance", color: "#d68292" },
+    { category: "Sales", color: "#374d62" },
+    { category: "Test", color: "#B4B256" },
+    { category: "UX", color: "#9178b6" },
+    { category: "Marketing", color: "#62aeb1" },
     { category: "Research", color: "#34d0d5" },
-    { category: "Documentation", color: "#b4b256" },
+    { category: "Management", color: "#ca6563" },
   ];
 
   const mappedCategories = categories.map((entry) => (
@@ -91,7 +91,12 @@ export default function EditForm(props) {
     document.querySelector(".editContainer form > div:nth-child(4) > p").classList.remove("hide");
   };
   const dueChanged = (e) => {
-    setDue(e);
+    let today = new Date(e);
+    const dd = String(today.getDate()).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+    setDue(`${yyyy}-${mm}-${dd}`);
+    //setDue(e);
   };
 
   const payload = {
@@ -280,7 +285,6 @@ export default function EditForm(props) {
                       label="Due date"
                       onChange={dueChanged}
                       name="Due"
-                      disablePast
                       error={false}
                       helperText={null}
                       KeyboardButtonProps={{
