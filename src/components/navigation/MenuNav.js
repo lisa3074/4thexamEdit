@@ -15,9 +15,21 @@ import {
   chat,
   scrollToBottom,
 } from "../../jsModules/displayFunctions/mainMenuNavigation";
+import { gsap } from "gsap";
+
 export default function MenuNav(props) {
   console.log("navigation || MenuNav.js | MenuNav()");
   let innerWidth = props.innerWidth;
+
+  function resetSearch() {
+    console.log("resetSearch");
+    props.setChosenCategory("");
+    props.setChosenEmployee("");
+    props.setChosenDivision("");
+    props.setChosenHours("");
+    props.setisUSerProfile(false);
+    props.setViewingProfile(false);
+  }
 
   return (
     <div className="MenuNav">
@@ -27,8 +39,9 @@ export default function MenuNav(props) {
           onClick={() => {
             administration();
             props.setTool("admin");
-            props.setisUSerProfile(false);
-            props.setViewingProfile(false);
+            resetSearch();
+            gsap.from(".UserCard", { delay: 0.5, duration: 1, autoAlpha: 0 });
+            gsap.to(".UserCard", { delay: 0.5, duration: 1, autoAlpha: 1 });
           }}>
           <li>
             <PeopleIcon />
@@ -41,8 +54,8 @@ export default function MenuNav(props) {
             newUser();
 
             props.setTool("admin");
-            props.setisUSerProfile(false);
-            props.setViewingProfile(false);
+            resetSearch();
+            gsap.to(".UserForm", { duration: 0.5, autoAlpha: 1 });
           }}>
           <PersonAddIcon />
           <h3 className="new-user-link">New user</h3>
@@ -53,8 +66,10 @@ export default function MenuNav(props) {
           onClick={() => {
             planner(innerWidth);
             props.setTool("planner");
-            props.setisUSerProfile(false);
-            props.setViewingProfile(false);
+            resetSearch();
+
+            gsap.from(".panelMargin", { delay: 0, duration: 0.5, autoAlpha: 0 });
+            gsap.to(".panelMargin", { delay: 0, duration: 0.5, autoAlpha: 1 });
           }}>
           <CalendarTodayIcon />
           <h3 className="planner-link">Planner</h3>
@@ -65,8 +80,7 @@ export default function MenuNav(props) {
             addTask();
             planner(innerWidth);
             props.setTool("planner");
-            props.setisUSerProfile(false);
-            props.setViewingProfile(false);
+            resetSearch();
           }}>
           <AddCircleOutlineRoundedIcon />
           <h3 className="task">New task</h3>
@@ -76,8 +90,7 @@ export default function MenuNav(props) {
           onClick={() => {
             chat();
             scrollToBottom();
-            props.setisUSerProfile(false);
-            props.setViewingProfile(false);
+            resetSearch();
           }}>
           <ChatBubbleIcon />
           <h3 className="chat-link">Chat</h3>
@@ -89,8 +102,7 @@ export default function MenuNav(props) {
             onClick={() => {
               firebaseConfig.auth().signOut();
               localStorage.clear();
-              props.setisUSerProfile(false);
-              props.setViewingProfile(false);
+              resetSearch();
             }}>
             Sign out
           </h3>

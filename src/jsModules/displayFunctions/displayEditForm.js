@@ -36,11 +36,13 @@ export function clearUserForm() {
 export function newUserResetForm() {
   console.log("jsModules || displayEditForm.js | newUserResetForm()");
   const $ = document.querySelector.bind(document);
-  $(".ViewProfile").classList.add("hide");
-  $(".UserList").classList.remove("hide");
-  $(".WorkForm .email").setAttribute("data-state", "");
-  $(".UserForm").setAttribute("data-state", "");
-  $(".previewImg").setAttribute("data-state", "");
+  setTimeout(() => {
+    $(".ViewProfile").classList.add("hide");
+    $(".UserList").classList.remove("hide");
+    $(".WorkForm .email").setAttribute("data-state", "");
+    $(".UserForm").setAttribute("data-state", "");
+    $(".previewImg").setAttribute("data-state", "");
+  }, 500);
 }
 export function editUserResetForm() {
   console.log("jsModules || displayEditForm.js | editUserResetForm()");

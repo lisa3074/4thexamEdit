@@ -6,27 +6,49 @@ import PersonAddRoundedIcon from "@material-ui/icons/PersonAddRounded";
 import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+
 import { addTask } from "../planner/modules/mobNavigation";
 import ChatNav from "../chat/ChatNav";
 import { chat, scrollToBottom, newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { fetchAll } from "../../jsModules/displayFunctions/subMenuNavigation";
+import { gsap } from "gsap";
 export default function TopBar(props) {
   console.log("navigation || TopBar.js | TopBar()");
   const handleDivision = (event) => {
     props.setChosenDivision(event.target.innerText);
+    setTimeout(() => {
+      gsap.from(".UserCard", { duration: 0.5, autoAlpha: 0 });
+      gsap.to(".UserCard", { duration: 0.5, autoAlpha: 1 });
+    }, 100);
   };
 
   const handleHours = (e) => {
     props.setChosenHours(e.target.innerText);
+    setTimeout(() => {
+      gsap.from(".UserCard", { duration: 0.5, autoAlpha: 0 });
+      gsap.to(".UserCard", { duration: 0.5, autoAlpha: 1 });
+    }, 100);
   };
   const handleCategory = (e) => {
     props.setChosenCategory(e.target.innerText === undefined ? "" : e.target.innerText);
+    setTimeout(() => {
+      gsap.from(".panelMargin", { duration: 0.2, autoAlpha: 0 });
+      gsap.to(".panelMargin", { duration: 0.2, autoAlpha: 1 });
+    }, 100);
   };
   const handleEmployee = (e) => {
     props.setChosenEmployee(e.target.innerText === undefined ? "" : e.target.innerText);
+    setTimeout(() => {
+      gsap.from(".panelMargin", { duration: 0.2, autoAlpha: 0 });
+      gsap.to(".panelMargin", { duration: 0.2, autoAlpha: 1 });
+    }, 100);
   };
   const handleSearch = (e) => {
     props.setSearch(e.target.value);
+    setTimeout(() => {
+      gsap.from(".UserCard", { duration: 0.5, autoAlpha: 0 });
+      gsap.to(".UserCard", { duration: 0.5, autoAlpha: 1 });
+    }, 100);
   };
 
   const categories = [

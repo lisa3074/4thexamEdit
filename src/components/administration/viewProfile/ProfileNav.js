@@ -3,6 +3,7 @@ import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import { editUser } from "../../../jsModules/displayFunctions/displayEditForm";
 import { areYouSure } from "../../../jsModules/displayFunctions/mainMenuNavigation";
+import { gsap } from "gsap";
 
 import DeleteModal from "../overview/DeleteModal";
 
@@ -31,6 +32,7 @@ export default function ProfileNav(props) {
         onClick={() => {
           editUser();
           props.editProfile(props.id);
+          gsap.to(".UserForm", { duration: 0.5, autoAlpha: 1 });
         }}>
         <EditRoundedIcon />
       </div>

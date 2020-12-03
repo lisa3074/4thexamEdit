@@ -5,6 +5,7 @@ import { scroll } from "./modules/scroll";
 import { postCard } from "../../jsModules/dbData/postData";
 import { deleteACard } from "../../jsModules/dbData/deleteData";
 import { editACard, dragACard } from "../../jsModules/dbData/editData";
+import { gsap } from "gsap";
 import "../../sass/scss/planner/style.scss";
 
 import "../../sass/scss/planner/newTask.scss";
@@ -19,6 +20,12 @@ export default function Planner(props) {
   console.log("planner || Planner.js | Planner()");
   const { cards } = props;
   const [anchorEl, setAnchorEl] = useState(null);
+
+  if (window.innerWidth < 1000) {
+    gsap.to(".FilterTasks", { duration: 0.5, y: -80 });
+    gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, y: -80 });
+  }
+
   scroll();
   console.log(props.chosenEmployee);
   //RestDb.function is a function imported from the restdb.js module
@@ -78,6 +85,8 @@ export default function Planner(props) {
           systemPart={props.systemPart}
           tool={props.tool}
           setTool={props.setTool}
+          setList={props.setList}
+          list={props.list}
         />
       </section>
     </main>

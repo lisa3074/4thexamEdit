@@ -123,7 +123,7 @@ const Login = ({ history }) => {
       <div className="forgot hide">
         <div className="forgot-wrapper">
           <TextField
-            id="password"
+            id="forgotEmail"
             label="Email"
             className="forgotEmail"
             name="forgot"

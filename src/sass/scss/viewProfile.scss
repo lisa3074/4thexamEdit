@@ -4,6 +4,7 @@
   height: 100vh;
   padding: 0.5rem;
   padding-bottom: 3rem;
+  opacity: 1;
   .Person.userCard {
     display: flex;
     flex-direction: column;
@@ -33,6 +34,7 @@
   }
   .userCard {
     width: 100%;
+
     background-color: white;
     box-shadow: var(--card-shadow);
     border-radius: var(--border-radius);
@@ -191,6 +193,12 @@
 
 .ProfileNav {
   display: none;
+}
+@media (max-width: 1000px) {
+  .ViewProfile {
+    position: relative;
+    top: -140px;
+  }
 }
 @media (min-width: 1000px) {
   .ProfileNav {

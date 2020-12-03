@@ -1,5 +1,6 @@
 import React from "react";
 import MenuRoundedIcon from "@material-ui/icons/MenuRounded";
+import { gsap } from "gsap";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import PersonAddRoundedIcon from "@material-ui/icons/PersonAddRounded";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
@@ -17,6 +18,7 @@ import {
   closeSearch,
   resetFilterNav,
 } from "../../jsModules/displayFunctions/subMenuNavigation";
+import { filterStay, staggeringCards, staggeringProfiles } from "../../jsModules/displayFunctions/staggeringCards";
 import { newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { addTask } from "../planner/modules/mobNavigation";
 
@@ -45,6 +47,12 @@ export default function SubMenu(props) {
           openMenu();
           resetFilterNav();
           tool === "planner" ? resetSubmenu() : openMenu();
+          gsap.from(".Menu", { delay: 0, duration: 1, autoAlpha: 0 });
+          gsap.to(".Menu", { delay: 0, duration: 1, autoAlpha: 1 });
+          gsap.to(".FilterUsers", { duration: 0.5, y: -140 });
+          gsap.to(".UserList", { duration: 0.5, y: -140 });
+          gsap.to(".FilterTasks", { duration: 0.5, y: -80 });
+          gsap.to(".relativeContainer", { duration: 0.3, y: -80 });
         }}>
         <MenuRoundedIcon />
       </div>
@@ -55,6 +63,8 @@ export default function SubMenu(props) {
           removeDelete();
           props.setViewingProfile(false);
           props.setisUSerProfile(false);
+          /*    gsap.to(".FilterUsers", { duration: 0.5, y: -140 });
+          gsap.to(".UserList", { duration: 0.5, y: -140 }); */
         }}>
         <ArrowBackIosRoundedIcon />
       </div>
@@ -70,6 +80,7 @@ export default function SubMenu(props) {
           className="menuSearch"
           onClick={() => {
             searchUsers(props.tool);
+            filterStay();
           }}>
           {props.tool === "admin" ? <SearchRoundedIcon /> : <SearchRoundedIcon />}
         </div>
@@ -79,6 +90,7 @@ export default function SubMenu(props) {
             editUser();
             removeDelete();
             props.editProfile(props.id);
+            gsap.to(".UserForm", { duration: 0.5, opacity: 1 });
           }}>
           <EditRoundedIcon />
         </div>
@@ -88,6 +100,13 @@ export default function SubMenu(props) {
             closeSearch(props.tool);
             props.setChosenCategory("");
             props.setChosenEmployee("");
+            gsap.to(".FilterUsers", { duration: 0.5, y: -140 });
+            gsap.to(".UserList", { delay: 0.2, duration: 0.3, y: -140 });
+            gsap.to(".FilterTasks", { duration: 0.5, y: -80 });
+            gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, y: -80 });
+
+            staggeringCards(props.list);
+            staggeringProfiles();
           }}>
           <CloseRoundedIcon />
         </div>
@@ -96,6 +115,8 @@ export default function SubMenu(props) {
         className={props.level === "Administrator" ? "newUserIcon" : "newUserIcon hiddenFromUser"}
         onClick={() => {
           newUser();
+
+          gsap.to(".UserForm", { duration: 0.5, autoAlpha: 1 });
         }}>
         <PersonAddRoundedIcon />
       </div>
@@ -107,7 +128,15 @@ export default function SubMenu(props) {
         }}>
         <DeleteRoundedIcon />
       </div>
-      <div className="menuAddTask hide" onClick={addTask}>
+      <div
+        className="menuAddTask hide"
+        onClick={() => {
+          addTask();
+          closeSearch(props.tool);
+          gsap.to(".UserList", { duration: 0.5, y: -140 });
+          gsap.to(".FilterTasks", { duration: 0.5, y: -80 });
+          gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, y: -80 });
+        }}>
         <AddRoundedIcon />
       </div>
     </nav>

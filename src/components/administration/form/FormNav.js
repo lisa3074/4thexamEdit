@@ -5,6 +5,7 @@ import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 import { forwards } from "../../../jsModules/displayFunctions/formNavigation";
 import { backwards } from "../../../jsModules/displayFunctions/formNavigation";
+import { gsap } from "gsap";
 
 export default function FormNav(props) {
   console.log("administration/form || FormNav.js | FormNav()");
@@ -14,6 +15,7 @@ export default function FormNav(props) {
         className="float-btn"
         onClick={() => {
           props.clear();
+          gsap.to(".UserForm", { duration: 0.5, opacity: 0 });
         }}>
         <ClearRoundedIcon />
       </div>
@@ -28,6 +30,7 @@ export default function FormNav(props) {
         className="float-btn check hide"
         onClick={(e) => {
           props.submit(e);
+          gsap.to(".UserForm", { duration: 0.5, opacity: 0 });
         }}>
         <CheckRoundedIcon />
       </button>

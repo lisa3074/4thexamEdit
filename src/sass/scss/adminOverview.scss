@@ -18,6 +18,7 @@
 
 .UserCard {
   width: 100%;
+  opacity: 0;
   grid-template-areas:
     "image info info"
     "image division button";

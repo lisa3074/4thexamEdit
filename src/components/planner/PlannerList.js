@@ -1,9 +1,11 @@
 import React from "react";
 import Card from "./Card";
+import { gsap } from "gsap";
 
 export default function List(props) {
   console.log("planner || List.js | List()");
 
+  /* gsap.to(".panelMargin", { delay: 0, duration: 0.5, autoAlpha: 1 }); */
   console.log(props.cards);
   const mappedCards = props.cards.map((card) => (
     <Card

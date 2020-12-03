@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Menu from "@material-ui/core/Menu";
+import { gsap } from "gsap";
 import MenuItem from "@material-ui/core/MenuItem";
 import ArrowDropDownRoundedIcon from "@material-ui/icons/ArrowDropDownRounded";
-import { done, doing, todo, barrier } from "./modules/mobNavigation";
+import { done, doing, todo, barrier, navigate } from "./modules/mobNavigation";
+import { filterStay, staggeringCards } from "../../jsModules/displayFunctions/staggeringCards";
 import PauseRoundedIcon from "@material-ui/icons/PauseRounded";
 import CachedRoundedIcon from "@material-ui/icons/CachedRounded";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
@@ -16,7 +18,7 @@ export default function PlannerNav(props) {
   console.log("planner || PlannerNav.js | PlannerNav()");
   const [anchorEl, setAnchorEl] = useState(null);
   const [list, setList] = useState("To do");
-
+  console.log(props.list);
   const handleClick = (event) => {
     console.log("planner || PlannerNav.js | handleClick()");
     setAnchorEl(event.currentTarget);
@@ -26,6 +28,12 @@ export default function PlannerNav(props) {
     console.log("planner || PlannerNav.js | handleClose()");
     setAnchorEl(null);
     e.target.textContent === "" ? setList(list) : setList(e.target.textContent);
+    closeSearch(props.tool);
+    props.setChosenCategory("");
+    props.setChosenEmployee("");
+    gsap.to(".FilterTasks", { duration: 0.5, y: -80 });
+    gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, y: -80 });
+    staggeringCards(props.list);
   };
   const move = {
     top: "44px",
@@ -50,6 +58,7 @@ export default function PlannerNav(props) {
             className="close-wrapper"
             onClick={() => {
               searchUsers(props.tool);
+              filterStay();
             }}>
             <SearchRoundedIcon />
           </div>
@@ -59,6 +68,9 @@ export default function PlannerNav(props) {
               closeSearch(props.tool);
               props.setChosenCategory("");
               props.setChosenEmployee("");
+              gsap.to(".FilterTasks", { duration: 0.5, y: -80 });
+              gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, y: -80 });
+              staggeringCards(props.list);
             }}>
             <CloseRoundedIcon />
           </div>
@@ -75,7 +87,8 @@ export default function PlannerNav(props) {
           value="To do"
           onClick={(e) => {
             handleClose(e);
-            todo();
+            navigate("To", "progress1", "Barrier1", "Done1");
+            props.setList("To");
           }}>
           <PauseRoundedIcon /> To do
         </MenuItem>
@@ -83,7 +96,8 @@ export default function PlannerNav(props) {
           value="In progress"
           onClick={(e) => {
             handleClose(e);
-            doing();
+            props.setList("progress1");
+            navigate("progress1", "Barrier1", "Done1", "To");
           }}>
           <CachedRoundedIcon /> In progress
         </MenuItem>
@@ -91,7 +105,8 @@ export default function PlannerNav(props) {
           value="Barrier"
           onClick={(e) => {
             handleClose(e);
-            barrier();
+            props.setList("Barrier1");
+            navigate("Barrier1", "Done1", "To", "progress1");
           }}>
           <span className="icon">!</span> Barrier
         </MenuItem>
@@ -99,7 +114,8 @@ export default function PlannerNav(props) {
           value="Done"
           onClick={(e) => {
             handleClose(e);
-            done();
+            props.setList("Done1");
+            navigate("Done1", "To", "progress1", "Barrier1");
           }}>
           <CheckRoundedIcon /> Done
         </MenuItem>

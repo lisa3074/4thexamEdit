@@ -1,10 +1,11 @@
 import React from "react";
-
+import { gsap } from "gsap";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import "../../sass/scss/filterUsers.scss";
+import { staggeringCards, filterStay } from "../../jsModules/displayFunctions/staggeringCards";
 
 export default function FilterTasks(props) {
   console.log("planner || FilterTasks.js | FilterTasks()");
@@ -14,10 +15,14 @@ export default function FilterTasks(props) {
   const handleCategory = (e) => {
     const value = e.target.value === "All" ? "" : e.target.value;
     props.setChosenCategory(value);
+    staggeringCards(props.list);
+    filterStay();
   };
   const handleEmployee = (e) => {
     const value = e.target.value === "All" ? "" : e.target.value;
     props.setChosenEmployee(value);
+    staggeringCards(props.list);
+    filterStay();
   };
   console.log(props.chosenEmployee);
 
@@ -47,7 +52,7 @@ export default function FilterTasks(props) {
   ));
 
   return (
-    <nav className="FilterTasks hide">
+    <nav className="FilterTasks">
       <div className="filter-wrapper">
         <FormControl className="category">
           <InputLabel id="select-category">Category</InputLabel>

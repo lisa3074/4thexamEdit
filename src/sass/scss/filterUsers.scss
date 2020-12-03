@@ -63,10 +63,24 @@
   }
 }
 .FilterTasks {
-  padding: 0 1rem;
-  border-radius: 0;
+  padding: 0 1rem 0.5rem;
+  transform: translateY(-135px);
+  border-radius: var(--border-radius);
+  position: relative;
+}
+
+.FilterUsers {
+  transform: translateY(-135px);
+  border-radius: var(--border-radius);
+  padding-bottom: 1.5rem;
 }
 @media (min-width: 1000px) {
+  .FilterUsers,
+  .FilterTasks {
+    transform: translateY(0);
+    display: none;
+  }
+
   .TopBar .searchUsers .MuiInputLabel-shrink,
   .TopBar .MuiInputLabel-shrink {
     transform: translate(0px, -20000px) scale(0.75);

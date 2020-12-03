@@ -1,9 +1,15 @@
 import React from "react";
+import gsap from "gsap";
 
 import { displayProfile, setSubmMenu } from "../../../jsModules/displayFunctions/displayProfile";
+import { staggeringProfiles } from "../../../jsModules/displayFunctions/staggeringCards";
 
 export default function UserCard(props) {
   console.log("administration/UserCard.js || UserCard()");
+
+  //gsap.to(".UserCard", { delay: 1, duration: 1, autoAlpha: 1 });
+  staggeringProfiles();
+
   function detectId(e) {
     const userId = e.target.parentNode.dataset.user;
     viewUser(e, userId);

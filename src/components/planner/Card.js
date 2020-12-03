@@ -43,9 +43,7 @@ export default function Card(props) {
   const colorText = {
     color: props.color,
   };
-  //const mappedAssigned = props.assignedTo.map((user) => <p key={user.id}>{user.name}</p>);
-  /* console.log(props.assignedTo[0].name);
-  console.log(props.assignedTo.map((user) => user.name.toString().includes("Lisa"))); */
+
   const user = props.assignedTo.map((user) => user.name.toString());
   console.log(user);
 

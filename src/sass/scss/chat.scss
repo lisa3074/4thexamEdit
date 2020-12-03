@@ -412,14 +412,16 @@ button.sendMessage {
     margin: 0 auto;
     bottom: 0rem;
     left: 0rem;
-    width: 100%;
+    button.sendMessage {
+      transform: none;
+    }
   }
   .TopBar .ChatNav {
     display: block;
     margin: 0 auto;
     button.text-btn {
       margin: 0 auto;
-      // padding: 1.2rem 4rem 1.2rem 2rem;
+
       input {
         cursor: pointer;
         padding-right: 1rem;

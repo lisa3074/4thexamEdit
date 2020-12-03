@@ -1,3 +1,5 @@
+import gsap from "gsap";
+
 export function displayProfile(userId) {
   console.log("jsModules || displayProfile.js | displayProfile()");
   document.querySelector(".ViewProfile").classList.remove("hide");
@@ -33,6 +35,6 @@ export function setSubmMenu() {
   document.querySelector(".newUserIcon").classList.add("hide");
   document.querySelector(".menuDelete").classList.remove("hide");
   document.querySelector(".menuClose").classList.add("hide");
-  document.querySelector(".FilterUsers").classList.add("hide");
-  document.querySelector(".FilterTasks").classList.add("hide");
+  /*   document.querySelector(".FilterUsers").classList.add("hide");
+  document.querySelector(".FilterTasks").classList.add("hide"); */
 }

@@ -3,6 +3,7 @@ import Menu from "../../navigation/Menu";
 import MainAdmin from "./MainAdmin";
 import TopBar from "../../navigation/TopBar";
 import SubMenu from "../../navigation/SubMenu";
+import { gsap } from "gsap";
 import Planner from "../../planner/Planner";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Chat from "../../chat/Chat";
@@ -30,9 +31,11 @@ export default function Administration(props) {
   const [isUSerProfile, setisUSerProfile] = useState(false);
   const [sortDate, setSortDate] = useState();
   const [cards, setCards] = useState([]);
+  const [list, setList] = useState("To");
 
   useEffect(() => {
     getUsers(setUsers);
+    gsap.to(".UserCard", { delay: 1, duration: 1, autoAlpha: 1 });
   }, []);
   useEffect(() => {
     getMessages(setMessages);
@@ -63,7 +66,7 @@ export default function Administration(props) {
     setChosenUser(user);
     setState("edit");
   }
-
+  console.log(chosenDivision);
   return (
     <section className="Administration">
       <div className="loading-page">
@@ -91,7 +94,11 @@ export default function Administration(props) {
         setId={setId}
         level={level}
         setisUSerProfile={setisUSerProfile}
-        setViewingProfile={setViewingProfile}></Menu>
+        setViewingProfile={setViewingProfile}
+        setChosenCategory={setChosenCategory}
+        setChosenEmployee={setChosenEmployee}
+        setChosenDivision={setChosenDivision}
+        setChosenHours={setChosenHours}></Menu>
       <MainAdmin
         setChosenDivision={setChosenDivision}
         setChosenHours={setChosenHours}
@@ -127,6 +134,8 @@ export default function Administration(props) {
         tool={tool}
         setTool={setTool}
         cards={cards}
+        setList={setList}
+        list={list}
       />
       <Chat
         signedinUser={signedinUser}
@@ -149,7 +158,8 @@ export default function Administration(props) {
         viewingProfile={viewingProfile}
         setViewingProfile={setViewingProfile}
         isUSerProfile={props.isUSerProfile}
-        setisUSerProfile={setisUSerProfile}></SubMenu>
+        setisUSerProfile={setisUSerProfile}
+        list={list}></SubMenu>
     </section>
   );
 }

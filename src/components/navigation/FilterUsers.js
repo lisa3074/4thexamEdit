@@ -2,18 +2,37 @@ import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import { gsap } from "gsap";
 
 export default function FilterUsers(props) {
   console.log("navigation || FilterUsers.js | FilterUsers()");
 
   const handleDivisionChange = (event) => {
     props.setChosenDivision(event.target.innerText);
+    setTimeout(() => {
+      gsap.from(".UserCard", { duration: 1, autoAlpha: 0 });
+      gsap.to(".UserCard", { duration: 1, autoAlpha: 1 });
+      gsap.from(".UserList", { duration: 0.5, y: 0 });
+      gsap.to(".UserList", { duration: 0.5, y: 0 });
+    }, 1);
   };
   const handleHoursChange = (event) => {
     props.setChosenHours(event.target.innerText);
+    setTimeout(() => {
+      gsap.from(".UserCard", { duration: 2, autoAlpha: 0 });
+      gsap.to(".UserCard", { duration: 2, autoAlpha: 1 });
+      gsap.from(".UserList", { duration: 0.5, y: 0 });
+      gsap.to(".UserList", { duration: 0.5, y: 0 });
+    }, 1);
   };
   const handleSearch = (e) => {
     props.setSearch(e.target.value);
+    setTimeout(() => {
+      gsap.from(".UserCard", { duration: 2, autoAlpha: 0 });
+      gsap.to(".UserCard", { duration: 2, autoAlpha: 1 });
+      gsap.from(".UserList", { duration: 0.5, y: 0 });
+      gsap.to(".UserList", { duration: 0.5, y: 0 });
+    }, 1);
   };
   const divisions = [
     "Design",
@@ -30,7 +49,7 @@ export default function FilterUsers(props) {
   const workHours = ["Full time", "Part time", "Hourly"];
 
   return (
-    <nav className="FilterUsers hide">
+    <nav className="FilterUsers">
       <div className="filter-wrapper">
         <Autocomplete
           name="Division"

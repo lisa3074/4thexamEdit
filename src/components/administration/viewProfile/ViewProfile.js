@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { person } from "../../../jsModules/displayFunctions/formNavigation";
+
 import UserForm from "../form/UserForm";
 import Contact from "./Contact";
 import Person from "./Person";
@@ -10,10 +10,12 @@ import WorkLoad from "./WorkLoad";
 import { deleteUser } from "../../../jsModules/dbData/deleteData";
 import DeleteModal from "../overview/DeleteModal";
 import { showCardList } from "../../../jsModules/displayFunctions/subMenuNavigation";
+import { gsap } from "gsap";
 
 export default function ViewProfile(props) {
   console.log("administration/viewProfile || ViewProfile.js | ViewProfile()");
   console.log(props);
+
   const mappedPerson = props.user.map((user) => (
     <Person
       key={user.id}

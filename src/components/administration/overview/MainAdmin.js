@@ -16,6 +16,7 @@ export default function MainAdmin(props) {
         setViewingProfile={props.setViewingProfile}
         signedinUser={props.signedinUser}
         users={
+          //If all filter options is in use:
           props.chosenHours !== (undefined && "") &&
           props.chosenDivision !== (undefined && "") &&
           props.search !== (undefined && "")
@@ -27,11 +28,32 @@ export default function MainAdmin(props) {
                     user.position.toLowerCase().includes(props.search.toLowerCase()) ||
                     user.workHours.toLowerCase().includes(props.search.toLowerCase()))
               )
-            : props.chosenHours !== (undefined && "")
+            : //If only Hours and search is in use
+            props.chosenHours !== (undefined && "") && props.search !== (undefined && "")
+            ? props.users.filter(
+                (user) =>
+                  user.workHours.includes(props.chosenHours) &&
+                  (user.name.toLowerCase().includes(props.search.toLowerCase()) ||
+                    user.position.toLowerCase().includes(props.search.toLowerCase()) ||
+                    user.workHours.toLowerCase().includes(props.search.toLowerCase()))
+              )
+            : //If only Division and search is in use
+            props.chosenDivision !== (undefined && "") && props.search !== (undefined && "")
+            ? props.users.filter(
+                (user) =>
+                  user.division.includes(props.chosenDivision) &&
+                  (user.name.toLowerCase().includes(props.search.toLowerCase()) ||
+                    user.position.toLowerCase().includes(props.search.toLowerCase()) ||
+                    user.workHours.toLowerCase().includes(props.search.toLowerCase()))
+              )
+            : //If only Hours is in use
+            props.chosenHours !== (undefined && "")
             ? props.users.filter((user) => user.workHours.includes(props.chosenHours))
-            : props.chosenDivision !== (undefined && "")
+            : //If only Division is in use
+            props.chosenDivision !== (undefined && "")
             ? props.users.filter((user) => user.division.includes(props.chosenDivision))
-            : props.search !== (undefined && "")
+            : //If only search is in use
+            props.search !== (undefined && "")
             ? props.users.filter((user) => user.name.toLowerCase().includes(props.search.toLowerCase()))
             : props.users
         }

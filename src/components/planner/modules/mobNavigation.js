@@ -1,75 +1,22 @@
 import { closeExpand } from "./closeExpand";
+import { gsap } from "gsap";
+import { staggeringCards } from "../../../jsModules/displayFunctions/staggeringCards";
 
-export function done() {
+export function navigate(chosen, list1, list2, list3) {
+  console.log(chosen);
   console.log("planner/modules || mobNavigation.js | done()");
-  document.querySelector(".Done1").classList = "Done1 scrollList show";
-
-  document.querySelector(".progress1").classList = "progress1 scrollList hidden";
-  document.querySelector(".Do1").classList = "To Do1 scrollList hidden";
-  document.querySelector(".Barrier1").classList = "Barrier1 scrollList hidden";
-  document.querySelector(".NewTask").classList = "NewTask hidden";
+  gsap.to(".scrollList", { duration: 0, opacity: 0, zIndex: 0, width: "calc(100vw - 1rem)" });
+  gsap.to("." + chosen + ".scrollList", { duration: 0, opacity: 1, zIndex: 1, width: "calc(100vw - 1rem)" });
+  staggeringCards(chosen);
+  document.querySelector(".NewTask").classList = "NewTask hide";
   setTimeout(() => {
-    document.querySelectorAll(".progress1, .Do1, .Barrier1").forEach((element) => {
+    document.querySelectorAll(list1, list2, list3).forEach((element) => {
       element.classList.add("hide");
     });
-  }, 500);
-  document.querySelector(".Done1").addEventListener("transitionend", function () {
-    document.querySelector(".Done1").style.transform = "";
-  });
+  }, 1000);
   closeExpand();
 }
 
-export function doing() {
-  console.log("planner/modules || mobNavigation.js | doing()");
-  document.querySelector(".Done1").classList = "Done1 scrollList hidden";
-  document.querySelector(".progress1").classList = "progress1 scrollList show";
-  document.querySelector(".Do1").classList = "To Do1 scrollList hidden";
-  document.querySelector(".Barrier1").classList = "Barrier1 scrollList hidden";
-  document.querySelector(".NewTask").classList = "NewTask hidden";
-  setTimeout(() => {
-    document.querySelectorAll(".Do1, .Done1, .Barrier1").forEach((element) => {
-      element.classList.add("hide");
-    });
-  }, 500);
-  document.querySelector(".progress1").addEventListener("transitionend", function () {
-    document.querySelector(".progress1").style.transform = "";
-  });
-  closeExpand();
-}
-export function todo() {
-  console.log("planner/modules || mobNavigation.js | todo()");
-  document.querySelector(".Done1").classList = "Done1 scrollList hidden";
-  document.querySelector(".progress1").classList = "progress1 scrollList hidden";
-  document.querySelector(".Do1").classList = "To Do1 scrollList show";
-  document.querySelector(".Barrier1").classList = "Barrier1 scrollList hidden";
-  document.querySelector(".NewTask").classList = "NewTask hidden";
-  setTimeout(() => {
-    document.querySelectorAll(".progress1, .Done1, .Barrier1").forEach((element) => {
-      element.classList.add("hide");
-    });
-  }, 500);
-  document.querySelector(".To.Do1").addEventListener("transitionend", function () {
-    document.querySelector(".To.Do1").style.transform = "";
-  });
-  closeExpand();
-}
-export function barrier() {
-  console.log("planner/modules/mobNavigation.js || barrier()");
-  document.querySelector(".Done1").classList = "Done1 scrollList hidden";
-  document.querySelector(".progress1").classList = "progress1 scrollList hidden";
-  document.querySelector(".Do1").classList = "To Do1 scrollList hidden";
-  document.querySelector(".Barrier1").classList = "Barrier1 scrollList show";
-  document.querySelector(".NewTask").classList = "NewTask hidden";
-  setTimeout(() => {
-    document.querySelectorAll(".progress1, .Do1, .Done").forEach((element) => {
-      element.classList.add("hide");
-    });
-  }, 500);
-  document.querySelector(".Barrier1").addEventListener("transitionend", function () {
-    document.querySelector(".Barrier1").style.transform = "";
-  });
-  closeExpand();
-}
 export function addTask() {
   console.log("planner/modules || mobNavigation.js | addTask()");
   document.querySelector(".NewTask").classList = "NewTask showNew";

@@ -1,9 +1,10 @@
 import React from "react";
 import MenuNav from "./MenuNav";
 import Profile from "./Profile";
-
+import gsap from "gsap";
 export default function Menu(props) {
   console.log("navigation || Menu.js | Menu()");
+  gsap.to(".Menu", { delay: 1, duration: 1, autoAlpha: 1 });
   return (
     <>
       <nav className={window.innerWidth < 1000 ? "Menu" : "Menu MenuDesktop"}>
@@ -19,7 +20,11 @@ export default function Menu(props) {
           setTool={props.setTool}
           level={props.level}
           setisUSerProfile={props.setisUSerProfile}
-          setViewingProfile={props.setViewingProfile}></MenuNav>
+          setViewingProfile={props.setViewingProfile}
+          setChosenCategory={props.setChosenCategory}
+          setChosenEmployee={props.setChosenEmployee}
+          setChosenDivision={props.setChosenDivision}
+          setChosenHours={props.setChosenHours}></MenuNav>
       </nav>
     </>
   );

@@ -74,11 +74,12 @@
   }
 
   @media (max-width: 600px) {
-    .show {
+    /*     .show {
       width: calc(100% - 1rem);
-      transform: "" /* translateX(0) */;
+      opacity: 1;
       transition: 1s;
-    }
+      z-index: 1;
+    } */
     .showNew {
       z-index: 101;
       width: 100vw;
@@ -87,10 +88,11 @@
       transition: 1s;
     }
 
-    .hidden {
+    /*     .hidden {
       opacity: 0;
-      transform: translateX(100vw);
       transition: 1s;
-    }
+      width: calc(100% - 1rem);
+      z-index: 0;
+    } */
   }
 }

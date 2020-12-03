@@ -30,6 +30,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
+    position: relative;
+    z-index: 1;
     h3 {
       color: white;
       padding-right: 1rem;
@@ -50,6 +52,21 @@
 }
 .MuiPaper-root.MuiMenu-paper.MuiPopover-paper.MuiPaper-elevation8.MuiPaper-rounded {
   transform: translateY(20px);
+}
+
+@media (max-width: 600px) {
+  .scrollList {
+    width: calc(100vw - 1rem);
+  }
+  .progress1,
+  .Done1,
+  .Barrier1 {
+    opacity: 0;
+  }
+  .To {
+    opacity: 1;
+    z-index: 1;
+  }
 }
 @media (min-width: 1000px) {
   .Planner .PlannerNav {

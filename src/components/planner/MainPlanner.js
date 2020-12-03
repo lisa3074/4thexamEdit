@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import FilterTasks from "./FilterTasks";
 import PlannerList from "./PlannerList";
 import PlannerNav from "./PlannerNav";
+import { gsap } from "gsap";
+import List from "./PlannerList";
 
 //The list container
 export default function MainPlanner({
@@ -20,6 +22,8 @@ export default function MainPlanner({
   systemPart,
   tool,
   setTool,
+  setList,
+  list,
 }) {
   console.log("planner || MainPlanner.js | MainPlanner()");
 
@@ -47,6 +51,8 @@ export default function MainPlanner({
         setTool={setTool}
         setChosenCategory={setChosenCategory}
         setChosenEmployee={setChosenEmployee}
+        setList={setList}
+        list={list}
       />
       <FilterTasks
         setChosenCategory={setChosenCategory}
@@ -54,6 +60,7 @@ export default function MainPlanner({
         chosenCategory={chosenCategory}
         chosenEmployee={chosenEmployee}
         users={users}
+        list={list}
       />
       <section className="relativeContainer">
         <PlannerList
