@@ -3,7 +3,7 @@ import Card from "./Card";
 
 export default function List(props) {
   console.log("planner || List.js | List()");
-  /*   console.log(props.chosenEmployee); */
+
   console.log(props.cards);
   const mappedCards = props.cards.map((card) => (
     <Card
@@ -29,7 +29,9 @@ export default function List(props) {
 
   return (
     <section
-      className={props.header + "1 scrollList hidden"}
+      className={
+        props.header === "To Do" ? props.header + "1 scrollList show" : props.header + "1 scrollList hidden hidden2"
+      }
       onDrop={() => {
         props.setDropList(props.header);
       }}

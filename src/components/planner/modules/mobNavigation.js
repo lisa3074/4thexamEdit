@@ -1,11 +1,4 @@
 import { closeExpand } from "./closeExpand";
-export function init() {
-  console.log("planner/modules || mobNavigation.js | init()");
-  document.querySelectorAll(".progress1.scrollList, .Done1.scrollList, .Barrier1.scrollList").forEach((list) => {
-    list.classList.add("hidden2");
-  });
-  document.querySelector(".To").classList = "To Do1 scrollList show";
-}
 
 export function done() {
   console.log("planner/modules || mobNavigation.js | done()");

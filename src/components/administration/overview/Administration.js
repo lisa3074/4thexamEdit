@@ -13,8 +13,8 @@ import { getMessages } from "../../../jsModules/dbData/getData";
 export default function Administration(props) {
   console.log("administration/Administration.js || Administration()");
   const [tool, setTool] = useState("");
-  const [chosenCat, setChosenCat] = useState(undefined);
-  const [chosenEmployee, setChosenEmployee] = useState(undefined);
+  const [chosenCategory, setChosenCategory] = useState("");
+  const [chosenEmployee, setChosenEmployee] = useState("");
   const [chosenDivision, setChosenDivision] = useState("");
   const [chosenHours, setChosenHours] = useState("");
   const [search, setSearch] = useState("");
@@ -73,7 +73,7 @@ export default function Administration(props) {
       </div>
       <TopBar
         endpoint={props.endpoint}
-        setChosenCat={setChosenCat}
+        setChosenCategory={setChosenCategory}
         setChosenEmployee={setChosenEmployee}
         setChosenDivision={setChosenDivision}
         setChosenHours={setChosenHours}
@@ -117,9 +117,9 @@ export default function Administration(props) {
         cards={cards}></MainAdmin>
 
       <Planner
-        chosenCat={chosenCat}
+        chosenCategory={chosenCategory}
         chosenEmployee={chosenEmployee}
-        setChosenCat={setChosenCat}
+        setChosenCategory={setChosenCategory}
         setChosenEmployee={setChosenEmployee}
         users={users}
         setSystemPart={setSystemPart}
@@ -139,7 +139,7 @@ export default function Administration(props) {
       <SubMenu
         endpoint={props.endpoint}
         tool={tool}
-        setChosenCat={setChosenCat}
+        setChosenCategory={setChosenCategory}
         setChosenEmployee={setChosenEmployee}
         id={id}
         setSystemPart={setSystemPart}

@@ -59,7 +59,6 @@ export function closeSearch(tool) {
   tool === "admin"
     ? document.querySelector(".FilterUsers").classList.add("hide")
     : document.querySelector(".FilterTasks").classList.add("hide");
-  //RESET LIST/SEARCH
 }
 
 export function resetFilterNav() {

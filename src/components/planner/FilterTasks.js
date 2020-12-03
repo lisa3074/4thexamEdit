@@ -1,7 +1,5 @@
 import React from "react";
 
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -14,11 +12,11 @@ export default function FilterTasks(props) {
   const { users } = props;
 
   const handleCategory = (e) => {
-    const value = e.target.value === "All" ? undefined : e.target.value;
-    props.setChosenCat(value);
+    const value = e.target.value === "All" ? "" : e.target.value;
+    props.setChosenCategory(value);
   };
   const handleEmployee = (e) => {
-    const value = e.target.value === "All" ? undefined : e.target.value;
+    const value = e.target.value === "All" ? "" : e.target.value;
     props.setChosenEmployee(value);
   };
   console.log(props.chosenEmployee);
@@ -61,7 +59,7 @@ export default function FilterTasks(props) {
             onChange={(e) => {
               handleCategory(e);
             }}
-            value={props.chosenCat}>
+            value={props.chosenCategory}>
             {mappedCategories}
           </Select>
         </FormControl>

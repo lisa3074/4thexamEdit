@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import MainPlanner from "./MainPlanner";
 import NewTask from "./NewTask";
-import { init } from "./modules/mobNavigation";
 import { scroll } from "./modules/scroll";
-import { getCards } from "../../jsModules/dbData/getData";
 import { postCard } from "../../jsModules/dbData/postData";
 import { deleteACard } from "../../jsModules/dbData/deleteData";
 import { editACard, dragACard } from "../../jsModules/dbData/editData";
@@ -55,7 +53,6 @@ export default function Planner(props) {
   } else {
     setTimeout(() => {
       document.querySelector(".loading-page").classList.add("hide");
-      init();
     }, 10);
   }
   console.log(props.chosenEmployee);
@@ -72,9 +69,9 @@ export default function Planner(props) {
           editCard={editCard}
           dragCard={dragCard}
           cards={cards}
-          chosenCat={props.chosenCat}
+          chosenCategory={props.chosenCategory}
           chosenEmployee={props.chosenEmployee}
-          setChosenCat={props.setChosenCat}
+          setChosenCategory={props.setChosenCategory}
           setChosenEmployee={props.setChosenEmployee}
           users={props.users}
           setSystemPart={props.setSystemPart}

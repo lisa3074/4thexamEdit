@@ -12,9 +12,9 @@ export default function MainPlanner({
   editCard,
   dragCard,
   chosenEmployee,
-  chosenCat,
+  chosenCategory,
   setChosenEmployee,
-  setChosenCat,
+  setChosenCategory,
   users,
   setSystemPart,
   systemPart,
@@ -22,31 +22,36 @@ export default function MainPlanner({
   setTool,
 }) {
   console.log("planner || MainPlanner.js | MainPlanner()");
-  console.log(cards);
-  // console.log(chosenEmployee);
-  const [dropList, setDropList] = React.useState("");
 
-  function getFilteredCards(liste) {
-    return chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
+  const [dropList, setDropList] = React.useState("");
+  console.log(chosenEmployee, chosenCategory);
+
+  function getFilteredCards(PlannerList) {
+    return chosenEmployee !== "" && chosenCategory !== ""
       ? cards.filter(
           (card) =>
-            card.list === liste &&
+            card.list === PlannerList &&
             card.assignedTo.some((obj) => obj.name === chosenEmployee) &&
-            card.category.includes(chosenCat)
+            card.category.includes(chosenCategory)
         )
-      : chosenCat !== (undefined && "")
-      ? cards.filter((card) => card.list === liste && card.category.includes(chosenCat))
-      : chosenEmployee !== (undefined && "")
-      ? cards.filter((card) => card.list === liste && card.assignedTo.some((obj) => obj.name === chosenEmployee))
-      : cards.filter((card) => card.list === liste);
+      : chosenCategory !== ""
+      ? cards.filter((card) => card.list === PlannerList && card.category.includes(chosenCategory))
+      : chosenEmployee !== ""
+      ? cards.filter((card) => card.list === PlannerList && card.assignedTo.some((obj) => obj.name === chosenEmployee))
+      : cards.filter((card) => card.list === PlannerList);
   }
   return (
     <main className="Main">
-      <PlannerNav tool={tool} setTool={setTool} />
-      <FilterTasks
-        setChosenCat={setChosenCat}
+      <PlannerNav
+        tool={tool}
+        setTool={setTool}
+        setChosenCategory={setChosenCategory}
         setChosenEmployee={setChosenEmployee}
-        chosenCat={chosenCat}
+      />
+      <FilterTasks
+        setChosenCategory={setChosenCategory}
+        setChosenEmployee={setChosenEmployee}
+        chosenCategory={chosenCategory}
         chosenEmployee={chosenEmployee}
         users={users}
       />
@@ -65,17 +70,6 @@ export default function MainPlanner({
           chosenEmployee={chosenEmployee}
           header="To Do"
           cards={getFilteredCards("To Do")}
-          /*  cards={
-            chosenEmployee !== (undefined && "") && chosenCat !== (undefined && "")
-              ? cards.filter(
-                  (c) => c.list === "To Do" && c.assignedTo.includes(chosenEmployee) && c.category.includes(chosenCat)
-                )
-              : chosenCat !== (undefined && "")
-              ? cards.filter((c) => c.list === "To Do" && c.category.includes(chosenCat))
-              : chosenEmployee !== (undefined && "")
-              ? cards.filter((c) => c.list === "To Do" && c.assignedTo.includes(chosenEmployee))
-              : cards.filter((c) => c.list === "To Do")
-          } */
         />
         <PlannerList
           deleteCard={deleteCard}

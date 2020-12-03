@@ -6,10 +6,6 @@ import PersonAddRoundedIcon from "@material-ui/icons/PersonAddRounded";
 import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
 import { addTask } from "../planner/modules/mobNavigation";
 import ChatNav from "../chat/ChatNav";
 import { chat, scrollToBottom, newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
@@ -24,10 +20,10 @@ export default function TopBar(props) {
     props.setChosenHours(e.target.innerText);
   };
   const handleCategory = (e) => {
-    props.setChosenCat(e.target.innerText);
+    props.setChosenCategory(e.target.innerText === undefined ? "" : e.target.innerText);
   };
   const handleEmployee = (e) => {
-    props.setChosenEmployee(e.target.innerText);
+    props.setChosenEmployee(e.target.innerText === undefined ? "" : e.target.innerText);
   };
   const handleSearch = (e) => {
     props.setSearch(e.target.value);
@@ -45,14 +41,7 @@ export default function TopBar(props) {
     { category: "Research", color: "#34d0d5" },
     { category: "Management", color: "#b4b256" },
   ];
-  /*  const users = [
-    "Lisa Bianca Henning Søndergaard",
-    "Anita Larsen",
-    "Allan Poulsen",
-    "Fam Schelde",
-    "Gry Trampedach",
-    "Bob Hund",
-  ]; */
+
   const divisions = [
     "Design",
     "Support",

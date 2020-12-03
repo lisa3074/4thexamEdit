@@ -7,8 +7,6 @@ import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
-import FilterListRoundedIcon from "@material-ui/icons/FilterListRounded";
-import SortRoundedIcon from "@material-ui/icons/SortRounded";
 import { editUser } from "../../jsModules/displayFunctions/displayEditForm";
 import { resetSubmenu } from "../../jsModules/displayFunctions/subMenuNavigation";
 import { areYouSure } from "../../jsModules/displayFunctions/mainMenuNavigation";
@@ -88,8 +86,8 @@ export default function SubMenu(props) {
           className="menuClose hide"
           onClick={() => {
             closeSearch(props.tool);
-            props.setChosenCat(undefined);
-            props.setChosenEmployee(undefined);
+            props.setChosenCategory("");
+            props.setChosenEmployee("");
           }}>
           <CloseRoundedIcon />
         </div>

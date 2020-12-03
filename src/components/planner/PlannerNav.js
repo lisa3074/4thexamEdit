@@ -7,8 +7,7 @@ import PauseRoundedIcon from "@material-ui/icons/PauseRounded";
 import CachedRoundedIcon from "@material-ui/icons/CachedRounded";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
-import FilterListRoundedIcon from "@material-ui/icons/FilterListRounded";
-import SortRoundedIcon from "@material-ui/icons/SortRounded";
+
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 
 import { searchUsers, closeSearch } from "../../jsModules/displayFunctions/subMenuNavigation";
@@ -58,6 +57,8 @@ export default function PlannerNav(props) {
             className="search-wrapper hide"
             onClick={() => {
               closeSearch(props.tool);
+              props.setChosenCategory("");
+              props.setChosenEmployee("");
             }}>
             <CloseRoundedIcon />
           </div>
