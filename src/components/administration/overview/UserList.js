@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 export default function UserList(props) {
   console.log("administration/UserList.js || UserList()");
   if (window.innerWidth < 1000) {
-    gsap.to(".UserList", { duration: 0.5, y: -140 });
+    gsap.to(".UserList", { duration: 0.5, top: -140 });
   }
   const mappedUsers = props.users.map((user) => (
     <UserCard

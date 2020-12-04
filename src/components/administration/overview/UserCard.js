@@ -2,13 +2,12 @@ import React from "react";
 import gsap from "gsap";
 
 import { displayProfile, setSubmMenu } from "../../../jsModules/displayFunctions/displayProfile";
-import { staggeringProfiles } from "../../../jsModules/displayFunctions/staggeringCards";
+import { hideCards, staggeringProfilesTo } from "../../../jsModules/displayFunctions/staggeringCards";
 
 export default function UserCard(props) {
   console.log("administration/UserCard.js || UserCard()");
 
-  //gsap.to(".UserCard", { delay: 1, duration: 1, autoAlpha: 1 });
-  staggeringProfiles();
+  staggeringProfilesTo();
 
   function detectId(e) {
     const userId = e.target.parentNode.dataset.user;
@@ -19,6 +18,8 @@ export default function UserCard(props) {
     displayProfile(userId);
     setSubmMenu();
     props.setId(userId);
+    gsap.to(".FilterUsers", { duration: 0.5, top: -135 });
+    hideCards();
   }
   const firstSpace = props.name.indexOf(" ");
   const firstName = props.name.substring(0, firstSpace + 1);

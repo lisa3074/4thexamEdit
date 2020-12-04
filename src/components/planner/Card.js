@@ -8,6 +8,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Tooltip from "@material-ui/core/Tooltip";
+import { gsap } from "gsap";
 
 export default function Card(props) {
   console.log("planner || Card.js | Card()");
@@ -44,9 +45,6 @@ export default function Card(props) {
     color: props.color,
   };
 
-  const user = props.assignedTo.map((user) => user.name.toString());
-  console.log(user);
-
   const mappedAssignedImg = props.assignedTo.map((user) => (
     <Tooltip title={user.name + " / " + user.position} key={user.id}>
       <div>
@@ -54,9 +52,27 @@ export default function Card(props) {
       </div>
     </Tooltip>
   ));
+  const mappedNames = props.assignedTo.map((user) => <p>{user.name}</p>);
+
+  function showNames(id) {
+    if (window.innerWidth < 1000) {
+      if (document.querySelector(".a" + props.id + ".mui-panel.bigger")) {
+        document.querySelector(".a" + id + ".name-popup").classList.toggle("hide");
+        gsap.from(".name-popup", { duration: 0.5, opacity: 0 });
+        gsap.to(".name-popup", { duration: 0.5, opacity: 1 });
+      } else {
+        clickOnCard();
+        document.querySelectorAll(".name-popup").forEach((popup) => {
+          popup.classList.add("hide");
+        });
+      }
+    } else {
+      clickOnCard();
+    }
+  }
 
   return (
-    /* user.includes("Fam Schelde") ? */ <Panel
+    <Panel
       className={"panelMargin smaller a" + props.id}
       data-state="hidden"
       draggable
@@ -75,9 +91,14 @@ export default function Card(props) {
           <p className="hideAlways fade_out hide">{props.color}</p>
           <p className="hideAlways fade_out hide">{props.list}</p>
         </div>
-        <div className="pic-wrapper" onClick={clickOnCard}>
+        <div
+          className="pic-wrapper"
+          onClick={(e) => {
+            showNames(props.id);
+          }}>
           {mappedAssignedImg}
         </div>
+        <div className={"a" + props.id + " name-popup hide"}>{mappedNames}</div>
 
         <FormControl className="fade_out hide">
           <InputLabel id="select-list">Choose list</InputLabel>

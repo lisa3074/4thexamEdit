@@ -21,21 +21,25 @@ export function deleted() {
 
 export function administration() {
   console.log("jsModules || mainMenuNavigation.js | administration()");
-  document.querySelector(".MainAdmin").classList.remove("hide");
-  document.querySelector(".SubMenu").classList.remove("hide");
-  document.querySelector(".UserList").classList.remove("hide");
-  document.querySelector(".admin-top").classList.remove("hide");
-  document.querySelector(".chat-top").classList.add("hide");
-  document.querySelector(".Planner").classList.add("hide");
-  document.querySelector(".ViewProfile").classList.add("hide");
-  document.querySelector(".planner-top").classList.add("hide");
-  document.querySelector(".Chat").classList.add("hide");
-  if (window.innerWidth < 1000) {
-    document.querySelector(".Menu").classList.add("hide");
-  }
+  document.querySelector(".UserCard").style.opacity = "0";
+  setTimeout(() => {
+    document.querySelector(".MainAdmin").classList.remove("hide");
+    document.querySelector(".SubMenu").classList.remove("hide");
+    document.querySelector(".UserList").classList.remove("hide");
+    document.querySelector(".admin-top").classList.remove("hide");
+    document.querySelector(".chat-top").classList.add("hide");
+    document.querySelector(".Planner").classList.add("hide");
+    document.querySelector(".ViewProfile").classList.add("hide");
+    document.querySelector(".planner-top").classList.add("hide");
+    document.querySelector(".Chat").classList.add("hide");
+    if (window.innerWidth < 1000) {
+      document.querySelector(".Menu").classList.add("hide");
+    }
+  }, 200);
 }
 export function planner() {
   console.log("jsModules || mainMenuNavigation.js | planner()");
+  document.querySelector(".UserCard").style.opacity = "0";
   document.querySelector(".MainAdmin").classList.add("hide");
   document.querySelector(".admin-top").classList.add("hide");
   document.querySelector(".Planner").classList.remove("hide");

@@ -144,6 +144,21 @@
   .panelMargin[data-state="hidden"] .option_wrapper {
     display: none;
   }
+  .panelMargin[data-state="hidden"] .name-popup {
+    display: none;
+  }
+  .panelMargin[data-state="visible"] .name-popup {
+    background-color: #fff;
+    padding: 1rem 1rem 0.5rem;
+    position: absolute;
+    z-index: 1;
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    opacity: 0;
+    p {
+      padding-bottom: 0.5rem;
+    }
+  }
 }
 
 .pic-wrapper {
@@ -153,14 +168,14 @@
   flex-wrap: wrap;
   padding-bottom: 1rem;
   div {
-    width: 45px;
-    height: 45px;
+    width: 55px;
+    height: 55px;
     display: flex;
     padding: 1rem 0 0.5rem;
   }
   img {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
   }
 }
@@ -171,18 +186,23 @@
   overflow-x: scroll;
   padding-bottom: 0rem;
   div {
-    width: 23px;
+    width: 30px;
     display: flex;
     padding: 0.8rem 0 0.5rem;
     height: auto;
   }
   img {
-    width: 27px;
-    height: 27px;
+    width: 35px;
+    height: 35px;
   }
 }
 @media (min-width: 600px) {
   .Planner .mui-panel.panelMargin {
     margin: 0.1rem 0.5rem 1rem;
+  }
+}
+@media (min-width: 1000px) {
+  .panelMargin[data-state="visible"] .name-popup {
+    display: none;
   }
 }

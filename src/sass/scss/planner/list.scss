@@ -3,6 +3,12 @@
     min-width: 275px;
     overflow: hidden;
   }
+  .float-btn.add-task {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    background-color: var(--primary);
+  }
 
   .Done,
   .progress,
@@ -92,7 +98,7 @@
 
 @media (min-width: 1000px) {
   .planner-wrapper .relativeContainer {
-    padding: 1.3rem 1.5rem 1.8rem;
+    padding: 1.3rem 1.5rem 0rem;
     // width: calc(100% + 9rem);
     width: calc(100vw + 235px);
   }

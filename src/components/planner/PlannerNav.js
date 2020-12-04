@@ -31,8 +31,8 @@ export default function PlannerNav(props) {
     closeSearch(props.tool);
     props.setChosenCategory("");
     props.setChosenEmployee("");
-    gsap.to(".FilterTasks", { duration: 0.5, y: -80 });
-    gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, y: -80 });
+    gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
+    gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, top: -80 });
     staggeringCards(props.list);
   };
   const move = {
@@ -68,8 +68,8 @@ export default function PlannerNav(props) {
               closeSearch(props.tool);
               props.setChosenCategory("");
               props.setChosenEmployee("");
-              gsap.to(".FilterTasks", { duration: 0.5, y: -80 });
-              gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, y: -80 });
+              gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
+              gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, top: -80 });
               staggeringCards(props.list);
             }}>
             <CloseRoundedIcon />

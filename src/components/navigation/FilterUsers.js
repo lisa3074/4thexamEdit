@@ -2,36 +2,37 @@ import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 import { gsap } from "gsap";
+import { filterStay, staggeringProfilesTo } from "../../jsModules/displayFunctions/staggeringCards";
 
 export default function FilterUsers(props) {
   console.log("navigation || FilterUsers.js | FilterUsers()");
 
-  const handleDivisionChange = (event) => {
-    props.setChosenDivision(event.target.innerText);
+  const handleDivisionChange = (e) => {
+    const value = e.target.value === "All" ? "" : e.target.value;
+    props.setChosenDivision(value);
     setTimeout(() => {
-      gsap.from(".UserCard", { duration: 1, autoAlpha: 0 });
-      gsap.to(".UserCard", { duration: 1, autoAlpha: 1 });
-      gsap.from(".UserList", { duration: 0.5, y: 0 });
-      gsap.to(".UserList", { duration: 0.5, y: 0 });
-    }, 1);
+      staggeringProfilesTo();
+      filterStay();
+    }, 10);
   };
-  const handleHoursChange = (event) => {
-    props.setChosenHours(event.target.innerText);
+  const handleHoursChange = (e) => {
+    const value = e.target.value === "All" ? "" : e.target.value;
+    props.setChosenHours(value);
     setTimeout(() => {
-      gsap.from(".UserCard", { duration: 2, autoAlpha: 0 });
-      gsap.to(".UserCard", { duration: 2, autoAlpha: 1 });
-      gsap.from(".UserList", { duration: 0.5, y: 0 });
-      gsap.to(".UserList", { duration: 0.5, y: 0 });
+      staggeringProfilesTo();
+      filterStay();
     }, 1);
   };
   const handleSearch = (e) => {
     props.setSearch(e.target.value);
     setTimeout(() => {
-      gsap.from(".UserCard", { duration: 2, autoAlpha: 0 });
-      gsap.to(".UserCard", { duration: 2, autoAlpha: 1 });
-      gsap.from(".UserList", { duration: 0.5, y: 0 });
-      gsap.to(".UserList", { duration: 0.5, y: 0 });
+      staggeringProfilesTo();
+      filterStay();
     }, 1);
   };
   const divisions = [
@@ -47,42 +48,57 @@ export default function FilterUsers(props) {
     "Executive",
   ];
   const workHours = ["Full time", "Part time", "Hourly"];
-
+  const mappedDivision = divisions.map((division) => (
+    <MenuItem value={division} key={division}>
+      {division}
+    </MenuItem>
+  ));
+  const mappedHours = workHours.map((hours) => (
+    <MenuItem value={hours} key={hours}>
+      {hours}
+    </MenuItem>
+  ));
   return (
-    <nav className="FilterUsers">
+    <form className="FilterUsers">
       <div className="filter-wrapper">
-        <Autocomplete
-          name="Division"
-          className="division"
-          label="Division"
-          required
-          options={divisions}
-          getOptionLabel={(option) => (option ? option : "")}
-          getOptionSelected={(option, value) => option === value}
-          onChange={(option) => {
-            handleDivisionChange(option);
-          }}
-          renderInput={(params) => <TextField {...params} variant="standard" label="Division" placeholder="" />}
-        />
-
-        <Autocomplete
-          name="Work hours"
-          className="hours"
-          label="Work hours"
-          required
-          options={workHours}
-          getOptionLabel={(option) => (option ? option : "")}
-          getOptionSelected={(option, value) => option === value}
-          onChange={(option) => {
-            handleHoursChange(option);
-          }}
-          renderInput={(params) => <TextField {...params} variant="standard" label="Work hours" placeholder="" />}
-        />
+        <FormControl className="division">
+          <InputLabel id="select-division">Division</InputLabel>
+          <Select
+            defaultValue=""
+            labelId="select-division"
+            name="Division"
+            label="division"
+            onChange={(e) => {
+              handleDivisionChange(e);
+            }}
+            value={props.chosenDivision}>
+            <MenuItem value="All" key="All">
+              All
+            </MenuItem>
+            {mappedDivision}
+          </Select>
+        </FormControl>
+        <FormControl className="Work hours">
+          <InputLabel id="select-divihourssion">Work hours</InputLabel>
+          <Select
+            labelId="select-hours"
+            name="hours"
+            label="hours"
+            onChange={(e) => {
+              handleHoursChange(e);
+            }}
+            value={props.chosenHours}>
+            <MenuItem value="All" key="All">
+              All
+            </MenuItem>
+            {mappedHours}
+          </Select>
+        </FormControl>
       </div>
       <div className="input-wrapper">
         <TextField name="Position" className="searchUsers" label="Search" onChange={handleSearch} />
         <SearchRoundedIcon className="search-icon" />
       </div>
-    </nav>
+    </form>
   );
 }

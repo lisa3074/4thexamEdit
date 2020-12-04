@@ -5,6 +5,7 @@ import { scroll } from "./modules/scroll";
 import { postCard } from "../../jsModules/dbData/postData";
 import { deleteACard } from "../../jsModules/dbData/deleteData";
 import { editACard, dragACard } from "../../jsModules/dbData/editData";
+import AddIcon from "@material-ui/icons/Add";
 import { gsap } from "gsap";
 import "../../sass/scss/planner/style.scss";
 
@@ -15,6 +16,8 @@ import "../../sass/scss/planner/edit.scss";
 import "../../sass/scss/planner/cards.scss";
 import "../../sass/scss/planner/animations.scss";
 import "../../sass/scss/planner/navigation.scss";
+import { staggeringCards } from "../../jsModules/displayFunctions/staggeringCards";
+import { addTask } from "./modules/mobNavigation";
 
 export default function Planner(props) {
   console.log("planner || Planner.js | Planner()");
@@ -22,8 +25,8 @@ export default function Planner(props) {
   const [anchorEl, setAnchorEl] = useState(null);
 
   if (window.innerWidth < 1000) {
-    gsap.to(".FilterTasks", { duration: 0.5, y: -80 });
-    gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, y: -80 });
+    gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
+    gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, top: -80 });
   }
 
   scroll();
@@ -89,6 +92,13 @@ export default function Planner(props) {
           list={props.list}
         />
       </section>
+      <button
+        className="float-btn add-task"
+        onClick={() => {
+          addTask();
+        }}>
+        <AddIcon />
+      </button>
     </main>
   );
 }

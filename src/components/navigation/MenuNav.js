@@ -16,6 +16,12 @@ import {
   scrollToBottom,
 } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { gsap } from "gsap";
+import {
+  hideCards,
+  hidePlanner,
+  staggeringCardsDesktop,
+  staggeringProfilesTo,
+} from "../../jsModules/displayFunctions/staggeringCards";
 
 export default function MenuNav(props) {
   console.log("navigation || MenuNav.js | MenuNav()");
@@ -40,8 +46,8 @@ export default function MenuNav(props) {
             administration();
             props.setTool("admin");
             resetSearch();
-            gsap.from(".UserCard", { delay: 0.5, duration: 1, autoAlpha: 0 });
-            gsap.to(".UserCard", { delay: 0.5, duration: 1, autoAlpha: 1 });
+            staggeringProfilesTo();
+            hidePlanner();
           }}>
           <li>
             <PeopleIcon />
@@ -52,10 +58,10 @@ export default function MenuNav(props) {
           className={props.level === "Administrator" ? "inset" : "inset hiddenFromUser"}
           onClick={() => {
             newUser();
+            hidePlanner();
 
             props.setTool("admin");
             resetSearch();
-            gsap.to(".UserForm", { duration: 0.5, autoAlpha: 1 });
           }}>
           <PersonAddIcon />
           <h3 className="new-user-link">New user</h3>
@@ -67,9 +73,8 @@ export default function MenuNav(props) {
             planner(innerWidth);
             props.setTool("planner");
             resetSearch();
-
-            gsap.from(".panelMargin", { delay: 0, duration: 0.5, autoAlpha: 0 });
-            gsap.to(".panelMargin", { delay: 0, duration: 0.5, autoAlpha: 1 });
+            staggeringCardsDesktop();
+            hideCards();
           }}>
           <CalendarTodayIcon />
           <h3 className="planner-link">Planner</h3>
@@ -81,6 +86,7 @@ export default function MenuNav(props) {
             planner(innerWidth);
             props.setTool("planner");
             resetSearch();
+            hideCards();
           }}>
           <AddCircleOutlineRoundedIcon />
           <h3 className="task">New task</h3>
@@ -91,6 +97,8 @@ export default function MenuNav(props) {
             chat();
             scrollToBottom();
             resetSearch();
+            hideCards();
+            hidePlanner();
           }}>
           <ChatBubbleIcon />
           <h3 className="chat-link">Chat</h3>
@@ -103,6 +111,8 @@ export default function MenuNav(props) {
               firebaseConfig.auth().signOut();
               localStorage.clear();
               resetSearch();
+              hideCards();
+              hidePlanner();
             }}>
             Sign out
           </h3>

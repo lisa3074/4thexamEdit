@@ -18,14 +18,19 @@ import {
   closeSearch,
   resetFilterNav,
 } from "../../jsModules/displayFunctions/subMenuNavigation";
-import { filterStay, staggeringCards, staggeringProfiles } from "../../jsModules/displayFunctions/staggeringCards";
+import {
+  filterStay,
+  hideCards,
+  staggeringCards,
+  staggeringProfiles,
+} from "../../jsModules/displayFunctions/staggeringCards";
 import { newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { addTask } from "../planner/modules/mobNavigation";
 
 export default function SubMenu(props) {
   console.log("navigation || SubMenu.js | SubMenu()");
   const tool = props.tool;
-  const endpoint = props.endpoint;
+  /*   const endpoint = props.endpoint; */
 
   function removeDelete() {
     console.log("navigation || SubMenu.js | removeDelete()");
@@ -34,11 +39,23 @@ export default function SubMenu(props) {
     });
   }
 
-  const person = document.querySelector(".Person");
-  /* const isProfileShown = */
-  /*   person != (undefined && null) ? (person.classList.contains("hide") ? false : true) : console.log("nothing"); */
-  const isPrivateShown = document.querySelector(".Person");
+  /*   const person = document.querySelector(".Person");
+  const isPrivateShown = document.querySelector(".Person"); */
 
+  function clearForm() {
+    console.log("navigation || SubMenu.js | clearForm()");
+    document.querySelector("form.FilterUsers").reset();
+    const divisionSpan = document.querySelector("#mui-component-select-Division > span");
+    const division = document.querySelector("#mui-component-select-Division");
+    const hoursSpan = document.querySelector("#mui-component-select-hours > span");
+    const hours = document.querySelector("#mui-component-select-hours");
+    if (!divisionSpan) {
+      division.textContent = "All";
+    }
+    if (!hoursSpan) {
+      hours.textContent = "All";
+    }
+  }
   return (
     <nav className="SubMenu hide">
       <div
@@ -49,10 +66,11 @@ export default function SubMenu(props) {
           tool === "planner" ? resetSubmenu() : openMenu();
           gsap.from(".Menu", { delay: 0, duration: 1, autoAlpha: 0 });
           gsap.to(".Menu", { delay: 0, duration: 1, autoAlpha: 1 });
-          gsap.to(".FilterUsers", { duration: 0.5, y: -140 });
-          gsap.to(".UserList", { duration: 0.5, y: -140 });
-          gsap.to(".FilterTasks", { duration: 0.5, y: -80 });
-          gsap.to(".relativeContainer", { duration: 0.3, y: -80 });
+          gsap.to(".FilterUsers", { duration: 0.5, top: -140 });
+          gsap.to(".UserList", { duration: 0.5, top: -140 });
+          gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
+          gsap.to(".relativeContainer", { duration: 0.3, top: -80 });
+          hideCards();
         }}>
         <MenuRoundedIcon />
       </div>
@@ -63,8 +81,7 @@ export default function SubMenu(props) {
           removeDelete();
           props.setViewingProfile(false);
           props.setisUSerProfile(false);
-          /*    gsap.to(".FilterUsers", { duration: 0.5, y: -140 });
-          gsap.to(".UserList", { duration: 0.5, y: -140 }); */
+          staggeringProfiles();
         }}>
         <ArrowBackIosRoundedIcon />
       </div>
@@ -100,10 +117,15 @@ export default function SubMenu(props) {
             closeSearch(props.tool);
             props.setChosenCategory("");
             props.setChosenEmployee("");
-            gsap.to(".FilterUsers", { duration: 0.5, y: -140 });
-            gsap.to(".UserList", { delay: 0.2, duration: 0.3, y: -140 });
-            gsap.to(".FilterTasks", { duration: 0.5, y: -80 });
-            gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, y: -80 });
+            props.setChosenDivision("");
+            props.setChosenHours("");
+            props.setSearch("");
+            clearForm();
+            console.log("CLOSE MENU");
+            gsap.to(".FilterUsers", { duration: 0.5, top: -140 });
+            gsap.to(".UserList", { delay: 0.2, duration: 0.3, top: -140 });
+            gsap.to(".FilterTasks", { delay: 0.3, duration: 0.5, top: -80 });
+            gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, top: -80 });
 
             staggeringCards(props.list);
             staggeringProfiles();
@@ -133,9 +155,9 @@ export default function SubMenu(props) {
         onClick={() => {
           addTask();
           closeSearch(props.tool);
-          gsap.to(".UserList", { duration: 0.5, y: -140 });
-          gsap.to(".FilterTasks", { duration: 0.5, y: -80 });
-          gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, y: -80 });
+          gsap.to(".UserList", { duration: 0.5, top: -140 });
+          gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
+          gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, top: -80 });
         }}>
         <AddRoundedIcon />
       </div>

@@ -4,7 +4,7 @@ import ViewProfile from "../viewProfile/ViewProfile";
 import FilterUsers from "../../navigation/FilterUsers";
 export default function MainAdmin(props) {
   console.log("administration/MainAdmin.js || MainAdmin()");
-
+  console.log(props.division, props.workHours, props.search);
   return (
     <main className={window.innerWidth < 1000 ? "MainAdmin hide" : "MainAdmin"}>
       <FilterUsers

@@ -10,6 +10,7 @@ import Chat from "../../chat/Chat";
 import { getUsers, getSignedinUser, getCards } from "../../../jsModules/dbData/getData";
 import { scrollToBottom } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 import { getMessages } from "../../../jsModules/dbData/getData";
+import { staggeringProfilesTo } from "../../../jsModules/displayFunctions/staggeringCards";
 
 export default function Administration(props) {
   console.log("administration/Administration.js || Administration()");
@@ -35,7 +36,8 @@ export default function Administration(props) {
 
   useEffect(() => {
     getUsers(setUsers);
-    gsap.to(".UserCard", { delay: 1, duration: 1, autoAlpha: 1 });
+    //gsap.to(".UserCard", { delay: 1, duration: 1, autoAlpha: 1 });
+    staggeringProfilesTo();
   }, []);
   useEffect(() => {
     getMessages(setMessages);
@@ -150,6 +152,8 @@ export default function Administration(props) {
         tool={tool}
         setChosenCategory={setChosenCategory}
         setChosenEmployee={setChosenEmployee}
+        setChosenHours={setChosenHours}
+        setChosenDivision={setChosenDivision}
         id={id}
         setSystemPart={setSystemPart}
         systemPart={systemPart}
@@ -159,7 +163,8 @@ export default function Administration(props) {
         setViewingProfile={setViewingProfile}
         isUSerProfile={props.isUSerProfile}
         setisUSerProfile={setisUSerProfile}
-        list={list}></SubMenu>
+        list={list}
+        setSearch={setSearch}></SubMenu>
     </section>
   );
 }
