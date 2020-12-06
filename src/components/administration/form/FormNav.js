@@ -6,6 +6,7 @@ import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 import { forwards } from "../../../jsModules/displayFunctions/formNavigation";
 import { backwards } from "../../../jsModules/displayFunctions/formNavigation";
 import { gsap } from "gsap";
+import { staggeringProfiles } from "../../../jsModules/displayFunctions/staggeringCards";
 
 export default function FormNav(props) {
   console.log("administration/form || FormNav.js | FormNav()");
@@ -16,6 +17,7 @@ export default function FormNav(props) {
         onClick={() => {
           props.clear();
           gsap.to(".UserForm", { duration: 0.5, opacity: 0 });
+          staggeringProfiles();
         }}>
         <ClearRoundedIcon />
       </div>
@@ -31,6 +33,7 @@ export default function FormNav(props) {
         onClick={(e) => {
           props.submit(e);
           gsap.to(".UserForm", { duration: 0.5, opacity: 0 });
+          staggeringProfiles();
         }}>
         <CheckRoundedIcon />
       </button>

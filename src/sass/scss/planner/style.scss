@@ -83,7 +83,7 @@
 
   .NewTask {
     width: 100vw;
-    height: 100vh;
+
     position: fixed;
     height: calc(var(--vh, 1vh) * 100);
     z-index: 101;
@@ -160,7 +160,8 @@
   }
 
   .Main {
-    height: calc(100vh - 60px);
+    //height: calc(100vh - 60px);
+    height: calc((var(--vh, 1vh) * 100) - 60px);
     overflow: hidden;
 
     padding-bottom: 3rem;
@@ -267,7 +268,8 @@
 @media (min-width: 1000px) {
   .planner-wrapper {
     .Main {
-      height: calc(100vh - 80px);
+      // height: calc(100vh - 80px);
+      height: calc((var(--vh, 1vh) * 100) - 80px);
     }
     .float-btn {
       width: 50px;

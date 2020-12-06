@@ -52,7 +52,7 @@ export default function Card(props) {
       </div>
     </Tooltip>
   ));
-  const mappedNames = props.assignedTo.map((user) => <p>{user.name}</p>);
+  const mappedNames = props.assignedTo.map((user) => <p key={user.id}>{user.name}</p>);
 
   function showNames(id) {
     if (window.innerWidth < 1000) {

@@ -70,5 +70,6 @@ export function getMessages(callback) {
 
       callback(messages);
     });
+
   return () => unsubsribe();
 }

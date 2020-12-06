@@ -12,43 +12,25 @@ import ChatNav from "../chat/ChatNav";
 import { chat, scrollToBottom, newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { fetchAll } from "../../jsModules/displayFunctions/subMenuNavigation";
 import { gsap } from "gsap";
+import {
+  hideViewProfile,
+  showChat,
+  staggeringCardsDesktop,
+  staggeringProfilesFilter,
+} from "../../jsModules/displayFunctions/staggeringCards";
 export default function TopBar(props) {
   console.log("navigation || TopBar.js | TopBar()");
-  const handleDivision = (event) => {
-    props.setChosenDivision(event.target.innerText);
-    setTimeout(() => {
-      gsap.from(".UserCard", { duration: 0.5, autoAlpha: 0 });
-      gsap.to(".UserCard", { duration: 0.5, autoAlpha: 1 });
-    }, 100);
+
+  const handleChanges = (module) => {
+    document.querySelectorAll(".UserCard, .panelMargin").forEach((card) => {
+      card.style.opacity = "0";
+    });
+    module === "admin" ? staggeringProfilesFilter() : staggeringCardsDesktop();
   };
 
-  const handleHours = (e) => {
-    props.setChosenHours(e.target.innerText);
-    setTimeout(() => {
-      gsap.from(".UserCard", { duration: 0.5, autoAlpha: 0 });
-      gsap.to(".UserCard", { duration: 0.5, autoAlpha: 1 });
-    }, 100);
-  };
-  const handleCategory = (e) => {
-    props.setChosenCategory(e.target.innerText === undefined ? "" : e.target.innerText);
-    setTimeout(() => {
-      gsap.from(".panelMargin", { duration: 0.2, autoAlpha: 0 });
-      gsap.to(".panelMargin", { duration: 0.2, autoAlpha: 1 });
-    }, 100);
-  };
-  const handleEmployee = (e) => {
-    props.setChosenEmployee(e.target.innerText === undefined ? "" : e.target.innerText);
-    setTimeout(() => {
-      gsap.from(".panelMargin", { duration: 0.2, autoAlpha: 0 });
-      gsap.to(".panelMargin", { duration: 0.2, autoAlpha: 1 });
-    }, 100);
-  };
   const handleSearch = (e) => {
     props.setSearch(e.target.value);
-    setTimeout(() => {
-      gsap.from(".UserCard", { duration: 0.5, autoAlpha: 0 });
-      gsap.to(".UserCard", { duration: 0.5, autoAlpha: 1 });
-    }, 100);
+    staggeringProfilesFilter();
   };
 
   const categories = [
@@ -78,7 +60,7 @@ export default function TopBar(props) {
   ];
   const workHours = ["Full time", "Part time", "Hourly"];
   return (
-    <nav className="TopBar">
+    <nav className="TopBar" data-state="">
       <div className="admin-top">
         <div className={props.level === "Administrator" ? "grid-wrapper" : "grid-wrapper noNewUser"}>
           <h2 className="sorted">Sorted by</h2>
@@ -93,7 +75,8 @@ export default function TopBar(props) {
               getOptionLabel={(option) => (option ? option : "")}
               getOptionSelected={(option, value) => option === value}
               onChange={(option) => {
-                handleDivision(option);
+                handleChanges("admin");
+                props.setChosenDivision(option.target.innerText === undefined ? "" : option.target.innerText);
               }}
               renderInput={(params) => <TextField {...params} variant="standard" label="Division" placeholder="" />}
             />
@@ -108,7 +91,8 @@ export default function TopBar(props) {
               getOptionLabel={(option) => (option ? option : "")}
               getOptionSelected={(option, value) => option === value}
               onChange={(option) => {
-                handleHours(option);
+                handleChanges("admin");
+                props.setChosenHours(option.target.innerText === undefined ? "" : option.target.innerText);
               }}
               renderInput={(params) => <TextField {...params} variant="standard" label="Work hours" placeholder="" />}
             />
@@ -129,6 +113,9 @@ export default function TopBar(props) {
             onClick={() => {
               newUser();
               props.setTool("admin");
+              props.setViewingProfile(false);
+              gsap.to(".UserForm", { duration: 0.5, opacity: 1 });
+              hideViewProfile();
             }}
           />
           <div
@@ -136,6 +123,10 @@ export default function TopBar(props) {
             onClick={() => {
               chat();
               scrollToBottom();
+              gsap.from(".message-container", { duration: 1, opacity: 0 });
+              gsap.to(".message-container", { duration: 1, opacity: 1 });
+              hideViewProfile();
+              props.setViewingProfile(false);
             }}>
             <ChatBubbleRoundedIcon />
           </div>
@@ -154,7 +145,8 @@ export default function TopBar(props) {
               getOptionSelected={(option, value) => option.category === value.category}
               filterSelectedOptions
               onChange={(option) => {
-                handleCategory(option);
+                handleChanges("planner");
+                props.setChosenCategory(option.target.innerText === undefined ? "" : option.target.innerText);
               }}
               renderInput={(params) => <TextField {...params} variant="standard" label="Category" placeholder="" />}
             />
@@ -165,8 +157,9 @@ export default function TopBar(props) {
               getOptionLabel={(option) => (option.name ? option.name : "")}
               getOptionSelected={(option, value) => option === value}
               filterSelectedOptions
-              onChange={(values) => {
-                handleEmployee(values);
+              onChange={(option) => {
+                handleChanges("planner");
+                props.setChosenEmployee(option.target.innerText === undefined ? "" : option.target.innerText);
               }}
               renderInput={(params) => <TextField {...params} variant="standard" label="Employee" placeholder="" />}
             />
@@ -179,6 +172,7 @@ export default function TopBar(props) {
             onClick={() => {
               chat();
               scrollToBottom();
+              showChat();
             }}>
             <ChatBubbleRoundedIcon />
           </div>
@@ -196,6 +190,7 @@ export default function TopBar(props) {
               props.setSortDate();
               scrollToBottom();
               fetchAll();
+              showChat();
             }}>
             <AllInclusiveIcon />
           </div>

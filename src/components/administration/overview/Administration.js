@@ -3,14 +3,12 @@ import Menu from "../../navigation/Menu";
 import MainAdmin from "./MainAdmin";
 import TopBar from "../../navigation/TopBar";
 import SubMenu from "../../navigation/SubMenu";
-import { gsap } from "gsap";
 import Planner from "../../planner/Planner";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Chat from "../../chat/Chat";
 import { getUsers, getSignedinUser, getCards } from "../../../jsModules/dbData/getData";
 import { scrollToBottom } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 import { getMessages } from "../../../jsModules/dbData/getData";
-import { staggeringProfilesTo } from "../../../jsModules/displayFunctions/staggeringCards";
 
 export default function Administration(props) {
   console.log("administration/Administration.js || Administration()");
@@ -36,8 +34,6 @@ export default function Administration(props) {
 
   useEffect(() => {
     getUsers(setUsers);
-    //gsap.to(".UserCard", { delay: 1, duration: 1, autoAlpha: 1 });
-    staggeringProfilesTo();
   }, []);
   useEffect(() => {
     getMessages(setMessages);
@@ -57,10 +53,6 @@ export default function Administration(props) {
   useEffect(() => {
     getCards(setCards);
   }, []);
-  console.log(viewingProfile);
-  /*   console.log(id);
-  console.log(localStorage);
-  console.log(signedinUser); */
 
   function editProfile(id) {
     console.log("administration/Administration.js || editProfile()");
@@ -68,7 +60,7 @@ export default function Administration(props) {
     setChosenUser(user);
     setState("edit");
   }
-  console.log(chosenDivision);
+
   return (
     <section className="Administration">
       <div className="loading-page">
@@ -88,7 +80,8 @@ export default function Administration(props) {
         viewingProfile={viewingProfile}
         setSortDate={setSortDate}
         sortDate={sortDate}
-        users={users}></TopBar>
+        users={users}
+        setViewingProfile={setViewingProfile}></TopBar>
       <Menu
         setEndpoint={props.setEndpoint}
         setTool={setTool}

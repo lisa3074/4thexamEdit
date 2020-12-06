@@ -21,6 +21,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import Grid from "@material-ui/core/Grid";
 import DeleteModal from "../administration/overview/DeleteModal";
 import { areYouSure } from "../../jsModules/displayFunctions/mainMenuNavigation";
+import { staggeringCardsDesktop } from "../../jsModules/displayFunctions/staggeringCards";
 
 export default function EditForm(props) {
   console.log("planner || EditForm.js | EditForm()");
@@ -118,6 +119,7 @@ export default function EditForm(props) {
       editTaskValidation();
     } else {
       props.editCard(payload, props.id, title, list, assignedTo, color, category, description, due);
+      staggeringCardsDesktop();
       setTitle("");
       setColor("#ffffff");
       setDescription("");
@@ -295,22 +297,6 @@ export default function EditForm(props) {
                 </MuiPickersUtilsProvider>
               </div>{" "}
               <div className="input-wrapper">
-                {/* <Autocomplete
-                  className="category"
-                  label="Category"
-                  name="Category"
-                  options={categories}
-                  getOptionLabel={(option) => (option.category ? option.category : "")}
-                  getOptionSelected={(option, value) => option.category === value.category}
-                  filterSelectedOptions
-                  // defaultValue={props.category}
-                  onFocus={catFocusChanged}
-                  onChange={(option) => {
-                    catChanged(option);
-                    colorChanged(option, categories);
-                  }}
-                  renderInput={(params) => <TextField {...params} variant="standard" label="Category" placeholder="" />}
-                /> */}
                 <FormControl className="category">
                   <InputLabel id="select-category">Category *</InputLabel>
                   <Select

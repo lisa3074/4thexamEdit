@@ -21,7 +21,7 @@ export function deleted() {
 
 export function administration() {
   console.log("jsModules || mainMenuNavigation.js | administration()");
-  document.querySelector(".UserCard").style.opacity = "0";
+  //document.querySelector(".UserCard").style.opacity = "0";
   setTimeout(() => {
     document.querySelector(".MainAdmin").classList.remove("hide");
     document.querySelector(".SubMenu").classList.remove("hide");
@@ -31,6 +31,7 @@ export function administration() {
     document.querySelector(".Planner").classList.add("hide");
     document.querySelector(".ViewProfile").classList.add("hide");
     document.querySelector(".planner-top").classList.add("hide");
+    document.querySelector(".TopBar").setAttribute("data-state", "admin");
     document.querySelector(".Chat").classList.add("hide");
     if (window.innerWidth < 1000) {
       document.querySelector(".Menu").classList.add("hide");
@@ -39,14 +40,15 @@ export function administration() {
 }
 export function planner() {
   console.log("jsModules || mainMenuNavigation.js | planner()");
-  document.querySelector(".UserCard").style.opacity = "0";
+  // document.querySelector(".UserCard").style.opacity = "0";
   document.querySelector(".MainAdmin").classList.add("hide");
   document.querySelector(".admin-top").classList.add("hide");
+  document.querySelector(".chat-top").classList.add("hide");
+  document.querySelector(".Chat").classList.add("hide");
   document.querySelector(".Planner").classList.remove("hide");
   document.querySelector(".planner-top").classList.remove("hide");
-  document.querySelector(".chat-top").classList.add("hide");
   document.querySelector(".SubMenu").classList.remove("hide");
-  document.querySelector(".Chat").classList.add("hide");
+  document.querySelector(".TopBar").setAttribute("data-state", "planner");
   if (window.innerWidth < 1000) {
     document.querySelector(".Menu").classList.add("hide");
     document.querySelector(".newUserIcon").classList.add("hide");
@@ -57,9 +59,10 @@ export function chat() {
   console.log("jsModules || mainMenuNavigation.js | chat()");
   document.querySelector(".admin-top").classList.add("hide");
   document.querySelector(".planner-top").classList.add("hide");
-  document.querySelector(".chat-top").classList.remove("hide");
   document.querySelector(".Planner").classList.add("hide");
   document.querySelector(".MainAdmin").classList.add("hide");
+  document.querySelector(".chat-top").classList.remove("hide");
+  document.querySelector(".TopBar").setAttribute("data-state", "chat");
   document.querySelectorAll(".Chat").forEach((chat) => {
     chat.classList.remove("hide");
   });
@@ -74,14 +77,15 @@ export function newUser() {
   console.log("jsModules || mainMenuNavigation.js | newUser()");
   document.querySelector(".ViewProfile").classList.remove("hide");
   document.querySelector(".ViewProfile .UserForm").classList.remove("hide");
+  document.querySelector(".MainAdmin").classList.remove("hide");
+  document.querySelector(".admin-top").classList.remove("hide");
   document.querySelector(".UserForm").setAttribute("data-state", "new");
   document.querySelector(".previewImg").setAttribute("data-state", "new");
-  document.querySelector(".MainAdmin").classList.remove("hide");
   document.querySelector(".Chat").classList.add("hide");
-  document.querySelector(".admin-top").classList.remove("hide");
   document.querySelector(".Planner").classList.add("hide");
   document.querySelector(".planner-top").classList.add("hide");
   document.querySelector(".chat-top").classList.add("hide");
+  document.querySelector(".TopBar").setAttribute("data-state", "admin");
   if (window.innerWidth < 1000) {
     document.querySelector(".Menu").classList.add("hide");
   }

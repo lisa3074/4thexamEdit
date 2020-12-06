@@ -77,7 +77,8 @@
     .showNew {
       z-index: 101;
       width: 100vw;
-      height: 100vh;
+      //  height: 100vh;
+      height: calc(var(--vh, 1vh) * 100);
 
       transition: 1s;
     }

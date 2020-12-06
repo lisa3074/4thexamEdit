@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import UserList from "./UserList";
 import ViewProfile from "../viewProfile/ViewProfile";
 import FilterUsers from "../../navigation/FilterUsers";
 export default function MainAdmin(props) {
   console.log("administration/MainAdmin.js || MainAdmin()");
-  console.log(props.division, props.workHours, props.search);
+
+  console.log(props.chosenHours);
+
   return (
     <main className={window.innerWidth < 1000 ? "MainAdmin hide" : "MainAdmin"}>
       <FilterUsers
         setChosenDivision={props.setChosenDivision}
         setChosenHours={props.setChosenHours}
-        setSearch={props.setSearch}></FilterUsers>
+        setSearch={props.setSearch}
+        chosenHours={props.chosenHours}
+        chosenDivision={props.chosenDivision}></FilterUsers>
       <UserList
         setId={props.setId}
         setViewingProfile={props.setViewingProfile}
@@ -73,6 +77,7 @@ export default function MainAdmin(props) {
         level={props.level}
         isUSerProfile={props.isUSerProfile}
         cards={props.cards}
+        setViewingProfile={props.setViewingProfile}
       />
     </main>
   );

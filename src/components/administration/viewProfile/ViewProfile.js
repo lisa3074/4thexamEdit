@@ -10,7 +10,6 @@ import WorkLoad from "./WorkLoad";
 import { deleteUser } from "../../../jsModules/dbData/deleteData";
 import DeleteModal from "../overview/DeleteModal";
 import { showCardList } from "../../../jsModules/displayFunctions/subMenuNavigation";
-import { gsap } from "gsap";
 
 export default function ViewProfile(props) {
   console.log("administration/viewProfile || ViewProfile.js | ViewProfile()");
@@ -43,10 +42,10 @@ export default function ViewProfile(props) {
   return (
     <section className="ViewProfile hide">
       <ul className="viewPerson">{mappedPerson}</ul>
-      <ul className="viewWork">{mappedWork}</ul>
+      <ul className="viewPrivate">{mappedPrivate}</ul>
       <ul className="viewContact">{mappedContact}</ul>
       <WorkLoad users={props.users.filter((person) => person.id === props.id)} cards={props.cards} user={props.user} />
-      <ul className="viewPrivate">{mappedPrivate}</ul>
+      <ul className="viewWork">{mappedWork}</ul>
 
       <div className="empty"></div>
       <ProfileNav
@@ -63,7 +62,12 @@ export default function ViewProfile(props) {
         state={props.state}
         setState={props.setState}
       />
-      <DeleteModal deleteProfile={deleteProfile} id={props.id} systemPart={props.systemPart} />
+      <DeleteModal
+        deleteProfile={deleteProfile}
+        id={props.id}
+        systemPart={props.systemPart}
+        setViewingProfile={props.setViewingProfile}
+      />
     </section>
   );
 }

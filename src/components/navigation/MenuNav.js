@@ -8,6 +8,7 @@ import LockIcon from "@material-ui/icons/Lock";
 import { addTask } from "../planner/modules/mobNavigation";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 import { firebaseConfig } from "../../jsModules/firebase/firebase";
+import { gsap } from "gsap";
 import {
   administration,
   newUser,
@@ -15,12 +16,15 @@ import {
   chat,
   scrollToBottom,
 } from "../../jsModules/displayFunctions/mainMenuNavigation";
-import { gsap } from "gsap";
+
 import {
   hideCards,
   hidePlanner,
+  hideChat,
   staggeringCardsDesktop,
   staggeringProfilesTo,
+  staggeringMenuNav,
+  hideViewProfile,
 } from "../../jsModules/displayFunctions/staggeringCards";
 
 export default function MenuNav(props) {
@@ -37,6 +41,8 @@ export default function MenuNav(props) {
     props.setViewingProfile(false);
   }
 
+  staggeringMenuNav();
+
   return (
     <div className="MenuNav">
       <ul>
@@ -48,6 +54,8 @@ export default function MenuNav(props) {
             resetSearch();
             staggeringProfilesTo();
             hidePlanner();
+            hideChat();
+            hideViewProfile();
           }}>
           <li>
             <PeopleIcon />
@@ -59,9 +67,11 @@ export default function MenuNav(props) {
           onClick={() => {
             newUser();
             hidePlanner();
-
+            gsap.to(".UserForm", { duration: 0.5, opacity: 1 });
             props.setTool("admin");
             resetSearch();
+            hideChat();
+            hideViewProfile();
           }}>
           <PersonAddIcon />
           <h3 className="new-user-link">New user</h3>
@@ -75,6 +85,8 @@ export default function MenuNav(props) {
             resetSearch();
             staggeringCardsDesktop();
             hideCards();
+            hideChat();
+            hideViewProfile();
           }}>
           <CalendarTodayIcon />
           <h3 className="planner-link">Planner</h3>
@@ -87,6 +99,8 @@ export default function MenuNav(props) {
             props.setTool("planner");
             resetSearch();
             hideCards();
+            hideChat();
+            hideViewProfile();
           }}>
           <AddCircleOutlineRoundedIcon />
           <h3 className="task">New task</h3>
@@ -99,6 +113,9 @@ export default function MenuNav(props) {
             resetSearch();
             hideCards();
             hidePlanner();
+            hideViewProfile();
+            gsap.from(".message-container", { duration: 1, opacity: 0 });
+            gsap.to(".message-container", { duration: 1, opacity: 1 });
           }}>
           <ChatBubbleIcon />
           <h3 className="chat-link">Chat</h3>
@@ -113,6 +130,8 @@ export default function MenuNav(props) {
               resetSearch();
               hideCards();
               hidePlanner();
+              hideChat();
+              hideViewProfile();
             }}>
             Sign out
           </h3>

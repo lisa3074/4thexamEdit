@@ -4,7 +4,9 @@ import Profile from "./Profile";
 import gsap from "gsap";
 export default function Menu(props) {
   console.log("navigation || Menu.js | Menu()");
-  gsap.to(".Menu", { delay: 1, duration: 1, autoAlpha: 1 });
+  //gsap.to(".Menu", { delay: 1, duration: 1, autoAlpha: 1 });
+  //gsap.from(".Profile, .MenuNav", { delay: 0, duration: 1, autoAlpha: 0 });
+  gsap.to(".Profile, .MenuNav", { delay: 1, duration: 1, autoAlpha: 1 });
   return (
     <>
       <nav className={window.innerWidth < 1000 ? "Menu" : "Menu MenuDesktop"}>

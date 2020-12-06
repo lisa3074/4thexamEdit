@@ -8,7 +8,7 @@ import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
-import { editUser } from "../../jsModules/displayFunctions/displayEditForm";
+import { editUser, setUpForm } from "../../jsModules/displayFunctions/displayEditForm";
 import { resetSubmenu } from "../../jsModules/displayFunctions/subMenuNavigation";
 import { areYouSure } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import {
@@ -64,8 +64,8 @@ export default function SubMenu(props) {
           openMenu();
           resetFilterNav();
           tool === "planner" ? resetSubmenu() : openMenu();
-          gsap.from(".Menu", { delay: 0, duration: 1, autoAlpha: 0 });
-          gsap.to(".Menu", { delay: 0, duration: 1, autoAlpha: 1 });
+          gsap.from(".Profile, .MenuNav", { delay: 0, duration: 1, autoAlpha: 0 });
+          gsap.to(".Profile, .MenuNav", { delay: 0, duration: 1, autoAlpha: 1 });
           gsap.to(".FilterUsers", { duration: 0.5, top: -140 });
           gsap.to(".UserList", { duration: 0.5, top: -140 });
           gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
@@ -108,6 +108,7 @@ export default function SubMenu(props) {
             removeDelete();
             props.editProfile(props.id);
             gsap.to(".UserForm", { duration: 0.5, opacity: 1 });
+            setUpForm();
           }}>
           <EditRoundedIcon />
         </div>
@@ -137,7 +138,7 @@ export default function SubMenu(props) {
         className={props.level === "Administrator" ? "newUserIcon" : "newUserIcon hiddenFromUser"}
         onClick={() => {
           newUser();
-
+          setUpForm();
           gsap.to(".UserForm", { duration: 0.5, autoAlpha: 1 });
         }}>
         <PersonAddRoundedIcon />

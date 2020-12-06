@@ -116,7 +116,9 @@ export function storeImage(file, email, callback, image) {
           loader.value = percentage;
         }
       },
-      function error(err) {},
+      function error(err) {
+        console.log("error: " + err);
+      },
       function complete() {
         setTimeout(() => {
           document.querySelector(".succes").classList.add("hide");

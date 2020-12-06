@@ -2,7 +2,8 @@
   background-color: var(--background);
   opacity: 0;
   width: 100vw;
-  height: 100vh;
+  //height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   z-index: 101;
   position: fixed;
   top: 0;
@@ -186,7 +187,8 @@ input[type="file"] {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  //height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   z-index: 132;
   display: flex;
   justify-content: center;

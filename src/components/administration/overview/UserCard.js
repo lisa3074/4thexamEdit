@@ -2,12 +2,14 @@ import React from "react";
 import gsap from "gsap";
 
 import { displayProfile, setSubmMenu } from "../../../jsModules/displayFunctions/displayProfile";
-import { hideCards, staggeringProfilesTo } from "../../../jsModules/displayFunctions/staggeringCards";
+import { hideCards, staggeringProfilesStart } from "../../../jsModules/displayFunctions/staggeringCards";
+import { staggeringViewProfile } from "../../../jsModules/displayFunctions/staggeringCards";
 
 export default function UserCard(props) {
   console.log("administration/UserCard.js || UserCard()");
-
-  staggeringProfilesTo();
+  if (window.innerWidth > 999) {
+    staggeringProfilesStart();
+  }
 
   function detectId(e) {
     const userId = e.target.parentNode.dataset.user;
@@ -31,6 +33,9 @@ export default function UserCard(props) {
       data-user={props.id}
       onClick={(e) => {
         viewUser(e, props.id);
+        staggeringViewProfile();
+        props.setViewingProfile(true);
+        gsap.to(".ProfileNav", { duration: 1, opacity: 1 });
       }}>
       <img src={props.image} alt="" />
       <div className="info-container">
@@ -52,6 +57,7 @@ export default function UserCard(props) {
         onClick={(e) => {
           detectId(e);
           props.setViewingProfile(true);
+          staggeringViewProfile();
         }}>
         View
       </button>

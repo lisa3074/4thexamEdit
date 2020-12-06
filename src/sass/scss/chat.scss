@@ -69,7 +69,6 @@ button.sendMessage {
       max-width: 250px;
       padding: 0 3rem 0 1rem;
       height: 2rem;
-      box-shadow: var(--card-shadow);
       background: rgba(255, 255, 255, 0.9);
 
       border-bottom-width: 0;
@@ -110,10 +109,11 @@ button.sendMessage {
     color: var(--dark-text);
   }
 }
+#root .ChatNav .text-btn {
+  box-shadow: var(--card-shadow);
+}
 
 .Chat {
-  // padding: 1rem;
-
   p {
     font-size: 0.85rem;
   }
@@ -126,8 +126,9 @@ button.sendMessage {
 }
 
 .MessageBoard {
-  height: calc(100vh - 100px);
-  padding-top: 2rem;
+  //height: calc(100vh - 100px - 0.5rem);
+  height: calc((var(--vh, 1vh) * 100) - 100px - 0.5rem);
+  padding-top: 4rem;
 
   .messageList {
     height: 100%;
@@ -151,6 +152,7 @@ button.sendMessage {
   .message-container {
     display: grid;
     margin-bottom: 2rem;
+
     img {
       height: 55px;
       width: 55px;
@@ -389,7 +391,7 @@ button.sendMessage {
     color: var(--light-text);
   }
   .MessageBoard {
-    height: calc(100vh - 185px);
+    height: calc((var(--vh, 1vh) * 100) - 70px - 2.5rem);
     padding-top: 0;
   }
   .NewMessage .sendMessage {
@@ -421,7 +423,7 @@ button.sendMessage {
     margin: 0 auto;
     button.text-btn {
       margin: 0 auto;
-
+      box-shadow: var(--card-shadow);
       input {
         cursor: pointer;
         padding-right: 1rem;
@@ -432,6 +434,10 @@ button.sendMessage {
       }
     }
   }
+  #root .TopBar .ChatNav button.text-btn {
+    box-shadow: var(--card-shadow);
+  }
+
   .ChatNav {
     background: transparent;
     position: static;
@@ -447,6 +453,7 @@ button.sendMessage {
   }
   .Chat {
     padding-top: 0;
+    transform: translateY(-80px);
   }
   .TopBar .chat-top .grid-wrapper {
     grid-template-columns: 8rem auto 8rem;

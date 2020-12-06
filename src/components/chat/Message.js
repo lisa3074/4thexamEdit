@@ -12,7 +12,6 @@ dayjs.extend(customParseFormat);
 export default function Message(props) {
   console.log("chat || Message.js | Message()");
   const { signedinUser, users, id, checked, setChecked } = props;
-  console.log(props);
 
   const [sendingUser, setSendingUser] = useState();
   const [profilePic, setProfilePic] = useState();

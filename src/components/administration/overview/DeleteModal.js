@@ -20,6 +20,7 @@ export default function DeleteModal(props) {
             onClick={() => {
               props.systemPart === "planner" ? props.deleteCard(props.id) : props.deleteProfile(props.id);
               deleted();
+              props.setViewingProfile(false);
             }}>
             Yes, delete it
           </button>

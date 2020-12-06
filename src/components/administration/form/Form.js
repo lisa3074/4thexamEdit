@@ -14,12 +14,14 @@ import {
   newUserResetForm,
 } from "../../../jsModules/displayFunctions/displayEditForm";
 import { forwards } from "../../../jsModules/displayFunctions/formNavigation";
+import gsap from "gsap/gsap-core";
+import { staggeringProfiles } from "../../../jsModules/displayFunctions/staggeringCards";
 
 export default function Form(props, { history }) {
   console.log(" administration/form || Form.js | Form()");
   const [focus, setFocus] = useState(false);
   const [name, setName] = useState("");
-  const [image, setImage] = useState("avatar.jpg");
+  const [image, setImage] = useState("");
   const [imageFile, setImageFile] = useState();
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
@@ -158,12 +160,14 @@ export default function Form(props, { history }) {
       document.querySelector(".succes").classList.remove("hide");
       setTimeout(() => {
         clear();
+        staggeringProfiles();
       }, 1000);
     } else {
       storeImage(imageFile, email, setFileUrl, image);
       document.querySelector(".succes").classList.remove("hide");
       setTimeout(() => {
         resetForm();
+        staggeringProfiles();
       }, 1000);
     }
   }

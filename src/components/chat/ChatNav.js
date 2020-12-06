@@ -8,6 +8,9 @@ import { showMenu, sortByDate } from "../../jsModules/displayFunctions/subMenuNa
 import DateRangeRoundedIcon from "@material-ui/icons/DateRangeRounded";
 import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
 import { scrollToBottom } from "../../jsModules/displayFunctions/mainMenuNavigation";
+import { showChat } from "../../jsModules/displayFunctions/staggeringCards";
+import { gsap } from "gsap";
+import { staggeringMenuNav } from "../../jsModules/displayFunctions/staggeringCards";
 
 var dayjs = require("dayjs");
 var customParseFormat = require("dayjs/plugin/customParseFormat");
@@ -21,12 +24,19 @@ export default function ChatNav(props) {
   const dateChanged = (e) => {
     setSortDate(e.toString().substring(0, 15));
     scrollToBottom();
+    showChat();
   };
 
   return (
     <nav className="ChatNav">
       <div className="nav-wrapper">
-        <button className="float-btn" onClick={showMenu}>
+        <button
+          className="float-btn"
+          onClick={() => {
+            showMenu();
+            gsap.from(".Profile, .MenuNav", { delay: 0, duration: 1, autoAlpha: 0 });
+            gsap.to(".Profile, .MenuNav", { delay: 0, duration: 1, autoAlpha: 1 });
+          }}>
           <ArrowBackIosRoundedIcon />
         </button>
         <button className="text-btn" onClick={sortByDate}>

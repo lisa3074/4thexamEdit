@@ -53,3 +53,14 @@ export function editUserResetForm() {
   $(".UserForm").setAttribute("data-state", "");
   $(".previewImg").setAttribute("data-state", "");
 }
+export function setUpForm() {
+  if (document.querySelector(".UserForm[data-state='edit']")) {
+    document.querySelector(".input-wrapper .hours").setAttribute("data-chosen", true);
+    document.querySelector(".input-wrapper .division").setAttribute("data-chosen", true);
+    document.querySelector(".input-wrapper .level").setAttribute("data-chosen", true);
+  } else {
+    document.querySelector(".input-wrapper .hours").setAttribute("data-chosen", false);
+    document.querySelector(".input-wrapper .division").setAttribute("data-chosen", false);
+    document.querySelector(".input-wrapper .level").setAttribute("data-chosen", false);
+  }
+}

@@ -67,7 +67,8 @@
 
 body {
   width: 100vw;
-  height: 100vh;
+  //height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }
 #root {
   width: 100%;
@@ -187,7 +188,8 @@ a {
 .loading-page {
   position: fixed;
   width: 100vw;
-  height: 100vh;
+  // height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   top: 0;
   left: 0;
   z-index: 120;
@@ -254,6 +256,11 @@ span.MuiFormLabel-asterisk.Mui-error,
   .TopBar {
     display: block;
     grid-area: topbar;
+  }
+  .TopBar[data-state="chat"] {
+    background-color: transparent;
+    box-shadow: none;
+    z-index: 10;
   }
   .MainAdmin,
   .Planner,

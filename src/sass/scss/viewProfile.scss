@@ -1,7 +1,8 @@
 .ViewProfile {
   padding-bottom: 40px;
   overflow: auto;
-  height: 100vh;
+  //height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   padding: 0.5rem;
   padding-bottom: 3rem;
   opacity: 1;
@@ -142,23 +143,35 @@
     .todoBar {
       grid-area: todo;
       background-color: var(--orange);
-      height: calc(var(--height) * 6%);
+      transition: 1s;
+      animation: infographic 1s ease-out 1 forwards;
       align-self: flex-end;
       justify-self: flex-end;
     }
     .progressBar {
       grid-area: progress;
       background-color: var(--yellow);
-      height: calc(var(--height) * 6%);
+      transition: 1s;
+      animation: infographic 1s ease-out 1 forwards;
       align-self: flex-end;
       justify-self: center;
     }
     .doneBar {
       grid-area: done;
       background-color: var(--primary);
-      height: calc(var(--height) * 6%);
+      transition: 1s;
       align-self: flex-end;
       justify-self: flex-start;
+      animation: infographic 1s ease-out 1 forwards;
+    }
+
+    @keyframes infographic {
+      0% {
+        height: 0;
+      }
+      100% {
+        height: calc(var(--height) * 6%);
+      }
     }
     .todoInfo {
       grid-area: todoInfo;

@@ -1,7 +1,7 @@
 import React from "react";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
-import { editUser } from "../../../jsModules/displayFunctions/displayEditForm";
-
+import { editUser, setUpForm } from "../../../jsModules/displayFunctions/displayEditForm";
+import { gsap } from "gsap";
 export default function Person(props) {
   console.log("administration/viewProfile || Person.js | Person()");
   return (
@@ -12,6 +12,8 @@ export default function Person(props) {
         onClick={() => {
           editUser();
           props.editProfile(props.id);
+          gsap.to(".UserForm", { duration: 0.5, opacity: 1 });
+          setUpForm();
         }}>
         <h1 className="profile name">{props.name}</h1>
         <div className={props.level === "Administrator" || props.isUSerProfile ? "" : "hiddenFromUser"}>

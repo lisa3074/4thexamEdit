@@ -16,41 +16,55 @@ import "../../sass/scss/planner/edit.scss";
 import "../../sass/scss/planner/cards.scss";
 import "../../sass/scss/planner/animations.scss";
 import "../../sass/scss/planner/navigation.scss";
-import { staggeringCards } from "../../jsModules/displayFunctions/staggeringCards";
+import { staggeringCardsDesktop, staggeringCards } from "../../jsModules/displayFunctions/staggeringCards";
 import { addTask } from "./modules/mobNavigation";
 
 export default function Planner(props) {
   console.log("planner || Planner.js | Planner()");
   const { cards } = props;
-  const [anchorEl, setAnchorEl] = useState(null);
+  /*  const [anchorEl, setAnchorEl] = useState(null); */
 
   if (window.innerWidth < 1000) {
     gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
     gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, top: -80 });
   }
 
+  function showCards() {
+    setTimeout(() => {
+      if (window.innerWidth > 1000) {
+        staggeringCardsDesktop();
+      } else {
+        staggeringCards();
+      }
+    }, 500);
+  }
+
   scroll();
-  console.log(props.chosenEmployee);
-  //RestDb.function is a function imported from the restdb.js module
+
   async function onFormSubmit(data) {
     console.log("planner || Planner.js | onFormSubmit()");
+    showCards();
     postCard(data, cards);
   }
   async function deleteCard(id) {
     console.log("planne || Planner.js | deleteCard()");
+    showCards();
     deleteACard(id);
   }
 
   async function moveCard(payload, id) {
     console.log("planner || Planner.js | moveCard()");
+    showCards();
     dragACard(payload, id);
   }
   async function dragCard(payload, id) {
     console.log("planner || Planner.js | dragCard()");
+    showCards();
     dragACard(payload, id);
   }
   async function editCard(payload) {
     console.log("planner || Planner.js | editCard()");
+    showCards();
     editACard(payload);
   }
 

@@ -5,8 +5,6 @@ import { editUser } from "../../../jsModules/displayFunctions/displayEditForm";
 import { areYouSure } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 import { gsap } from "gsap";
 
-import DeleteModal from "../overview/DeleteModal";
-
 export default function ProfileNav(props) {
   console.log("administration/viewProfile || ProfileNav.js | ProfileNav()");
 

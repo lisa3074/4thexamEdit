@@ -129,11 +129,11 @@ export default function WorkForm(props) {
             }}
             value={props.hours}>
             {mappedHours}
-            {console.log(props.hours)}
           </Select>
         </FormControl>
         <p className="error hide">Fill how many hours the employee works</p>
       </div>
+
       <div className="input-wrapper">
         <TextField
           required

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TextField from "@material-ui/core/TextField";
-import picture from "../../../images/placeholder.png";
+//import picture from "../../../images/placeholder.png";
+import placeholder from "../../../images/placeholder.png";
 import $ from "jquery";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 export default function PersonForm(props) {
@@ -125,7 +126,7 @@ export default function PersonForm(props) {
             ? props.image
             : props.uploadedImage
             ? props.uploadedImage
-            : picture
+            : "https://firebasestorage.googleapis.com/v0/b/mmdfinalexam.appspot.com/o/profile_pictures%2Fplaceholder.png?alt=media&token=c06d8e7a-6812-45d0-bff1-af790d20f5b8"
         }
         alt={props.state === "edit" ? props.name : "Avatar"}></img>
     </fieldset>
