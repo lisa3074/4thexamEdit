@@ -36,11 +36,42 @@ export default function MenuNav(props) {
     props.setChosenEmployee("");
     props.setChosenDivision("");
     props.setChosenHours("");
+    props.setSearch("");
     props.setisUSerProfile(false);
     props.setViewingProfile(false);
   }
 
   GSAP_stagMenuNav();
+
+  function clearFormAdmin() {
+    console.log("navigation || SubMenu.js | clearForm()");
+    document.querySelector("form.FilterUsers").reset();
+    const divisionSpan = document.querySelector("#mui-component-select-Division > span");
+    const division = document.querySelector("#mui-component-select-Division");
+    const hoursSpan = document.querySelector("#mui-component-select-Hours > span");
+    const hours = document.querySelector("#mui-component-select-Hours");
+    document.querySelector("#root > section > section > nav.TopBar > form").reset();
+
+    if (!divisionSpan) {
+      division.textContent = "All";
+    }
+    if (!hoursSpan) {
+      hours.textContent = "All";
+    }
+  }
+  function clearFormPlanner() {
+    console.log("navigation || SubMenu.js | clearForm()");
+    const categorySpan = document.querySelector("#mui-component-select-category > span");
+    const category = document.querySelector("#mui-component-select-category");
+    const employeeSpan = document.querySelector("#mui-component-select-Employees > span");
+    const employee = document.querySelector("#mui-component-select-Employees");
+    if (!categorySpan) {
+      category.textContent = "All";
+    }
+    if (!employeeSpan) {
+      employee.textContent = "All";
+    }
+  }
 
   return (
     <div className="MenuNav">
@@ -53,6 +84,7 @@ export default function MenuNav(props) {
             resetSearch();
             GSAP_stagProfilesMenuNav();
             GSAP_addOpacity(".panelMargin, .userCard, .ProfileNav");
+            clearFormAdmin();
           }}>
           <li>
             <PeopleIcon />
@@ -82,6 +114,7 @@ export default function MenuNav(props) {
             resetSearch();
             GSAP_stagCardsDesktop();
             GSAP_addOpacity(".UserCard, .userCard, .ProfileNav");
+            clearFormPlanner();
           }}>
           <CalendarTodayIcon />
           <h3 className="planner-link">Planner</h3>

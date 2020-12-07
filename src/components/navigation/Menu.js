@@ -25,7 +25,8 @@ export default function Menu(props) {
           setChosenCategory={props.setChosenCategory}
           setChosenEmployee={props.setChosenEmployee}
           setChosenDivision={props.setChosenDivision}
-          setChosenHours={props.setChosenHours}></MenuNav>
+          setChosenHours={props.setChosenHours}
+          setSearch={props.setSearch}></MenuNav>
       </nav>
     </>
   );

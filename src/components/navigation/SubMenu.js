@@ -24,6 +24,7 @@ import {
   GSAP_stagCards,
   GSAP_stagProfiles,
   GSAP_opacity0To1MenuProfile,
+  GSAP_removeOpacity,
 } from "../../jsModules/displayFunctions/gsap";
 import { newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { addTask } from "../planner/modules/mobNavigation";
@@ -115,9 +116,7 @@ export default function SubMenu(props) {
             props.setChosenHours("");
             props.setSearch("");
             clearForm();
-            console.log("CLOSE MENU");
             GSAP_sortInvisibleMobile();
-
             GSAP_stagCards(props.list);
             GSAP_stagProfiles();
           }}>

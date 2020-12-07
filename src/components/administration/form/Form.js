@@ -101,6 +101,7 @@ export default function Form(props, { history }) {
     console.log(" administration/form || Form.js | submit()");
     const $ = document.querySelector.bind(document);
     forwards();
+
     if (
       //If one of the below inputs are empty and if .password-safety is not hidden (new user)
       ($(".cpr input").value === "" ||
@@ -112,13 +113,21 @@ export default function Form(props, { history }) {
         $(".password input").value === "") &&
       !document.querySelector(".password-safety").classList.contains("hide")
     ) {
-      //If new user
+      //If new user and none of the inputs are empty
     } else if (!document.querySelector(".password-safety").classList.contains("hide")) {
       handleSignUp();
       storeContract(contractFile, name, setContractPath, contract);
       storeImage(imageFile, email, setFilePath, image);
-      //if edit existing user
-    } else {
+      //if edit existing user and none of the fields are empty
+    } else if (
+      $(".cpr input").value !== "" &&
+      $(".account input").value !== "" &&
+      $(".address input").value !== "" &&
+      $(".postal input").value !== "" &&
+      $(".education input").value !== "" &&
+      $(".PrivateForm .custom-upload .flex-wrapper p").textContent !== "Upload contract*" &&
+      document.querySelector(".password-safety").classList.contains("hide")
+    ) {
       storeContract(contractFile, name, setContractPath, contract);
       storeImage(imageFile, email, setFileUrl, image);
     }

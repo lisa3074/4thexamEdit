@@ -129,7 +129,7 @@ export default function PrivateForm(props) {
             </button>
             <p>
               {props.contract
-                ? `A contract for ${props.name} already stored. Upload a new contract?`
+                ? `A contract for ${props.name} has been stored. Click here if you want to replace the contract.`
                 : "Upload contract*"}
             </p>
           </div>

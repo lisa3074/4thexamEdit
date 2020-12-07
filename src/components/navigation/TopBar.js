@@ -6,6 +6,10 @@ import PersonAddRoundedIcon from "@material-ui/icons/PersonAddRounded";
 import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 import { addTask } from "../planner/modules/mobNavigation";
 import ChatNav from "../chat/ChatNav";
@@ -60,16 +64,38 @@ export default function TopBar(props) {
     "Executive",
   ];
   const workHours = ["Full time", "Part time", "Hourly"];
+  const mappedDivision = divisions.map((division) => (
+    <MenuItem value={division} key={division}>
+      {division}
+    </MenuItem>
+  ));
+  const mappedHours = workHours.map((hours) => (
+    <MenuItem value={hours} key={hours}>
+      {hours}
+    </MenuItem>
+  ));
+
+  const mappedUsers = props.users.map((user) => (
+    <MenuItem value={user.name} key={user.id}>
+      {user.name}
+    </MenuItem>
+  ));
+  const mappedCategories = categories.map((category) => (
+    <MenuItem value={category.category} key={category.category}>
+      {category.category}
+    </MenuItem>
+  ));
   return (
     <nav className="TopBar" data-state="">
-      <div className="admin-top">
+      <form className="admin-top">
         <div className={props.level === "Administrator" ? "grid-wrapper" : "grid-wrapper noNewUser"}>
           <h2 className="sorted">Sorted by</h2>
           <div className="filter-wrapper">
-            <Autocomplete
+            {/*      <Autocomplete
               name="Division"
               className="division"
               label="Division"
+              id="topbar-division"
               required
               disabled={props.viewingProfile ? true : false}
               options={divisions}
@@ -80,9 +106,28 @@ export default function TopBar(props) {
                 props.setChosenDivision(option.target.innerText === undefined ? "" : option.target.innerText);
               }}
               renderInput={(params) => <TextField {...params} variant="standard" label="Division" placeholder="" />}
-            />
+            /> */}
+            <FormControl className="division">
+              <InputLabel id="select-division-top">Division</InputLabel>
+              <Select
+                defaultValue=""
+                labelId="select-division-top"
+                disabled={props.viewingProfile ? true : false}
+                name="Division"
+                label="division"
+                onChange={(e) => {
+                  handleChanges("admin");
+                  props.setChosenDivision(e.target.value === undefined ? "" : e.target.value);
+                }}
+                value={props.chosenDivision}>
+                <MenuItem value="All" key="All">
+                  All
+                </MenuItem>
+                {mappedDivision}
+              </Select>
+            </FormControl>
 
-            <Autocomplete
+            {/*  <Autocomplete
               name="Work hours"
               className="hours"
               label="Work hours"
@@ -96,7 +141,25 @@ export default function TopBar(props) {
                 props.setChosenHours(option.target.innerText === undefined ? "" : option.target.innerText);
               }}
               renderInput={(params) => <TextField {...params} variant="standard" label="Work hours" placeholder="" />}
-            />
+            /> */}
+            <FormControl className="Work hours">
+              <InputLabel id="select-hours-top">Work hours</InputLabel>
+              <Select
+                labelId="select-hours-top"
+                name="Hours"
+                label="hours"
+                disabled={props.viewingProfile ? true : false}
+                onChange={(e) => {
+                  handleChanges("admin");
+                  props.setChosenHours(e.target.value === undefined ? "" : e.target.value);
+                }}
+                value={props.chosenHours}>
+                <MenuItem value="All" key="All">
+                  All
+                </MenuItem>
+                {mappedHours}
+              </Select>
+            </FormControl>
           </div>
           <div className="input-wrapper">
             <TextField
@@ -132,12 +195,12 @@ export default function TopBar(props) {
             <ChatBubbleRoundedIcon />
           </div>
         </div>
-      </div>
+      </form>
       <div className="planner-top hide">
         <div className="grid-wrapper">
           <h2 className="sorted">Sorted by</h2>
           <div className="filter-wrapper">
-            <Autocomplete
+            {/*             <Autocomplete
               className="category"
               label="Category"
               name="Category"
@@ -150,9 +213,27 @@ export default function TopBar(props) {
                 props.setChosenCategory(option.target.innerText === undefined ? "" : option.target.innerText);
               }}
               renderInput={(params) => <TextField {...params} variant="standard" label="Category" placeholder="" />}
-            />
+            /> */}
 
-            <Autocomplete
+            <FormControl className="category">
+              <InputLabel id="select-category-top">Category</InputLabel>
+              <Select
+                value={categories.category}
+                labelId="select-category-top"
+                name="category"
+                label="category"
+                onChange={(e) => {
+                  handleChanges("planner");
+                  props.setChosenCategory(e.target.value === ("All" || undefined) ? "" : e.target.value);
+                }}
+                value={props.chosenCategory}>
+                <MenuItem value="All" key="All">
+                  All
+                </MenuItem>
+                {mappedCategories}
+              </Select>
+            </FormControl>
+            {/*  <Autocomplete
               className="select employee"
               options={props.users}
               getOptionLabel={(option) => (option.name ? option.name : "")}
@@ -163,7 +244,25 @@ export default function TopBar(props) {
                 props.setChosenEmployee(option.target.innerText === undefined ? "" : option.target.innerText);
               }}
               renderInput={(params) => <TextField {...params} variant="standard" label="Employee" placeholder="" />}
-            />
+            /> */}
+
+            <FormControl className="employee">
+              <InputLabel id="select-employees-top">Employees</InputLabel>
+              <Select
+                labelId="select-employees-top"
+                name="Employees"
+                label="Employees"
+                onChange={(e) => {
+                  handleChanges("planner");
+                  props.setChosenEmployee(e.target.value === ("All" || undefined) ? "" : e.target.value);
+                }}
+                value={props.chosenEmployee}>
+                <MenuItem value="All" key="All">
+                  All
+                </MenuItem>
+                {mappedUsers}
+              </Select>
+            </FormControl>
           </div>
           <div className="input-wrapper"></div>
 

@@ -39,11 +39,13 @@ export function forwards() {
       $(".address input").value === "" ||
       $(".postal input").value === "" ||
       $(".education input").value === "" ||
-      $("#pdf-upload").files.length === 0 ||
+      /*    ($("#pdf-upload").files.length === 0 && */
+      $(".PrivateForm .custom-upload .flex-wrapper p").textContent === "Upload contract*" ||
       $(".password input").value === "") &&
     !$(".PrivateForm").classList.contains("hide")
   ) {
     privateValidation();
+    console.log($(".PrivateForm .custom-upload .flex-wrapper p").textContent);
   }
   setTimeout(() => {
     !$(".PrivateForm").classList.contains("hide")
@@ -231,7 +233,10 @@ function privateValidation() {
   } else {
     $(".PrivateForm > div:nth-child(7) > p").classList.add("hide");
   }
-  if ($("#pdf-upload").files.length === 0) {
+  if (
+    /* $("#pdf-upload").files.length === 0 */
+    $(".PrivateForm .custom-upload .flex-wrapper p").textContent === "Upload contract*"
+  ) {
     $(".PrivateForm > div.upload-wrapper > p").classList.remove("hide");
   } else {
     $(".PrivateForm > div.upload-wrapper > p").classList.add("hide");

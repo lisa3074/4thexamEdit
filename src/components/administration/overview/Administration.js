@@ -99,7 +99,8 @@ export default function Administration(props) {
         setChosenCategory={setChosenCategory}
         setChosenEmployee={setChosenEmployee}
         setChosenDivision={setChosenDivision}
-        setChosenHours={setChosenHours}></Menu>
+        setChosenHours={setChosenHours}
+        setSearch={setSearch}></Menu>
       <MainAdmin
         setChosenDivision={setChosenDivision}
         setChosenHours={setChosenHours}
@@ -137,6 +138,7 @@ export default function Administration(props) {
         cards={cards}
         setList={setList}
         list={list}
+        setViewingProfile={setViewingProfile}
       />
       <Chat
         signedinUser={signedinUser}

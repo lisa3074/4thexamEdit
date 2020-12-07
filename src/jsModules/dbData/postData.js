@@ -127,6 +127,10 @@ export function storeImage(file, email, callback, image) {
           }
           clearUserForm();
         }, 1000);
+        setTimeout(() => {
+          //making sure, that the progress bar is removed after 1s
+          document.querySelector(".succes").classList.add("hide");
+        }, 5000);
       }
     );
     //if there's no file uploaded, fake it
