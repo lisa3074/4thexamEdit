@@ -1,5 +1,3 @@
-import gsap from "gsap";
-
 export function displayProfile(userId) {
   console.log("jsModules || displayProfile.js | displayProfile()");
   document.querySelector(".ViewProfile").classList.remove("hide");

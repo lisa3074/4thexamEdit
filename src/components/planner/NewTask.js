@@ -14,7 +14,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import Grid from "@material-ui/core/Grid";
 import { hideError, taskValidation } from "../../jsModules/displayFunctions/taskValidation";
-import { staggeringCardsDesktop } from "../../jsModules/displayFunctions/staggeringCards";
+import { GSAP_stagCardsDesktop } from "../../jsModules/displayFunctions/gsap";
 
 export default function NewTask(props) {
   console.log("planner || NewTask.js | NewTask()");
@@ -110,7 +110,7 @@ export default function NewTask(props) {
         due: due,
         timeStamp: Date.now(),
       });
-      staggeringCardsDesktop();
+      GSAP_stagCardsDesktop();
       setTitle("");
       setColor("#ffffff");
       setDescription("");
@@ -305,7 +305,7 @@ export default function NewTask(props) {
               closeNewTask();
               resetState();
               hideError();
-              staggeringCardsDesktop();
+              GSAP_stagCardsDesktop();
             }}>
             <CloseRoundedIcon />
           </div>

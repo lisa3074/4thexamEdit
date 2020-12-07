@@ -1,10 +1,10 @@
 import React from "react";
 import UserCard from "./UserCard";
-import { gsap } from "gsap";
+import { GSAP_UserListToTop } from "../../../jsModules/displayFunctions/gsap";
 export default function UserList(props) {
   console.log("administration/UserList.js || UserList()");
   if (window.innerWidth < 1000) {
-    gsap.to(".UserList", { duration: 0.5, top: -140 });
+    GSAP_UserListToTop();
   }
   const mappedUsers = props.users.map((user) => (
     <UserCard

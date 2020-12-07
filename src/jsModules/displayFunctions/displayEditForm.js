@@ -55,6 +55,7 @@ export function editUserResetForm() {
 }
 export function setUpForm() {
   if (document.querySelector(".UserForm[data-state='edit']")) {
+    console.log("EDIT STATE");
     document.querySelector(".input-wrapper .hours").setAttribute("data-chosen", true);
     document.querySelector(".input-wrapper .division").setAttribute("data-chosen", true);
     document.querySelector(".input-wrapper .level").setAttribute("data-chosen", true);

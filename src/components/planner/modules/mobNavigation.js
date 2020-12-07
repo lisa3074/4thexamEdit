@@ -1,13 +1,10 @@
 import { closeExpand } from "./closeExpand";
-import { gsap } from "gsap";
-import { staggeringCards } from "../../../jsModules/displayFunctions/staggeringCards";
+import { GSAP_stagCards, GSAP_plannerListsAnimtionMobile } from "../../../jsModules/displayFunctions/gsap";
 
 export function navigate(chosen, list1, list2, list3) {
-  console.log(chosen);
   console.log("planner/modules || mobNavigation.js | done()");
-  gsap.to(".scrollList", { duration: 0, opacity: 0, zIndex: 0, width: "calc(100vw - 1rem)" });
-  gsap.to("." + chosen + ".scrollList", { duration: 0, opacity: 1, zIndex: 1, width: "calc(100vw - 1rem)" });
-  staggeringCards(chosen);
+  GSAP_plannerListsAnimtionMobile(chosen);
+  GSAP_stagCards(chosen);
   document.querySelector(".NewTask").classList = "NewTask hide";
   setTimeout(() => {
     document.querySelectorAll(list1, list2, list3).forEach((element) => {

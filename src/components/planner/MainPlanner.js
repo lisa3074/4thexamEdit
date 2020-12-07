@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import FilterTasks from "./FilterTasks";
 import PlannerList from "./PlannerList";
 import PlannerNav from "./PlannerNav";

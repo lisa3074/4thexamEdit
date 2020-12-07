@@ -1,8 +1,7 @@
 import React from "react";
 import image from "../../images/placeholder.png";
-/* import { whichUser } from "../../jsModules/displayFunctions/commenceUserLevel"; */
 import { displayProfile } from "../../jsModules/displayFunctions/displayProfile";
-import { staggeringViewProfile } from "../../jsModules/displayFunctions/staggeringCards";
+import { GSAP_stagViewProfile } from "../../jsModules/displayFunctions/gsap";
 
 export default function Profile(props) {
   console.log("navigation || Profile.js | Profile()");
@@ -25,7 +24,7 @@ export default function Profile(props) {
           displayProfile(props.signedinUser ? props.signedinUser[0].id : "");
           props.setId(props.signedinUser ? props.signedinUser[0].id : "");
           props.setisUSerProfile(true);
-          staggeringViewProfile();
+          GSAP_stagViewProfile();
         }}>
         Edit profile
       </button>

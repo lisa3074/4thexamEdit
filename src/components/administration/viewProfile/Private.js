@@ -6,6 +6,7 @@ import VisibilityRoundedIcon from "@material-ui/icons/VisibilityRounded";
 
 export default function Private(props) {
   console.log("administration/viewProfile || Private.js | Private()");
+
   return (
     <article
       className={
@@ -44,7 +45,7 @@ export default function Private(props) {
           <p className="education">{props.education}</p>
 
           <h2>CONTRACT</h2>
-          <a href="" download>
+          <a href={props.contract} target="_blank" download>
             <GetAppRoundedIcon />
           </a>
         </div>

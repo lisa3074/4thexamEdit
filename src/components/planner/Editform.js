@@ -21,7 +21,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import Grid from "@material-ui/core/Grid";
 import DeleteModal from "../administration/overview/DeleteModal";
 import { areYouSure } from "../../jsModules/displayFunctions/mainMenuNavigation";
-import { staggeringCardsDesktop } from "../../jsModules/displayFunctions/staggeringCards";
+import { GSAP_stagCardsDesktop } from "../../jsModules/displayFunctions/gsap";
 
 export default function EditForm(props) {
   console.log("planner || EditForm.js | EditForm()");
@@ -119,7 +119,7 @@ export default function EditForm(props) {
       editTaskValidation();
     } else {
       props.editCard(payload, props.id, title, list, assignedTo, color, category, description, due);
-      staggeringCardsDesktop();
+      GSAP_stagCardsDesktop();
       setTitle("");
       setColor("#ffffff");
       setDescription("");

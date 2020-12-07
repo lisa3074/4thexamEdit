@@ -9,6 +9,7 @@ import Chat from "../../chat/Chat";
 import { getUsers, getSignedinUser, getCards } from "../../../jsModules/dbData/getData";
 import { scrollToBottom } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 import { getMessages } from "../../../jsModules/dbData/getData";
+import { GSAP_stagProfilesStartup } from "../../../jsModules/displayFunctions/gsap";
 
 export default function Administration(props) {
   console.log("administration/Administration.js || Administration()");
@@ -35,6 +36,11 @@ export default function Administration(props) {
   useEffect(() => {
     getUsers(setUsers);
   }, []);
+  useEffect(() => {
+    if (window.innerWidth > 999) {
+      GSAP_stagProfilesStartup();
+    }
+  }, [users]);
   useEffect(() => {
     getMessages(setMessages);
   }, [signedinUser]);

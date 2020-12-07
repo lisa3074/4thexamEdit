@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import Menu from "@material-ui/core/Menu";
-import { gsap } from "gsap";
 import MenuItem from "@material-ui/core/MenuItem";
 import ArrowDropDownRoundedIcon from "@material-ui/icons/ArrowDropDownRounded";
-import { done, doing, todo, barrier, navigate } from "./modules/mobNavigation";
-import { filterStay, staggeringCards } from "../../jsModules/displayFunctions/staggeringCards";
+import { navigate } from "./modules/mobNavigation";
+import {
+  GSAP_sortVisibleMobile,
+  GSAP_stagCards,
+  GSAP_sortInvisibleMobile,
+} from "../../jsModules/displayFunctions/gsap";
 import PauseRoundedIcon from "@material-ui/icons/PauseRounded";
 import CachedRoundedIcon from "@material-ui/icons/CachedRounded";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
@@ -31,9 +34,8 @@ export default function PlannerNav(props) {
     closeSearch(props.tool);
     props.setChosenCategory("");
     props.setChosenEmployee("");
-    gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
-    gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, top: -80 });
-    staggeringCards(props.list);
+    GSAP_sortInvisibleMobile();
+    GSAP_stagCards(props.list);
   };
   const move = {
     top: "44px",
@@ -58,7 +60,7 @@ export default function PlannerNav(props) {
             className="close-wrapper"
             onClick={() => {
               searchUsers(props.tool);
-              filterStay();
+              GSAP_sortVisibleMobile();
             }}>
             <SearchRoundedIcon />
           </div>
@@ -68,9 +70,8 @@ export default function PlannerNav(props) {
               closeSearch(props.tool);
               props.setChosenCategory("");
               props.setChosenEmployee("");
-              gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
-              gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, top: -80 });
-              staggeringCards(props.list);
+              GSAP_sortInvisibleMobile();
+              GSAP_stagCards(props.list);
             }}>
             <CloseRoundedIcon />
           </div>

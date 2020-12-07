@@ -11,13 +11,14 @@ import { addTask } from "../planner/modules/mobNavigation";
 import ChatNav from "../chat/ChatNav";
 import { chat, scrollToBottom, newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { fetchAll } from "../../jsModules/displayFunctions/subMenuNavigation";
-import { gsap } from "gsap";
 import {
-  hideViewProfile,
-  showChat,
-  staggeringCardsDesktop,
-  staggeringProfilesFilter,
-} from "../../jsModules/displayFunctions/staggeringCards";
+  GSAP_addOpacity,
+  GSAP_opacity0To1MessageContainer,
+  GSAP_removeOpacity,
+  GSAP_stagCardsDesktop,
+  GSAP_stagProfilesSort,
+} from "../../jsModules/displayFunctions/gsap";
+import { setUpForm } from "../../jsModules/displayFunctions/displayEditForm";
 export default function TopBar(props) {
   console.log("navigation || TopBar.js | TopBar()");
 
@@ -25,12 +26,12 @@ export default function TopBar(props) {
     document.querySelectorAll(".UserCard, .panelMargin").forEach((card) => {
       card.style.opacity = "0";
     });
-    module === "admin" ? staggeringProfilesFilter() : staggeringCardsDesktop();
+    module === "admin" ? GSAP_stagProfilesSort() : GSAP_stagCardsDesktop();
   };
 
   const handleSearch = (e) => {
     props.setSearch(e.target.value);
-    staggeringProfilesFilter();
+    GSAP_stagProfilesSort();
   };
 
   const categories = [
@@ -114,8 +115,9 @@ export default function TopBar(props) {
               newUser();
               props.setTool("admin");
               props.setViewingProfile(false);
-              gsap.to(".UserForm", { duration: 0.5, opacity: 1 });
-              hideViewProfile();
+              GSAP_removeOpacity(".UserForm");
+              GSAP_addOpacity(".userCard, .ProfileNav");
+              setUpForm();
             }}
           />
           <div
@@ -123,9 +125,8 @@ export default function TopBar(props) {
             onClick={() => {
               chat();
               scrollToBottom();
-              gsap.from(".message-container", { duration: 1, opacity: 0 });
-              gsap.to(".message-container", { duration: 1, opacity: 1 });
-              hideViewProfile();
+              GSAP_opacity0To1MessageContainer();
+              GSAP_addOpacity(".userCard, .ProfileNav");
               props.setViewingProfile(false);
             }}>
             <ChatBubbleRoundedIcon />
@@ -172,7 +173,6 @@ export default function TopBar(props) {
             onClick={() => {
               chat();
               scrollToBottom();
-              showChat();
             }}>
             <ChatBubbleRoundedIcon />
           </div>
@@ -190,7 +190,6 @@ export default function TopBar(props) {
               props.setSortDate();
               scrollToBottom();
               fetchAll();
-              showChat();
             }}>
             <AllInclusiveIcon />
           </div>

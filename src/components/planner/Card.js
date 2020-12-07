@@ -8,7 +8,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Tooltip from "@material-ui/core/Tooltip";
-import { gsap } from "gsap";
+import { GSAP_opacity0To1NamePopup } from "../../jsModules/displayFunctions/gsap";
 
 export default function Card(props) {
   console.log("planner || Card.js | Card()");
@@ -58,8 +58,7 @@ export default function Card(props) {
     if (window.innerWidth < 1000) {
       if (document.querySelector(".a" + props.id + ".mui-panel.bigger")) {
         document.querySelector(".a" + id + ".name-popup").classList.toggle("hide");
-        gsap.from(".name-popup", { duration: 0.5, opacity: 0 });
-        gsap.to(".name-popup", { duration: 0.5, opacity: 1 });
+        GSAP_opacity0To1NamePopup();
       } else {
         clickOnCard();
         document.querySelectorAll(".name-popup").forEach((popup) => {

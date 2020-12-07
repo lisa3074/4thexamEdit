@@ -1,6 +1,5 @@
 import React from "react";
 import MenuRoundedIcon from "@material-ui/icons/MenuRounded";
-import { gsap } from "gsap";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import PersonAddRoundedIcon from "@material-ui/icons/PersonAddRounded";
 import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
@@ -19,18 +18,19 @@ import {
   resetFilterNav,
 } from "../../jsModules/displayFunctions/subMenuNavigation";
 import {
-  filterStay,
-  hideCards,
-  staggeringCards,
-  staggeringProfiles,
-} from "../../jsModules/displayFunctions/staggeringCards";
+  GSAP_sortVisibleMobile,
+  GSAP_sortInvisibleMobile,
+  GSAP_addOpacity,
+  GSAP_stagCards,
+  GSAP_stagProfiles,
+  GSAP_opacity0To1MenuProfile,
+} from "../../jsModules/displayFunctions/gsap";
 import { newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { addTask } from "../planner/modules/mobNavigation";
 
 export default function SubMenu(props) {
   console.log("navigation || SubMenu.js | SubMenu()");
   const tool = props.tool;
-  /*   const endpoint = props.endpoint; */
 
   function removeDelete() {
     console.log("navigation || SubMenu.js | removeDelete()");
@@ -38,9 +38,6 @@ export default function SubMenu(props) {
       modal.classList.add("hide");
     });
   }
-
-  /*   const person = document.querySelector(".Person");
-  const isPrivateShown = document.querySelector(".Person"); */
 
   function clearForm() {
     console.log("navigation || SubMenu.js | clearForm()");
@@ -64,13 +61,9 @@ export default function SubMenu(props) {
           openMenu();
           resetFilterNav();
           tool === "planner" ? resetSubmenu() : openMenu();
-          gsap.from(".Profile, .MenuNav", { delay: 0, duration: 1, autoAlpha: 0 });
-          gsap.to(".Profile, .MenuNav", { delay: 0, duration: 1, autoAlpha: 1 });
-          gsap.to(".FilterUsers", { duration: 0.5, top: -140 });
-          gsap.to(".UserList", { duration: 0.5, top: -140 });
-          gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
-          gsap.to(".relativeContainer", { duration: 0.3, top: -80 });
-          hideCards();
+          GSAP_opacity0To1MenuProfile();
+          GSAP_sortInvisibleMobile();
+          GSAP_addOpacity(".UserCard");
         }}>
         <MenuRoundedIcon />
       </div>
@@ -81,7 +74,7 @@ export default function SubMenu(props) {
           removeDelete();
           props.setViewingProfile(false);
           props.setisUSerProfile(false);
-          staggeringProfiles();
+          GSAP_stagProfiles();
         }}>
         <ArrowBackIosRoundedIcon />
       </div>
@@ -97,7 +90,7 @@ export default function SubMenu(props) {
           className="menuSearch"
           onClick={() => {
             searchUsers(props.tool);
-            filterStay();
+            GSAP_sortVisibleMobile();
           }}>
           {props.tool === "admin" ? <SearchRoundedIcon /> : <SearchRoundedIcon />}
         </div>
@@ -107,7 +100,7 @@ export default function SubMenu(props) {
             editUser();
             removeDelete();
             props.editProfile(props.id);
-            gsap.to(".UserForm", { duration: 0.5, opacity: 1 });
+            GSAP_removeOpacity(".UserForm");
             setUpForm();
           }}>
           <EditRoundedIcon />
@@ -123,13 +116,10 @@ export default function SubMenu(props) {
             props.setSearch("");
             clearForm();
             console.log("CLOSE MENU");
-            gsap.to(".FilterUsers", { duration: 0.5, top: -140 });
-            gsap.to(".UserList", { delay: 0.2, duration: 0.3, top: -140 });
-            gsap.to(".FilterTasks", { delay: 0.3, duration: 0.5, top: -80 });
-            gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, top: -80 });
+            GSAP_sortInvisibleMobile();
 
-            staggeringCards(props.list);
-            staggeringProfiles();
+            GSAP_stagCards(props.list);
+            GSAP_stagProfiles();
           }}>
           <CloseRoundedIcon />
         </div>
@@ -139,7 +129,7 @@ export default function SubMenu(props) {
         onClick={() => {
           newUser();
           setUpForm();
-          gsap.to(".UserForm", { duration: 0.5, autoAlpha: 1 });
+          GSAP_removeOpacity(".UserForm");
         }}>
         <PersonAddRoundedIcon />
       </div>
@@ -156,9 +146,7 @@ export default function SubMenu(props) {
         onClick={() => {
           addTask();
           closeSearch(props.tool);
-          gsap.to(".UserList", { duration: 0.5, top: -140 });
-          gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
-          gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, top: -80 });
+          GSAP_sortInvisibleMobile();
         }}>
         <AddRoundedIcon />
       </div>

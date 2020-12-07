@@ -8,7 +8,6 @@ import LockIcon from "@material-ui/icons/Lock";
 import { addTask } from "../planner/modules/mobNavigation";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 import { firebaseConfig } from "../../jsModules/firebase/firebase";
-import { gsap } from "gsap";
 import {
   administration,
   newUser,
@@ -18,14 +17,14 @@ import {
 } from "../../jsModules/displayFunctions/mainMenuNavigation";
 
 import {
-  hideCards,
-  hidePlanner,
-  hideChat,
-  staggeringCardsDesktop,
-  staggeringProfilesTo,
-  staggeringMenuNav,
-  hideViewProfile,
-} from "../../jsModules/displayFunctions/staggeringCards";
+  GSAP_addOpacity,
+  GSAP_stagCardsDesktop,
+  GSAP_stagProfilesMenuNav,
+  GSAP_stagMenuNav,
+  GSAP_removeOpacity,
+  GSAP_opacity0To1MessageContainer,
+} from "../../jsModules/displayFunctions/gsap";
+import { setUpForm } from "../../jsModules/displayFunctions/displayEditForm";
 
 export default function MenuNav(props) {
   console.log("navigation || MenuNav.js | MenuNav()");
@@ -41,7 +40,7 @@ export default function MenuNav(props) {
     props.setViewingProfile(false);
   }
 
-  staggeringMenuNav();
+  GSAP_stagMenuNav();
 
   return (
     <div className="MenuNav">
@@ -52,10 +51,8 @@ export default function MenuNav(props) {
             administration();
             props.setTool("admin");
             resetSearch();
-            staggeringProfilesTo();
-            hidePlanner();
-            hideChat();
-            hideViewProfile();
+            GSAP_stagProfilesMenuNav();
+            GSAP_addOpacity(".panelMargin, .userCard, .ProfileNav");
           }}>
           <li>
             <PeopleIcon />
@@ -66,12 +63,12 @@ export default function MenuNav(props) {
           className={props.level === "Administrator" ? "inset" : "inset hiddenFromUser"}
           onClick={() => {
             newUser();
-            hidePlanner();
-            gsap.to(".UserForm", { duration: 0.5, opacity: 1 });
+            GSAP_addOpacity(".panelMargin");
+            GSAP_removeOpacity(".UserForm");
             props.setTool("admin");
             resetSearch();
-            hideChat();
-            hideViewProfile();
+            GSAP_addOpacity(".UserCard, .userCard, .ProfileNav, .panelMargin");
+            setUpForm();
           }}>
           <PersonAddIcon />
           <h3 className="new-user-link">New user</h3>
@@ -83,10 +80,8 @@ export default function MenuNav(props) {
             planner(innerWidth);
             props.setTool("planner");
             resetSearch();
-            staggeringCardsDesktop();
-            hideCards();
-            hideChat();
-            hideViewProfile();
+            GSAP_stagCardsDesktop();
+            GSAP_addOpacity(".UserCard, .userCard, .ProfileNav");
           }}>
           <CalendarTodayIcon />
           <h3 className="planner-link">Planner</h3>
@@ -98,9 +93,7 @@ export default function MenuNav(props) {
             planner(innerWidth);
             props.setTool("planner");
             resetSearch();
-            hideCards();
-            hideChat();
-            hideViewProfile();
+            GSAP_addOpacity(".UserCard, .userCard, .ProfileNav, .panelMargin");
           }}>
           <AddCircleOutlineRoundedIcon />
           <h3 className="task">New task</h3>
@@ -111,11 +104,8 @@ export default function MenuNav(props) {
             chat();
             scrollToBottom();
             resetSearch();
-            hideCards();
-            hidePlanner();
-            hideViewProfile();
-            gsap.from(".message-container", { duration: 1, opacity: 0 });
-            gsap.to(".message-container", { duration: 1, opacity: 1 });
+            GSAP_addOpacity(".UserCard, .panelMargin, .userCard, .ProfileNav");
+            GSAP_opacity0To1MessageContainer();
           }}>
           <ChatBubbleIcon />
           <h3 className="chat-link">Chat</h3>
@@ -128,10 +118,7 @@ export default function MenuNav(props) {
               firebaseConfig.auth().signOut();
               localStorage.clear();
               resetSearch();
-              hideCards();
-              hidePlanner();
-              hideChat();
-              hideViewProfile();
+              GSAP_addOpacity(".UserCard, .userCard, .ProfileNav, .panelMargin");
             }}>
             Sign out
           </h3>
