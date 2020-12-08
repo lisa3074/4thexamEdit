@@ -62,6 +62,7 @@
     }
   }
 }
+
 .FilterTasks {
   padding: 0 1rem 0.5rem;
   transform: translateY(-135px);
@@ -84,10 +85,6 @@
     display: none;
   }
 
-  /*   .TopBar .searchUsers .MuiInputLabel-shrink,
-  .TopBar .MuiInputLabel-shrink {
-    transform: translate(0px, -20000px) scale(0.75);
-  } */
   .TopBar {
     .filter-wrapper,
     .input-wrapper {
@@ -166,18 +163,18 @@
       grid-template-columns: 6rem 30rem auto 20rem 50px;
     }
     .planner-top .grid-wrapper {
-      /*    .filter.wrapper > .select:nth-child(1) {
-        width: 40%;
-      } */
       .select:nth-child(2) {
         width: 60%;
       }
-      grid-template-columns: 6rem 26rem auto 0rem 5rem 50px;
+      grid-template-columns: 6rem 20rem auto 0rem 5rem 50px;
+    }
+    .category {
+      width: 45%;
+    }
+    .employees {
+      width: 45%;
     }
   }
-}
-.TopBar .category {
-  width: 30%;
 }
 
 @media (min-width: 1100px) {
@@ -210,10 +207,10 @@
     .select:nth-child(2) {
       width: 60%;
     }
-    grid-template-columns: 6rem 35rem auto 0rem 5rem 50px;
+    grid-template-columns: 6rem 30rem auto 0rem 5rem 50px;
   }
   .TopBar .category {
-    width: 35%;
+    width: 45%;
     color: #6fc4ad;
   }
 }

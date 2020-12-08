@@ -29,7 +29,7 @@ export function GSAP_stagCardsDesktop() {
       opacity: 0,
     });
     gsap.to(".panelMargin", {
-      duration: 0.5,
+      duration: 1,
       opacity: 1,
       stagger: 0.05,
       ease: "back.in",
@@ -57,7 +57,7 @@ export function GSAP_stagProfilesMenuNav() {
   console.log("jsModules || gsap.js | GSAP_stagProfilesMenuNav()");
   gsap.to(".UserCard", { opacity: 0 });
   setTimeout(() => {
-    gsap.to(".UserCard", { duration: 1, opacity: 1, stagger: 0.1 });
+    gsap.to(".UserCard", { duration: 0.5, opacity: 1, stagger: 0.05 });
   }, 10);
 }
 export function GSAP_stagProfilesStartup() {
@@ -76,10 +76,10 @@ export function GSAP_stagViewProfile() {
   console.log("jsModules || gsap.js | GSAP_stagViewProfile()");
   setTimeout(() => {
     gsap.to(".userCard, ProfileNav", {
-      duration: 0.5,
+      duration: 0.2,
       opacity: 1,
-      stagger: 0.2,
-      ease: "back.in",
+      stagger: 0.05,
+      //ease: "back.in",
     });
   }, 10);
 }
@@ -114,10 +114,13 @@ export function GSAP_sortVisibleMobile() {
 }
 export function GSAP_sortInvisibleMobile() {
   console.log("jsModules || gsap.js | GSAP_sortInvisibleMobile()");
-  gsap.to(".FilterUsers", { duration: 0.5, top: -140 });
   gsap.to(".UserList", { duration: 0.5, top: -140 });
-  gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
   gsap.to(".relativeContainer", { duration: 0.3, top: -80 });
+}
+export function GSAP_sortInvisibleFilterMobile() {
+  console.log("jsModules || gsap.js | GSAP_sortInvisibleFilterMobile()");
+  gsap.to(".FilterUsers", { duration: 0.5, top: -140 });
+  gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
 }
 
 export function GSAP_UserListToTop() {

@@ -25,6 +25,7 @@ import {
   GSAP_stagProfiles,
   GSAP_opacity0To1MenuProfile,
   GSAP_removeOpacity,
+  GSAP_sortInvisibleFilterMobile,
 } from "../../jsModules/displayFunctions/gsap";
 import { newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { addTask } from "../planner/modules/mobNavigation";
@@ -119,6 +120,7 @@ export default function SubMenu(props) {
             GSAP_sortInvisibleMobile();
             GSAP_stagCards(props.list);
             GSAP_stagProfiles();
+            GSAP_sortInvisibleFilterMobile();
           }}>
           <CloseRoundedIcon />
         </div>

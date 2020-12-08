@@ -37,7 +37,9 @@ export default function List(props) {
       }}
       onDragOver={(e) => onDragOver(e)}>
       <div className={props.header}>
-        <h1 className="theList mui--text-display2">{props.header}</h1>
+        <h1 className="theList mui--text-display2 float-btn">
+          {props.header === "In progress" ? "progress" : props.header}
+        </h1>
       </div>
 
       <ul>{mappedCards}</ul>

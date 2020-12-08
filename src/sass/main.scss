@@ -241,6 +241,7 @@ span.MuiFormLabel-asterisk.Mui-error,
     }
   }
   .Administration {
+    background-color: var(--background);
     width: 100%;
     height: 100%;
     display: grid;
@@ -248,7 +249,7 @@ span.MuiFormLabel-asterisk.Mui-error,
       "menu topbar"
       "menu content";
     grid-template-columns: 250px auto;
-    grid-template-rows: 80px auto;
+    grid-template-rows: calc(80px + 1rem) auto;
   }
   .MenuDesktop {
     grid-area: menu;

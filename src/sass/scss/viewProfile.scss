@@ -4,7 +4,7 @@
   //height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
   padding: 0.5rem;
-  padding-bottom: 3rem;
+  padding-bottom: 3.2rem;
   opacity: 1;
   .Person.userCard {
     display: flex;
@@ -144,7 +144,7 @@
       grid-area: todo;
       background-color: var(--orange);
       transition: 1s;
-      animation: infographic 1s ease-out 1 forwards;
+      animation: infographic 1s ease-out 1s 1 forwards;
       align-self: flex-end;
       justify-self: flex-end;
     }
@@ -152,9 +152,9 @@
       grid-area: progress;
       background-color: var(--yellow);
       transition: 1s;
-      animation: infographic 1s ease-out 1 forwards;
       align-self: flex-end;
       justify-self: center;
+      animation: infographic 1s ease-out 1s 1 forwards;
     }
     .doneBar {
       grid-area: done;
@@ -162,7 +162,7 @@
       transition: 1s;
       align-self: flex-end;
       justify-self: flex-start;
-      animation: infographic 1s ease-out 1 forwards;
+      animation: infographic 1s ease-out 1s 1 forwards;
     }
 
     @keyframes infographic {
@@ -211,6 +211,7 @@
   .ViewProfile {
     position: relative;
     top: -140px;
+    /*     padding: 0.5rem; */
   }
 }
 @media (min-width: 1000px) {
@@ -229,6 +230,7 @@
   }
   .ViewProfile {
     padding: 0;
+    margin-bottom: 1.5rem;
     display: grid;
     height: 100%;
     grid-column-gap: 1.3rem;
@@ -284,6 +286,8 @@
   .ViewProfile {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(20, 5.5rem);
+    margin-bottom: 0;
+
     img {
       width: 150px;
       height: 150px;

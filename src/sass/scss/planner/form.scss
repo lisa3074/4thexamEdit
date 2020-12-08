@@ -76,9 +76,11 @@
   .mui-textfield--float-label.description {
     margin-bottom: 0;
   }
+
   .addForm {
     padding: 2rem 2rem;
     width: calc(100vw - 1.4rem);
+    overflow-y: scroll;
 
     @supports (-webkit-touch-callout: none) {
       // height: 80vh;
@@ -173,5 +175,8 @@ li.MuiButtonBase-root.MuiListItem-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiL
     .flex .float-btn.cancel {
       width: 50px;
     }
+  }
+  .NewTask.showNew {
+    padding: 4rem 0;
   }
 }

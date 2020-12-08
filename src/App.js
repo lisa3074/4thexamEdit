@@ -36,6 +36,16 @@ const theme = createMuiTheme({
     contrastThreshold: 3,
     tonalOffset: 0.2,
   },
+  overrides: {
+    MuiInputBase: {
+      input: {
+        "&:-webkit-autofill": {
+          transitionDelay: "9999s",
+          transitionProperty: "background-color, color",
+        },
+      },
+    },
+  },
 });
 
 export default function App() {

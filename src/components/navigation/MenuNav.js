@@ -60,7 +60,7 @@ export default function MenuNav(props) {
     }
   }
   function clearFormPlanner() {
-    console.log("navigation || SubMenu.js | clearForm()");
+    console.log("navigation || SubMenu.js | clearFormPlanner()");
     const categorySpan = document.querySelector("#mui-component-select-category > span");
     const category = document.querySelector("#mui-component-select-category");
     const employeeSpan = document.querySelector("#mui-component-select-Employees > span");

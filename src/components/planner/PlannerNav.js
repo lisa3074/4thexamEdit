@@ -7,6 +7,7 @@ import {
   GSAP_sortVisibleMobile,
   GSAP_stagCards,
   GSAP_sortInvisibleMobile,
+  GSAP_sortInvisibleFilterMobile,
 } from "../../jsModules/displayFunctions/gsap";
 import PauseRoundedIcon from "@material-ui/icons/PauseRounded";
 import CachedRoundedIcon from "@material-ui/icons/CachedRounded";
@@ -71,6 +72,7 @@ export default function PlannerNav(props) {
               props.setChosenCategory("");
               props.setChosenEmployee("");
               GSAP_sortInvisibleMobile();
+              GSAP_sortInvisibleFilterMobile();
               GSAP_stagCards(props.list);
             }}>
             <CloseRoundedIcon />

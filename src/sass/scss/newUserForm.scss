@@ -273,6 +273,9 @@ input[type="file"] {
 }
 
 @media (min-width: 1000px) {
+  .UserForm {
+    padding: 3rem 0.5rem;
+  }
   .UserForm .FormPath,
   .UserForm .Form {
     min-width: 700px;

@@ -5,6 +5,7 @@ import {
   GSAP_sortInvisibleMobile,
   GSAP_addOpacity,
   GSAP_removeOpacity,
+  GSAP_sortInvisibleFilterMobile,
 } from "../../../jsModules/displayFunctions/gsap";
 
 export default function UserCard(props) {
@@ -21,6 +22,7 @@ export default function UserCard(props) {
     props.setId(userId);
     if (window.innerWidth < 1000) {
       GSAP_sortInvisibleMobile();
+      GSAP_sortInvisibleFilterMobile();
     }
     GSAP_addOpacity(".UserCard");
   }

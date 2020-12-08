@@ -28,7 +28,7 @@
   }
   .bigger {
     max-height: 550px;
-    //height: min-content;
+    z-index: 3;
     transition: 0.5s;
     .flex-wrapper {
       padding-bottom: 0rem;
