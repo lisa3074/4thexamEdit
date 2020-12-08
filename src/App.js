@@ -12,7 +12,8 @@ import "./sass/scss/deleteModal.scss";
 import "./sass/main.scss";
 import "./sass/scss/adminOverview.scss";
 import React, { useEffect, useState } from "react";
-import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { AuthProvider } from "./jsModules/firebase/auth";
 import Login from "./components/login/Login";
 import PrivateRoute from "./components/login/PrivateRoute";
@@ -20,9 +21,18 @@ import SignUp from "./components/login/SignUp";
 import Administration from "./components/administration/overview/Administration";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Planner from "./components/planner/Planner";
+import { Redirect } from "react-router";
+
 //Change upper to lower when ready for production build.
 //import { unstable_createMuiStrictModeTheme as createMuiTheme } from "@material-ui/core";
-
+/* window.onload = () => {
+  console.log("LOAD");
+  return <Redirect to="/optimate" exact />;
+}; */
+window.addEventListener("DOMContentLoaded", () => {
+  console.log("LOAD");
+  return <Redirect to="/optimate" exact />;
+});
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -76,9 +86,10 @@ export default function App() {
     <section className="App">
       <ThemeProvider theme={theme}>
         <AuthProvider>
-          <Router>
+          <HashRouter>
             <Switch>
               <PrivateRoute
+                exact
                 path="/administration"
                 credentials={credentials}
                 component={() => <Administration endpoint={endpoint} setEndpoint={setEndpoint} />}
@@ -92,7 +103,7 @@ export default function App() {
               <Route path="/login" component={() => <Login saveCredentials={saveCredentials} />}></Route>
               <Route path="/" component={() => <Login saveCredentials={saveCredentials} />}></Route>
             </Switch>
-          </Router>
+          </HashRouter>
         </AuthProvider>
       </ThemeProvider>
     </section>
