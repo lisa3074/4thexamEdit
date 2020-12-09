@@ -33,6 +33,7 @@ export default function Administration(props) {
   const [cards, setCards] = useState([]);
   const [list, setList] = useState("To");
   const [chatSearch, setChatSearch] = useState("");
+  const [messageToDelete, setMessageToDelete] = useState();
 
   useEffect(() => {
     getUsers(setUsers);
@@ -46,6 +47,8 @@ export default function Administration(props) {
   useEffect(() => {
     getMessages(setMessages);
     if (signedinUser) {
+      localStorage.setItem("signedInUser", signedinUser[0].name);
+      localStorage.setItem("signedInUserId", signedinUser[0].id);
       setLevel(signedinUser[0].userLevel);
     }
   }, [signedinUser]);
@@ -58,16 +61,6 @@ export default function Administration(props) {
     getCards(setCards);
     getSignedinUser(setSignedinUser, localStorage.email);
   }, []);
-
-  /*   useEffect(() => {
-    if (signedinUser) {
-      setLevel(signedinUser[0].userLevel);
-    }
-  }, [signedinUser]); */
-
-  /*   useEffect(() => {
-    getCards(setCards);
-  }, []); */
 
   function editProfile(id) {
     console.log("administration/Administration.js || editProfile()");
@@ -134,6 +127,7 @@ export default function Administration(props) {
         setViewingProfile={setViewingProfile}
         level={level}
         isUSerProfile={isUSerProfile}
+        setisUSerProfile={setisUSerProfile}
         cards={cards}></MainAdmin>
 
       <Planner
@@ -161,6 +155,8 @@ export default function Administration(props) {
         systemPart={systemPart}
         chatSearch={chatSearch}
         setChatSearch={setChatSearch}
+        messageToDelete={messageToDelete}
+        setMessageToDelete={setMessageToDelete}
       />
 
       <SubMenu

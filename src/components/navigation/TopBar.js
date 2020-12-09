@@ -1,19 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import TextField from "@material-ui/core/TextField";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import ChatBubbleRoundedIcon from "@material-ui/icons/ChatBubbleRounded";
 import PersonAddRoundedIcon from "@material-ui/icons/PersonAddRounded";
 import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
-
 import { addTask } from "../planner/modules/mobNavigation";
-import ChatNav from "../chat/ChatNav";
 import { chat, scrollToBottom, newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { fetchAll } from "../../jsModules/displayFunctions/subMenuNavigation";
 import {
@@ -24,12 +21,9 @@ import {
   GSAP_stagProfilesSort,
 } from "../../jsModules/displayFunctions/gsap";
 import { setUpForm } from "../../jsModules/displayFunctions/displayEditForm";
-import { ClearAllRounded } from "@material-ui/icons";
 
 export default function TopBar(props) {
   console.log("navigation || TopBar.js | TopBar()");
-
-  const { sortDate, setSortDate } = props;
 
   const handleChanges = (module) => {
     document.querySelectorAll(".UserCard, .panelMargin").forEach((card) => {
@@ -95,15 +89,6 @@ export default function TopBar(props) {
     scrollToBottom();
     console.log(new Date(e.target.value));
   };
-  /*     useEffect(() => {
-    let today;
-    sortDate ? (today = new Date(sortDate)) : (today = new Date());
-    const dd = String(today.getDate()).padStart(2, "0");
-    const mm = String(today.getMonth() + 1).padStart(2, "0");
-    const yyyy = today.getFullYear();
-    setSortDate(sortDate ? `${yyyy}-${mm}-${dd}` : "");
-  }, [sortDate]);
-  console.log(sortDate); */
 
   const handleChatSearch = (e) => {
     props.setChatSearch(e.target.value);
@@ -116,11 +101,6 @@ export default function TopBar(props) {
     e.target.value !== ""
       ? document.querySelector(".TopBar .chat-top .svg-wrapper.search").classList.add("hide")
       : document.querySelector(".TopBar .chat-top .svg-wrapper.close").classList.add("hide");
-
-    /*  e.target.classList.add("hide"); */
-    /*     setTimeout(() => {
-      scrollToBottom();
-    }, 200); */
   };
 
   const resetSearch = (e) => {
@@ -130,6 +110,13 @@ export default function TopBar(props) {
     document.querySelector("#root > section > section > nav.TopBar > div.chat-top > div > form").reset();
     props.setChatSearch("");
   };
+
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, "0");
+  const mm = String(today.getMonth() + 1).padStart(2, "0");
+  const yyyy = today.getFullYear();
+  const todaysDate = `${yyyy}-${mm}-${dd}`;
+
   return (
     <nav className="TopBar" data-state="">
       <form className="admin-top">
@@ -311,9 +298,7 @@ export default function TopBar(props) {
               label=""
               type="date"
               value={props.date}
-              /*   InputLabelProps={{
-                shrink: true,
-              }} */
+              InputProps={{ inputProps: { max: todaysDate } }}
             />
           </form>
           <div

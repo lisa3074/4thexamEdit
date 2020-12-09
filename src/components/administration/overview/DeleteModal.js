@@ -3,6 +3,7 @@ import { deleteAMessage } from "../../../jsModules/dbData/deleteData";
 
 export default function DeleteModal(props) {
   console.log("administration/DeleteModal.js || DeleteModal()");
+  console.log(props.messageToDelete);
   return (
     <div className="modal-wrapper hide">
       <div className="areYouSure">
@@ -30,7 +31,7 @@ export default function DeleteModal(props) {
               props.systemPart === "planner"
                 ? props.deleteCard(props.id)
                 : "chat"
-                ? deleteAMessage(props.id)
+                ? deleteAMessage(props.messageToDelete)
                 : props.deleteProfile(props.id);
               deleted();
               props.setViewingProfile ? props.setViewingProfile(false) : console.log("");

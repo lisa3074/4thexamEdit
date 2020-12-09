@@ -19,6 +19,8 @@ export default function MainAdmin(props) {
         setId={props.setId}
         setViewingProfile={props.setViewingProfile}
         signedinUser={props.signedinUser}
+        isUSerProfile={props.isUSerProfile}
+        setisUSerProfile={props.setisUSerProfile}
         users={
           //If all filter options is in use:
           props.chosenHours !== (undefined && "") &&

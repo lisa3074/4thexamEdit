@@ -30,6 +30,8 @@ export default function Chat(props) {
           setSystemPart={props.setSystemPart}
           systemPart={props.systemPart}
           setChecked={setChecked}
+          messageToDelete={props.messageToDelete}
+          setMessageToDelete={props.setMessageToDelete}
           messages={
             props.messages && sortDate && props.chatSearch !== (undefined && "")
               ? props.messages.filter(

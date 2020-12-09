@@ -1,6 +1,9 @@
 .TopBar .ChatNav {
   display: none;
 }
+body {
+  position: fixed;
+}
 button.sendMessage {
   border: none;
   margin: 0;
@@ -41,9 +44,10 @@ button.sendMessage {
   left: 0;
   top: -20px;
   border-radius: 0 0 10px 10px;
+  display: block;
+  z-index: 10;
 
-  .filter-wrapper,
-  .search-wrapper {
+  .filter-wrapper .search-wrapper {
     display: flex;
     justify-content: space-between;
     padding: 0 0.5rem;
@@ -52,6 +56,11 @@ button.sendMessage {
       position: absolute;
       transform: translateX(80vw);
     }
+  }
+  .search-icon {
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
   }
 }
 
@@ -63,7 +72,7 @@ button.sendMessage {
   padding: 0.5rem 1rem;
   background: var(--secondary);
   height: 60px;
-  z-index: 1;
+  z-index: 100;
   .showAll {
     position: fixed;
     top: 14px;
@@ -174,7 +183,7 @@ button.sendMessage {
 .MessageBoard {
   //height: calc(100vh - 100px - 0.5rem);
   height: calc((var(--vh, 1vh) * 100) - 100px - 0.5rem);
-  padding-top: 4rem;
+  padding-top: 60px;
 
   .messageList {
     position: relative;
@@ -245,6 +254,9 @@ button.sendMessage {
         .deleteMessage {
           display: flex;
           flex-wrap: nowrap;
+          svg {
+            pointer-events: none;
+          }
 
           .float-btn {
             background-color: var(--primary);
@@ -396,7 +408,7 @@ button.sendMessage {
       }
     }
     .message-container .message-wrapper {
-      max-width: 400px;
+      width: 100%;
     }
   }
 }
@@ -431,7 +443,11 @@ button.sendMessage {
   }
 }
 @media (min-width: 1000px) {
-  .Chat .ChatNav {
+  .Message .message-container .message-wrapper {
+    width: 60%;
+  }
+  .Chat .ChatNav,
+  .Chat .FilterMessages {
     display: none;
   }
   .ChatNav .MuiInputBase-root {
@@ -546,7 +562,7 @@ button.sendMessage {
   }
 }
 
-@media (min-width: 1300px) {
+@media (min-width: 1500px) {
   .Chat {
     padding-left: 10rem;
     padding-right: 10rem;

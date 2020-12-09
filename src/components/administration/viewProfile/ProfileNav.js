@@ -13,11 +13,18 @@ export default function ProfileNav(props) {
       className={
         props.level === "Administrator"
           ? "ProfileNav"
-          : props.isUSerProfile
+          : props.isUSerProfile === true
           ? "ProfileNav"
           : "ProfileNav hiddenFromUser"
       }>
-      <div className={props.level === "Administrator" ? "float-btn delete" : "float-btn delete hiddenFromUser"}>
+      <div
+        className={
+          props.isUSerProfile
+            ? "float-btn delete hiddenFromUser"
+            : props.level === "Administrator"
+            ? "float-btn delete"
+            : "float-btn delete hiddenFromUser"
+        }>
         <DeleteRoundedIcon
           onClick={() => {
             areYouSure();

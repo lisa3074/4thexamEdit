@@ -15,6 +15,7 @@ const Login = ({ history }) => {
   console.log("login || Login.js | Login()");
   const [error, setError] = useState([null]);
   const [resetEmail, setResetEmail] = useState("");
+  const { currentUser } = useContext(AuthContext);
 
   const handleLogin = useCallback(
     async (e) => {
@@ -31,8 +32,6 @@ const Login = ({ history }) => {
     },
     [history]
   );
-
-  const { currentUser } = useContext(AuthContext);
 
   if (currentUser) {
     return <Redirect to="/administration" exact />;
@@ -62,7 +61,9 @@ const Login = ({ history }) => {
       document.querySelector(".forgot").classList.add("hide");
     }, 1000);
   }
-  console.log(resetEmail);
+  const close = () => {
+    document.querySelector(".forgot").classList.add("hide");
+  };
   return (
     <main className="login-wrapper">
       <div className="login">
@@ -131,14 +132,23 @@ const Login = ({ history }) => {
             value={resetEmail}
             onChange={handleChange}
           />
-          <button
-            className="text-btn"
-            onClick={(e) => {
-              resetPasswordMail(resetEmail);
-              resetForm();
-            }}>
-            Reset password
-          </button>
+          <div className="button-wrapper">
+            <button
+              className="text-btn cancel"
+              onClick={(e) => {
+                close();
+              }}>
+              Cancel
+            </button>
+            <button
+              className="text-btn"
+              onClick={(e) => {
+                resetPasswordMail(resetEmail);
+                resetForm();
+              }}>
+              Reset password
+            </button>
+          </div>
           <div className="resetSent hide">
             <CheckRoundedIcon />
           </div>

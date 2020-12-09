@@ -13,6 +13,8 @@ export default function UserList(props) {
       {...user}
       setId={props.setId}
       setViewingProfile={props.setViewingProfile}
+      isUSerProfile={props.isUSerProfile}
+      setisUSerProfile={props.setisUSerProfile}
     />
   ));
   return (

@@ -12,7 +12,7 @@ export default function NewMessage(props) {
   }
   function submitMessage(e) {
     e.preventDefault();
-    if (message !== ("" || undefined)) {
+    if (message) {
       const user = signedinUser ? signedinUser[0].name : "unknown";
       postMessage(message, user);
       setMessage("");
@@ -31,10 +31,29 @@ export default function NewMessage(props) {
   function doNothing() {
     console.log("do nothing");
   }
+
+  function pasteIntoInput(el, text) {
+    el.focus();
+    if (typeof el.selectionStart == "number" && typeof el.selectionEnd == "number") {
+      var val = el.value;
+      var selStart = el.selectionStart;
+      el.value = val.slice(0, selStart) + text + val.slice(el.selectionEnd);
+      el.selectionEnd = el.selectionStart = selStart + text.length;
+    } else if (typeof document.selection != "undefined") {
+      var textRange = document.selection.createRange();
+      textRange.text = text;
+      textRange.collapse(false);
+      textRange.select();
+    }
+  }
   function handleOnKeyDown(e) {
-    console.log("key");
-    if (e.keyCode === 13) {
-      submitMessage(e);
+    console.log(message);
+    if (message) {
+      if (e.keyCode === 13) {
+        submitMessage(e);
+      }
+    } else if (e.keyCode === 13) {
+      e.preventDefault();
     }
   }
 

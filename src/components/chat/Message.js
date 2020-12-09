@@ -13,13 +13,14 @@ dayjs.extend(customParseFormat);
 
 export default function Message(props) {
   console.log("chat || Message.js | Message()");
-  const { signedinUser, users, id, checked, setChecked } = props;
+  const { signedinUser, users, id, checked, setChecked, setMessageToDelete, messageToDelete } = props;
 
   const [sendingUser, setSendingUser] = useState();
   const [profilePic, setProfilePic] = useState();
   const [editMessage, setEditMessage] = useState({});
   const [editText, setEditText] = useState();
   const [editClicked, setEditClicked] = useState(false);
+  /*   const [messageToDelete, setMessageToDelete] = useState(); */
   const date = dayjs(props.date * 1).format(`dddd, MMM D, YYYY`);
   const time = dayjs(props.date * 1).format(`h:mm A`);
   console.log(new Date(props.date).toString().substring(0, 15));
@@ -68,7 +69,15 @@ export default function Message(props) {
       submitIfChecked(e);
     }
   }
-
+  function scrollIntoView(e) {
+    setTimeout(() => {
+      e.target.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }, 100);
+  }
+  console.log(messageToDelete);
   return (
     <>
       <article className="Message">
@@ -100,15 +109,18 @@ export default function Message(props) {
                       : "hiddenFromUser"
                     : "hiddenFromUser"
                 }>
-                <DeleteRoundedIcon
-                  onClick={() => {
-                    //deleteAMessage(id);
+                <div
+                  onClick={(e) => {
                     areYouSure();
                     props.setSystemPart("chat");
-                  }}
-                />
-                <EditRoundedIcon
-                  onClick={() => {
+                    setMessageToDelete(id);
+                    /*          deleteAMessage(id); */
+                    console.log(id);
+                  }}>
+                  <DeleteRoundedIcon />
+                </div>
+                <div
+                  onClick={(e) => {
                     setEditClicked(true);
                     setEditMessage({
                       id: id,
@@ -116,12 +128,15 @@ export default function Message(props) {
                       name: props.name,
                       date: props.date,
                     });
-                  }}
-                />
-                <DeleteModal id={id} systemPart={props.systemPart} />
+                    scrollIntoView(e);
+                  }}>
+                  <EditRoundedIcon />
+                </div>
+                <DeleteModal messageToDelete={messageToDelete} systemPart={props.systemPart} />
               </div>
             </div>
             <h2 className="time">{time}</h2>
+            <p>{id}</p>
 
             <p className={editClicked ? "message hiddenFromUser" : "message"}>{props.message}</p>
             <form
@@ -132,7 +147,7 @@ export default function Message(props) {
               onKeyDown={(e) => {
                 checked ? handleOnKeyDown(e) : doNothing();
               }}>
-              <textarea type="text" className="edit-form" value={editMessage.message} onChange={handleText} />
+              <textarea type="text" className="edit-form" value={editMessage.message} rows="5" onChange={handleText} />
               <div className="btn-wrapper">
                 <button
                   type=""

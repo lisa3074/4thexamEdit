@@ -88,7 +88,7 @@ export default function MenuNav(props) {
           }}>
           <li>
             <PeopleIcon />
-            <h3 className="admin-link">Administration</h3>
+            <h3 className="admin-link">Profiles</h3>
           </li>
         </Link>
         <li
@@ -117,7 +117,7 @@ export default function MenuNav(props) {
             clearFormPlanner();
           }}>
           <CalendarTodayIcon />
-          <h3 className="planner-link">Planner</h3>
+          <h3 className="planner-link">Tasks</h3>
         </li>
         <li
           className="addTask"

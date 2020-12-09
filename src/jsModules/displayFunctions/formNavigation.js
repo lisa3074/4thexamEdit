@@ -112,6 +112,17 @@ export function privat() {
   console.log("jsModules || formNavigation.js | privat()");
   const $ = document.querySelector.bind(document);
   if (
+    ($(".name input").value === "" || $(".country input").value === "" || $(".city input").value === "") &&
+    !$(".PersonForm").classList.contains("hide")
+  ) {
+    personValidation();
+    $(".back").classList.add("hide");
+    $(".PersonForm").classList.remove("hide");
+    $(".WorkForm").classList.add("hide");
+    $(".PrivateForm").classList.add("hide");
+    $(".float-btn.two").style.backgroundColor = "var(--tietery)";
+    $(".float-btn.three").style.backgroundColor = "var(--tietery)";
+  } else if (
     ($('.level[data-chosen="false"]') ||
       $('.division[data-chosen="false"]') ||
       $('.hours[data-chosen="false"]') ||
@@ -126,6 +137,7 @@ export function privat() {
   ) {
     workValidation();
   } else {
+    $(".check").classList.remove("hide");
     $(".PrivateForm").classList.remove("hide");
     $(".PersonForm").classList.add("hide");
     $(".WorkForm").classList.add("hide");

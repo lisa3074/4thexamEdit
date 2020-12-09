@@ -10,10 +10,12 @@ import {
 
 export default function UserCard(props) {
   console.log("administration/UserCard.js || UserCard()");
+  console.log(props);
 
   function detectId(e) {
     const userId = e.target.parentNode.dataset.user;
     viewUser(e, userId);
+    isUserEqualToProfile(userId);
   }
   function viewUser(e, userId) {
     console.log(e, userId);
@@ -30,6 +32,14 @@ export default function UserCard(props) {
   const firstName = props.name.substring(0, firstSpace + 1);
   const lastSpace = props.name.lastIndexOf(" ");
   const lastName = props.name.substring(lastSpace);
+
+  function isUserEqualToProfile(id) {
+    if (localStorage.getItem("signedInUserId") === id) {
+      props.setisUSerProfile(true);
+    } else {
+      props.setisUSerProfile(false);
+    }
+  }
   return (
     <article
       className="UserCard"

@@ -16,6 +16,8 @@ export default function MessageBoard(props) {
           setChecked={props.setChecked}
           setSystemPart={props.setSystemPart}
           systemPart={props.systemPart}
+          messageToDelete={props.messageToDelete}
+          setMessageToDelete={props.setMessageToDelete}
         />
       ))
     : [];

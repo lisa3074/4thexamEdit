@@ -58,7 +58,9 @@ export default function PrivateForm(props) {
           className="cpr"
           label="CPR or equalient"
           required
+          type="text"
           value={props.cpr}
+          inputProps={{ maxLength: 16 }}
           onChange={handleCprChange}
         />
         <p className="error hide">Fill out a cpr number or something equalient if the employee is not Danish</p>
@@ -92,10 +94,13 @@ export default function PrivateForm(props) {
           type="number"
           className="postal"
           label="Postal code"
+          onInput={(e) => {
+            e.target.value = Math.max(0, parseInt(e.target.value)).toString().slice(0, 8);
+          }}
           value={props.postal}
           onChange={handlePostalChange}
         />
-        <p className="error hide">Fill in the employee's postal code</p>
+        <p className="error hide">Fill in the employee's postal code. Use only numbers!</p>
       </div>
       <div className="input-wrapper password-safety">
         <TextField
