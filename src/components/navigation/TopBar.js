@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import ChatBubbleRoundedIcon from "@material-ui/icons/ChatBubbleRounded";
@@ -10,6 +10,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 
 import { addTask } from "../planner/modules/mobNavigation";
 import ChatNav from "../chat/ChatNav";
@@ -23,8 +24,12 @@ import {
   GSAP_stagProfilesSort,
 } from "../../jsModules/displayFunctions/gsap";
 import { setUpForm } from "../../jsModules/displayFunctions/displayEditForm";
+import { ClearAllRounded } from "@material-ui/icons";
+
 export default function TopBar(props) {
   console.log("navigation || TopBar.js | TopBar()");
+
+  const { sortDate, setSortDate } = props;
 
   const handleChanges = (module) => {
     document.querySelectorAll(".UserCard, .panelMargin").forEach((card) => {
@@ -85,28 +90,52 @@ export default function TopBar(props) {
       {category.category}
     </MenuItem>
   ));
+  const dateChanged = (e) => {
+    props.setSortDate(new Date(e.target.value));
+    scrollToBottom();
+    console.log(new Date(e.target.value));
+  };
+  /*     useEffect(() => {
+    let today;
+    sortDate ? (today = new Date(sortDate)) : (today = new Date());
+    const dd = String(today.getDate()).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0");
+    const yyyy = today.getFullYear();
+    setSortDate(sortDate ? `${yyyy}-${mm}-${dd}` : "");
+  }, [sortDate]);
+  console.log(sortDate); */
+
+  const handleChatSearch = (e) => {
+    props.setChatSearch(e.target.value);
+  };
+  const chooseSvg = (e) => {
+    console.log(e.target);
+    document.querySelectorAll(".TopBar .chat-top .svg-wrapper").forEach((svg) => {
+      svg.classList.remove("hide");
+    });
+    e.target.value !== ""
+      ? document.querySelector(".TopBar .chat-top .svg-wrapper.search").classList.add("hide")
+      : document.querySelector(".TopBar .chat-top .svg-wrapper.close").classList.add("hide");
+
+    /*  e.target.classList.add("hide"); */
+    /*     setTimeout(() => {
+      scrollToBottom();
+    }, 200); */
+  };
+
+  const resetSearch = (e) => {
+    document.querySelector(".TopBar .chat-top .svg-wrapper.close").classList.add("hide");
+    document.querySelector(".TopBar .chat-top .svg-wrapper.search").classList.remove("hide");
+
+    document.querySelector("#root > section > section > nav.TopBar > div.chat-top > div > form").reset();
+    props.setChatSearch("");
+  };
   return (
     <nav className="TopBar" data-state="">
       <form className="admin-top">
         <div className={props.level === "Administrator" ? "grid-wrapper" : "grid-wrapper noNewUser"}>
           <h2 className="sorted">Sorted by</h2>
           <div className="filter-wrapper">
-            {/*      <Autocomplete
-              name="Division"
-              className="division"
-              label="Division"
-              id="topbar-division"
-              required
-              disabled={props.viewingProfile ? true : false}
-              options={divisions}
-              getOptionLabel={(option) => (option ? option : "")}
-              getOptionSelected={(option, value) => option === value}
-              onChange={(option) => {
-                handleChanges("admin");
-                props.setChosenDivision(option.target.innerText === undefined ? "" : option.target.innerText);
-              }}
-              renderInput={(params) => <TextField {...params} variant="standard" label="Division" placeholder="" />}
-            /> */}
             <FormControl className="division">
               <InputLabel id="select-division-top">Division</InputLabel>
               <Select
@@ -127,21 +156,6 @@ export default function TopBar(props) {
               </Select>
             </FormControl>
 
-            {/*  <Autocomplete
-              name="Work hours"
-              className="hours"
-              label="Work hours"
-              required
-              disabled={props.viewingProfile ? true : false}
-              options={workHours}
-              getOptionLabel={(option) => (option ? option : "")}
-              getOptionSelected={(option, value) => option === value}
-              onChange={(option) => {
-                handleChanges("admin");
-                props.setChosenHours(option.target.innerText === undefined ? "" : option.target.innerText);
-              }}
-              renderInput={(params) => <TextField {...params} variant="standard" label="Work hours" placeholder="" />}
-            /> */}
             <FormControl className="Work hours">
               <InputLabel id="select-hours-top">Work hours</InputLabel>
               <Select
@@ -200,21 +214,6 @@ export default function TopBar(props) {
         <div className="grid-wrapper">
           <h2 className="sorted">Sorted by</h2>
           <div className="filter-wrapper">
-            {/*             <Autocomplete
-              className="category"
-              label="Category"
-              name="Category"
-              options={categories}
-              getOptionLabel={(option) => (option.category ? option.category : "")}
-              getOptionSelected={(option, value) => option.category === value.category}
-              filterSelectedOptions
-              onChange={(option) => {
-                handleChanges("planner");
-                props.setChosenCategory(option.target.innerText === undefined ? "" : option.target.innerText);
-              }}
-              renderInput={(params) => <TextField {...params} variant="standard" label="Category" placeholder="" />}
-            /> */}
-
             <FormControl className="category">
               <InputLabel id="select-category-top">Category</InputLabel>
               <Select
@@ -233,18 +232,6 @@ export default function TopBar(props) {
                 {mappedCategories}
               </Select>
             </FormControl>
-            {/*  <Autocomplete
-              className="select employee"
-              options={props.users}
-              getOptionLabel={(option) => (option.name ? option.name : "")}
-              getOptionSelected={(option, value) => option === value}
-              filterSelectedOptions
-              onChange={(option) => {
-                handleChanges("planner");
-                props.setChosenEmployee(option.target.innerText === undefined ? "" : option.target.innerText);
-              }}
-              renderInput={(params) => <TextField {...params} variant="standard" label="Employee" placeholder="" />}
-            /> */}
 
             <FormControl className="employee">
               <InputLabel id="select-employees-top">Employees</InputLabel>
@@ -267,6 +254,7 @@ export default function TopBar(props) {
           <div className="input-wrapper"></div>
 
           <AddRoundedIcon className="add-task" onClick={addTask} />
+
           <div
             className="float-btn"
             onClick={() => {
@@ -279,14 +267,62 @@ export default function TopBar(props) {
       </div>
       <div className="chat-top hide">
         <div className="grid-wrapper">
-          <div className="filter-wrapper">
-            <ChatNav setSortDate={props.setSortDate} sortDate={props.sortDate} />
-          </div>
+          <h2>Sorted by</h2>
 
+          <form
+            className="search-wrapper"
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}>
+            <TextField
+              name="search messages"
+              className="searchMessages"
+              label=""
+              placeholder="Search"
+              onChange={(e) => {
+                handleChatSearch(e);
+                chooseSvg(e);
+              }}
+              InputLabelProps={{
+                shrink: false,
+              }}
+            />
+            <div className="svg-wrapper search search-icon" onClick={(e) => {}}>
+              <SearchRoundedIcon />
+            </div>
+            <div
+              className="svg-wrapper close search-icon hide"
+              onClick={(e) => {
+                resetSearch(e);
+              }}>
+              <ClearRoundedIcon />
+            </div>
+          </form>
+          <form
+            className="date-wrapper"
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}>
+            <TextField
+              className="date"
+              onChange={dateChanged}
+              name="Date"
+              id="date"
+              label=""
+              type="date"
+              value={props.date}
+              /*   InputLabelProps={{
+                shrink: true,
+              }} */
+            />
+          </form>
           <div
             className="float-btn all"
             onClick={() => {
               props.setSortDate();
+              document
+                .querySelector("#root > section > section > nav.TopBar > div.chat-top > div > form.date-wrapper")
+                .reset();
               scrollToBottom();
               fetchAll();
             }}>

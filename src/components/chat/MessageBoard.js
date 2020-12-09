@@ -14,6 +14,8 @@ export default function MessageBoard(props) {
           setEditMessage={props.setEditMessage}
           checked={props.checked}
           setChecked={props.setChecked}
+          setSystemPart={props.setSystemPart}
+          systemPart={props.systemPart}
         />
       ))
     : [];

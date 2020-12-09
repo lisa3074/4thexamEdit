@@ -259,9 +259,8 @@ span.MuiFormLabel-asterisk.Mui-error,
     grid-area: topbar;
   }
   .TopBar[data-state="chat"] {
-    background-color: transparent;
-    box-shadow: none;
     z-index: 10;
+    padding-top: 1.4rem;
   }
   .MainAdmin,
   .Planner,

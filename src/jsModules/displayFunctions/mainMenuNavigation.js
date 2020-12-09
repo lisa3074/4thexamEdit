@@ -40,7 +40,6 @@ export function administration() {
 }
 export function planner() {
   console.log("jsModules || mainMenuNavigation.js | planner()");
-  // document.querySelector(".UserCard").style.opacity = "0";
   document.querySelector(".MainAdmin").classList.add("hide");
   document.querySelector(".admin-top").classList.add("hide");
   document.querySelector(".chat-top").classList.add("hide");

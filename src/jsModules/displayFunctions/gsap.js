@@ -110,7 +110,16 @@ export function GSAP_sortVisibleMobile() {
     gsap.to(".relativeContainer", { duration: 0.5, top: 0 });
     gsap.to(".FilterUsers", { delay: 0.2, duration: 0.3, top: 135 });
     gsap.to(".UserList", { duration: 0.5, top: 0 });
+    gsap.to(".FilterMessages", { delay: 0.2, duration: 0.3, top: 60 });
+    gsap.to(".messageList", { duration: 0.5, top: 75 });
+    gsap.to(".MessageBoard", { height: "calc((var(--vh, 1vh) * 100) - 175px - 0.5rem)" });
   }, 1);
+}
+export function GSAP_sortInvisibleMessagesMobile() {
+  console.log("jsModules || gsap.js | GSAP_sortInvisibleMobile()");
+  gsap.to(".messageList", { duration: 0.5, top: 0 });
+  gsap.to(".FilterMessages", { duration: 0.3, top: -20 });
+  gsap.to(".MessageBoard", { height: "calc((var(--vh, 1vh) * 100) - 100px - 0.5rem)" });
 }
 export function GSAP_sortInvisibleMobile() {
   console.log("jsModules || gsap.js | GSAP_sortInvisibleMobile()");

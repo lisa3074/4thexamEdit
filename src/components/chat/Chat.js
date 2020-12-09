@@ -8,7 +8,7 @@ export default function Chat(props) {
 
   const [message, setMessage] = useState();
   const [checked, setChecked] = useState(false);
-  /*  const [sortDate, setSortDate] = useState(new Date()); */
+  const [search, setSearch] = useState("");
   const { signedinUser, setSortDate, sortDate } = props;
 
   console.log(signedinUser);
@@ -17,17 +17,37 @@ export default function Chat(props) {
   return (
     <main className="Chat hide">
       <div className="chat-wrapper">
-        <ChatNav setSortDate={setSortDate} sortDate={sortDate} />
+        <ChatNav
+          setSortDate={setSortDate}
+          sortDate={sortDate}
+          setChatSearch={props.setChatSearch}
+          chatSearch={props.chatSearch}
+        />
         <MessageBoard
           users={props.users}
           signedinUser={signedinUser}
           checked={checked}
+          setSystemPart={props.setSystemPart}
+          systemPart={props.systemPart}
           setChecked={setChecked}
           messages={
-            props.messages && sortDate
+            props.messages && sortDate && props.chatSearch !== (undefined && "")
+              ? props.messages.filter(
+                  (message) =>
+                    new Date(message.date).toString().substring(0, 15) === sortDate.toString().substring(0, 15) &&
+                    (message.message.toLowerCase().includes(props.chatSearch.toLowerCase()) ||
+                      message.name.toLowerCase().includes(props.chatSearch.toLowerCase()))
+                )
+              : props.messages && sortDate
               ? props.messages.filter(
                   (message) =>
                     new Date(message.date).toString().substring(0, 15) === sortDate.toString().substring(0, 15)
+                )
+              : props.messages && props.chatSearch !== (undefined && "")
+              ? props.messages.filter(
+                  (message) =>
+                    message.message.toLowerCase().includes(props.chatSearch.toLowerCase()) ||
+                    message.name.toLowerCase().includes(props.chatSearch.toLowerCase())
                 )
               : props.messages
           }

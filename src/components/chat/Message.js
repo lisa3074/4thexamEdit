@@ -5,6 +5,8 @@ import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import { editAMessage } from "../../jsModules/dbData/editData";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import { deleteAMessage } from "../../jsModules/dbData/deleteData";
+import DeleteModal from "../administration/overview/DeleteModal";
+import { areYouSure } from "../../jsModules/displayFunctions/mainMenuNavigation";
 var dayjs = require("dayjs");
 var customParseFormat = require("dayjs/plugin/customParseFormat");
 dayjs.extend(customParseFormat);
@@ -100,7 +102,9 @@ export default function Message(props) {
                 }>
                 <DeleteRoundedIcon
                   onClick={() => {
-                    deleteAMessage(id);
+                    //deleteAMessage(id);
+                    areYouSure();
+                    props.setSystemPart("chat");
                   }}
                 />
                 <EditRoundedIcon
@@ -114,6 +118,7 @@ export default function Message(props) {
                     });
                   }}
                 />
+                <DeleteModal id={id} systemPart={props.systemPart} />
               </div>
             </div>
             <h2 className="time">{time}</h2>

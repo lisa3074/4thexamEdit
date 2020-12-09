@@ -32,6 +32,7 @@ export default function Administration(props) {
   const [sortDate, setSortDate] = useState();
   const [cards, setCards] = useState([]);
   const [list, setList] = useState("To");
+  const [chatSearch, setChatSearch] = useState("");
 
   useEffect(() => {
     getUsers(setUsers);
@@ -41,24 +42,32 @@ export default function Administration(props) {
       GSAP_stagProfilesStartup();
     }
   }, [users]);
+
   useEffect(() => {
     getMessages(setMessages);
-  }, [signedinUser]);
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-  useEffect(() => {
-    getSignedinUser(setSignedinUser, localStorage.email);
-  }, []);
-  useEffect(() => {
     if (signedinUser) {
       setLevel(signedinUser[0].userLevel);
     }
   }, [signedinUser]);
 
   useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  useEffect(() => {
     getCards(setCards);
+    getSignedinUser(setSignedinUser, localStorage.email);
   }, []);
+
+  /*   useEffect(() => {
+    if (signedinUser) {
+      setLevel(signedinUser[0].userLevel);
+    }
+  }, [signedinUser]); */
+
+  /*   useEffect(() => {
+    getCards(setCards);
+  }, []); */
 
   function editProfile(id) {
     console.log("administration/Administration.js || editProfile()");
@@ -87,7 +96,9 @@ export default function Administration(props) {
         setSortDate={setSortDate}
         sortDate={sortDate}
         users={users}
-        setViewingProfile={setViewingProfile}></TopBar>
+        setViewingProfile={setViewingProfile}
+        chatSearch={chatSearch}
+        setChatSearch={setChatSearch}></TopBar>
       <Menu
         setEndpoint={props.setEndpoint}
         setTool={setTool}
@@ -146,6 +157,10 @@ export default function Administration(props) {
         messages={messages}
         setSortDate={setSortDate}
         sortDate={sortDate}
+        setSystemPart={setSystemPart}
+        systemPart={systemPart}
+        chatSearch={chatSearch}
+        setChatSearch={setChatSearch}
       />
 
       <SubMenu

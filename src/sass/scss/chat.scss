@@ -30,31 +30,75 @@ button.sendMessage {
     padding: 0;
   }
 }
+
+.FilterMessages {
+  background-color: white;
+  box-shadow: var(--card-shadow);
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: -20px;
+  border-radius: 0 0 10px 10px;
+
+  .filter-wrapper,
+  .search-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0.5rem;
+    align-items: center;
+    .search-icon {
+      position: absolute;
+      transform: translateX(80vw);
+    }
+  }
+}
+
 .ChatNav {
   position: fixed;
-  top: 1rem;
-  left: 1rem;
-  width: calc(100% - 2rem);
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.6937149859943977) 48%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  height: calc(1rem + 40px);
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background: var(--secondary);
+  height: 60px;
+  z-index: 1;
+  .showAll {
+    position: fixed;
+    top: 14px;
+    right: 6.5rem;
+    height: 3rem;
+    z-index: 150;
+    svg {
+      width: 25px;
+      height: 25px;
+      fill: var(--orange);
+    }
+  }
   .float-btn {
-    background-color: var(--primary);
-    box-shadow: var(--card-shadow);
+    background-color: transparent;
+    box-shadow: none;
 
     border-radius: 50%;
     padding: 0;
     svg {
       stroke-width: 0;
+      width: 30px;
+      height: 30px;
     }
   }
-  .float-btn.all {
+  .svg-wrapper {
     justify-self: flex-end;
+    padding-top: 0.4rem;
+
+    svg {
+      pointer-events: none;
+      fill: white;
+      stroke-width: 0;
+      width: 30px;
+      height: 30px;
+    }
   }
   .nav-wrapper {
     display: grid;
@@ -80,7 +124,6 @@ button.sendMessage {
 
       svg {
         fill: var(--primary);
-        /*       filter: grayscale(0.8); */
         position: absolute;
         right: 1rem;
         top: 0.1rem;
@@ -106,11 +149,14 @@ button.sendMessage {
     padding-right: 0.4rem;
   }
   .MuiInputBase-root {
-    color: var(--dark-text);
+    color: white;
   }
 }
 #root .ChatNav .text-btn {
   box-shadow: var(--card-shadow);
+  background-color: transparent;
+  width: 9.2rem;
+  padding-left: 1rem;
 }
 
 .Chat {
@@ -131,6 +177,7 @@ button.sendMessage {
   padding-top: 4rem;
 
   .messageList {
+    position: relative;
     height: 100%;
     overflow-y: scroll;
     &::-webkit-scrollbar {
@@ -138,6 +185,8 @@ button.sendMessage {
     }
     ul {
       height: auto;
+      padding-bottom: 1rem;
+      padding-top: 1rem;
     }
   }
 }
@@ -314,8 +363,6 @@ button.sendMessage {
   }
   svg {
     fill: var(--primary);
-    /*     position: absolute;
-    transform: translate(calc(100vw - 5rem), 30px); */
     width: 35px;
     height: 35px;
   }
@@ -391,8 +438,11 @@ button.sendMessage {
     color: var(--light-text);
   }
   .MessageBoard {
-    height: calc((var(--vh, 1vh) * 100) - 70px - 2.5rem);
-    padding-top: 0;
+    height: calc((var(--vh, 1vh) * 100) - 80px - 2.5rem);
+    padding-top: 65px;
+    ul {
+      padding-bottom: 2rem;
+    }
   }
   .NewMessage .sendMessage {
     width: 45px;
@@ -434,6 +484,7 @@ button.sendMessage {
       }
     }
   }
+
   #root .TopBar .ChatNav button.text-btn {
     box-shadow: var(--card-shadow);
   }
@@ -456,14 +507,30 @@ button.sendMessage {
     transform: translateY(-80px);
   }
   .TopBar .chat-top .grid-wrapper {
-    grid-template-columns: 8rem auto 8rem;
-    grid-template-areas: "sorted filter chat";
-    .float-btn.all {
+    grid-template-columns: 5rem 15rem 15rem auto;
+    column-gap: 2rem;
+
+    align-items: center;
+    & > form {
+      position: relative;
+      input::placeholder {
+        font-family: "IBMPlexSans-Medium";
+      }
+
+      .search-icon {
+        transform: none;
+        top: 0rem;
+        right: 0;
+      }
+    }
+    h2 {
+      padding-top: 0.1rem;
+    }
+    .svg-wrapper {
       flex-direction: column;
       transform: translateY(-4px);
       svg {
         stroke-width: 1px;
-        stroke: white;
       }
       p {
         font-size: 0.65rem;

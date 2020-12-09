@@ -11,18 +11,13 @@ export default function WorkForm(props) {
 
   const handleHoursChange = (e) => {
     props.setHours(e.target.value);
+    dataChosen(e.target.value, e.target.name);
     document.querySelector("fieldset.WorkForm > div:nth-child(4) > p").classList.add("hide");
-    e.target.value
-      ? document.querySelector(".UserForm .hours").setAttribute("data-chosen", true)
-      : document.querySelector(".UserForm .hours").setAttribute("data-chosen", false);
   };
   const handleLevelChange = (e) => {
     props.setLevel(e.target.value);
     document.querySelector("fieldset.WorkForm > div:nth-child(6) > p").classList.add("hide");
-
-    e.target.value
-      ? document.querySelector(".UserForm .level").setAttribute("data-chosen", true)
-      : document.querySelector(".UserForm .level").setAttribute("data-chosen", false);
+    dataChosen(e.target.value, e.target.name);
   };
 
   const handleDateChange = (e) => {
@@ -36,10 +31,8 @@ export default function WorkForm(props) {
   };
   const handleDivisionChange = (e) => {
     props.setDivision(e.target.value);
+    dataChosen(e.target.value, e.target.name);
     document.querySelector("fieldset.WorkForm > div:nth-child(3) > p").classList.add("hide");
-    e.target.value
-      ? document.querySelector(".UserForm .division").setAttribute("data-chosen", true)
-      : document.querySelector(".UserForm .division").setAttribute("data-chosen", false);
   };
   const handleEmailChange = (e) => {
     props.setEmail(e.target.value);
@@ -48,6 +41,14 @@ export default function WorkForm(props) {
   const handleTelChange = (e) => {
     props.setTel(e.target.value);
     document.querySelector("fieldset.WorkForm > div:nth-child(8) > p").classList.add("hide");
+  };
+
+  const dataChosen = (value, element) => {
+    element = element.substring(element.lastIndexOf(" ") + 1, 50);
+    console.log(element);
+    value
+      ? document.querySelector(".UserForm ." + element).setAttribute("data-chosen", true)
+      : document.querySelector(".UserForm ." + element).setAttribute("data-chosen", false);
   };
 
   const handleOnKeyDown = () => {
