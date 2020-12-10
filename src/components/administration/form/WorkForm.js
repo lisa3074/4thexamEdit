@@ -4,6 +4,10 @@ import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
+import "date-fns";
+import DateFnsUtils from "@date-io/date-fns";
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
+import Grid from "@material-ui/core/Grid";
 
 export default function WorkForm(props) {
   console.log("administration/form || WorkForm.js | WorkForm()");
@@ -21,7 +25,7 @@ export default function WorkForm(props) {
   };
 
   const handleDateChange = (e) => {
-    props.setDate(e.target.value);
+    props.setDate(new Date(e));
     document.querySelector("fieldset.WorkForm > div:nth-child(5) > p").classList.add("hide");
   };
 
@@ -136,20 +140,29 @@ export default function WorkForm(props) {
       </div>
 
       <div className="input-wrapper">
-        <TextField
-          required
-          onKeyDown={handleOnKeyDown}
-          className="startDate"
-          name="Start date"
-          id="date"
-          label="On board since"
-          type="date"
-          value={props.date}
-          onChange={handleDateChange}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container justify="space-around">
+            <KeyboardDatePicker
+              onKeyDown={handleOnKeyDown}
+              required
+              disableToolbar
+              variant="inline"
+              format="dd/MM/yyyy"
+              margin="none"
+              value={props.date}
+              className="startDate"
+              label="On board since"
+              onChange={handleDateChange}
+              name="Start date"
+              autoOk={true}
+              error={false}
+              helperText={null}
+              KeyboardButtonProps={{
+                "aria-label": "change date",
+              }}
+            />
+          </Grid>
+        </MuiPickersUtilsProvider>
         <p className="error hide">Fill in a start date</p>
       </div>
 

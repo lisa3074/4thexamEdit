@@ -11,9 +11,14 @@
   padding: 0.5rem;
   form,
   .FormPath {
-    background-color: white;
+    background-color: var(--white);
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
+  }
+  .one h3,
+  .two h3,
+  .three h3 {
+    color: var(--button);
   }
   .FormPath {
     height: 7rem;
@@ -60,7 +65,7 @@
     margin: 1.5rem 0;
     position: relative;
     .PersonForm {
-      height: 80%;
+      height: 100%;
     }
   }
 
@@ -68,7 +73,7 @@
   .WorkForm,
   .PrivateForm {
     position: absolute;
-    background-color: white;
+    background-color: var(--white);
     width: 100%;
     height: 100%;
     padding: 1.5rem 1rem 1rem;
@@ -93,6 +98,9 @@
     }
     .input-wrapper:nth-child(7) {
       cursor: not-allowed;
+    }
+    .startDate .MuiIconButton-root {
+      padding: 0;
     }
   }
   .PrivateForm {
@@ -127,7 +135,7 @@ input[type="file"] {
   width: 100%;
   height: 100%;
   max-width: 100%;
-  max-height: 60%;
+  max-height: 50%;
   object-fit: contain;
   box-shadow: none;
   border-radius: 0px;
@@ -182,7 +190,7 @@ input[type="file"] {
   height: 25px;
 }
 .succes {
-  background-color: #fff;
+  background-color: var(--white);
   position: fixed;
   top: 0;
   left: 0;
@@ -211,12 +219,12 @@ input[type="file"] {
     background-image: -webkit-linear-gradient(
         -45deg,
         transparent 100%,
-        rgba(0, 0, 0, 0.1) 33%,
-        rgba(0, 0, 0, 0.1) 66%,
+        var(--secondary) 33%,
+        var(--secondary) 66%,
         transparent 100%
       ),
       -webkit-linear-gradient(top, rgba(255, 255, 255, 0.25), rgba(0, 0, 0, 0.25)),
-      -webkit-linear-gradient(left, #384d62, #1ec69a);
+      -webkit-linear-gradient(left, var(--secondary), var(--primary));
 
     border-radius: 20px;
     background-size: 35px 20px, 100% 100%, 100% 100%;
@@ -284,6 +292,7 @@ input[type="file"] {
   .UserForm .WorkForm,
   .UserForm .PrivateForm {
     padding: 1.5rem 3rem 1rem;
+    overflow-y: scroll;
   }
   .UserForm .FormPath {
     padding: 1.5rem 3rem 1rem;

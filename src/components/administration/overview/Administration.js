@@ -61,13 +61,15 @@ export default function Administration(props) {
   }, [users]);
 
   useEffect(() => {
-    getMessages(setMessages);
-    console.log(signedinUser);
-    if (signedinUser) {
-      localStorage.setItem("signedInUser", signedinUser[0].name);
-      localStorage.setItem("signedInUserId", signedinUser[0].id);
-      setLevel(signedinUser[0].userLevel);
-    }
+    setTimeout(() => {
+      getMessages(setMessages);
+      console.log(signedinUser);
+      if (signedinUser) {
+        localStorage.setItem("signedInUser", signedinUser[0].name);
+        localStorage.setItem("signedInUserId", signedinUser[0].id);
+        setLevel(signedinUser[0].userLevel);
+      }
+    }, 2000);
   }, [signedinUser]);
 
   useEffect(() => {
@@ -87,7 +89,7 @@ export default function Administration(props) {
   }
   console.log(isUSerProfile);
   return (
-    <section className="Administration">
+    <section className="Administration" data-state="dark">
       <div className="loading-page">
         <div>
           <CircularProgress color="primary" />

@@ -5,7 +5,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { GSAP_sortVisibleMobile, GSAP_stagProfilesSort } from "../../jsModules/displayFunctions/gsap";
+import { GSAP_sortVisibleMobileUsers, GSAP_stagProfilesSort } from "../../jsModules/displayFunctions/gsap";
 
 export default function FilterUsers(props) {
   console.log("navigation || FilterUsers.js | FilterUsers()");
@@ -16,7 +16,7 @@ export default function FilterUsers(props) {
     props.setChosenDivision(value);
     setTimeout(() => {
       GSAP_stagProfilesSort();
-      GSAP_sortVisibleMobile();
+      GSAP_sortVisibleMobileUsers();
     }, 10);
   };
   const handleHoursChange = (e) => {
@@ -24,14 +24,14 @@ export default function FilterUsers(props) {
     props.setChosenHours(value);
     setTimeout(() => {
       GSAP_stagProfilesSort();
-      GSAP_sortVisibleMobile();
+      GSAP_sortVisibleMobileUsers();
     }, 1);
   };
   const handleSearch = (e) => {
     props.setSearch(e.target.value);
     setTimeout(() => {
       GSAP_stagProfilesSort();
-      GSAP_sortVisibleMobile();
+      GSAP_sortVisibleMobileUsers();
     }, 1);
   };
   const divisions = [

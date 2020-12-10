@@ -4,7 +4,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import ArrowDropDownRoundedIcon from "@material-ui/icons/ArrowDropDownRounded";
 import { navigate } from "./modules/mobNavigation";
 import {
-  GSAP_sortVisibleMobile,
+  GSAP_sortVisibleMobileTasks,
   GSAP_stagCards,
   GSAP_sortInvisibleMobile,
   GSAP_sortInvisibleFilterMobile,
@@ -58,15 +58,15 @@ export default function PlannerNav(props) {
         </div>
         <div>
           <div
-            className="close-wrapper"
+            className="search-wrapper"
             onClick={() => {
               searchUsers(props.tool);
-              GSAP_sortVisibleMobile();
+              GSAP_sortVisibleMobileTasks();
             }}>
             <SearchRoundedIcon />
           </div>
           <div
-            className="search-wrapper hide"
+            className="close-wrapper hide"
             onClick={() => {
               closeSearch(props.tool);
               props.setChosenCategory("");

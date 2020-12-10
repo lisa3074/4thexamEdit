@@ -7,7 +7,7 @@
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
     position: relative;
-    background-color: white;
+    background-color: var(--white);
     opacity: 0;
   }
   .category-color {
@@ -148,7 +148,7 @@
     display: none;
   }
   .panelMargin[data-state="visible"] .name-popup {
-    background-color: #fff;
+    background-color: var(--white);
     padding: 1rem 1rem 0.5rem;
     position: absolute;
     z-index: 1;

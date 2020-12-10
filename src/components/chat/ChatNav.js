@@ -4,11 +4,11 @@ import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 import Grid from "@material-ui/core/Grid";
-import { fetchAll, showMenu } from "../../jsModules/displayFunctions/subMenuNavigation";
+import { fetchAll, resetSubmenu, showMenu } from "../../jsModules/displayFunctions/subMenuNavigation";
 import DateRangeRoundedIcon from "@material-ui/icons/DateRangeRounded";
 import { scrollToBottom } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import {
-  GSAP_sortVisibleMobile,
+  GSAP_sortVisibleMobileChat,
   GSAP_sortInvisibleMessagesMobile,
   GSAP_opacity0To1MenuProfile,
 } from "../../jsModules/displayFunctions/gsap";
@@ -41,7 +41,7 @@ export default function ChatNav(props) {
     });
     e.target.classList.add("hide");
 
-    !searching ? GSAP_sortVisibleMobile() : GSAP_sortInvisibleMessagesMobile();
+    !searching ? GSAP_sortVisibleMobileChat() : GSAP_sortInvisibleMessagesMobile();
 
     setTimeout(() => {
       scrollToBottom();
@@ -61,6 +61,7 @@ export default function ChatNav(props) {
             onClick={() => {
               showMenu();
               GSAP_opacity0To1MenuProfile();
+              resetSubmenu();
             }}>
             <ArrowBackIosRoundedIcon />
           </button>

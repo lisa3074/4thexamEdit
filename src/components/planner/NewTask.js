@@ -149,18 +149,7 @@ export default function NewTask(props) {
   const titleFocusChanged = (e) => {
     setTitleFocusOn(true);
   };
-  const catFocusChanged = (e) => {
-    setCatFocusOn(true);
-  };
 
-  const titleBorderStyle = {
-    outline: "none",
-    borderBottom: title.length === 0 && titleFocusOn === true ? "2px solid #e68b3c" : "0px solid #e68b3c",
-  };
-  const catBorderStyle = {
-    outline: "none",
-    borderBottom: category.length === 0 && catFocusOn === true ? "2px solid #e68b3c" : "0px solid #ff5e5e",
-  };
   const disabled = {
     filter:
       title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0
@@ -180,6 +169,10 @@ export default function NewTask(props) {
   }
   function resetState() {
     setCategory("");
+    setTitle("");
+    setAssigned([]);
+    setDue();
+    setDescription("");
     setColor("#ffffff");
     setList("");
   }
@@ -193,7 +186,7 @@ export default function NewTask(props) {
         <div className="input-wrapper">
           <TextField
             className="title"
-            style={titleBorderStyle}
+            /*  style={titleBorderStyle} */
             label="Task title *"
             onFocus={titleFocusChanged}
             onChange={titleChanged}

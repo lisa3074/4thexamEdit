@@ -43,16 +43,16 @@ export function searchUsers(tool) {
   console.log("jsModules || subMenuNavigation.js | searchUsers()");
   document.querySelector(".menuSearch").classList.add("hide");
   document.querySelector(".menuClose").classList.remove("hide");
-  document.querySelector(".search-wrapper").classList.remove("hide");
-  document.querySelector(".close-wrapper").classList.add("hide");
+  document.querySelector(".PlannerNav .search-wrapper").classList.add("hide");
+  document.querySelector(".close-wrapper").classList.remove("hide");
 }
 
 export function closeSearch(tool) {
   console.log("jsModules || subMenuNavigation.js | closeSearch()");
   document.querySelector(".menuSearch").classList.remove("hide");
   document.querySelector(".menuClose").classList.add("hide");
-  document.querySelector(".search-wrapper").classList.add("hide");
-  document.querySelector(".close-wrapper").classList.remove("hide");
+  document.querySelector(".PlannerNav .search-wrapper").classList.remove("hide");
+  document.querySelector(".close-wrapper").classList.add("hide");
 }
 
 export function resetFilterNav() {

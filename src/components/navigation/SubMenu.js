@@ -18,7 +18,7 @@ import {
   resetFilterNav,
 } from "../../jsModules/displayFunctions/subMenuNavigation";
 import {
-  GSAP_sortVisibleMobile,
+  GSAP_sortVisibleMobileUsers,
   GSAP_sortInvisibleMobile,
   GSAP_addOpacity,
   GSAP_stagCards,
@@ -26,6 +26,7 @@ import {
   GSAP_opacity0To1MenuProfile,
   GSAP_removeOpacity,
   GSAP_sortInvisibleFilterMobile,
+  GSAP_sortVisibleMobileTasks,
 } from "../../jsModules/displayFunctions/gsap";
 import { newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { addTask } from "../planner/modules/mobNavigation";
@@ -129,7 +130,7 @@ export default function SubMenu(props) {
           className="menuSearch"
           onClick={() => {
             searchUsers(props.tool);
-            GSAP_sortVisibleMobile();
+            props.tool === "admin" ? GSAP_sortVisibleMobileUsers() : GSAP_sortVisibleMobileTasks();
           }}>
           {props.tool === "admin" ? <SearchRoundedIcon /> : <SearchRoundedIcon />}
         </div>
@@ -166,8 +167,8 @@ export default function SubMenu(props) {
         className="menuIcon"
         onClick={() => {
           openMenu();
+          resetSubmenu();
           resetFilterNav();
-          tool === "planner" ? resetSubmenu() : openMenu();
           GSAP_opacity0To1MenuProfile();
           GSAP_sortInvisibleMobile();
           GSAP_addOpacity(".UserCard");

@@ -21,6 +21,10 @@ import {
   GSAP_stagProfilesSort,
 } from "../../jsModules/displayFunctions/gsap";
 import { setUpForm } from "../../jsModules/displayFunctions/displayEditForm";
+import "date-fns";
+import DateFnsUtils from "@date-io/date-fns";
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
+import Grid from "@material-ui/core/Grid";
 
 export default function TopBar(props) {
   console.log("navigation || TopBar.js | TopBar()");
@@ -85,9 +89,9 @@ export default function TopBar(props) {
     </MenuItem>
   ));
   const dateChanged = (e) => {
-    props.setSortDate(new Date(e.target.value));
+    props.setSortDate(new Date(e));
+    console.log(new Date(e));
     scrollToBottom();
-    console.log(new Date(e.target.value));
   };
 
   const handleChatSearch = (e) => {
@@ -162,6 +166,9 @@ export default function TopBar(props) {
                   props.setChosenDivision(e.target.value === (undefined || "All") ? "" : e.target.value);
                   handleChanges("admin", e);
                 }}
+                InputProps={{
+                  style: { color: "var(--dark-text)" },
+                }}
                 value={props.chosenDivision}>
                 <MenuItem value="All" key="All">
                   All
@@ -181,7 +188,10 @@ export default function TopBar(props) {
                   props.setChosenHours(e.target.value === (undefined || "All") ? "" : e.target.value);
                   handleChanges("admin", e);
                 }}
-                value={props.chosenHours}>
+                value={props.chosenHours}
+                InputProps={{
+                  style: { color: "var(--dark-text)" },
+                }}>
                 <MenuItem value="All" key="All">
                   All
                 </MenuItem>
@@ -206,6 +216,9 @@ export default function TopBar(props) {
               label="Search"
               onChange={handleSearch}
               disabled={props.viewingProfile ? true : false}
+              InputProps={{
+                style: { color: "var(--dark-text)" },
+              }}
             />
             <SearchRoundedIcon className="search-icon" />
           </div>
@@ -336,16 +349,31 @@ export default function TopBar(props) {
             onSubmit={(e) => {
               e.preventDefault();
             }}>
-            <TextField
-              className="date"
-              onChange={dateChanged}
-              name="Date"
-              id="date"
-              label=""
-              type="date"
-              value={props.date}
-              InputProps={{ inputProps: { max: todaysDate } }}
-            />
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Grid container justify="space-around">
+                <KeyboardDatePicker
+                  disableToolbar
+                  variant="inline"
+                  format="dd/MM/yyyy"
+                  margin="none"
+                  value={props.date}
+                  className="date"
+                  label=""
+                  onChange={dateChanged}
+                  name="date"
+                  autoOk={true}
+                  error={false}
+                  helperText={null}
+                  KeyboardButtonProps={{
+                    "aria-label": "change date",
+                  }}
+                  InputLabelProps={{
+                    shrink: false,
+                  }}
+                  maxDate={new Date()}
+                />
+              </Grid>
+            </MuiPickersUtilsProvider>
           </form>
           <div
             className="float-btn all"

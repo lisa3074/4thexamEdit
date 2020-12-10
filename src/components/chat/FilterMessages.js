@@ -5,7 +5,7 @@ import { sortByDate } from "../../jsModules/displayFunctions/subMenuNavigation";
 import { scrollToBottom } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import "../../sass/scss/filterUsers.scss";
-import { GSAP_sortVisibleMobile, GSAP_stagProfilesSort } from "../../jsModules/displayFunctions/gsap";
+import { GSAP_sortVisibleMobileChat, GSAP_stagProfilesSort } from "../../jsModules/displayFunctions/gsap";
 
 export default function FilterMessages(props) {
   console.log("planner || FilterTasks.js | FilterMessages()");

@@ -27,7 +27,7 @@
     url("../../../fonts/IBMPlexSans-SemiBold.ttf") format("truetype");
 }
 
-:root {
+/* :root {
   --third-color: #9fa3a6;
   --forth-color: #b0b9bf;
   --fifth-color: #f0f1f2;
@@ -71,7 +71,7 @@
   //BUTTONS
   --border-button: 20px;
   --gradient: linear-gradient(0deg, rgba(30, 198, 154, 1) 0%, rgba(98, 189, 166, 1) 100%);
-}
+} */
 
 .planner-wrapper {
   display: block;
@@ -97,7 +97,7 @@
   .editContainer .edit-wrapper {
     max-width: 500px;
 
-    background-color: white;
+    background-color: var(--white);
     height: 100%;
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow);
@@ -122,7 +122,7 @@
   button:not(.MuiIconButton-root),
   button.MuiButton-root:not(.MuiIconButton-root) {
     font-family: "IBMPlexSans-Medium";
-    color: white;
+    color: var(--white);
     font-size: 0.85rem;
     padding: 0.5rem 2.5rem;
     border: none;
@@ -137,14 +137,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--white);
     &:disabled {
       filter: brightness(1.5) saturate(0.2);
     }
   }
   .float-btn svg {
-    fill: white;
-    stroke: white;
+    fill: var(--button);
+    stroke: var(--button);
     stroke-width: 1px;
   }
   img {

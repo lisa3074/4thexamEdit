@@ -58,7 +58,7 @@
   justify-content: center;
   align-items: center;
   svg {
-    fill: white;
+    fill: var(--white);
   }
 }
 
@@ -96,7 +96,7 @@
   width: 100vw;
   //height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
-  background-color: #fff;
+  background-color: var(--white);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,7 +157,7 @@
   width: 90%;
   max-width: 500px;
   padding: 1rem 2rem 2rem;
-  background-color: white;
+  background-color: var(--white);
   border-radius: var(--border-radius);
   box-shadow: var(--card-shadow);
   p {

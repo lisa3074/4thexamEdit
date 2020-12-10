@@ -30,7 +30,7 @@
   padding: 0;
 }
 
-:root {
+:root body[data-state="regular"] {
   //COLORS
   --primary: #1ec69a;
   --secondary: #384d62;
@@ -38,15 +38,21 @@
   --background: #f3f7fc;
   --dark-text: #222224;
   --light-text: #9b9b9b;
+  --white: #ffffff;
   --yellow: #f0c75d;
   --orange: #d98c6a;
   --danger: #b33600;
   --chat-you: #eaecef;
   --chat-me: #c9eee5;
+  --done: #1ec69a;
+  --list-titles: #b7e7da;
+  --line: #eaecef;
+  --button: #ffffff;
+  --new-message: #ffffff;
 
   //PLANNER COLORS
 
-  --orange-p: #fb6126;
+  --orange-p: #d98c6a;
   --green-p: #41c1a0;
   --purple-p: #8567b2;
   --yellow-p: #b4b256;
@@ -64,11 +70,102 @@
   --border-button: 20px;
   --gradient: linear-gradient(0deg, rgba(30, 198, 154, 1) 0%, rgba(98, 189, 166, 1) 100%);
 }
+:root body[data-state="orange"] {
+  //COLORS
+  --primary: #dd5620;
+  --secondary: #494949;
+  --tietery: #a1a1a1;
+  --background: #eeeeee;
+  --dark-text: #222224;
+  --light-text: #9b9b9b;
+  --white: #ffffff;
+  --yellow: #fdb500;
+  --orange: #d84404;
+  --danger: #b30000;
+  --chat-you: #ffffff;
+  --chat-me: #f1ddd4;
+  --done: #8faeaf;
+  --list-titles: #f0cbba;
+  --line: #8f8f8f;
+  --button: #ffffff;
+  --new-message: #ffffff;
+  //PLANNER COLORS
+
+  --orange-p: #494949;
+  --green-p: #00bb8c;
+  --purple-p: #4e03be;
+  --yellow-p: #b6b30c;
+  --blue-p: #009ea3;
+  --black-p: #222224;
+
+  //SHADOWS
+  --shadow-button: 2px 2px 3px #384d623f;
+  --shadow-image: 0px 1px 10px #384d626e;
+  --card-shadow: 0px 1px 15px #384d6228;
+
+  --border-radius: 10px;
+
+  //BUTTONS
+  --border-button: 20px;
+  --gradient: linear-gradient(0deg, #dd5620 0%, #db550d 100%);
+}
+:root body[data-state="dark"] {
+  //COLORS
+  --primary: #5f61e4;
+  --secondary: #292929;
+  /*   --secondary: #d4ad29; */
+  --tietery: #4d4d4d;
+  --background: #464646;
+  --dark-text: #cfcfcf;
+  --light-text: #838383;
+  --white: #1d1d1d;
+  --yellow: #d4ad29;
+  --orange: #c4681d;
+  --danger: #b30000;
+  --chat-you: #585858;
+  --chat-me: #2e2e36;
+  --done: #272879;
+  --list-titles: #545866;
+  --line: #8f8f8f;
+  --button: #cfcfcf;
+  --new-message: #292929;
+
+  //PLANNER COLORS
+
+  --orange-p: #c04706;
+  --green-p: #00bb8c;
+  --purple-p: #4e03be;
+  --yellow-p: #d4ad29;
+  --blue-p: #009ea3;
+  --black-p: #222224;
+
+  //SHADOWS
+  --shadow-button: 2px 2px 3px #384d623f;
+  --shadow-image: 0px 1px 10px #384d626e;
+  --card-shadow: 0px 1px 15px #384d6228;
+
+  --border-radius: 10px;
+
+  //BUTTONS
+  --border-button: 20px;
+  --gradient: linear-gradient(0deg, #3d3fd8 0%, #5f61e4 100%);
+}
 
 body {
   width: 100vw;
   //height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  li,
+  button,
+  a {
+    color: var(--dark-text);
+  }
 }
 #root {
   width: 100%;
@@ -126,7 +223,7 @@ label .MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLa
 button:not(.MuiIconButton-root):not(.float-btn):not(.sendMessage)/* :not(.ChatNav.text-btn) */,
 button.MuiButton-root:not(.MuiIconButton-root):not(.float-btn):not(.sendMessage) {
   font-family: "IBMPlexSans-Medium";
-  color: white;
+  color: var(--button);
   font-size: 0.85rem;
   padding: 0.5rem 2rem;
   border: none;
@@ -142,7 +239,7 @@ button.MuiButton-root:not(.MuiIconButton-root):not(.float-btn):not(.sendMessage)
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--button);
   box-shadow: var(--shadow-button);
   &:disabled {
     filter: brightness(1.5) saturate(0.2);
@@ -153,8 +250,8 @@ button.MuiButton-root:not(.MuiIconButton-root):not(.float-btn):not(.sendMessage)
 }
 .float-btn svg,
 .menuBack svg {
-  fill: white;
-  stroke: white;
+  fill: var(--button);
+  stroke: var(--button);
   stroke-width: 1px;
 }
 img {
@@ -230,6 +327,31 @@ span.MuiFormLabel-asterisk.Mui-error,
 
 .MuiSvgIcon-root.hiddenFromUser {
   display: none;
+}
+
+#root .MuiFormLabel-root {
+  color: var(--light-text);
+}
+
+#root .MuiInputBase-root {
+  color: var(--dark-text);
+  svg {
+    fill: var(--dark-text);
+  }
+}
+#root .collaborators svg {
+  fill: var(--button);
+}
+#root .MuiInput-underline:before {
+  border-bottom: 1px solid var(--dark-text);
+}
+body[data-state="dark"] .MuiPopover-root .MuiPaper-root {
+  color: #c2c2c2;
+  background-color: #292929;
+}
+body[data-state="dark"] .MuiPaper-root {
+  color: #c2c2c2;
+  background-color: #292929;
 }
 
 @keyframes glow {

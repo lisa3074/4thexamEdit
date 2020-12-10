@@ -36,7 +36,8 @@ window.addEventListener("DOMContentLoaded", () => {
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#38C29E",
+      /*   main: "#38C29E", */
+      main: "#838383",
     },
     secondary: {
       light: "#0066ff",
@@ -52,12 +53,13 @@ const theme = createMuiTheme({
         "&:-webkit-autofill": {
           transitionDelay: "9999s",
           transitionProperty: "background-color, color",
-          backgroundColor: "#ffffff",
+          backgroundColor: "transparent",
         },
       },
       root: {
         "&:-selected": {
           backgroundColor: "white",
+          color: "white",
         },
       },
     },

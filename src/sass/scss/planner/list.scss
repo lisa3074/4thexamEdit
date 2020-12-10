@@ -38,7 +38,7 @@
     height: 60px;
     font-family: "IBMPlexSans-Medium";
     background-color: var(--chat-me);
-    background-color: #b7e7da;
+    background-color: var(--list-titles);
     box-shadow: var(--card-shadow);
     color: var(--dark-text);
     font-size: 0.8rem;
@@ -52,7 +52,7 @@
   .To.Do,
   .Barrier,
   .bg {
-    color: white;
+    color: var(--white);
   }
   .Done1 .Done,
   .To.Do1 .To.Do,

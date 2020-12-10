@@ -295,7 +295,7 @@ export default function EditForm(props) {
                     />
                   </Grid>
                 </MuiPickersUtilsProvider>
-              </div>{" "}
+              </div>
               <div className="input-wrapper">
                 <FormControl className="category">
                   <InputLabel id="select-category">Category *</InputLabel>
