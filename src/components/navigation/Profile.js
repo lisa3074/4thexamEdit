@@ -12,7 +12,7 @@ export default function Profile(props) {
   const lastName = name.substring(lastSpace);
 
   const picture = props.signedinUser ? props.signedinUser[0].image : image;
-  console.log(props.isUserProfile);
+
   return (
     <div className="Profile">
       <img src={picture} alt="" onClick={() => displayProfile(props.signedinUser ? props.signedinUser[0].id : "")} />

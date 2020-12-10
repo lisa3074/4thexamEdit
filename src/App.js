@@ -52,6 +52,12 @@ const theme = createMuiTheme({
         "&:-webkit-autofill": {
           transitionDelay: "9999s",
           transitionProperty: "background-color, color",
+          backgroundColor: "#ffffff",
+        },
+      },
+      root: {
+        "&:-selected": {
+          backgroundColor: "white",
         },
       },
     },

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TextField from "@material-ui/core/TextField";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import ChatBubbleRoundedIcon from "@material-ui/icons/ChatBubbleRounded";
@@ -25,7 +25,7 @@ import { setUpForm } from "../../jsModules/displayFunctions/displayEditForm";
 export default function TopBar(props) {
   console.log("navigation || TopBar.js | TopBar()");
 
-  const handleChanges = (module) => {
+  const handleChanges = (module, e) => {
     document.querySelectorAll(".UserCard, .panelMargin").forEach((card) => {
       card.style.opacity = "0";
     });
@@ -111,11 +111,38 @@ export default function TopBar(props) {
     props.setChatSearch("");
   };
 
+  function clearForm() {
+    console.log("navigation || SubMenu.js | clearForm()");
+    document.querySelector("form.FilterUsers").reset();
+    const divisionSpan = document.querySelector("#mui-component-select-Division > span");
+    const division = document.querySelector("#mui-component-select-Division");
+    const hoursSpan = document.querySelector("#mui-component-select-Hours > span");
+    const hours = document.querySelector("#mui-component-select-Hours");
+    const employeeSpan = document.querySelector("#mui-component-select-Employees > span");
+    const employee = document.querySelector("#mui-component-select-Employees");
+    const categorySpan = document.querySelector("#mui-component-select-category > span");
+    const category = document.querySelector("#mui-component-select-category");
+    if (!divisionSpan) {
+      division.textContent = "All";
+    }
+    if (!hoursSpan) {
+      hours.textContent = "All";
+    }
+    if (!employeeSpan) {
+      employee.textContent = "All";
+    }
+    if (!categorySpan) {
+      category.textContent = "All";
+    }
+  }
+
   const today = new Date();
   const dd = String(today.getDate()).padStart(2, "0");
   const mm = String(today.getMonth() + 1).padStart(2, "0");
   const yyyy = today.getFullYear();
   const todaysDate = `${yyyy}-${mm}-${dd}`;
+
+  const newUserAcces = props.level === "Administrator" ? <AddRoundedIcon className="add-task" onClick={addTask} /> : "";
 
   return (
     <nav className="TopBar" data-state="">
@@ -132,8 +159,8 @@ export default function TopBar(props) {
                 name="Division"
                 label="division"
                 onChange={(e) => {
-                  handleChanges("admin");
-                  props.setChosenDivision(e.target.value === undefined ? "" : e.target.value);
+                  props.setChosenDivision(e.target.value === (undefined || "All") ? "" : e.target.value);
+                  handleChanges("admin", e);
                 }}
                 value={props.chosenDivision}>
                 <MenuItem value="All" key="All">
@@ -151,8 +178,8 @@ export default function TopBar(props) {
                 label="hours"
                 disabled={props.viewingProfile ? true : false}
                 onChange={(e) => {
-                  handleChanges("admin");
-                  props.setChosenHours(e.target.value === undefined ? "" : e.target.value);
+                  props.setChosenHours(e.target.value === (undefined || "All") ? "" : e.target.value);
+                  handleChanges("admin", e);
                 }}
                 value={props.chosenHours}>
                 <MenuItem value="All" key="All">
@@ -161,6 +188,16 @@ export default function TopBar(props) {
                 {mappedHours}
               </Select>
             </FormControl>
+            <div
+              className="reset-wrapper hide"
+              onClick={() => {
+                props.setChosenDivision("");
+                props.setChosenHours("");
+                clearForm();
+                GSAP_stagProfilesSort();
+              }}>
+              <ClearRoundedIcon />
+            </div>
           </div>
           <div className="input-wrapper">
             <TextField
@@ -237,11 +274,20 @@ export default function TopBar(props) {
                 {mappedUsers}
               </Select>
             </FormControl>
+            <div
+              className="reset-wrapper-planner hide"
+              onClick={() => {
+                props.setChosenCategory("");
+                props.setChosenEmployee("");
+                clearForm();
+                GSAP_stagCardsDesktop();
+              }}>
+              <ClearRoundedIcon />
+            </div>
           </div>
           <div className="input-wrapper"></div>
 
-          <AddRoundedIcon className="add-task" onClick={addTask} />
-
+          {newUserAcces}
           <div
             className="float-btn"
             onClick={() => {

@@ -10,6 +10,7 @@ import { getUsers, getSignedinUser, getCards } from "../../../jsModules/dbData/g
 import { scrollToBottom } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 import { getMessages } from "../../../jsModules/dbData/getData";
 import { GSAP_stagProfilesStartup } from "../../../jsModules/displayFunctions/gsap";
+import { firebaseConfig } from "../../../jsModules/firebase/firebase";
 
 export default function Administration(props) {
   console.log("administration/Administration.js || Administration()");
@@ -35,6 +36,21 @@ export default function Administration(props) {
   const [chatSearch, setChatSearch] = useState("");
   const [messageToDelete, setMessageToDelete] = useState();
 
+  localStorage.length === 0 ? firebaseConfig.auth().signOut() : console.log("known user");
+
+  useEffect(() => {
+    chosenDivision === (undefined || "") && chosenHours === (undefined || "")
+      ? document.querySelector(".reset-wrapper").classList.add("hide")
+      : document.querySelector(".reset-wrapper").classList.remove("hide");
+  }, [chosenDivision, chosenHours]);
+
+  useEffect(() => {
+    console.log(chosenCategory, chosenEmployee);
+    chosenEmployee === (undefined || "") && chosenCategory === (undefined || "")
+      ? document.querySelector(".reset-wrapper-planner").classList.add("hide")
+      : document.querySelector(".reset-wrapper-planner").classList.remove("hide");
+  }, [chosenEmployee, chosenCategory]);
+
   useEffect(() => {
     getUsers(setUsers);
   }, []);
@@ -46,6 +62,7 @@ export default function Administration(props) {
 
   useEffect(() => {
     getMessages(setMessages);
+    console.log(signedinUser);
     if (signedinUser) {
       localStorage.setItem("signedInUser", signedinUser[0].name);
       localStorage.setItem("signedInUserId", signedinUser[0].id);
@@ -68,7 +85,7 @@ export default function Administration(props) {
     setChosenUser(user);
     setState("edit");
   }
-
+  console.log(isUSerProfile);
   return (
     <section className="Administration">
       <div className="loading-page">
@@ -173,7 +190,7 @@ export default function Administration(props) {
         level={level}
         viewingProfile={viewingProfile}
         setViewingProfile={setViewingProfile}
-        isUSerProfile={props.isUSerProfile}
+        isUSerProfile={isUSerProfile}
         setisUSerProfile={setisUSerProfile}
         list={list}
         setSearch={setSearch}></SubMenu>

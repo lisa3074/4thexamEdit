@@ -143,9 +143,13 @@ button.MuiButton-root:not(.MuiIconButton-root):not(.float-btn):not(.sendMessage)
   justify-content: center;
   align-items: center;
   color: white;
+  box-shadow: var(--shadow-button);
   &:disabled {
     filter: brightness(1.5) saturate(0.2);
   }
+}
+.float-btn:not(.theList):not(.edit):not(.delete):not(.save):not(.one):not(.two):not(.three) {
+  animation: glow 5s ease-out 0s infinite forwards;
 }
 .float-btn svg,
 .menuBack svg {
@@ -228,6 +232,31 @@ span.MuiFormLabel-asterisk.Mui-error,
   display: none;
 }
 
+@keyframes glow {
+  0% {
+    /* filter: saturate(1); */
+    box-shadow: var(--shadow-button);
+  }
+  92% {
+    box-shadow: var(--shadow-button);
+    /*  filter: saturate(1); */
+  }
+  84% {
+    box-shadow: 2px 2px 10px #2222246b;
+  }
+  90% {
+    box-shadow: var(--shadow-button);
+    /* filter: saturate(1); */
+  }
+  95% {
+    box-shadow: 2px 2px 10px #2222246b;
+    /*     filter: saturate(0.7); */
+  }
+  100% {
+    box-shadow: var(--shadow-button);
+    /*    filter: saturate(1); */
+  }
+}
 @media (min-width: 1000px) {
   .SubMenu {
     display: none;

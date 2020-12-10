@@ -4,6 +4,9 @@
   // border-radius: var(--border-radius);
 }
 
+.MuiSelect-select:focus {
+  background: white !important;
+}
 .FilterUsers,
 .FilterTasks,
 .TopBar {
@@ -79,6 +82,17 @@
   z-index: 140;
 }
 @media (min-width: 1000px) {
+  .TopBar .grid-wrapper .reset-wrapper,
+  .TopBar .grid-wrapper .reset-wrapper-planner {
+    position: absolute;
+    right: -2rem;
+    bottom: 0rem;
+    svg {
+      fill: var(--orange);
+      stroke: var(--orange);
+    }
+  }
+
   .FilterUsers,
   .FilterTasks {
     transform: translateY(0);
@@ -160,7 +174,7 @@
     }
     .grid-wrapper.noNewUser {
       grid-template-areas: "sorted filter . search chat";
-      grid-template-columns: 6rem 30rem auto 20rem 50px;
+      grid-template-columns: 6rem 20rem auto 12rem 50px;
     }
     .planner-top .grid-wrapper {
       .select:nth-child(2) {
@@ -186,6 +200,9 @@
   .TopBar .grid-wrapper {
     grid-template-columns: 6rem 20rem auto 15rem 5rem 50px;
   }
+  .TopBar .grid-wrapper.noNewUser {
+    grid-template-columns: 6rem 25rem auto 20rem 50px;
+  }
   .TopBar .planner-top .grid-wrapper {
     .select:nth-child(1) {
       width: 35%;
@@ -199,6 +216,9 @@
 @media (min-width: 1300px) {
   .TopBar .grid-wrapper {
     grid-template-columns: 6rem 20rem auto 20rem 5rem 50px;
+  }
+  .TopBar .grid-wrapper.noNewUser {
+    grid-template-columns: 6rem 30rem auto 25rem 50px;
   }
   .TopBar .planner-top .grid-wrapper {
     .select:nth-child(1) {

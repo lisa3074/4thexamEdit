@@ -73,6 +73,27 @@ export default function MenuNav(props) {
     }
   }
 
+  //if administrator
+  const newUserAcces =
+    props.level === "Administrator" ? (
+      <li
+        className="inset"
+        onClick={() => {
+          newUser();
+          GSAP_addOpacity(".panelMargin");
+          GSAP_removeOpacity(".UserForm");
+          props.setTool("admin");
+          resetSearch();
+          GSAP_addOpacity(".UserCard, .userCard, .ProfileNav, .panelMargin");
+          setUpForm();
+        }}>
+        <PersonAddIcon />
+        <h3 className="new-user-link">New user</h3>
+      </li>
+    ) : (
+      <li></li>
+    );
+
   return (
     <div className="MenuNav">
       <ul>
@@ -91,21 +112,7 @@ export default function MenuNav(props) {
             <h3 className="admin-link">Profiles</h3>
           </li>
         </Link>
-        <li
-          className={props.level === "Administrator" ? "inset" : "inset hiddenFromUser"}
-          onClick={() => {
-            newUser();
-            GSAP_addOpacity(".panelMargin");
-            GSAP_removeOpacity(".UserForm");
-            props.setTool("admin");
-            resetSearch();
-            GSAP_addOpacity(".UserCard, .userCard, .ProfileNav, .panelMargin");
-            setUpForm();
-          }}>
-          <PersonAddIcon />
-          <h3 className="new-user-link">New user</h3>
-        </li>
-
+        {newUserAcces}
         <li
           className="go-to-planner"
           onClick={() => {

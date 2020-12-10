@@ -103,7 +103,8 @@
     position: absolute;
     transform: translate(0px, -25px);
   }
-  .menuIcon,
+
+  .newUserIcon,
   .menuBack {
     grid-area: menu;
     justify-self: flex-start;
@@ -112,7 +113,7 @@
     height: 35px;
   }
 
-  .newUserIcon,
+  .menuIcon,
   .menuDelete,
   .menuAddTask {
     grid-area: optional;

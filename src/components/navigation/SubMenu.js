@@ -55,20 +55,57 @@ export default function SubMenu(props) {
       hours.textContent = "All";
     }
   }
+
+  const newUserAccess =
+    props.level === "Administrator" ? (
+      <div
+        className="menuAddTask hide"
+        onClick={() => {
+          addTask();
+          closeSearch(props.tool);
+          GSAP_sortInvisibleMobile();
+        }}>
+        <AddRoundedIcon />
+      </div>
+    ) : (
+      <div></div>
+    );
+  //makes sure only adnims can edit profiles
+  const editAccess =
+    props.level === "Administrator" || props.isUSerProfile ? (
+      <div
+        className="menuEdit hide"
+        onClick={(e) => {
+          editUser();
+          removeDelete();
+          props.editProfile(props.id);
+          GSAP_removeOpacity(".UserForm");
+          setUpForm();
+        }}>
+        <EditRoundedIcon />
+      </div>
+    ) : (
+      <div className="menuEdit hide"></div>
+    );
+  //prevent users from deleting their own account, only another admin can do that
+  const deleteAccess = props.isUSerProfile ? (
+    <div className="menuDelete hide"></div>
+  ) : props.level === "Administrator" ? (
+    <div
+      className="menuDelete hide"
+      onClick={() => {
+        areYouSure();
+        props.setSystemPart("admin");
+      }}>
+      <DeleteRoundedIcon />
+    </div>
+  ) : (
+    <div className="menuDelete hide"></div>
+  );
+
   return (
     <nav className="SubMenu hide">
-      <div
-        className="menuIcon"
-        onClick={() => {
-          openMenu();
-          resetFilterNav();
-          tool === "planner" ? resetSubmenu() : openMenu();
-          GSAP_opacity0To1MenuProfile();
-          GSAP_sortInvisibleMobile();
-          GSAP_addOpacity(".UserCard");
-        }}>
-        <MenuRoundedIcon />
-      </div>
+      {newUserAccess}
       <div
         className="menuBack hide"
         onClick={() => {
@@ -96,17 +133,7 @@ export default function SubMenu(props) {
           }}>
           {props.tool === "admin" ? <SearchRoundedIcon /> : <SearchRoundedIcon />}
         </div>
-        <div
-          className="menuEdit hide"
-          onClick={(e) => {
-            editUser();
-            removeDelete();
-            props.editProfile(props.id);
-            GSAP_removeOpacity(".UserForm");
-            setUpForm();
-          }}>
-          <EditRoundedIcon />
-        </div>
+        {editAccess}
         <div
           className="menuClose hide"
           onClick={() => {
@@ -134,22 +161,18 @@ export default function SubMenu(props) {
         }}>
         <PersonAddRoundedIcon />
       </div>
+      {deleteAccess}
       <div
-        className={props.level === "Administrator" ? "menuDelete hide" : "menuDelete hide hiddenFromUser"}
+        className="menuIcon"
         onClick={() => {
-          areYouSure();
-          props.setSystemPart("admin");
-        }}>
-        <DeleteRoundedIcon />
-      </div>
-      <div
-        className="menuAddTask hide"
-        onClick={() => {
-          addTask();
-          closeSearch(props.tool);
+          openMenu();
+          resetFilterNav();
+          tool === "planner" ? resetSubmenu() : openMenu();
+          GSAP_opacity0To1MenuProfile();
           GSAP_sortInvisibleMobile();
+          GSAP_addOpacity(".UserCard");
         }}>
-        <AddRoundedIcon />
+        <MenuRoundedIcon />
       </div>
     </nav>
   );

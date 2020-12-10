@@ -14,16 +14,15 @@ dayjs.extend(customParseFormat);
 export default function Message(props) {
   console.log("chat || Message.js | Message()");
   const { signedinUser, users, id, checked, setChecked, setMessageToDelete, messageToDelete } = props;
-
+  console.log(props);
   const [sendingUser, setSendingUser] = useState();
   const [profilePic, setProfilePic] = useState();
   const [editMessage, setEditMessage] = useState({});
   const [editText, setEditText] = useState();
   const [editClicked, setEditClicked] = useState(false);
-  /*   const [messageToDelete, setMessageToDelete] = useState(); */
   const date = dayjs(props.date * 1).format(`dddd, MMM D, YYYY`);
   const time = dayjs(props.date * 1).format(`h:mm A`);
-  console.log(new Date(props.date).toString().substring(0, 15));
+
   useEffect(() => {
     setSendingUser(users.filter((user) => user.name === props.name));
   }, [users]);
@@ -77,7 +76,7 @@ export default function Message(props) {
       });
     }, 100);
   }
-  console.log(messageToDelete);
+
   return (
     <>
       <article className="Message">
@@ -86,6 +85,7 @@ export default function Message(props) {
           <h3 className="date">{date}</h3>
           <div className="line"></div>
         </div>
+
         <div
           className="message-container"
           data-user={signedinUser ? (props.name === signedinUser[0].name ? "me" : "you") : "you"}>
@@ -136,7 +136,6 @@ export default function Message(props) {
               </div>
             </div>
             <h2 className="time">{time}</h2>
-            <p>{id}</p>
 
             <p className={editClicked ? "message hiddenFromUser" : "message"}>{props.message}</p>
             <form

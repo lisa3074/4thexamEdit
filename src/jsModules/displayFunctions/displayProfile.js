@@ -33,6 +33,4 @@ export function setSubmMenu() {
   document.querySelector(".newUserIcon").classList.add("hide");
   document.querySelector(".menuDelete").classList.remove("hide");
   document.querySelector(".menuClose").classList.add("hide");
-  /*   document.querySelector(".FilterUsers").classList.add("hide");
-  document.querySelector(".FilterTasks").classList.add("hide"); */
 }
