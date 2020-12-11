@@ -143,7 +143,7 @@ export default function SubMenu(props) {
           }}>
           {props.tool === "admin" ? <SearchRoundedIcon /> : <SearchRoundedIcon />}
         </div>
-
+        {editAccess}
         <div
           className="menuClose hide"
           onClick={() => {
@@ -163,7 +163,6 @@ export default function SubMenu(props) {
         </div>
       </div>
       {newUserAccess}
-      {editAccess}
       {deleteAccess}
       <div
         className="menuIcon"
