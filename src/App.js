@@ -29,10 +29,10 @@ import { Redirect } from "react-router";
   console.log("LOAD");
   return <Redirect to="/optimate" exact />;
 }; */
-window.addEventListener("DOMContentLoaded", () => {
+/* window.addEventListener("DOMContentLoaded", () => {
   console.log("LOAD");
   return <Redirect to="/optimate" exact />;
-});
+}); */
 const theme = createMuiTheme({
   palette: {
     primary: {

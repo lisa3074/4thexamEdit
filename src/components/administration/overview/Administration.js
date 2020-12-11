@@ -37,8 +37,7 @@ export default function Administration(props) {
   const [messageToDelete, setMessageToDelete] = useState();
 
   localStorage.length === 0 ? firebaseConfig.auth().signOut() : console.log("known user");
-  const theme = localStorage.getItem("theme");
-  document.querySelector("body").setAttribute("data-state", theme);
+
   useEffect(() => {
     chosenDivision === (undefined || "") && chosenHours === (undefined || "")
       ? document.querySelector(".reset-wrapper").classList.add("hide")

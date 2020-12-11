@@ -16,6 +16,8 @@ const Login = ({ history }) => {
   const [error, setError] = useState([null]);
   const [resetEmail, setResetEmail] = useState("");
   const { currentUser } = useContext(AuthContext);
+  let theme = localStorage.getItem("theme");
+  document.querySelector("body").setAttribute("data-state", theme);
 
   const handleLogin = useCallback(
     async (e) => {

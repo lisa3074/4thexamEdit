@@ -156,7 +156,10 @@ export default function MenuNav(props) {
             className="sign-out-link"
             onClick={() => {
               firebaseConfig.auth().signOut();
-              localStorage.clear();
+              //localStorage.clear();
+              localStorage.removeItem("email");
+              localStorage.removeItem("signedInUser");
+              localStorage.removeItem("signedInUserId");
               resetSearch();
               GSAP_addOpacity(".UserCard, .userCard, .ProfileNav, .panelMargin");
             }}>
