@@ -57,21 +57,22 @@ export default function SubMenu(props) {
     }
   }
 
+  //makes sure only admins can add profiles
   const newUserAccess =
     props.level === "Administrator" ? (
       <div
-        className="menuAddTask hide"
+        className={props.level === "Administrator" ? "newUserIcon" : "newUserIcon hiddenFromUser"}
         onClick={() => {
-          addTask();
-          closeSearch(props.tool);
-          GSAP_sortInvisibleMobile();
+          newUser();
+          setUpForm();
+          GSAP_removeOpacity(".UserForm");
         }}>
-        <AddRoundedIcon />
+        <PersonAddRoundedIcon />
       </div>
     ) : (
-      <div></div>
+      <div className="newUserIcon"></div>
     );
-  //makes sure only adnims can edit profiles
+  //makes sure only admins can edit profiles
   const editAccess =
     props.level === "Administrator" || props.isUSerProfile ? (
       <div
@@ -106,7 +107,15 @@ export default function SubMenu(props) {
 
   return (
     <nav className="SubMenu hide">
-      {newUserAccess}
+      <div
+        className="menuAddTask hide"
+        onClick={() => {
+          addTask();
+          closeSearch(props.tool);
+          GSAP_sortInvisibleMobile();
+        }}>
+        <AddRoundedIcon />
+      </div>
       <div
         className="menuBack hide"
         onClick={() => {
@@ -134,7 +143,7 @@ export default function SubMenu(props) {
           }}>
           {props.tool === "admin" ? <SearchRoundedIcon /> : <SearchRoundedIcon />}
         </div>
-        {editAccess}
+
         <div
           className="menuClose hide"
           onClick={() => {
@@ -153,15 +162,8 @@ export default function SubMenu(props) {
           <CloseRoundedIcon />
         </div>
       </div>
-      <div
-        className={props.level === "Administrator" ? "newUserIcon" : "newUserIcon hiddenFromUser"}
-        onClick={() => {
-          newUser();
-          setUpForm();
-          GSAP_removeOpacity(".UserForm");
-        }}>
-        <PersonAddRoundedIcon />
-      </div>
+      {newUserAccess}
+      {editAccess}
       {deleteAccess}
       <div
         className="menuIcon"

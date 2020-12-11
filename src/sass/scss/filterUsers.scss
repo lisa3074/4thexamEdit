@@ -78,9 +78,10 @@ body[data-state="dark"] .TopBar {
     fill: var(--button);
   }
 }
-#picker .FilterTasks {
+
+.FilterTasks {
   padding: 0 1rem 0.5rem;
-  transform: translateY(-135px);
+  top: -80px;
   border-radius: 0px 0px 10px 10px;
   position: relative;
   z-index: 1;

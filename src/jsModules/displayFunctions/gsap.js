@@ -106,7 +106,7 @@ export function GSAP_plannerListsAnimtionMobile(list) {
 export function GSAP_sortVisibleMobile() {
   console.log("jsModules || gsap.js | GSAP_sortVisibleMobile()");
   setTimeout(() => {
-    gsap.to(".FilterTasks", { delay: 0.1, duration: 0.4, top: 135 });
+    gsap.to(".FilterTasks", { delay: 0.1, duration: 0.4, top: 0 });
     gsap.to(".relativeContainer", { duration: 0.5, top: 0 });
     gsap.to(".FilterUsers", { delay: 0.2, duration: 0.3, top: 135 });
     gsap.to(".UserList", { duration: 0.5, top: 0 });
@@ -119,7 +119,7 @@ export function GSAP_sortVisibleMobile() {
 export function GSAP_sortVisibleMobileTasks() {
   console.log("jsModules || gsap.js | GSAP_sortVisibleMobile()");
   setTimeout(() => {
-    gsap.to(".FilterTasks", { delay: 0.1, duration: 0.4, top: 135 });
+    gsap.to(".FilterTasks", { delay: 0.1, duration: 0.4, top: 0 });
     gsap.to(".relativeContainer", { duration: 0.5, top: 0 });
   }, 1);
 }

@@ -9,7 +9,7 @@ import Chat from "../../chat/Chat";
 import { getUsers, getSignedinUser, getCards } from "../../../jsModules/dbData/getData";
 import { scrollToBottom } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 import { getMessages } from "../../../jsModules/dbData/getData";
-import { GSAP_stagProfilesStartup } from "../../../jsModules/displayFunctions/gsap";
+import { GSAP_stagProfilesStartup, GSAP_sortInvisibleFilterMobile } from "../../../jsModules/displayFunctions/gsap";
 import { firebaseConfig } from "../../../jsModules/firebase/firebase";
 
 export default function Administration(props) {
@@ -37,7 +37,11 @@ export default function Administration(props) {
   const [messageToDelete, setMessageToDelete] = useState();
 
   localStorage.length === 0 ? firebaseConfig.auth().signOut() : console.log("known user");
+  /*   if (window.innerWidth < 1000) {
+    GSAP_sortInvisibleFilterMobile();
 
+  }
+ */
   useEffect(() => {
     chosenDivision === (undefined || "") && chosenHours === (undefined || "")
       ? document.querySelector(".reset-wrapper").classList.add("hide")
