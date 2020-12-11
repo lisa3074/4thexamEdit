@@ -27,6 +27,7 @@ export default function Profile(props) {
     setAnchorEl(null);
     if (theme === "regular" || theme === "dark" || theme === "orange") {
       document.querySelector("body").setAttribute("data-state", theme);
+      localStorage.setItem("theme", theme);
     }
   };
 
