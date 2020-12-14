@@ -11,19 +11,6 @@ export const AuthProvider = ({ children }) => {
     firebaseConfig.auth().onAuthStateChanged(setCurrentUser);
     console.log(currentUser);
   }, [currentUser]);
-  if (currentUser != null) {
-    console.log(
-      /* currentUser.email,
-
-      currentUser.emailVerified,
-      currentUser.uid,
-      currentUser.password */
-      currentUser
-    );
-  }
-  //The logged in user
-  /*  let userId;
-  currentUser != null ? (userId = currentUser.uid) : (userId = ""); */
 
   return <AuthContext.Provider value={{ currentUser }}>{children}</AuthContext.Provider>;
 };

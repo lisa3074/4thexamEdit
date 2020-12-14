@@ -98,7 +98,6 @@ export function GSAP_stagMenuNav() {
 //POSITIONING ANIMATIONS
 export function GSAP_plannerListsAnimtionMobile(list) {
   console.log("jsModules || gsap.js | GSAP_plannerListsAnimtionMobile()");
-  console.log("planner/modules || mobNavigation.js | done() | GSAP_plannerListsAnimtionMobile");
   gsap.to(".scrollList", { duration: 0, opacity: 0, zIndex: 0, width: "calc(100vw - 1rem)" });
   gsap.to("." + list + ".scrollList", { duration: 0, opacity: 1, zIndex: 1, width: "calc(100vw - 1rem)" });
 }

@@ -23,16 +23,6 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Planner from "./components/planner/Planner";
 import { Redirect } from "react-router";
 
-//Change upper to lower when ready for production build.
-//import { unstable_createMuiStrictModeTheme as createMuiTheme } from "@material-ui/core";
-/* window.onload = () => {
-  console.log("LOAD");
-  return <Redirect to="/optimate" exact />;
-}; */
-/* window.addEventListener("DOMContentLoaded", () => {
-  console.log("LOAD");
-  return <Redirect to="/optimate" exact />;
-}); */
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -67,28 +57,13 @@ const theme = createMuiTheme({
 });
 
 export default function App() {
-  console.log("App");
-
-  const [endpoint, setEndpoint] = useState("administration");
+  console.log("App.js || App() |");
 
   window.addEventListener("resize", function (event) {
-    console.log("resize");
     if (window.innerWidth > 1000 && window.innerWidth < 1050) {
       window.location.reload();
     }
   });
-
-  const Credentials = {
-    email: "",
-    password: "",
-  };
-  const [credentials, setCredentials] = useState([]);
-  const credentialsObject = Object.create(Credentials);
-  const saveCredentials = () => {
-    credentialsObject.email = document.querySelector(".email").value;
-    credentialsObject.password = document.querySelector(".password").value;
-    setCredentials(credentialsObject);
-  };
 
   return (
     <section className="App">
@@ -96,20 +71,10 @@ export default function App() {
         <AuthProvider>
           <HashRouter>
             <Switch>
-              <PrivateRoute
-                exact
-                path="/administration"
-                credentials={credentials}
-                component={() => <Administration endpoint={endpoint} setEndpoint={setEndpoint} />}
-              />
-              <PrivateRoute
-                path="/planner"
-                credentials={credentials}
-                component={() => <Planner endpoint={endpoint} setEndpoint={setEndpoint} />}
-              />
-              <Route path="/signup" component={() => <SignUp saveCredentials={saveCredentials} />}></Route>
-              <Route path="/login" component={() => <Login saveCredentials={saveCredentials} />}></Route>
-              <Route path="/" component={() => <Login saveCredentials={saveCredentials} />}></Route>
+              <PrivateRoute exact path="/administration" component={Administration} />
+              <Route path="/signup" component={SignUp}></Route>
+              <Route path="/login" component={Login}></Route>
+              <Route path="/" component={Login}></Route>
             </Switch>
           </HashRouter>
         </AuthProvider>

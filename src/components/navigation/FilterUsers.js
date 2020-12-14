@@ -9,7 +9,6 @@ import { GSAP_sortVisibleMobileUsers, GSAP_stagProfilesSort } from "../../jsModu
 
 export default function FilterUsers(props) {
   console.log("navigation || FilterUsers.js | FilterUsers()");
-  console.log(props.chosenHours);
 
   const handleDivisionChange = (e) => {
     const value = e.target.value === "All" ? "" : e.target.value;

@@ -14,6 +14,7 @@ import {
   planner,
   chat,
   scrollToBottom,
+  clearFormAdmin,
 } from "../../jsModules/displayFunctions/mainMenuNavigation";
 
 import {
@@ -31,7 +32,7 @@ export default function MenuNav(props) {
   let innerWidth = props.innerWidth;
 
   function resetSearch() {
-    console.log("resetSearch");
+    console.log("navigation || MenuNav.js | resetSearch()");
     props.setChosenCategory("");
     props.setChosenEmployee("");
     props.setChosenDivision("");
@@ -43,22 +44,6 @@ export default function MenuNav(props) {
 
   GSAP_stagMenuNav();
 
-  function clearFormAdmin() {
-    console.log("navigation || SubMenu.js | clearForm()");
-    document.querySelector("form.FilterUsers").reset();
-    const divisionSpan = document.querySelector("#mui-component-select-Division > span");
-    const division = document.querySelector("#mui-component-select-Division");
-    const hoursSpan = document.querySelector("#mui-component-select-Hours > span");
-    const hours = document.querySelector("#mui-component-select-Hours");
-    document.querySelector("#root > section > section > nav.TopBar > form").reset();
-
-    if (!divisionSpan) {
-      division.textContent = "All";
-    }
-    if (!hoursSpan) {
-      hours.textContent = "All";
-    }
-  }
   function clearFormPlanner() {
     console.log("navigation || SubMenu.js | clearFormPlanner()");
     const categorySpan = document.querySelector("#mui-component-select-category > span");
@@ -83,6 +68,7 @@ export default function MenuNav(props) {
           GSAP_addOpacity(".panelMargin");
           GSAP_removeOpacity(".UserForm");
           props.setTool("admin");
+          props.setSystemPart("admin");
           resetSearch();
           GSAP_addOpacity(".UserCard, .userCard, .ProfileNav, .panelMargin");
           setUpForm();
@@ -102,6 +88,8 @@ export default function MenuNav(props) {
           onClick={() => {
             administration();
             props.setTool("admin");
+            props.setSystemPart("admin");
+
             resetSearch();
             GSAP_stagProfilesMenuNav();
             GSAP_addOpacity(".panelMargin, .userCard, .ProfileNav");
@@ -118,6 +106,7 @@ export default function MenuNav(props) {
           onClick={() => {
             planner(innerWidth);
             props.setTool("planner");
+            props.setSystemPart("planner");
             resetSearch();
             GSAP_stagCardsDesktop();
             GSAP_addOpacity(".UserCard, .userCard, .ProfileNav");
@@ -131,6 +120,7 @@ export default function MenuNav(props) {
           onClick={() => {
             addTask();
             planner(innerWidth);
+            props.setSystemPart("planner");
             props.setTool("planner");
             resetSearch();
             GSAP_addOpacity(".UserCard, .userCard, .ProfileNav, .panelMargin");
@@ -144,6 +134,7 @@ export default function MenuNav(props) {
             chat();
             scrollToBottom();
             resetSearch();
+            props.setSystemPart("chat");
             GSAP_addOpacity(".UserCard, .panelMargin, .userCard, .ProfileNav");
             GSAP_opacity0To1MessageContainer();
           }}>

@@ -26,7 +26,6 @@ export default function MainPlanner({
   console.log("planner || MainPlanner.js | MainPlanner()");
 
   const [dropList, setDropList] = React.useState("");
-  console.log(chosenEmployee, chosenCategory);
 
   function getFilteredCards(PlannerList) {
     return chosenEmployee !== "" && chosenCategory !== ""

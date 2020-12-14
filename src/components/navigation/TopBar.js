@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import TextField from "@material-ui/core/TextField";
 import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import ChatBubbleRoundedIcon from "@material-ui/icons/ChatBubbleRounded";
@@ -90,7 +90,7 @@ export default function TopBar(props) {
   ));
   const dateChanged = (e) => {
     props.setSortDate(new Date(e));
-    console.log(new Date(e));
+
     scrollToBottom();
   };
 
@@ -98,7 +98,6 @@ export default function TopBar(props) {
     props.setChatSearch(e.target.value);
   };
   const chooseSvg = (e) => {
-    console.log(e.target);
     document.querySelectorAll(".TopBar .chat-top .svg-wrapper").forEach((svg) => {
       svg.classList.remove("hide");
     });
@@ -144,7 +143,7 @@ export default function TopBar(props) {
   const dd = String(today.getDate()).padStart(2, "0");
   const mm = String(today.getMonth() + 1).padStart(2, "0");
   const yyyy = today.getFullYear();
-  const todaysDate = `${yyyy}-${mm}-${dd}`;
+  /*   const todaysDate = `${yyyy}-${mm}-${dd}`; */
 
   const newUserAcces = props.level === "Administrator" ? <AddRoundedIcon className="add-task" onClick={addTask} /> : "";
 
@@ -166,9 +165,6 @@ export default function TopBar(props) {
                   props.setChosenDivision(e.target.value === (undefined || "All") ? "" : e.target.value);
                   handleChanges("admin", e);
                 }}
-                InputProps={{
-                  style: { color: "var(--dark-text)" },
-                }}
                 value={props.chosenDivision}>
                 <MenuItem value="All" key="All">
                   All
@@ -188,10 +184,7 @@ export default function TopBar(props) {
                   props.setChosenHours(e.target.value === (undefined || "All") ? "" : e.target.value);
                   handleChanges("admin", e);
                 }}
-                value={props.chosenHours}
-                InputProps={{
-                  style: { color: "var(--dark-text)" },
-                }}>
+                value={props.chosenHours}>
                 <MenuItem value="All" key="All">
                   All
                 </MenuItem>
@@ -216,9 +209,6 @@ export default function TopBar(props) {
               label="Search"
               onChange={handleSearch}
               disabled={props.viewingProfile ? true : false}
-              InputProps={{
-                style: { color: "var(--dark-text)" },
-              }}
             />
             <SearchRoundedIcon className="search-icon" />
           </div>

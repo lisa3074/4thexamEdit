@@ -11,9 +11,6 @@ export default function Chat(props) {
   const [search, setSearch] = useState("");
   const { signedinUser, setSortDate, sortDate } = props;
 
-  console.log(signedinUser);
-  console.log(setSortDate);
-
   return (
     <main className="Chat hide">
       <div className="chat-wrapper">

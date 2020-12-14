@@ -1,6 +1,7 @@
 export function displayProfile(userId) {
   console.log("jsModules || displayProfile.js | displayProfile()");
   document.querySelector(".ViewProfile").classList.remove("hide");
+  document.querySelector(".Chat").classList.add("hide");
   document.querySelector(".MainAdmin").classList.remove("hide");
   document.querySelector(".ViewProfile").setAttribute("data-user", userId);
   document.querySelector(".UserList").classList.add("hide");

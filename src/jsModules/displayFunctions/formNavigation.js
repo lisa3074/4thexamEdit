@@ -45,7 +45,6 @@ export function forwards() {
     !$(".PrivateForm").classList.contains("hide")
   ) {
     privateValidation();
-    console.log($(".PrivateForm .custom-upload .flex-wrapper p").textContent);
   }
   setTimeout(() => {
     !$(".PrivateForm").classList.contains("hide")
@@ -200,7 +199,6 @@ function workValidation() {
       /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/
     )
   ) {
-    console.log("no email");
     $("fieldset.WorkForm > div:nth-child(7) > p").classList.remove("hide");
     $("fieldset.WorkForm > div:nth-child(7) > p").textContent =
       "Your email isn't valid. Please provide a valid email address.";

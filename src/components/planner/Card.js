@@ -18,9 +18,6 @@ export default function Card(props) {
     onClickMove(e.target.value);
   };
 
-  console.log(props);
-  console.log(props.chosenEmployee);
-
   const cardDragged = (e, id) => {
     e.preventDefault();
     setList(props.dropList);

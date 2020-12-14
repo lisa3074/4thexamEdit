@@ -25,7 +25,6 @@ export default function ChatNav(props) {
   const [searching, setSearching] = useState(false);
 
   const { setSortDate } = props;
-  console.log(props.sortDate);
   const dateChanged = (e) => {
     setSortDate(e.toString().substring(0, 15));
     scrollToBottom();
@@ -35,7 +34,6 @@ export default function ChatNav(props) {
   };
 
   const chooseSvg = (e) => {
-    console.log(e.target);
     document.querySelectorAll(".ChatNav .svg-wrapper").forEach((svg) => {
       svg.classList.remove("hide");
     });

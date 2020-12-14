@@ -3,14 +3,14 @@ import { deleteAMessage } from "../../../jsModules/dbData/deleteData";
 
 export default function DeleteModal(props) {
   console.log("administration/DeleteModal.js || DeleteModal()");
-  console.log(props.messageToDelete);
+  console.log(props.systemPart);
   return (
     <div className="modal-wrapper hide">
       <div className="areYouSure">
         <div className="modal">
           <div className="modal-text">
             <h1>
-              You are about to delete a {props.systemPart === "planner" ? "task" : "chat " ? "message" : "profile"}!
+              You are about to delete a {props.systemPart === "planner" ? " task" : "chat" ? " message" : "profile"}!
             </h1>
             <p>
               {props.systemPart === "planner"
@@ -21,8 +21,8 @@ export default function DeleteModal(props) {
             </p>
             <h3>
               {" "}
-              Are you sure you want to delete this{" "}
-              {props.systemPart === "planner" ? "task" : "chat " ? "message" : "profile"}?
+              Are you sure you want to delete this
+              {props.systemPart === "planner" ? " task" : "chat" ? " message" : " profile"}?
             </h3>
           </div>
           <button

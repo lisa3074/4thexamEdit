@@ -23,7 +23,6 @@ export default function FilterTasks(props) {
     GSAP_stagCards(props.list);
     GSAP_sortVisibleMobileTasks();
   };
-  console.log(props.chosenEmployee);
 
   const categories = [
     { category: "All", color: "" },

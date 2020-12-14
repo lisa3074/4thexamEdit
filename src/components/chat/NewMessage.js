@@ -47,7 +47,6 @@ export default function NewMessage(props) {
     }
   }
   function handleOnKeyDown(e) {
-    console.log(message);
     if (message) {
       if (e.keyCode === 13) {
         submitMessage(e);

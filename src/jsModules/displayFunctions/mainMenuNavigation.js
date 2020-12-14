@@ -18,6 +18,22 @@ export function deleted() {
     modal.classList.add("hide");
   });
 }
+export function clearFormAdmin() {
+  console.log("navigation || SubMenu.js | clearForm()");
+  document.querySelector("form.FilterUsers").reset();
+  const divisionSpan = document.querySelector("#mui-component-select-Division > span");
+  const division = document.querySelector("#mui-component-select-Division");
+  const hoursSpan = document.querySelector("#mui-component-select-Hours > span");
+  const hours = document.querySelector("#mui-component-select-Hours");
+  document.querySelector("#root > section > section > nav.TopBar > form").reset();
+
+  if (!divisionSpan) {
+    division.textContent = "All";
+  }
+  if (!hoursSpan) {
+    hours.textContent = "All";
+  }
+}
 
 export function administration() {
   console.log("jsModules || mainMenuNavigation.js | administration()");

@@ -15,7 +15,7 @@ export function getUsers(callback) {
         id: doc.id,
         ...doc.data(),
       }));
-      console.log(users);
+      //  console.log(users);
 
       callback(users);
     });
@@ -31,7 +31,7 @@ export function getSignedinUser(callback, email) {
         id: doc.id,
         ...doc.data(),
       }));
-      console.log(SignedIn);
+      //  console.log(SignedIn);
 
       callback(SignedIn);
     });
@@ -49,7 +49,7 @@ export function getCards(callback) {
         id: doc.id,
         ...doc.data(),
       }));
-      console.log(cards);
+      //   console.log(cards);
 
       callback(cards);
     });
@@ -66,7 +66,7 @@ export function getMessages(callback) {
         id: doc.id,
         ...doc.data(),
       }));
-      console.log(messages);
+      //   console.log(messages);
 
       callback(messages);
     });

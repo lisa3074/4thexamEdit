@@ -22,7 +22,7 @@ export default function PlannerNav(props) {
   console.log("planner || PlannerNav.js | PlannerNav()");
   const [anchorEl, setAnchorEl] = useState(null);
   const [list, setList] = useState("To do");
-  console.log(props.list);
+
   const handleClick = (event) => {
     console.log("planner || PlannerNav.js | handleClick()");
     setAnchorEl(event.currentTarget);

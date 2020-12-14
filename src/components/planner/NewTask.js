@@ -94,7 +94,6 @@ export default function NewTask(props) {
     console.log("planner || NewTask.js | submit()");
     evt.preventDefault();
     if (title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0) {
-      console.log("input needed");
       taskValidation();
     } else {
       setTitleFocusOn(false);
@@ -278,7 +277,6 @@ export default function NewTask(props) {
               onChange={(e) => {
                 catChanged(e);
                 colorChanged(e);
-                console.log(e.target.color);
               }}
               value={category}>
               {mappedCategories}

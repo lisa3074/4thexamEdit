@@ -7,9 +7,8 @@ export default function Work(props) {
   const dd = String(today.getDate()).padStart(2, "0");
   const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
   const yyyy = today.getFullYear();
-  console.log(`${yyyy}-${mm}-${dd}`);
   const startDate = `${yyyy}-${mm}-${dd}`;
-  console.log(new Date().getTime());
+
   return (
     <article className="Work userCard">
       <h2 className="heading">WORK</h2>

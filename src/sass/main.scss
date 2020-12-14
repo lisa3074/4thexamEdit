@@ -3,18 +3,21 @@
   src: url("../fonts/IBMPlexSans-Bold.eot");
   src: url("../fonts/IBMPlexSans-Bold.woff2") format("woff2"), url("../fonts/IBMPlexSans-Bold.woff") format("woff"),
     url("../fonts/IBMPlexSans-Bold.ttf") format("truetype");
+  font-display: swap;
 }
 @font-face {
   font-family: "IBMPlexSans-Medium";
   src: url("../fonts/IBMPlexSans-Medium.eot");
   src: url("../fonts/IBMPlexSans-Medium.woff2") format("woff2"), url("../fonts/IBMPlexSans-Medium.woff") format("woff"),
     url("../fonts/IBMPlexSans-Medium.ttf") format("truetype");
+  font-display: swap;
 }
 @font-face {
   font-family: "IBMPlexSans-Regular";
   src: url("../fonts/IBMPlexSans-Regular.eot");
   src: url("../fonts/IBMPlexSans-Regular.woff2") format("woff2"),
     url("../fonts/IBMPlexSans-Regular.woff") format("woff"), url("../fonts/IBMPlexSans-Regular.ttf") format("truetype");
+  font-display: swap;
 }
 @font-face {
   font-family: "IBMPlexSans-SemiBold";
@@ -22,6 +25,7 @@
   src: url("../fonts/IBMPlexSans-SemiBold.woff2") format("woff2"),
     url("../fonts/IBMPlexSans-SemiBold.woff") format("woff"),
     url("../fonts/IBMPlexSans-SemiBold.ttf") format("truetype");
+  font-display: swap;
 }
 
 * {
@@ -37,7 +41,10 @@
   --tietery: #b0b2b5;
   --background: #f3f7fc;
   --dark-text: #222224;
+
+  /*   --light-text: #747474; */
   --light-text: #9b9b9b;
+  --menu-text: #555555;
   --white: #ffffff;
   --yellow: #f0c75d;
   --orange: #d98c6a;
@@ -76,8 +83,9 @@
   --secondary: #494949;
   --tietery: #a1a1a1;
   --background: #eeeeee;
-  --dark-text: #222224;
+  --dark-text: #000000;
   --light-text: #9b9b9b;
+  --menu-text: #555555;
   --white: #ffffff;
   --yellow: #fdb500;
   --orange: #d84404;
@@ -117,6 +125,7 @@
   --background: #464646;
   --dark-text: #cfcfcf;
   --light-text: #838383;
+  --menu-text: #b9b9b9;
   --white: #1d1d1d;
   --yellow: #d4ad29;
   --orange: #c4681d;
@@ -199,6 +208,9 @@ h3 {
 p,
 label .MuiFormLabel-root.MuiInputLabel-root.MuiInputLabel-formControl.MuiInputLabel-animated {
   font-family: "IBMPlexSans-Regular";
+}
+* {
+  scrollbar-width: none;
 }
 ::-webkit-scrollbar {
   width: 0.2rem;

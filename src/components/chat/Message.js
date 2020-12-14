@@ -13,8 +13,7 @@ dayjs.extend(customParseFormat);
 
 export default function Message(props) {
   console.log("chat || Message.js | Message()");
-  const { signedinUser, users, id, checked, setChecked, setMessageToDelete, messageToDelete } = props;
-  console.log(props);
+  const { signedinUser, users, id, checked, setMessageToDelete, messageToDelete } = props;
   const [sendingUser, setSendingUser] = useState();
   const [profilePic, setProfilePic] = useState();
   const [editMessage, setEditMessage] = useState({});
@@ -34,7 +33,6 @@ export default function Message(props) {
         : console.log("no sending user yet")
       : console.log("no sending user yet");
   }, [sendingUser]);
-  console.log(sendingUser);
   function handleText(e) {
     setEditText(e.target.value);
     setEditMessage({ id: id, message: e.target.value, name: props.name, date: props.date });
@@ -47,7 +45,6 @@ export default function Message(props) {
 
   function submitIfChecked(e) {
     e.preventDefault();
-    console.log("checked");
     setEditMessage({
       id: id,
       message: editText,
@@ -62,9 +59,7 @@ export default function Message(props) {
     console.log("do nothing");
   }
   function handleOnKeyDown(e) {
-    console.log("key");
     if (e.keyCode === 13) {
-      console.log("enter");
       submitIfChecked(e);
     }
   }
@@ -114,8 +109,6 @@ export default function Message(props) {
                     areYouSure();
                     props.setSystemPart("chat");
                     setMessageToDelete(id);
-                    /*          deleteAMessage(id); */
-                    console.log(id);
                   }}>
                   <DeleteRoundedIcon />
                 </div>

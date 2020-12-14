@@ -75,7 +75,7 @@ export default function Planner(props) {
       document.querySelector(".loading-page").classList.add("hide");
     }, 10);
   }
-  console.log(props.chosenEmployee);
+
   return (
     <main className="Planner hide" data-state="chosen">
       <section className="planner-wrapper">

@@ -25,7 +25,6 @@ export function taskValidation() {
 
 export function editTaskValidation() {
   const $ = document.querySelector.bind(document);
-  console.log("validate");
 
   if ($(".editContainer .title input").value === "") {
     console.log("title");

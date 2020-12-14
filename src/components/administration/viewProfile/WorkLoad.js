@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 export default function WorkLoad(props) {
   console.log("administration/viewProfile || ViewProfile.js | WorkLoad()");
-  console.log(props);
+
   const chosenUser = props.user ? props.user.map((entry) => entry.name.toString()) : "";
   const todo = props.cards.filter(
     (c) => c.list === "To Do" && c.assignedTo.filter((user) => user.name.toString().includes(chosenUser)).length
@@ -13,8 +13,7 @@ export default function WorkLoad(props) {
   const done = props.cards.filter(
     (c) => c.list === "Done" && c.assignedTo.filter((user) => user.name.toString().includes(chosenUser)).length
   ).length;
-  console.log(chosenUser);
-  console.log(todo, progress, done);
+
   useEffect(() => {
     const todoBar = document.querySelector(".todoBar");
     const progressBar = document.querySelector(".progressBar");

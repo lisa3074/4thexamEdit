@@ -115,7 +115,6 @@ export default function EditForm(props) {
     console.log("planner/EditForm.js || submit()");
     evt.preventDefault();
     if (title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0) {
-      console.log("input needed");
       editTaskValidation();
     } else {
       props.editCard(payload, props.id, title, list, assignedTo, color, category, description, due);
@@ -185,7 +184,6 @@ export default function EditForm(props) {
       ? document.querySelector(".editContainer .collaborators").setAttribute("data-chosen", true)
       : document.querySelector(".editContainer .collaborators").setAttribute("data-chosen", false);
     document.querySelector(".editContainer form > div:nth-child(2) > p").classList.add("hide");
-    console.log(e);
   }
   function resetState() {
     setCategory("");
@@ -306,7 +304,6 @@ export default function EditForm(props) {
                     onChange={(e) => {
                       catChanged(e);
                       colorChanged(e);
-                      console.log(e.target.color);
                     }}
                     value={category}>
                     {mappedCategories}

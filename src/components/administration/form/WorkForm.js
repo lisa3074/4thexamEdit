@@ -49,7 +49,6 @@ export default function WorkForm(props) {
 
   const dataChosen = (value, element) => {
     element = element.substring(element.lastIndexOf(" ") + 1, 50);
-    console.log(element);
     value
       ? document.querySelector(".UserForm ." + element).setAttribute("data-chosen", true)
       : document.querySelector(".UserForm ." + element).setAttribute("data-chosen", false);
@@ -116,7 +115,6 @@ export default function WorkForm(props) {
             }}
             value={division}>
             {mappedDivisions}
-            {console.log(division)}
           </Select>
         </FormControl>
         <p className="error hide">Fill in a division</p>
@@ -178,7 +176,6 @@ export default function WorkForm(props) {
             }}
             value={props.level}>
             {mappedLevel}
-            {console.log(props.level)}
           </Select>
         </FormControl>
         <p className="error hide">Fill in the employee's user level clearance for this system</p>

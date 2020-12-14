@@ -13,7 +13,6 @@ import { showCardList } from "../../../jsModules/displayFunctions/subMenuNavigat
 
 export default function ViewProfile(props) {
   console.log("administration/viewProfile || ViewProfile.js | ViewProfile()");
-  console.log(props);
 
   const mappedPerson = props.user.map((user) => (
     <Person

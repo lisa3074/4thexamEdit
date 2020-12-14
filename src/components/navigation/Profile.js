@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import image from "../../images/placeholder.png";
 import { displayProfile } from "../../jsModules/displayFunctions/displayProfile";
-import { GSAP_stagViewProfile } from "../../jsModules/displayFunctions/gsap";
+import { GSAP_stagViewProfile, GSAP_removeOpacity } from "../../jsModules/displayFunctions/gsap";
 import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
 import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
 import PaletteRoundedIcon from "@material-ui/icons/PaletteRounded";
@@ -42,7 +42,17 @@ export default function Profile(props) {
   };
   return (
     <div className="Profile">
-      <img src={picture} alt="" onClick={() => displayProfile(props.signedinUser ? props.signedinUser[0].id : "")} />
+      <img
+        src={picture}
+        alt=""
+        onClick={() => {
+          displayProfile(props.signedinUser ? props.signedinUser[0].id : "");
+          props.setId(props.signedinUser ? props.signedinUser[0].id : "");
+          GSAP_stagViewProfile();
+          GSAP_removeOpacity(".ProfileNav");
+          props.setisUSerProfile(true);
+        }}
+      />
       <h1>{props.signedinUser ? firstName + lastName : ""}</h1>
       <h3>{props.signedinUser ? props.signedinUser[0].position : ""}</h3>
       <div className="grid-wrapper">
@@ -52,6 +62,7 @@ export default function Profile(props) {
             displayProfile(props.signedinUser ? props.signedinUser[0].id : "");
             props.setId(props.signedinUser ? props.signedinUser[0].id : "");
             GSAP_stagViewProfile();
+            GSAP_removeOpacity(".ProfileNav");
             props.setisUSerProfile(true);
           }}>
           <PersonRoundedIcon /> Profile

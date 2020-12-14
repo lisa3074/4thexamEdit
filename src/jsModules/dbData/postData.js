@@ -7,9 +7,10 @@ import { clearUserForm, editUserResetForm, newUserResetForm } from "../displayFu
 export const db = firebase.firestore();
 db.settings({ timestampsInSnapshots: true });
 
-//ADMIN-SYS
+//PROFILES
 export function postUser(payload) {
   console.log("jsModules || postData.js | postUser()");
+  //go to the database, find the right collection at add payload
   db.collection("users").add({
     image: payload.image,
     city: payload.city,
@@ -31,23 +32,23 @@ export function postUser(payload) {
   });
 }
 
-//PLANNER
-export function postCard(data) {
-  console.log("jsModules || postData.js | postCard()");
-
+//TASKS
+export function postCard(payload) {
+  console.log("jsModules || postpayload.js | postCard()");
+  //go to the database, find the right collection and add payload
   db.collection("planner").add({
-    title: data.title,
-    list: data.list,
+    title: payload.title,
+    list: payload.list,
     added: Date.now(),
-    assignedTo: data.assignedTo,
-    color: data.color,
-    category: data.category,
-    description: data.description,
-    due: data.due,
+    assignedTo: payload.assignedTo,
+    color: payload.color,
+    category: payload.category,
+    description: payload.description,
+    due: payload.due,
     timeStamp: Date.now(),
   });
 }
-//PLANNER
+//MESSAGES
 export function postMessage(message, user) {
   console.log("jsModules || postData.js | postMessage()");
 
@@ -56,8 +57,6 @@ export function postMessage(message, user) {
     message: message,
     name: user,
   });
-
-  console.log(message, user, Date.now());
 }
 
 //IMAGE
@@ -101,7 +100,7 @@ export function storeImage(file, email, callback, image) {
     const profilePicture = storageRef.put(file);
     storageRef.put(file).then((data) => {
       data.ref.getDownloadURL().then((url) => {
-        console.log(url.toString());
+        // console.log(url.toString());
         callback(url.toString());
       });
     });
@@ -164,7 +163,7 @@ export function storeContract(file, name, callback, contract) {
     const storageRef = firebase.storage().ref("contracts/" + name + ".pdf");
     storageRef.put(file).then((data) => {
       data.ref.getDownloadURL().then((url) => {
-        console.log(url.toString());
+        //  console.log(url.toString());
         callback(url.toString());
       });
     });

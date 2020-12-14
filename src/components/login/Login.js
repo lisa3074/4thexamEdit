@@ -17,7 +17,9 @@ const Login = ({ history }) => {
   const [resetEmail, setResetEmail] = useState("");
   const { currentUser } = useContext(AuthContext);
   let theme = localStorage.getItem("theme");
-  document.querySelector("body").setAttribute("data-state", theme);
+  theme === "regular" || theme === "orange" || theme === "dark"
+    ? document.querySelector("body").setAttribute("data-state", theme)
+    : console.log("no theme chosen");
 
   const handleLogin = useCallback(
     async (e) => {

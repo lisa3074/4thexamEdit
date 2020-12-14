@@ -9,7 +9,7 @@ import Chat from "../../chat/Chat";
 import { getUsers, getSignedinUser, getCards } from "../../../jsModules/dbData/getData";
 import { scrollToBottom } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 import { getMessages } from "../../../jsModules/dbData/getData";
-import { GSAP_stagProfilesStartup, GSAP_sortInvisibleFilterMobile } from "../../../jsModules/displayFunctions/gsap";
+import { GSAP_stagProfilesStartup } from "../../../jsModules/displayFunctions/gsap";
 import { firebaseConfig } from "../../../jsModules/firebase/firebase";
 
 export default function Administration(props) {
@@ -23,7 +23,7 @@ export default function Administration(props) {
   const [users, setUsers] = useState([]);
   const [signedinUser, setSignedinUser] = useState();
   const [id, setId] = useState();
-  const [systemPart, setSystemPart] = useState();
+  const [systemPart, setSystemPart] = useState("admin");
   const [messages, setMessages] = useState();
   const [chosenUser, setChosenUser] = useState();
   const [state, setState] = useState();
@@ -45,15 +45,18 @@ export default function Administration(props) {
   }, [chosenDivision, chosenHours]);
 
   useEffect(() => {
-    console.log(chosenCategory, chosenEmployee);
     chosenEmployee === (undefined || "") && chosenCategory === (undefined || "")
       ? document.querySelector(".reset-wrapper-planner").classList.add("hide")
       : document.querySelector(".reset-wrapper-planner").classList.remove("hide");
   }, [chosenEmployee, chosenCategory]);
 
   useEffect(() => {
+    //LOADER 4 GANGE
     getUsers(setUsers);
+    getCards(setCards);
+    getSignedinUser(setSignedinUser, localStorage.email);
   }, []);
+
   useEffect(() => {
     if (window.innerWidth > 999) {
       GSAP_stagProfilesStartup();
@@ -61,25 +64,13 @@ export default function Administration(props) {
   }, [users]);
 
   useEffect(() => {
-    setTimeout(() => {
-      getMessages(setMessages);
-      console.log(signedinUser);
-      if (signedinUser) {
-        localStorage.setItem("signedInUser", signedinUser[0].name);
-        localStorage.setItem("signedInUserId", signedinUser[0].id);
-        setLevel(signedinUser[0].userLevel);
-      }
-    }, 2000);
+    //loader 2 gange
+    signedInUserDepandables();
   }, [signedinUser]);
 
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-
-  useEffect(() => {
-    getCards(setCards);
-    getSignedinUser(setSignedinUser, localStorage.email);
-  }, []);
 
   function editProfile(id) {
     console.log("administration/Administration.js || editProfile()");
@@ -87,9 +78,22 @@ export default function Administration(props) {
     setChosenUser(user);
     setState("edit");
   }
-  console.log(isUSerProfile);
+
+  function signedInUserDepandables() {
+    if (signedinUser) {
+      setTimeout(() => {
+        getMessages(setMessages);
+        if (signedinUser) {
+          localStorage.setItem("signedInUser", signedinUser[0].name);
+          localStorage.setItem("signedInUserId", signedinUser[0].id);
+          setLevel(signedinUser[0].userLevel);
+        }
+      }, 2000);
+    }
+  }
+
   return (
-    <section className="Administration" data-state="dark">
+    <section className="Administration" data-module="profiles">
       <div className="loading-page">
         <div>
           <CircularProgress color="primary" />
@@ -123,7 +127,8 @@ export default function Administration(props) {
         setChosenEmployee={setChosenEmployee}
         setChosenDivision={setChosenDivision}
         setChosenHours={setChosenHours}
-        setSearch={setSearch}></Menu>
+        setSearch={setSearch}
+        setSystemPart={setSystemPart}></Menu>
       <MainAdmin
         setChosenDivision={setChosenDivision}
         setChosenHours={setChosenHours}

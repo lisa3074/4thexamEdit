@@ -5,8 +5,6 @@ import FilterUsers from "../../navigation/FilterUsers";
 export default function MainAdmin(props) {
   console.log("administration/MainAdmin.js || MainAdmin()");
 
-  console.log(props.chosenHours);
-
   return (
     <main className={window.innerWidth < 1000 ? "MainAdmin hide" : "MainAdmin"}>
       <FilterUsers

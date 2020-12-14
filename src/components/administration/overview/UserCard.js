@@ -10,7 +10,6 @@ import {
 
 export default function UserCard(props) {
   console.log("administration/UserCard.js || UserCard()");
-  console.log(props);
 
   function detectId(e) {
     const userId = e.target.parentNode.dataset.user;
@@ -18,7 +17,6 @@ export default function UserCard(props) {
     isUserEqualToProfile(userId);
   }
   function viewUser(e, userId) {
-    console.log(e, userId);
     displayProfile(userId);
     setSubmMenu();
     props.setId(userId);
