@@ -10,7 +10,8 @@ export default function DeleteModal(props) {
         <div className="modal">
           <div className="modal-text">
             <h1>
-              You are about to delete a {props.systemPart === "planner" ? " task" : "chat" ? " message" : "profile"}!
+              You are about to delete a{" "}
+              {props.systemPart === "planner" ? " task" : props.systemPart === "chat" ? " message" : "profile"}!
             </h1>
             <p>
               {props.systemPart === "planner"
@@ -22,7 +23,7 @@ export default function DeleteModal(props) {
             <h3>
               {" "}
               Are you sure you want to delete this
-              {props.systemPart === "planner" ? " task" : "chat" ? " message" : " profile"}?
+              {props.systemPart === "planner" ? " task" : props.systemPart === "chat" ? " message" : " profile"}?
             </h3>
           </div>
           <button
@@ -30,7 +31,7 @@ export default function DeleteModal(props) {
             onClick={() => {
               props.systemPart === "planner"
                 ? props.deleteCard(props.id)
-                : "chat"
+                : props.systemPart === "chat"
                 ? deleteAMessage(props.messageToDelete)
                 : props.deleteProfile(props.id);
               deleted();
