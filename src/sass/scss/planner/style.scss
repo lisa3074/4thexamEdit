@@ -237,12 +237,6 @@
     display: none;
   }
 }
-@media (min-height: 850px) {
-  .NewTask .addForm,
-  .editContainer .edit-wrapper {
-    max-height: 700px;
-  }
-}
 
 @media (max-width: 600px) {
   .planner-wrapper {

@@ -31,7 +31,7 @@
     z-index: 3;
     transition: 0.5s;
     .flex-wrapper {
-      padding-bottom: 0rem;
+      padding-bottom: 1rem;
     }
     .description,
     .MuiFormControl-root,
@@ -81,6 +81,14 @@
       height: calc(var(--vh, 1vh) * 100);
 
       transition: 1s;
+    }
+  }
+
+  @media (min-width: 500px) {
+    .bigger {
+      .flex-wrapper {
+        padding-bottom: 0rem;
+      }
     }
   }
 }

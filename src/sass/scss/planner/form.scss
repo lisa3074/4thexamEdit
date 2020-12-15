@@ -81,6 +81,10 @@
     padding: 2rem 2rem;
     width: calc(100vw - 1.4rem);
     overflow-y: scroll;
+    padding-bottom: 6rem;
+    &::-webkit-scrollbar {
+      width: 2px;
+    }
 
     @supports (-webkit-touch-callout: none) {
       // height: 80vh;
@@ -130,9 +134,11 @@
   #form .flex-wrapper,
   .form .flex-wrapper {
     position: absolute;
-    bottom: 2rem;
+    bottom: 0.7rem;
     width: calc(100% - 4rem);
     left: 2rem;
+    padding: 1rem 0;
+    background-color: var(--white);
   }
 
   .task-sent {
@@ -176,6 +182,20 @@ li.MuiButtonBase-root.MuiListItem-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiL
   .Planner {
     .addForm {
       overflow: scroll;
+    }
+  }
+}
+@media (min-width: 500px) {
+  .Planner {
+    #form .flex-wrapper,
+    .form .flex-wrapper {
+      bottom: 2rem;
+
+      padding: 0;
+      background-color: transparent;
+    }
+    #form.addForm {
+      padding-bottom: 2rem;
     }
   }
 }
