@@ -3,7 +3,7 @@ import Menu from "../../navigation/Menu";
 import MainAdmin from "./MainAdmin";
 import TopBar from "../../navigation/TopBar";
 import SubMenu from "../../navigation/SubMenu";
-import Planner from "../../planner/Planner";
+import Planner from "../../planner/planner";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Chat from "../../chat/Chat";
 import { getUsers, getSignedinUser, getCards } from "../../../jsModules/dbData/getData";
