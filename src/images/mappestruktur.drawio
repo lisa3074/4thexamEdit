@@ -1,0 +1,159 @@
+<mxfile host="65bd71144e" modified="2020-12-14T16:49:10.157Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.0 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" version="13.10.0" etag="vK3ktAGfcHkd6WmlOOUi" type="embed">
+    <diagram id="4jElUf-aEU4MESOXDwso" name="Page-1">
+        <mxGraphModel dx="963" dy="1184" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.675;exitY=0.3;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.597;entryY=1.012;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="2" target="5">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="338" y="205" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="348" y="206"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="73" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.65;entryY=0.233;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="2" target="6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="src" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;strokeColor=#999900;" vertex="1" parent="1">
+                    <mxGeometry x="296" y="230" width="77" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="5" target="10">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.49;exitY=0.23;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="5" target="12">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="338" y="163"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="5" target="11">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="jsModules" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;strokeColor=#004C99;" vertex="1" parent="1">
+                    <mxGeometry x="288" y="150" width="100" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="77" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="6" target="26">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="78" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="6" target="27">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="6" target="28">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="6" target="29">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="81" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="6" target="30">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="componentes" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;strokeColor=#004C99;" vertex="1" parent="1">
+                    <mxGeometry x="273" y="345" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="26">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="73.00000000000023" y="645" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="26" target="32">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="73" y="615"/>
+                            <mxPoint x="190" y="615"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="26" target="33">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="73" y="615"/>
+                            <mxPoint x="314" y="615"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="26" value="administration" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;strokeColor=#99004D;" vertex="1" parent="1">
+                    <mxGeometry x="23" y="430" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="68" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="57">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="568" y="690" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="568" y="690"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="89" value="App.js&lt;br&gt;index.js" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#999900;" vertex="1" parent="1">
+                    <mxGeometry x="296" y="280" width="77" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="displayFunctions" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;strokeColor=#99004D;" vertex="1" parent="1">
+                    <mxGeometry x="468" y="20" width="120" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="displayEditForm.js&lt;br&gt;displayProfile.js&lt;br&gt;formNavigation.js&lt;br&gt;mainNavigation.js&lt;br&gt;subNavigation.js&lt;br&gt;taskValidation.js&lt;br&gt;gsap.js&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#99004D;" vertex="1" parent="1">
+                    <mxGeometry x="468" y="75" width="120" height="205" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="firebase&lt;br&gt;" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;strokeColor=#99004D;" vertex="1" parent="1">
+                    <mxGeometry x="288" y="10" width="100" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="auth.js&lt;br&gt;firebase.js" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#99004D;" vertex="1" parent="1">
+                    <mxGeometry x="288" y="65" width="100" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="dbdata" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;strokeColor=#99004D;" vertex="1" parent="1">
+                    <mxGeometry x="123" y="10" width="100" height="55" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="getData.js&lt;br&gt;postData.js&lt;br&gt;deleteData.js&lt;br&gt;editData.js" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#99004D;" vertex="1" parent="1">
+                    <mxGeometry x="123" y="65" width="100" height="75" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="chat" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;strokeColor=#99004D;" vertex="1" parent="1">
+                    <mxGeometry x="153" y="430" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="48" value="Chat.js&lt;br&gt;ChatNav.js&lt;br&gt;MessageBoard.js&lt;br&gt;Message.js&lt;br&gt;NewMessage.js" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#99004D;" vertex="1" parent="1">
+                    <mxGeometry x="153" y="490" width="100" height="97" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="login" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;strokeColor=#99004D;" vertex="1" parent="1">
+                    <mxGeometry x="273" y="429" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="49" value="Login.js&lt;br&gt;SignUp.js&lt;br&gt;Question.js&lt;br&gt;PrivateRoute.js" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#99004D;" vertex="1" parent="1">
+                    <mxGeometry x="273" y="489" width="100" height="87" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="navigation" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;strokeColor=#99004D;" vertex="1" parent="1">
+                    <mxGeometry x="398" y="429" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="50" value="Menu.js&lt;br&gt;MenuNav.js&lt;br&gt;Profile.js&lt;br&gt;TopBar.js&lt;br&gt;SubMenu.js&lt;br&gt;FilterUsers.js" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#99004D;" vertex="1" parent="1">
+                    <mxGeometry x="398" y="489" width="100" height="107" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="planner" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;strokeColor=#99004D;" vertex="1" parent="1">
+                    <mxGeometry x="518" y="429" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="57" value="Planner.js&lt;br&gt;PlannerNav.js&lt;br&gt;MainPlanner.js&lt;br&gt;PlannerList.js&lt;br&gt;Cards.js&lt;br&gt;NewTask.js&lt;br&gt;EditForm.js&lt;br&gt;FilterTasks.js" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#99004D;" vertex="1" parent="1">
+                    <mxGeometry x="518" y="489" width="100" height="147" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="overview" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;strokeColor=#009999;" vertex="1" parent="1">
+                    <mxGeometry x="20" y="645" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" value="Administration.js&lt;br&gt;MainAdmin.js&lt;br&gt;UserList.js&lt;br&gt;UserCard.js&lt;br&gt;DeleteModal.jd" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#009999;" vertex="1" parent="1">
+                    <mxGeometry x="20" y="705" width="100" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="viewProfile" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;strokeColor=#009999;" vertex="1" parent="1">
+                    <mxGeometry x="140" y="645" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="ViewProfile.js&lt;br&gt;ProfileNav.js&lt;br&gt;Person.js&lt;br&gt;Work.js&lt;br&gt;WorkLoad.js&lt;br&gt;Contact.js&lt;br&gt;Private.js" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#009999;" vertex="1" parent="1">
+                    <mxGeometry x="140" y="705" width="100" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="form" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;strokeColor=#009999;" vertex="1" parent="1">
+                    <mxGeometry x="264" y="645" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="UserForm.js&lt;br&gt;Form.js&lt;br&gt;FormNav.js&lt;br&gt;GormPath.js&lt;br&gt;PersonForm.js&lt;br&gt;WorkForm.js&lt;br&gt;PrivateForm.js" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#009999;" vertex="1" parent="1">
+                    <mxGeometry x="264" y="705" width="100" height="130" as="geometry"/>
+                </mxCell>
+                <mxCell id="58" value="modules" style="shape=folder;fontStyle=1;spacingTop=10;tabWidth=40;tabHeight=14;tabPosition=left;html=1;strokeColor=#009999;" vertex="1" parent="1">
+                    <mxGeometry x="518" y="676" width="100" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="59" value="expand.js&lt;br&gt;closeExpand.js&lt;br&gt;editPopup.js&lt;br&gt;mobileNavigation.js&lt;br&gt;scroll.js&lt;br&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#009999;" vertex="1" parent="1">
+                    <mxGeometry x="518" y="736" width="100" height="97" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

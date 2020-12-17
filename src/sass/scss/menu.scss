@@ -1,12 +1,14 @@
 .Menu,
 .MenuDesktop {
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
+  background-color: var(--white);
+  height: calc(var(--vh, 1vh) * 100);
   .logo-name {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,7 +16,7 @@
     width: 100%;
     height: 80px;
     h1 {
-      color: white;
+      color: var(--button);
       font-size: 26px;
     }
   }
@@ -25,10 +27,36 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    .grid-wrapper {
+      display: grid;
+      grid-template-columns: 10% auto 10%;
+      grid-template-areas: ". button settings";
+      align-items: center;
+      button {
+        margin-right: 0.5rem;
+        justify-self: flex-end;
+        grid-area: button;
+        svg {
+          fill: var(--button);
+        }
+      }
+      .svg-wrapper {
+        grid-area: settings;
+        cursor: pointer;
+
+        svg {
+          justify-self: flex-end;
+          fill: var(--secondary);
+          width: 25px;
+          height: 25px;
+        }
+      }
+    }
     img {
       width: 135px;
       height: 135px;
       object-fit: cover;
+      cursor: pointer;
     }
     h1 {
       font-size: 1.15rem;
@@ -46,9 +74,21 @@
       letter-spacing: 0.2px;
       padding: 0.5rem 0 1.5rem;
     }
+    .text-btn.btn {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 1.5rem 0.5rem 1.3rem;
+      svg {
+        width: 15px;
+        height: 15px;
+        margin-right: 0.5rem;
+      }
+    }
   }
 }
-
+body[data-state="dark"] .Menu .Profile .grid-wrapper .svg-wrapper svg {
+  fill: var(--button);
+}
 .MenuNav {
   padding-top: 3rem;
   padding-bottom: 2rem;
@@ -60,7 +100,7 @@
     opacity: 0;
     h3 {
       padding-left: 0.5rem;
-      color: var(--light-text);
+      color: var(--menu-text);
       font-size: 0.9rem;
     }
     svg {
@@ -80,7 +120,7 @@
 .SubMenu {
   width: 100%;
   background-color: var(--secondary);
-  color: white;
+  color: var(--button);
   display: grid;
   grid-template-areas: "menu btn optional";
   grid-template-columns: 1fr 1fr 1fr;
@@ -103,8 +143,10 @@
     position: absolute;
     transform: translate(0px, -25px);
   }
-  .menuIcon,
-  .menuBack {
+
+  .newUserIcon,
+  .menuBack,
+  .menuAddTask {
     grid-area: menu;
     justify-self: flex-start;
     align-self: center;
@@ -112,9 +154,8 @@
     height: 35px;
   }
 
-  .newUserIcon,
-  .menuDelete,
-  .menuAddTask {
+  .menuIcon,
+  .menuDelete {
     grid-area: optional;
     justify-self: flex-end;
     align-self: center;
@@ -126,7 +167,7 @@
 @media (min-width: 1000px) {
   .Menu {
     display: flex;
-    background-color: white;
+    background-color: var(--white);
     box-shadow: var(--card-shadow);
     .Profile {
       padding-top: 3rem;
@@ -139,7 +180,7 @@
 }
 
 .TopBar {
-  background-color: white;
+  background-color: var(--white);
   box-shadow: var(--card-shadow);
   height: 80px;
 }

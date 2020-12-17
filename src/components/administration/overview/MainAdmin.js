@@ -3,9 +3,7 @@ import UserList from "./UserList";
 import ViewProfile from "../viewProfile/ViewProfile";
 import FilterUsers from "../../navigation/FilterUsers";
 export default function MainAdmin(props) {
-  console.log("administration/MainAdmin.js || MainAdmin()");
-
-  console.log(props.chosenHours);
+  //console.log("administration/MainAdmin.js || MainAdmin()");
 
   return (
     <main className={window.innerWidth < 1000 ? "MainAdmin hide" : "MainAdmin"}>
@@ -19,6 +17,8 @@ export default function MainAdmin(props) {
         setId={props.setId}
         setViewingProfile={props.setViewingProfile}
         signedinUser={props.signedinUser}
+        isUSerProfile={props.isUSerProfile}
+        setisUSerProfile={props.setisUSerProfile}
         users={
           //If all filter options is in use:
           props.chosenHours !== (undefined && "") &&

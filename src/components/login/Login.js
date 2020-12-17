@@ -12,9 +12,14 @@ import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import { resetPasswordMail } from "../../jsModules/firebase/firebase";
 
 const Login = ({ history }) => {
-  console.log("login || Login.js | Login()");
+  //console.log("login || Login.js | Login()");
   const [error, setError] = useState([null]);
   const [resetEmail, setResetEmail] = useState("");
+  const { currentUser } = useContext(AuthContext);
+  let theme = localStorage.getItem("theme");
+  theme === "regular" || theme === "orange" || theme === "dark"
+    ? document.querySelector("body").setAttribute("data-state", theme)
+    : console.log("");
 
   const handleLogin = useCallback(
     async (e) => {
@@ -32,10 +37,8 @@ const Login = ({ history }) => {
     [history]
   );
 
-  const { currentUser } = useContext(AuthContext);
-
   if (currentUser) {
-    return <Redirect to="/administration" />;
+    return <Redirect to="/administration" exact />;
   }
 
   function questionClicked() {
@@ -62,7 +65,9 @@ const Login = ({ history }) => {
       document.querySelector(".forgot").classList.add("hide");
     }, 1000);
   }
-  console.log(resetEmail);
+  const close = () => {
+    document.querySelector(".forgot").classList.add("hide");
+  };
   return (
     <main className="login-wrapper">
       <div className="login">
@@ -78,7 +83,7 @@ const Login = ({ history }) => {
               </Grid>
               <Grid item>
                 <TextField
-                  id="email"
+                  //  id="email"
                   label="Email"
                   className="email"
                   name="email"
@@ -94,7 +99,13 @@ const Login = ({ history }) => {
                 <VpnKeyIcon />
               </Grid>
               <Grid item>
-                <TextField id="password" label="Password" className="password" name="password" type="password" />
+                <TextField
+                  //id="password"
+                  label="Password"
+                  className="password"
+                  name="password"
+                  type="password"
+                />
               </Grid>
             </Grid>
           </div>
@@ -123,7 +134,7 @@ const Login = ({ history }) => {
       <div className="forgot hide">
         <div className="forgot-wrapper">
           <TextField
-            id="forgotEmail"
+            //id="forgotEmail"
             label="Email"
             className="forgotEmail"
             name="forgot"
@@ -131,14 +142,23 @@ const Login = ({ history }) => {
             value={resetEmail}
             onChange={handleChange}
           />
-          <button
-            className="text-btn"
-            onClick={(e) => {
-              resetPasswordMail(resetEmail);
-              resetForm();
-            }}>
-            Reset password
-          </button>
+          <div className="button-wrapper">
+            <button
+              className="text-btn cancel"
+              onClick={(e) => {
+                close();
+              }}>
+              Cancel
+            </button>
+            <button
+              className="text-btn"
+              onClick={(e) => {
+                resetPasswordMail(resetEmail);
+                resetForm();
+              }}>
+              Reset password
+            </button>
+          </div>
           <div className="resetSent hide">
             <CheckRoundedIcon />
           </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import Message from "./Message";
 export default function MessageBoard(props) {
-  console.log("chat || MessageBoard.js | MessageBoard()");
+  //console.log("chat || MessageBoard.js | MessageBoard()");
 
   const mappedMessages = props.messages
     ? props.messages.map((message) => (
@@ -14,6 +14,11 @@ export default function MessageBoard(props) {
           setEditMessage={props.setEditMessage}
           checked={props.checked}
           setChecked={props.setChecked}
+          setSystemPart={props.setSystemPart}
+          systemPart={props.systemPart}
+          messageToDelete={props.messageToDelete}
+          setMessageToDelete={props.setMessageToDelete}
+          messages={props.messages}
         />
       ))
     : [];

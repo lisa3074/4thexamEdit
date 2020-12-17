@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import Menu from "@material-ui/core/Menu";
-import { gsap } from "gsap";
 import MenuItem from "@material-ui/core/MenuItem";
 import ArrowDropDownRoundedIcon from "@material-ui/icons/ArrowDropDownRounded";
-import { done, doing, todo, barrier, navigate } from "./modules/mobNavigation";
-import { filterStay, staggeringCards } from "../../jsModules/displayFunctions/staggeringCards";
+import { navigate } from "./modules/mobNavigation";
+import {
+  GSAP_sortVisibleMobileTasks,
+  GSAP_stagCards,
+  GSAP_sortInvisibleMobile,
+  GSAP_sortInvisibleFilterMobile,
+} from "../../jsModules/displayFunctions/gsap";
 import PauseRoundedIcon from "@material-ui/icons/PauseRounded";
 import CachedRoundedIcon from "@material-ui/icons/CachedRounded";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
@@ -15,25 +19,24 @@ import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import { searchUsers, closeSearch } from "../../jsModules/displayFunctions/subMenuNavigation";
 
 export default function PlannerNav(props) {
-  console.log("planner || PlannerNav.js | PlannerNav()");
+  //console.log("planner || PlannerNav.js | PlannerNav()");
   const [anchorEl, setAnchorEl] = useState(null);
   const [list, setList] = useState("To do");
-  console.log(props.list);
+
   const handleClick = (event) => {
-    console.log("planner || PlannerNav.js | handleClick()");
+    //console.log("planner || PlannerNav.js | handleClick()");
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = (e) => {
-    console.log("planner || PlannerNav.js | handleClose()");
+    //console.log("planner || PlannerNav.js | handleClose()");
     setAnchorEl(null);
     e.target.textContent === "" ? setList(list) : setList(e.target.textContent);
     closeSearch(props.tool);
     props.setChosenCategory("");
     props.setChosenEmployee("");
-    gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
-    gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, top: -80 });
-    staggeringCards(props.list);
+    GSAP_sortInvisibleMobile();
+    GSAP_stagCards(props.list);
   };
   const move = {
     top: "44px",
@@ -55,22 +58,22 @@ export default function PlannerNav(props) {
         </div>
         <div>
           <div
-            className="close-wrapper"
+            className="search-wrapper"
             onClick={() => {
               searchUsers(props.tool);
-              filterStay();
+              GSAP_sortVisibleMobileTasks();
             }}>
             <SearchRoundedIcon />
           </div>
           <div
-            className="search-wrapper hide"
+            className="close-wrapper hide"
             onClick={() => {
               closeSearch(props.tool);
               props.setChosenCategory("");
               props.setChosenEmployee("");
-              gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
-              gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, top: -80 });
-              staggeringCards(props.list);
+              GSAP_sortInvisibleMobile();
+              GSAP_sortInvisibleFilterMobile();
+              GSAP_stagCards(props.list);
             }}>
             <CloseRoundedIcon />
           </div>

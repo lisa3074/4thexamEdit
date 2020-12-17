@@ -1,7 +1,7 @@
 import React from "react";
-import { person, work, privat, forwards } from "../../../jsModules/displayFunctions/formNavigation";
+import { person, work, privat } from "../../../jsModules/displayFunctions/formNavigation";
 export default function FormPath() {
-  console.log("administration/form || FormPath.js | FormPath()");
+  //console.log("administration/form || FormPath.js | FormPath()");
   const $ = document.querySelector.bind(document);
 
   return (
@@ -11,8 +11,7 @@ export default function FormPath() {
         <div
           className="subject"
           onClick={() => {
-            // person();
-            forwards();
+            person();
           }}>
           <div className="float-btn one">
             <h3>1</h3>
@@ -25,8 +24,7 @@ export default function FormPath() {
         <div
           className="subject"
           onClick={() => {
-            //work();
-            forwards();
+            work();
           }}>
           <div className="float-btn two">
             <h3>2</h3>
@@ -38,8 +36,7 @@ export default function FormPath() {
         <div
           className="subject"
           onClick={() => {
-            // privat();
-            forwards();
+            privat();
           }}>
           <div className="float-btn three">
             <h3>3</h3>

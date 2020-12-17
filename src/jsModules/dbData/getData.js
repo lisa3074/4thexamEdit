@@ -6,7 +6,7 @@ db.settings({ timestampsInSnapshots: true });
 // getting data live
 // ADMIN-SYS
 export function getUsers(callback) {
-  console.log("jsModules || getData.js | getUsers()");
+  //console.log("jsModules || getData.js | getUsers()");
   const unsubsribe = db
     .collection("users")
     .orderBy("name")
@@ -15,14 +15,14 @@ export function getUsers(callback) {
         id: doc.id,
         ...doc.data(),
       }));
-      console.log(users);
+      //  console.log(users);
 
       callback(users);
     });
   return () => unsubsribe();
 }
 export function getSignedinUser(callback, email) {
-  console.log("jsModules || getData.js | getSignedinUser()");
+  //console.log("jsModules || getData.js | getSignedinUser()");
   const unsubsribe = db
     .collection("users")
     .where("email", "==", email)
@@ -31,7 +31,7 @@ export function getSignedinUser(callback, email) {
         id: doc.id,
         ...doc.data(),
       }));
-      console.log(SignedIn);
+      //  console.log(SignedIn);
 
       callback(SignedIn);
     });
@@ -40,7 +40,7 @@ export function getSignedinUser(callback, email) {
 
 //PLANNER
 export function getCards(callback) {
-  console.log("jsModules || getData.js | getCards()");
+  //console.log("jsModules || getData.js | getCards()");
   const unsubsribe = db
     .collection("planner")
     .orderBy("due")
@@ -49,7 +49,7 @@ export function getCards(callback) {
         id: doc.id,
         ...doc.data(),
       }));
-      console.log(cards);
+      //   console.log(cards);
 
       callback(cards);
     });
@@ -57,7 +57,7 @@ export function getCards(callback) {
 }
 //CHAT
 export function getMessages(callback) {
-  console.log("jsModules || getData.js | getMessages()");
+  //console.log("jsModules || getData.js | getMessages()");
   const unsubsribe = db
     .collection("chat")
     .orderBy("date", "asc")
@@ -66,7 +66,7 @@ export function getMessages(callback) {
         id: doc.id,
         ...doc.data(),
       }));
-      console.log(messages);
+      //   console.log(messages);
 
       callback(messages);
     });

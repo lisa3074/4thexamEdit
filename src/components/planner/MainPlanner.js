@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import FilterTasks from "./FilterTasks";
 import PlannerList from "./PlannerList";
 import PlannerNav from "./PlannerNav";
@@ -23,10 +23,9 @@ export default function MainPlanner({
   setList,
   list,
 }) {
-  console.log("planner || MainPlanner.js | MainPlanner()");
+  //console.log("planner || MainPlanner.js | MainPlanner()");
 
   const [dropList, setDropList] = React.useState("");
-  console.log(chosenEmployee, chosenCategory);
 
   function getFilteredCards(PlannerList) {
     return chosenEmployee !== "" && chosenCategory !== ""

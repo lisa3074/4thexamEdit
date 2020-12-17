@@ -4,7 +4,7 @@ import SendRoundedIcon from "@material-ui/icons/SendRounded";
 import { postMessage } from "../../jsModules/dbData/postData";
 
 export default function NewMessage(props) {
-  console.log("chat || NewMessage.js | NewMessage()");
+  //console.log("chat || NewMessage.js | NewMessage()");
 
   const { signedinUser, message, setMessage, checked, setChecked } = props;
   function handleMessage(e) {
@@ -12,7 +12,7 @@ export default function NewMessage(props) {
   }
   function submitMessage(e) {
     e.preventDefault();
-    if (message !== ("" || undefined)) {
+    if (message) {
       const user = signedinUser ? signedinUser[0].name : "unknown";
       postMessage(message, user);
       setMessage("");
@@ -29,12 +29,16 @@ export default function NewMessage(props) {
     setChecked(event.target.checked);
   };
   function doNothing() {
-    console.log("do nothing");
+    return;
   }
+
   function handleOnKeyDown(e) {
-    console.log("key");
-    if (e.keyCode === 13) {
-      submitMessage(e);
+    if (message) {
+      if (e.keyCode === 13) {
+        submitMessage(e);
+      }
+    } else if (e.keyCode === 13) {
+      e.preventDefault();
     }
   }
 

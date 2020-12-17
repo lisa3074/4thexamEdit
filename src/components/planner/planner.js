@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import MainPlanner from "./MainPlanner";
 import NewTask from "./NewTask";
 import { scroll } from "./modules/scroll";
@@ -6,9 +6,7 @@ import { postCard } from "../../jsModules/dbData/postData";
 import { deleteACard } from "../../jsModules/dbData/deleteData";
 import { editACard, dragACard } from "../../jsModules/dbData/editData";
 import AddIcon from "@material-ui/icons/Add";
-import { gsap } from "gsap";
 import "../../sass/scss/planner/style.scss";
-
 import "../../sass/scss/planner/newTask.scss";
 import "../../sass/scss/planner/form.scss";
 import "../../sass/scss/planner/list.scss";
@@ -16,25 +14,23 @@ import "../../sass/scss/planner/edit.scss";
 import "../../sass/scss/planner/cards.scss";
 import "../../sass/scss/planner/animations.scss";
 import "../../sass/scss/planner/navigation.scss";
-import { staggeringCardsDesktop, staggeringCards } from "../../jsModules/displayFunctions/staggeringCards";
+import { GSAP_stagCardsDesktop, GSAP_stagCards, GSAP_sortInvisibleMobile } from "../../jsModules/displayFunctions/gsap";
 import { addTask } from "./modules/mobNavigation";
 
 export default function Planner(props) {
-  console.log("planner || Planner.js | Planner()");
+  //console.log("planner || Planner.js | Planner()");
   const { cards } = props;
-  /*  const [anchorEl, setAnchorEl] = useState(null); */
 
   if (window.innerWidth < 1000) {
-    gsap.to(".FilterTasks", { duration: 0.5, top: -80 });
-    gsap.to(".relativeContainer", { delay: 0.2, duration: 0.3, top: -80 });
+    GSAP_sortInvisibleMobile();
   }
 
   function showCards() {
     setTimeout(() => {
       if (window.innerWidth > 1000) {
-        staggeringCardsDesktop();
+        GSAP_stagCardsDesktop();
       } else {
-        staggeringCards();
+        GSAP_stagCards();
       }
     }, 500);
   }
@@ -42,28 +38,28 @@ export default function Planner(props) {
   scroll();
 
   async function onFormSubmit(data) {
-    console.log("planner || Planner.js | onFormSubmit()");
+    //console.log("planner || Planner.js | onFormSubmit()");
     showCards();
     postCard(data, cards);
   }
   async function deleteCard(id) {
-    console.log("planne || Planner.js | deleteCard()");
+    //console.log("planne || Planner.js | deleteCard()");
     showCards();
     deleteACard(id);
   }
 
   async function moveCard(payload, id) {
-    console.log("planner || Planner.js | moveCard()");
+    //console.log("planner || Planner.js | moveCard()");
     showCards();
     dragACard(payload, id);
   }
   async function dragCard(payload, id) {
-    console.log("planner || Planner.js | dragCard()");
+    //console.log("planner || Planner.js | dragCard()");
     showCards();
     dragACard(payload, id);
   }
   async function editCard(payload) {
-    console.log("planner || Planner.js | editCard()");
+    //console.log("planner || Planner.js | editCard()");
     showCards();
     editACard(payload);
   }
@@ -79,7 +75,7 @@ export default function Planner(props) {
       document.querySelector(".loading-page").classList.add("hide");
     }, 10);
   }
-  console.log(props.chosenEmployee);
+
   return (
     <main className="Planner hide" data-state="chosen">
       <section className="planner-wrapper">

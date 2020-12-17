@@ -1,10 +1,19 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
+import $ from "jquery";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 export default function PrivateForm(props) {
-  console.log("administration/form || PrivateForm.js | PrivateForm()");
+  //console.log("administration/form || PrivateForm.js | PrivateForm()");
 
   function findFileName(e) {
+    const file = $("#pdf-upload").get(0).files[0];
+    if (file) {
+      const readerFile = new FileReader();
+      readerFile.readAsDataURL(file);
+      setTimeout(() => {
+        props.setContractFile(file);
+      }, 100);
+    }
     setTimeout(() => {
       const lastBackSlash = e.target.value.lastIndexOf("\\") + 1;
       const fileName = e.target.value.substring(lastBackSlash, 50);
@@ -49,7 +58,9 @@ export default function PrivateForm(props) {
           className="cpr"
           label="CPR or equalient"
           required
+          type="text"
           value={props.cpr}
+          inputProps={{ maxLength: 16 }}
           onChange={handleCprChange}
         />
         <p className="error hide">Fill out a cpr number or something equalient if the employee is not Danish</p>
@@ -83,10 +94,13 @@ export default function PrivateForm(props) {
           type="number"
           className="postal"
           label="Postal code"
+          onInput={(e) => {
+            e.target.value = Math.max(0, parseInt(e.target.value)).toString().slice(0, 8);
+          }}
           value={props.postal}
           onChange={handlePostalChange}
         />
-        <p className="error hide">Fill in the employee's postal code</p>
+        <p className="error hide">Fill in the employee's postal code. Use only numbers!</p>
       </div>
       <div className="input-wrapper password-safety">
         <TextField
@@ -118,9 +132,13 @@ export default function PrivateForm(props) {
             <button className="upload-image float-btn">
               <PublishRoundedIcon />
             </button>
-            <p>{props.contract ? props.contract : "Upload contract*"}</p>
+            <p>
+              {props.contract
+                ? `A contract for ${props.name} has been stored. Click here if you want to replace the contract.`
+                : "Upload contract*"}
+            </p>
           </div>
-          <input id="pdf-upload" type="file" name="image" onChange={findFileName} />
+          <input id="pdf-upload" type="file" name="image" accept=".pdf,.doc,.docx,.jpeg,.png" onChange={findFileName} />
         </label>
         <p className="error hide">Upload a contract (.pdf, .jpg or .png)</p>
       </div>

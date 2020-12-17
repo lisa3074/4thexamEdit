@@ -1,15 +1,14 @@
 import React from "react";
 
 export default function Work(props) {
-  console.log("administration/viewProfile || ViewProfile.js | Work()");
+  //console.log("administration/viewProfile || ViewProfile.js | Work()");
   let today;
   props.startDate !== undefined ? (today = new Date(props.startDate)) : (today = new Date());
   const dd = String(today.getDate()).padStart(2, "0");
   const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
   const yyyy = today.getFullYear();
-  console.log(`${yyyy}-${mm}-${dd}`);
   const startDate = `${yyyy}-${mm}-${dd}`;
-  console.log(new Date().getTime());
+
   return (
     <article className="Work userCard">
       <h2 className="heading">WORK</h2>

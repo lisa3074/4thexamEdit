@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Form from "./Form";
 import FormPath from "./FormPath";
-import { gsap } from "gsap";
 
 export default function UserForm(props) {
-  console.log("administration/form || UserForm.js | UserForm()");
+  //console.log("administration/form || UserForm.js | UserForm()");
 
   return (
     <section className="UserForm hide ">

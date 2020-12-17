@@ -5,39 +5,32 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import {
-  filterStay,
-  staggeringProfilesTo,
-  staggeringProfilesFilter,
-  hideCards,
-} from "../../jsModules/displayFunctions/staggeringCards";
-import gsap from "gsap/gsap-core";
+import { GSAP_sortVisibleMobileUsers, GSAP_stagProfilesSort } from "../../jsModules/displayFunctions/gsap";
 
 export default function FilterUsers(props) {
-  console.log("navigation || FilterUsers.js | FilterUsers()");
-  console.log(props.chosenHours);
+  //console.log("navigation || FilterUsers.js | FilterUsers()");
 
   const handleDivisionChange = (e) => {
     const value = e.target.value === "All" ? "" : e.target.value;
     props.setChosenDivision(value);
     setTimeout(() => {
-      staggeringProfilesFilter();
-      filterStay();
+      GSAP_stagProfilesSort();
+      GSAP_sortVisibleMobileUsers();
     }, 10);
   };
   const handleHoursChange = (e) => {
     const value = e.target.value === "All" ? "" : e.target.value;
     props.setChosenHours(value);
     setTimeout(() => {
-      staggeringProfilesFilter();
-      filterStay();
+      GSAP_stagProfilesSort();
+      GSAP_sortVisibleMobileUsers();
     }, 1);
   };
   const handleSearch = (e) => {
     props.setSearch(e.target.value);
     setTimeout(() => {
-      staggeringProfilesFilter();
-      filterStay();
+      GSAP_stagProfilesSort();
+      GSAP_sortVisibleMobileUsers();
     }, 1);
   };
   const divisions = [

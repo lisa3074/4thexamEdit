@@ -5,32 +5,40 @@ import ChatBubbleRoundedIcon from "@material-ui/icons/ChatBubbleRounded";
 import PersonAddRoundedIcon from "@material-ui/icons/PersonAddRounded";
 import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
-import Autocomplete from "@material-ui/lab/Autocomplete";
-
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import { addTask } from "../planner/modules/mobNavigation";
-import ChatNav from "../chat/ChatNav";
 import { chat, scrollToBottom, newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { fetchAll } from "../../jsModules/displayFunctions/subMenuNavigation";
-import { gsap } from "gsap";
 import {
-  hideViewProfile,
-  showChat,
-  staggeringCardsDesktop,
-  staggeringProfilesFilter,
-} from "../../jsModules/displayFunctions/staggeringCards";
-export default function TopBar(props) {
-  console.log("navigation || TopBar.js | TopBar()");
+  GSAP_addOpacity,
+  GSAP_opacity0To1MessageContainer,
+  GSAP_removeOpacity,
+  GSAP_stagCardsDesktop,
+  GSAP_stagProfilesSort,
+} from "../../jsModules/displayFunctions/gsap";
+import { setUpForm } from "../../jsModules/displayFunctions/displayEditForm";
+import "date-fns";
+import DateFnsUtils from "@date-io/date-fns";
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
+import Grid from "@material-ui/core/Grid";
 
-  const handleChanges = (module) => {
+export default function TopBar(props) {
+  //console.log("navigation || TopBar.js | TopBar()");
+
+  const handleChanges = (module, e) => {
     document.querySelectorAll(".UserCard, .panelMargin").forEach((card) => {
       card.style.opacity = "0";
     });
-    module === "admin" ? staggeringProfilesFilter() : staggeringCardsDesktop();
+    module === "admin" ? GSAP_stagProfilesSort() : GSAP_stagCardsDesktop();
   };
 
   const handleSearch = (e) => {
     props.setSearch(e.target.value);
-    staggeringProfilesFilter();
+    GSAP_stagProfilesSort();
   };
 
   const categories = [
@@ -59,43 +67,140 @@ export default function TopBar(props) {
     "Executive",
   ];
   const workHours = ["Full time", "Part time", "Hourly"];
+  const mappedDivision = divisions.map((division) => (
+    <MenuItem value={division} key={division}>
+      {division}
+    </MenuItem>
+  ));
+  const mappedHours = workHours.map((hours) => (
+    <MenuItem value={hours} key={hours}>
+      {hours}
+    </MenuItem>
+  ));
+
+  const mappedUsers = props.users.map((user) => (
+    <MenuItem value={user.name} key={user.id}>
+      {user.name}
+    </MenuItem>
+  ));
+  const mappedCategories = categories.map((category) => (
+    <MenuItem value={category.category} key={category.category}>
+      {category.category}
+    </MenuItem>
+  ));
+  const dateChanged = (e) => {
+    props.setSortDate(new Date(e));
+
+    scrollToBottom();
+  };
+
+  const handleChatSearch = (e) => {
+    props.setChatSearch(e.target.value);
+  };
+  const chooseSvg = (e) => {
+    document.querySelectorAll(".TopBar .chat-top .svg-wrapper").forEach((svg) => {
+      svg.classList.remove("hide");
+    });
+    e.target.value !== ""
+      ? document.querySelector(".TopBar .chat-top .svg-wrapper.search").classList.add("hide")
+      : document.querySelector(".TopBar .chat-top .svg-wrapper.close").classList.add("hide");
+  };
+
+  const resetSearch = (e) => {
+    document.querySelector(".TopBar .chat-top .svg-wrapper.close").classList.add("hide");
+    document.querySelector(".TopBar .chat-top .svg-wrapper.search").classList.remove("hide");
+
+    document.querySelector("#root > section > section > nav.TopBar > div.chat-top > div > form").reset();
+    props.setChatSearch("");
+  };
+
+  function clearForm() {
+    //console.log("navigation || SubMenu.js | clearForm()");
+    document.querySelector("form.FilterUsers").reset();
+    const divisionSpan = document.querySelector("#mui-component-select-Division > span");
+    const division = document.querySelector("#mui-component-select-Division");
+    const hoursSpan = document.querySelector("#mui-component-select-Hours > span");
+    const hours = document.querySelector("#mui-component-select-Hours");
+    const employeeSpan = document.querySelector("#mui-component-select-Employees > span");
+    const employee = document.querySelector("#mui-component-select-Employees");
+    const categorySpan = document.querySelector("#mui-component-select-category > span");
+    const category = document.querySelector("#mui-component-select-category");
+    if (!divisionSpan) {
+      division.textContent = "All";
+    }
+    if (!hoursSpan) {
+      hours.textContent = "All";
+    }
+    if (!employeeSpan) {
+      employee.textContent = "All";
+    }
+    if (!categorySpan) {
+      category.textContent = "All";
+    }
+  }
+
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, "0");
+  const mm = String(today.getMonth() + 1).padStart(2, "0");
+  const yyyy = today.getFullYear();
+  /*   const todaysDate = `${yyyy}-${mm}-${dd}`; */
+
+  const newUserAcces = props.level === "Administrator" ? <AddRoundedIcon className="add-task" onClick={addTask} /> : "";
+
   return (
     <nav className="TopBar" data-state="">
-      <div className="admin-top">
+      <form className="admin-top">
         <div className={props.level === "Administrator" ? "grid-wrapper" : "grid-wrapper noNewUser"}>
           <h2 className="sorted">Sorted by</h2>
           <div className="filter-wrapper">
-            <Autocomplete
-              name="Division"
-              className="division"
-              label="Division"
-              required
-              disabled={props.viewingProfile ? true : false}
-              options={divisions}
-              getOptionLabel={(option) => (option ? option : "")}
-              getOptionSelected={(option, value) => option === value}
-              onChange={(option) => {
-                handleChanges("admin");
-                props.setChosenDivision(option.target.innerText === undefined ? "" : option.target.innerText);
-              }}
-              renderInput={(params) => <TextField {...params} variant="standard" label="Division" placeholder="" />}
-            />
+            <FormControl className="division">
+              <InputLabel id="select-division-top">Division</InputLabel>
+              <Select
+                defaultValue=""
+                labelId="select-division-top"
+                disabled={props.viewingProfile ? true : false}
+                name="Division"
+                label="division"
+                onChange={(e) => {
+                  props.setChosenDivision(e.target.value === (undefined || "All") ? "" : e.target.value);
+                  handleChanges("admin", e);
+                }}
+                value={props.chosenDivision}>
+                <MenuItem value="All" key="All">
+                  All
+                </MenuItem>
+                {mappedDivision}
+              </Select>
+            </FormControl>
 
-            <Autocomplete
-              name="Work hours"
-              className="hours"
-              label="Work hours"
-              required
-              disabled={props.viewingProfile ? true : false}
-              options={workHours}
-              getOptionLabel={(option) => (option ? option : "")}
-              getOptionSelected={(option, value) => option === value}
-              onChange={(option) => {
-                handleChanges("admin");
-                props.setChosenHours(option.target.innerText === undefined ? "" : option.target.innerText);
-              }}
-              renderInput={(params) => <TextField {...params} variant="standard" label="Work hours" placeholder="" />}
-            />
+            <FormControl className="Work hours">
+              <InputLabel id="select-hours-top">Work hours</InputLabel>
+              <Select
+                labelId="select-hours-top"
+                name="Hours"
+                label="hours"
+                disabled={props.viewingProfile ? true : false}
+                onChange={(e) => {
+                  props.setChosenHours(e.target.value === (undefined || "All") ? "" : e.target.value);
+                  handleChanges("admin", e);
+                }}
+                value={props.chosenHours}>
+                <MenuItem value="All" key="All">
+                  All
+                </MenuItem>
+                {mappedHours}
+              </Select>
+            </FormControl>
+            <div
+              className="reset-wrapper hide"
+              onClick={() => {
+                props.setChosenDivision("");
+                props.setChosenHours("");
+                clearForm();
+                GSAP_stagProfilesSort();
+              }}>
+              <ClearRoundedIcon />
+            </div>
           </div>
           <div className="input-wrapper">
             <TextField
@@ -114,8 +219,9 @@ export default function TopBar(props) {
               newUser();
               props.setTool("admin");
               props.setViewingProfile(false);
-              gsap.to(".UserForm", { duration: 0.5, opacity: 1 });
-              hideViewProfile();
+              GSAP_removeOpacity(".UserForm");
+              GSAP_addOpacity(".userCard, .ProfileNav");
+              setUpForm();
             }}
           />
           <div
@@ -123,56 +229,73 @@ export default function TopBar(props) {
             onClick={() => {
               chat();
               scrollToBottom();
-              gsap.from(".message-container", { duration: 1, opacity: 0 });
-              gsap.to(".message-container", { duration: 1, opacity: 1 });
-              hideViewProfile();
+              GSAP_opacity0To1MessageContainer();
+              GSAP_addOpacity(".userCard, .ProfileNav");
               props.setViewingProfile(false);
             }}>
             <ChatBubbleRoundedIcon />
           </div>
         </div>
-      </div>
+      </form>
       <div className="planner-top hide">
         <div className="grid-wrapper">
           <h2 className="sorted">Sorted by</h2>
           <div className="filter-wrapper">
-            <Autocomplete
-              className="category"
-              label="Category"
-              name="Category"
-              options={categories}
-              getOptionLabel={(option) => (option.category ? option.category : "")}
-              getOptionSelected={(option, value) => option.category === value.category}
-              filterSelectedOptions
-              onChange={(option) => {
-                handleChanges("planner");
-                props.setChosenCategory(option.target.innerText === undefined ? "" : option.target.innerText);
-              }}
-              renderInput={(params) => <TextField {...params} variant="standard" label="Category" placeholder="" />}
-            />
+            <FormControl className="category">
+              <InputLabel id="select-category-top">Category</InputLabel>
+              <Select
+                value={categories.category}
+                labelId="select-category-top"
+                name="category"
+                label="category"
+                onChange={(e) => {
+                  handleChanges("planner");
+                  props.setChosenCategory(e.target.value === ("All" || undefined) ? "" : e.target.value);
+                }}
+                value={props.chosenCategory}>
+                <MenuItem value="All" key="All">
+                  All
+                </MenuItem>
+                {mappedCategories}
+              </Select>
+            </FormControl>
 
-            <Autocomplete
-              className="select employee"
-              options={props.users}
-              getOptionLabel={(option) => (option.name ? option.name : "")}
-              getOptionSelected={(option, value) => option === value}
-              filterSelectedOptions
-              onChange={(option) => {
-                handleChanges("planner");
-                props.setChosenEmployee(option.target.innerText === undefined ? "" : option.target.innerText);
-              }}
-              renderInput={(params) => <TextField {...params} variant="standard" label="Employee" placeholder="" />}
-            />
+            <FormControl className="employee">
+              <InputLabel id="select-employees-top">Employees</InputLabel>
+              <Select
+                labelId="select-employees-top"
+                name="Employees"
+                label="Employees"
+                onChange={(e) => {
+                  handleChanges("planner");
+                  props.setChosenEmployee(e.target.value === ("All" || undefined) ? "" : e.target.value);
+                }}
+                value={props.chosenEmployee}>
+                <MenuItem value="All" key="All">
+                  All
+                </MenuItem>
+                {mappedUsers}
+              </Select>
+            </FormControl>
+            <div
+              className="reset-wrapper-planner hide"
+              onClick={() => {
+                props.setChosenCategory("");
+                props.setChosenEmployee("");
+                clearForm();
+                GSAP_stagCardsDesktop();
+              }}>
+              <ClearRoundedIcon />
+            </div>
           </div>
           <div className="input-wrapper"></div>
 
-          <AddRoundedIcon className="add-task" onClick={addTask} />
+          {newUserAcces}
           <div
             className="float-btn"
             onClick={() => {
               chat();
               scrollToBottom();
-              showChat();
             }}>
             <ChatBubbleRoundedIcon />
           </div>
@@ -180,17 +303,77 @@ export default function TopBar(props) {
       </div>
       <div className="chat-top hide">
         <div className="grid-wrapper">
-          <div className="filter-wrapper">
-            <ChatNav setSortDate={props.setSortDate} sortDate={props.sortDate} />
-          </div>
+          <h2>Sorted by</h2>
 
+          <form
+            className="search-wrapper"
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}>
+            <TextField
+              name="search messages"
+              className="searchMessages"
+              label=""
+              placeholder="Search"
+              onChange={(e) => {
+                handleChatSearch(e);
+                chooseSvg(e);
+              }}
+              InputLabelProps={{
+                shrink: false,
+              }}
+            />
+            <div className="svg-wrapper search search-icon" onClick={(e) => {}}>
+              <SearchRoundedIcon />
+            </div>
+            <div
+              className="svg-wrapper close search-icon hide"
+              onClick={(e) => {
+                resetSearch(e);
+              }}>
+              <ClearRoundedIcon />
+            </div>
+          </form>
+          <form
+            className="date-wrapper"
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Grid container justify="space-around">
+                <KeyboardDatePicker
+                  disableToolbar
+                  variant="inline"
+                  format="dd/MM/yyyy"
+                  margin="none"
+                  value={props.date}
+                  className="date"
+                  label=""
+                  onChange={dateChanged}
+                  name="date"
+                  autoOk={true}
+                  error={false}
+                  helperText={null}
+                  KeyboardButtonProps={{
+                    "aria-label": "change date",
+                  }}
+                  InputLabelProps={{
+                    shrink: false,
+                  }}
+                  maxDate={new Date()}
+                />
+              </Grid>
+            </MuiPickersUtilsProvider>
+          </form>
           <div
             className="float-btn all"
             onClick={() => {
               props.setSortDate();
+              document
+                .querySelector("#root > section > section > nav.TopBar > div.chat-top > div > form.date-wrapper")
+                .reset();
               scrollToBottom();
               fetchAll();
-              showChat();
             }}>
             <AllInclusiveIcon />
           </div>

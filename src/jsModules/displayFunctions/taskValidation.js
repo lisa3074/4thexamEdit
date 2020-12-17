@@ -25,10 +25,8 @@ export function taskValidation() {
 
 export function editTaskValidation() {
   const $ = document.querySelector.bind(document);
-  console.log("validate");
 
   if ($(".editContainer .title input").value === "") {
-    console.log("title");
     $(".editContainer form > div:nth-child(1) > p").classList.remove("hide");
   } else {
     $(".editContainer form > div:nth-child(1) > p").classList.add("hide");

@@ -8,18 +8,15 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Tooltip from "@material-ui/core/Tooltip";
-import { gsap } from "gsap";
+import { GSAP_opacity0To1NamePopup } from "../../jsModules/displayFunctions/gsap";
 
 export default function Card(props) {
-  console.log("planner || Card.js | Card()");
+  //console.log("planner || Card.js | Card()");
   const [list, setList] = useState("");
   const listChanged = (e) => {
     setList(e.target.value);
     onClickMove(e.target.value);
   };
-
-  console.log(props);
-  console.log(props.chosenEmployee);
 
   const cardDragged = (e, id) => {
     e.preventDefault();
@@ -46,20 +43,19 @@ export default function Card(props) {
   };
 
   const mappedAssignedImg = props.assignedTo.map((user) => (
-    <Tooltip title={user.name + " / " + user.position} key={user.id}>
+    <Tooltip title={user.name + " / " + user.position} key={user.id + user.name}>
       <div>
         <img src={user.image} alt={user.name} />
       </div>
     </Tooltip>
   ));
-  const mappedNames = props.assignedTo.map((user) => <p key={user.id}>{user.name}</p>);
+  const mappedNames = props.assignedTo.map((user) => <p key={user.name + user.id}>{user.name}</p>);
 
   function showNames(id) {
     if (window.innerWidth < 1000) {
       if (document.querySelector(".a" + props.id + ".mui-panel.bigger")) {
         document.querySelector(".a" + id + ".name-popup").classList.toggle("hide");
-        gsap.from(".name-popup", { duration: 0.5, opacity: 0 });
-        gsap.to(".name-popup", { duration: 0.5, opacity: 1 });
+        GSAP_opacity0To1NamePopup();
       } else {
         clickOnCard();
         document.querySelectorAll(".name-popup").forEach((popup) => {
@@ -74,6 +70,7 @@ export default function Card(props) {
   return (
     <Panel
       className={"panelMargin smaller a" + props.id}
+      key={props.id}
       data-state="hidden"
       draggable
       onDragEnd={(e) => {

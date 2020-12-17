@@ -2,9 +2,8 @@ import React from "react";
 import Card from "./Card";
 
 export default function List(props) {
-  console.log("planner || List.js | List()");
+  //console.log("planner || List.js | List()");
 
-  console.log(props.cards);
   const mappedCards = props.cards.map((card) => (
     <Card
       key={card.id}
@@ -23,7 +22,7 @@ export default function List(props) {
   ));
 
   function onDragOver(e) {
-    console.log("planner || List.js | onDragOver()");
+    //console.log("planner || List.js | onDragOver()");
     e.preventDefault();
   }
 
@@ -37,7 +36,9 @@ export default function List(props) {
       }}
       onDragOver={(e) => onDragOver(e)}>
       <div className={props.header}>
-        <h1 className="theList mui--text-display2">{props.header}</h1>
+        <h1 className="theList mui--text-display2 float-btn">
+          {props.header === "In progress" ? "progress" : props.header}
+        </h1>
       </div>
 
       <ul>{mappedCards}</ul>

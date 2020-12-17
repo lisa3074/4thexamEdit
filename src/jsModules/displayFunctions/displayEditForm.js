@@ -1,7 +1,7 @@
 import placeholder from "../../images/placeholder.png";
 
 export function editUser() {
-  console.log("jsModules || displayEditForm.js | editUser()");
+  //console.log("jsModules || displayEditForm.js | editUser()");
   const $ = document.querySelector.bind(document);
   $(".UserForm").classList.remove("hide");
   $(".FormPath > h2").textContent = "Edit user";
@@ -14,7 +14,7 @@ export function editUser() {
   $(".previewImg").setAttribute("data-state", "edit");
 }
 export function clearUserForm() {
-  console.log("jsModules || displayEditForm.js | clearUserForm()");
+  //console.log("jsModules || displayEditForm.js | clearUserForm()");
   const $ = document.querySelector.bind(document);
   $(".FormPath > h2").textContent = "Add user";
 
@@ -34,7 +34,7 @@ export function clearUserForm() {
 }
 
 export function newUserResetForm() {
-  console.log("jsModules || displayEditForm.js | newUserResetForm()");
+  //console.log("jsModules || displayEditForm.js | newUserResetForm()");
   const $ = document.querySelector.bind(document);
   setTimeout(() => {
     $(".ViewProfile").classList.add("hide");
@@ -45,7 +45,7 @@ export function newUserResetForm() {
   }, 500);
 }
 export function editUserResetForm() {
-  console.log("jsModules || displayEditForm.js | editUserResetForm()");
+  //console.log("jsModules || displayEditForm.js | editUserResetForm()");
   const $ = document.querySelector.bind(document);
   $(".ViewProfile").classList.remove("hide");
   $(".UserList").classList.add("hide");

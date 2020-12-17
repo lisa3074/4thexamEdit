@@ -33,11 +33,11 @@
     position: relative;
     z-index: 2;
     h3 {
-      color: white;
+      color: var(--button);
       padding-right: 1rem;
     }
     svg {
-      fill: white;
+      fill: var(--button);
     }
   }
   .list-wrapper {

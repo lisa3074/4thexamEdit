@@ -1,5 +1,5 @@
 export function areYouSure() {
-  console.log("jsModules || mainMenuNavigation.js | areYouSure()");
+  //console.log("jsModules || mainMenuNavigation.js | areYouSure()");
   setTimeout(() => {
     document.querySelectorAll(".modal-wrapper").forEach((modal) => {
       modal.classList.remove("hide");
@@ -7,7 +7,7 @@ export function areYouSure() {
   }, 100);
 }
 export function notSure() {
-  console.log("jsModules || mainMenuNavigation.js | notSure()");
+  //console.log("jsModules || mainMenuNavigation.js | notSure()");
   document.querySelectorAll(".modal-wrapper").forEach((modal) => {
     modal.classList.add("hide");
   });
@@ -18,10 +18,26 @@ export function deleted() {
     modal.classList.add("hide");
   });
 }
+export function clearFormAdmin() {
+  //console.log("navigation || SubMenu.js | clearForm()");
+  document.querySelector("form.FilterUsers").reset();
+  const divisionSpan = document.querySelector("#mui-component-select-Division > span");
+  const division = document.querySelector("#mui-component-select-Division");
+  const hoursSpan = document.querySelector("#mui-component-select-Hours > span");
+  const hours = document.querySelector("#mui-component-select-Hours");
+  document.querySelector("#root > section > section > nav.TopBar > form").reset();
+
+  if (!divisionSpan) {
+    division.textContent = "All";
+  }
+  if (!hoursSpan) {
+    hours.textContent = "All";
+  }
+}
 
 export function administration() {
-  console.log("jsModules || mainMenuNavigation.js | administration()");
-  //document.querySelector(".UserCard").style.opacity = "0";
+  //console.log("jsModules || mainMenuNavigation.js | administration()");
+
   setTimeout(() => {
     document.querySelector(".MainAdmin").classList.remove("hide");
     document.querySelector(".SubMenu").classList.remove("hide");
@@ -39,8 +55,7 @@ export function administration() {
   }, 200);
 }
 export function planner() {
-  console.log("jsModules || mainMenuNavigation.js | planner()");
-  // document.querySelector(".UserCard").style.opacity = "0";
+  //console.log("jsModules || mainMenuNavigation.js | planner()");
   document.querySelector(".MainAdmin").classList.add("hide");
   document.querySelector(".admin-top").classList.add("hide");
   document.querySelector(".chat-top").classList.add("hide");
@@ -56,7 +71,7 @@ export function planner() {
   }
 }
 export function chat() {
-  console.log("jsModules || mainMenuNavigation.js | chat()");
+  //console.log("jsModules || mainMenuNavigation.js | chat()");
   document.querySelector(".admin-top").classList.add("hide");
   document.querySelector(".planner-top").classList.add("hide");
   document.querySelector(".Planner").classList.add("hide");
@@ -74,7 +89,7 @@ export function chat() {
   }
 }
 export function newUser() {
-  console.log("jsModules || mainMenuNavigation.js | newUser()");
+  //console.log("jsModules || mainMenuNavigation.js | newUser()");
   document.querySelector(".ViewProfile").classList.remove("hide");
   document.querySelector(".ViewProfile .UserForm").classList.remove("hide");
   document.querySelector(".MainAdmin").classList.remove("hide");
@@ -92,7 +107,7 @@ export function newUser() {
 }
 
 export function scrollToBottom() {
-  console.log("jsModules || mainMenuNavigation.js | scrollToBottom()");
+  //console.log("jsModules || mainMenuNavigation.js | scrollToBottom()");
   setTimeout(() => {
     const ul = document.querySelector(".MessageBoard ul");
     const list = document.querySelector(".messageList");

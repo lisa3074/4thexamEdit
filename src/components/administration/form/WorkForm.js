@@ -4,29 +4,28 @@ import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
+import "date-fns";
+import DateFnsUtils from "@date-io/date-fns";
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
+import Grid from "@material-ui/core/Grid";
 
 export default function WorkForm(props) {
-  console.log("administration/form || WorkForm.js | WorkForm()");
+  //console.log("administration/form || WorkForm.js | WorkForm()");
   const { user, level, hours, division } = props;
 
   const handleHoursChange = (e) => {
     props.setHours(e.target.value);
+    dataChosen(e.target.value, e.target.name);
     document.querySelector("fieldset.WorkForm > div:nth-child(4) > p").classList.add("hide");
-    e.target.value
-      ? document.querySelector(".UserForm .hours").setAttribute("data-chosen", true)
-      : document.querySelector(".UserForm .hours").setAttribute("data-chosen", false);
   };
   const handleLevelChange = (e) => {
     props.setLevel(e.target.value);
     document.querySelector("fieldset.WorkForm > div:nth-child(6) > p").classList.add("hide");
-
-    e.target.value
-      ? document.querySelector(".UserForm .level").setAttribute("data-chosen", true)
-      : document.querySelector(".UserForm .level").setAttribute("data-chosen", false);
+    dataChosen(e.target.value, e.target.name);
   };
 
   const handleDateChange = (e) => {
-    props.setDate(e.target.value);
+    props.setDate(e);
     document.querySelector("fieldset.WorkForm > div:nth-child(5) > p").classList.add("hide");
   };
 
@@ -36,10 +35,8 @@ export default function WorkForm(props) {
   };
   const handleDivisionChange = (e) => {
     props.setDivision(e.target.value);
+    dataChosen(e.target.value, e.target.name);
     document.querySelector("fieldset.WorkForm > div:nth-child(3) > p").classList.add("hide");
-    e.target.value
-      ? document.querySelector(".UserForm .division").setAttribute("data-chosen", true)
-      : document.querySelector(".UserForm .division").setAttribute("data-chosen", false);
   };
   const handleEmailChange = (e) => {
     props.setEmail(e.target.value);
@@ -48,6 +45,13 @@ export default function WorkForm(props) {
   const handleTelChange = (e) => {
     props.setTel(e.target.value);
     document.querySelector("fieldset.WorkForm > div:nth-child(8) > p").classList.add("hide");
+  };
+
+  const dataChosen = (value, element) => {
+    element = element.substring(element.lastIndexOf(" ") + 1, 50);
+    value
+      ? document.querySelector(".UserForm ." + element).setAttribute("data-chosen", true)
+      : document.querySelector(".UserForm ." + element).setAttribute("data-chosen", false);
   };
 
   const handleOnKeyDown = () => {
@@ -111,7 +115,6 @@ export default function WorkForm(props) {
             }}
             value={division}>
             {mappedDivisions}
-            {console.log(division)}
           </Select>
         </FormControl>
         <p className="error hide">Fill in a division</p>
@@ -135,20 +138,30 @@ export default function WorkForm(props) {
       </div>
 
       <div className="input-wrapper">
-        <TextField
-          required
-          onKeyDown={handleOnKeyDown}
-          className="startDate"
-          name="Start date"
-          id="date"
-          label="On board since"
-          type="date"
-          value={props.date}
-          onChange={handleDateChange}
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container justify="space-around">
+            <KeyboardDatePicker
+              onKeyDown={handleOnKeyDown}
+              required
+              disableToolbar
+              variant="inline"
+              format="dd/MM/yyyy"
+              margin="none"
+              value={props.date}
+              className="startDate"
+              label="On board since"
+              onChange={handleDateChange}
+              onFocus={handleDateChange}
+              name="Start date"
+              autoOk={true}
+              error={false}
+              helperText={null}
+              KeyboardButtonProps={{
+                "aria-label": "change date",
+              }}
+            />
+          </Grid>
+        </MuiPickersUtilsProvider>
         <p className="error hide">Fill in a start date</p>
       </div>
 
@@ -164,7 +177,6 @@ export default function WorkForm(props) {
             }}
             value={props.level}>
             {mappedLevel}
-            {console.log(props.level)}
           </Select>
         </FormControl>
         <p className="error hide">Fill in the employee's user level clearance for this system</p>

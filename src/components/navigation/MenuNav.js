@@ -8,40 +8,77 @@ import LockIcon from "@material-ui/icons/Lock";
 import { addTask } from "../planner/modules/mobNavigation";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
 import { firebaseConfig } from "../../jsModules/firebase/firebase";
-import { gsap } from "gsap";
 import {
   administration,
   newUser,
   planner,
   chat,
   scrollToBottom,
+  clearFormAdmin,
 } from "../../jsModules/displayFunctions/mainMenuNavigation";
 
 import {
-  hideCards,
-  hidePlanner,
-  hideChat,
-  staggeringCardsDesktop,
-  staggeringProfilesTo,
-  staggeringMenuNav,
-  hideViewProfile,
-} from "../../jsModules/displayFunctions/staggeringCards";
+  GSAP_addOpacity,
+  GSAP_stagCardsDesktop,
+  GSAP_stagProfilesMenuNav,
+  GSAP_stagMenuNav,
+  GSAP_removeOpacity,
+  GSAP_opacity0To1MessageContainer,
+} from "../../jsModules/displayFunctions/gsap";
+import { setUpForm } from "../../jsModules/displayFunctions/displayEditForm";
 
 export default function MenuNav(props) {
-  console.log("navigation || MenuNav.js | MenuNav()");
+  //console.log("navigation || MenuNav.js | MenuNav()");
   let innerWidth = props.innerWidth;
 
   function resetSearch() {
-    console.log("resetSearch");
+    //console.log("navigation || MenuNav.js | resetSearch()");
     props.setChosenCategory("");
     props.setChosenEmployee("");
     props.setChosenDivision("");
     props.setChosenHours("");
+    props.setSearch("");
     props.setisUSerProfile(false);
     props.setViewingProfile(false);
   }
 
-  staggeringMenuNav();
+  GSAP_stagMenuNav();
+
+  function clearFormPlanner() {
+    //console.log("navigation || SubMenu.js | clearFormPlanner()");
+    const categorySpan = document.querySelector("#mui-component-select-category > span");
+    const category = document.querySelector("#mui-component-select-category");
+    const employeeSpan = document.querySelector("#mui-component-select-Employees > span");
+    const employee = document.querySelector("#mui-component-select-Employees");
+    if (!categorySpan) {
+      category.textContent = "All";
+    }
+    if (!employeeSpan) {
+      employee.textContent = "All";
+    }
+  }
+
+  //if administrator
+  const newUserAcces =
+    props.level === "Administrator" ? (
+      <li
+        className="inset"
+        onClick={() => {
+          newUser();
+          GSAP_addOpacity(".panelMargin");
+          GSAP_removeOpacity(".UserForm");
+          props.setTool("admin");
+          props.setSystemPart("admin");
+          resetSearch();
+          GSAP_addOpacity(".UserCard, .userCard, .ProfileNav, .panelMargin");
+          setUpForm();
+        }}>
+        <PersonAddIcon />
+        <h3 className="new-user-link">New user</h3>
+      </li>
+    ) : (
+      <li></li>
+    );
 
   return (
     <div className="MenuNav">
@@ -51,56 +88,42 @@ export default function MenuNav(props) {
           onClick={() => {
             administration();
             props.setTool("admin");
+            props.setSystemPart("admin");
+
             resetSearch();
-            staggeringProfilesTo();
-            hidePlanner();
-            hideChat();
-            hideViewProfile();
+            GSAP_stagProfilesMenuNav();
+            GSAP_addOpacity(".panelMargin, .userCard, .ProfileNav");
+            clearFormAdmin();
           }}>
           <li>
             <PeopleIcon />
-            <h3 className="admin-link">Administration</h3>
+            <h3 className="admin-link">Profiles</h3>
           </li>
         </Link>
-        <li
-          className={props.level === "Administrator" ? "inset" : "inset hiddenFromUser"}
-          onClick={() => {
-            newUser();
-            hidePlanner();
-            gsap.to(".UserForm", { duration: 0.5, opacity: 1 });
-            props.setTool("admin");
-            resetSearch();
-            hideChat();
-            hideViewProfile();
-          }}>
-          <PersonAddIcon />
-          <h3 className="new-user-link">New user</h3>
-        </li>
-
+        {newUserAcces}
         <li
           className="go-to-planner"
           onClick={() => {
             planner(innerWidth);
             props.setTool("planner");
+            props.setSystemPart("planner");
             resetSearch();
-            staggeringCardsDesktop();
-            hideCards();
-            hideChat();
-            hideViewProfile();
+            GSAP_stagCardsDesktop();
+            GSAP_addOpacity(".UserCard, .userCard, .ProfileNav");
+            clearFormPlanner();
           }}>
           <CalendarTodayIcon />
-          <h3 className="planner-link">Planner</h3>
+          <h3 className="planner-link">Tasks</h3>
         </li>
         <li
           className="addTask"
           onClick={() => {
             addTask();
             planner(innerWidth);
+            props.setSystemPart("planner");
             props.setTool("planner");
             resetSearch();
-            hideCards();
-            hideChat();
-            hideViewProfile();
+            GSAP_addOpacity(".UserCard, .userCard, .ProfileNav, .panelMargin");
           }}>
           <AddCircleOutlineRoundedIcon />
           <h3 className="task">New task</h3>
@@ -111,11 +134,9 @@ export default function MenuNav(props) {
             chat();
             scrollToBottom();
             resetSearch();
-            hideCards();
-            hidePlanner();
-            hideViewProfile();
-            gsap.from(".message-container", { duration: 1, opacity: 0 });
-            gsap.to(".message-container", { duration: 1, opacity: 1 });
+            props.setSystemPart("chat");
+            GSAP_addOpacity(".UserCard, .panelMargin, .userCard, .ProfileNav");
+            GSAP_opacity0To1MessageContainer();
           }}>
           <ChatBubbleIcon />
           <h3 className="chat-link">Chat</h3>
@@ -126,12 +147,12 @@ export default function MenuNav(props) {
             className="sign-out-link"
             onClick={() => {
               firebaseConfig.auth().signOut();
-              localStorage.clear();
+              //localStorage.clear();
+              localStorage.removeItem("email");
+              localStorage.removeItem("signedInUser");
+              localStorage.removeItem("signedInUserId");
               resetSearch();
-              hideCards();
-              hidePlanner();
-              hideChat();
-              hideViewProfile();
+              GSAP_addOpacity(".UserCard, .userCard, .ProfileNav, .panelMargin");
             }}>
             Sign out
           </h3>

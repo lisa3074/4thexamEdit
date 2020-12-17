@@ -21,10 +21,10 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import Grid from "@material-ui/core/Grid";
 import DeleteModal from "../administration/overview/DeleteModal";
 import { areYouSure } from "../../jsModules/displayFunctions/mainMenuNavigation";
-import { staggeringCardsDesktop } from "../../jsModules/displayFunctions/staggeringCards";
+import { GSAP_stagCardsDesktop } from "../../jsModules/displayFunctions/gsap";
 
 export default function EditForm(props) {
-  console.log("planner || EditForm.js | EditForm()");
+  //console.log("planner || EditForm.js | EditForm()");
   const { users } = props;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -54,13 +54,13 @@ export default function EditForm(props) {
   ));
 
   function editTask() {
-    console.log("planner/EditForm.js || editTask()");
+    //console.log("planner/EditForm.js || editTask()");
     popUp("#b" + props.id);
     setUpForm();
   }
 
   function setUpForm() {
-    console.log("planner/EditForm.js || setUpForm()");
+    //console.log("planner/EditForm.js || setUpForm()");
     setTitle(props.title);
     setCategory(props.category);
     setDescription(props.description);
@@ -112,14 +112,13 @@ export default function EditForm(props) {
   };
 
   function submit(evt) {
-    console.log("planner/EditForm.js || submit()");
+    //console.log("planner/EditForm.js || submit()");
     evt.preventDefault();
     if (title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0) {
-      console.log("input needed");
       editTaskValidation();
     } else {
       props.editCard(payload, props.id, title, list, assignedTo, color, category, description, due);
-      staggeringCardsDesktop();
+      GSAP_stagCardsDesktop();
       setTitle("");
       setColor("#ffffff");
       setDescription("");
@@ -185,7 +184,6 @@ export default function EditForm(props) {
       ? document.querySelector(".editContainer .collaborators").setAttribute("data-chosen", true)
       : document.querySelector(".editContainer .collaborators").setAttribute("data-chosen", false);
     document.querySelector(".editContainer form > div:nth-child(2) > p").classList.add("hide");
-    console.log(e);
   }
   function resetState() {
     setCategory("");
@@ -295,7 +293,7 @@ export default function EditForm(props) {
                     />
                   </Grid>
                 </MuiPickersUtilsProvider>
-              </div>{" "}
+              </div>
               <div className="input-wrapper">
                 <FormControl className="category">
                   <InputLabel id="select-category">Category *</InputLabel>
@@ -306,7 +304,6 @@ export default function EditForm(props) {
                     onChange={(e) => {
                       catChanged(e);
                       colorChanged(e);
-                      console.log(e.target.color);
                     }}
                     value={category}>
                     {mappedCategories}

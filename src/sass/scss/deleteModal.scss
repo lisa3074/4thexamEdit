@@ -2,9 +2,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #384d628e;
+  background-color: rgba(56, 77, 98, 0.557);
   width: 100vw;
-  //height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
   display: flex;
   align-items: center;
@@ -14,7 +13,7 @@
   .modal {
     width: 90%;
     max-width: 400px;
-    background-color: #fff;
+    background-color: var(--white);
     padding: 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -44,7 +43,7 @@
     }
     .delete {
       grid-area: buttonYes;
-      background: var(--orange);
+      background: var(--orange-p);
       justify-self: flex-end;
     }
     .cancel.text-btn {
@@ -58,6 +57,15 @@
       padding: 0.3rem 1.5rem;
       border-radius: var(--border-button);
     }
+  }
+}
+
+#root .Message .areYouSure {
+  width: 100%;
+  background-color: rgba(56, 77, 98, 0.062);
+  z-index: 150;
+  .modal {
+    box-shadow: 1px 1px 10px rgba(56, 77, 98, 0.012);
   }
 }
 

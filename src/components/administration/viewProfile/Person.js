@@ -1,9 +1,9 @@
 import React from "react";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import { editUser, setUpForm } from "../../../jsModules/displayFunctions/displayEditForm";
-import { gsap } from "gsap";
+import { GSAP_removeOpacity } from "../../../jsModules/displayFunctions/gsap";
 export default function Person(props) {
-  console.log("administration/viewProfile || Person.js | Person()");
+  //console.log("administration/viewProfile || Person.js | Person()");
   return (
     <article className="Person userCard">
       <img src={props.image} alt={props.name} />
@@ -12,7 +12,7 @@ export default function Person(props) {
         onClick={() => {
           editUser();
           props.editProfile(props.id);
-          gsap.to(".UserForm", { duration: 0.5, opacity: 1 });
+          GSAP_removeOpacity(".UserForm");
           setUpForm();
         }}>
         <h1 className="profile name">{props.name}</h1>

@@ -14,10 +14,10 @@ import DateFnsUtils from "@date-io/date-fns";
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/pickers";
 import Grid from "@material-ui/core/Grid";
 import { hideError, taskValidation } from "../../jsModules/displayFunctions/taskValidation";
-import { staggeringCardsDesktop } from "../../jsModules/displayFunctions/staggeringCards";
+import { GSAP_stagCardsDesktop } from "../../jsModules/displayFunctions/gsap";
 
 export default function NewTask(props) {
-  console.log("planner || NewTask.js | NewTask()");
+  //console.log("planner || NewTask.js | NewTask()");
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
@@ -91,10 +91,9 @@ export default function NewTask(props) {
   };
 
   function submit(evt) {
-    console.log("planner || NewTask.js | submit()");
+    //console.log("planner || NewTask.js | submit()");
     evt.preventDefault();
     if (title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0) {
-      console.log("input needed");
       taskValidation();
     } else {
       setTitleFocusOn(false);
@@ -110,7 +109,7 @@ export default function NewTask(props) {
         due: due,
         timeStamp: Date.now(),
       });
-      staggeringCardsDesktop();
+      GSAP_stagCardsDesktop();
       setTitle("");
       setColor("#ffffff");
       setDescription("");
@@ -149,18 +148,7 @@ export default function NewTask(props) {
   const titleFocusChanged = (e) => {
     setTitleFocusOn(true);
   };
-  const catFocusChanged = (e) => {
-    setCatFocusOn(true);
-  };
 
-  const titleBorderStyle = {
-    outline: "none",
-    borderBottom: title.length === 0 && titleFocusOn === true ? "2px solid #e68b3c" : "0px solid #e68b3c",
-  };
-  const catBorderStyle = {
-    outline: "none",
-    borderBottom: category.length === 0 && catFocusOn === true ? "2px solid #e68b3c" : "0px solid #ff5e5e",
-  };
   const disabled = {
     filter:
       title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0
@@ -180,6 +168,10 @@ export default function NewTask(props) {
   }
   function resetState() {
     setCategory("");
+    setTitle("");
+    setAssigned([]);
+    setDue();
+    setDescription("");
     setColor("#ffffff");
     setList("");
   }
@@ -193,7 +185,7 @@ export default function NewTask(props) {
         <div className="input-wrapper">
           <TextField
             className="title"
-            style={titleBorderStyle}
+            /*  style={titleBorderStyle} */
             label="Task title *"
             onFocus={titleFocusChanged}
             onChange={titleChanged}
@@ -285,7 +277,6 @@ export default function NewTask(props) {
               onChange={(e) => {
                 catChanged(e);
                 colorChanged(e);
-                console.log(e.target.color);
               }}
               value={category}>
               {mappedCategories}
@@ -305,7 +296,7 @@ export default function NewTask(props) {
               closeNewTask();
               resetState();
               hideError();
-              staggeringCardsDesktop();
+              GSAP_stagCardsDesktop();
             }}>
             <CloseRoundedIcon />
           </div>

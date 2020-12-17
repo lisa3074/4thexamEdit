@@ -9,9 +9,11 @@ import Chat from "../../chat/Chat";
 import { getUsers, getSignedinUser, getCards } from "../../../jsModules/dbData/getData";
 import { scrollToBottom } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 import { getMessages } from "../../../jsModules/dbData/getData";
+import { GSAP_stagProfilesStartup } from "../../../jsModules/displayFunctions/gsap";
+import { firebaseConfig } from "../../../jsModules/firebase/firebase";
 
 export default function Administration(props) {
-  console.log("administration/Administration.js || Administration()");
+  //console.log("administration/Administration.js || Administration()");
   const [tool, setTool] = useState("");
   const [chosenCategory, setChosenCategory] = useState("");
   const [chosenEmployee, setChosenEmployee] = useState("");
@@ -21,7 +23,7 @@ export default function Administration(props) {
   const [users, setUsers] = useState([]);
   const [signedinUser, setSignedinUser] = useState();
   const [id, setId] = useState();
-  const [systemPart, setSystemPart] = useState();
+  const [systemPart, setSystemPart] = useState("admin");
   const [messages, setMessages] = useState();
   const [chosenUser, setChosenUser] = useState();
   const [state, setState] = useState();
@@ -31,38 +33,67 @@ export default function Administration(props) {
   const [sortDate, setSortDate] = useState();
   const [cards, setCards] = useState([]);
   const [list, setList] = useState("To");
+  const [chatSearch, setChatSearch] = useState("");
+  const [messageToDelete, setMessageToDelete] = useState();
+
+  localStorage.length === 0 ? firebaseConfig.auth().signOut() : localStorage.setItem("user", "true");
 
   useEffect(() => {
-    getUsers(setUsers);
-  }, []);
+    chosenDivision === (undefined || "") && chosenHours === (undefined || "")
+      ? document.querySelector(".reset-wrapper").classList.add("hide")
+      : document.querySelector(".reset-wrapper").classList.remove("hide");
+  }, [chosenDivision, chosenHours]);
+
   useEffect(() => {
-    getMessages(setMessages);
+    chosenEmployee === (undefined || "") && chosenCategory === (undefined || "")
+      ? document.querySelector(".reset-wrapper-planner").classList.add("hide")
+      : document.querySelector(".reset-wrapper-planner").classList.remove("hide");
+  }, [chosenEmployee, chosenCategory]);
+
+  useEffect(() => {
+    //LOADER 4 GANGE
+    getUsers(setUsers);
+    getCards(setCards);
+    getSignedinUser(setSignedinUser, localStorage.email);
+  }, []);
+
+  useEffect(() => {
+    if (window.innerWidth > 999) {
+      GSAP_stagProfilesStartup();
+    }
+  }, [users]);
+
+  useEffect(() => {
+    //loader 2 gange
+    signedInUserDepandables();
   }, [signedinUser]);
+
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
-  useEffect(() => {
-    getSignedinUser(setSignedinUser, localStorage.email);
-  }, []);
-  useEffect(() => {
-    if (signedinUser) {
-      setLevel(signedinUser[0].userLevel);
-    }
-  }, [signedinUser]);
-
-  useEffect(() => {
-    getCards(setCards);
-  }, []);
 
   function editProfile(id) {
-    console.log("administration/Administration.js || editProfile()");
+    //console.log("administration/Administration.js || editProfile()");
     const user = users.filter((user) => user.id === id);
     setChosenUser(user);
     setState("edit");
   }
-  let var = 1;
+
+  function signedInUserDepandables() {
+    if (signedinUser) {
+      setTimeout(() => {
+        getMessages(setMessages);
+        if (signedinUser) {
+          localStorage.setItem("signedInUser", signedinUser[0].name);
+          localStorage.setItem("signedInUserId", signedinUser[0].id);
+          setLevel(signedinUser[0].userLevel);
+        }
+      }, 2000);
+    }
+  }
+
   return (
-    <section className="Administration">
+    <section className="Administration" data-module="profiles">
       <div className="loading-page">
         <div>
           <CircularProgress color="primary" />
@@ -81,7 +112,9 @@ export default function Administration(props) {
         setSortDate={setSortDate}
         sortDate={sortDate}
         users={users}
-        setViewingProfile={setViewingProfile}></TopBar>
+        setViewingProfile={setViewingProfile}
+        chatSearch={chatSearch}
+        setChatSearch={setChatSearch}></TopBar>
       <Menu
         setEndpoint={props.setEndpoint}
         setTool={setTool}
@@ -93,7 +126,9 @@ export default function Administration(props) {
         setChosenCategory={setChosenCategory}
         setChosenEmployee={setChosenEmployee}
         setChosenDivision={setChosenDivision}
-        setChosenHours={setChosenHours}></Menu>
+        setChosenHours={setChosenHours}
+        setSearch={setSearch}
+        setSystemPart={setSystemPart}></Menu>
       <MainAdmin
         setChosenDivision={setChosenDivision}
         setChosenHours={setChosenHours}
@@ -116,6 +151,7 @@ export default function Administration(props) {
         setViewingProfile={setViewingProfile}
         level={level}
         isUSerProfile={isUSerProfile}
+        setisUSerProfile={setisUSerProfile}
         cards={cards}></MainAdmin>
 
       <Planner
@@ -131,6 +167,7 @@ export default function Administration(props) {
         cards={cards}
         setList={setList}
         list={list}
+        setViewingProfile={setViewingProfile}
       />
       <Chat
         signedinUser={signedinUser}
@@ -138,6 +175,12 @@ export default function Administration(props) {
         messages={messages}
         setSortDate={setSortDate}
         sortDate={sortDate}
+        setSystemPart={setSystemPart}
+        systemPart={systemPart}
+        chatSearch={chatSearch}
+        setChatSearch={setChatSearch}
+        messageToDelete={messageToDelete}
+        setMessageToDelete={setMessageToDelete}
       />
 
       <SubMenu
@@ -154,7 +197,7 @@ export default function Administration(props) {
         level={level}
         viewingProfile={viewingProfile}
         setViewingProfile={setViewingProfile}
-        isUSerProfile={props.isUSerProfile}
+        isUSerProfile={isUSerProfile}
         setisUSerProfile={setisUSerProfile}
         list={list}
         setSearch={setSearch}></SubMenu>

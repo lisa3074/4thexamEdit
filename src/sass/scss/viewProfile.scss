@@ -1,10 +1,9 @@
 .ViewProfile {
   padding-bottom: 40px;
   overflow: auto;
-  //height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
   padding: 0.5rem;
-  padding-bottom: 3rem;
+  padding-bottom: 3.2rem;
   opacity: 1;
   .Person.userCard {
     display: flex;
@@ -36,7 +35,7 @@
   .userCard {
     width: 100%;
 
-    background-color: white;
+    background-color: var(--white);
     box-shadow: var(--card-shadow);
     border-radius: var(--border-radius);
     margin-bottom: 1.2rem;
@@ -54,7 +53,7 @@
   }
   .heading {
     font-size: 0.9rem;
-    color: var(--dark-stext);
+    color: var(--dark-text);
     grid-area: right;
     justify-self: flex-end;
     padding-right: 1rem;
@@ -144,7 +143,7 @@
       grid-area: todo;
       background-color: var(--orange);
       transition: 1s;
-      animation: infographic 1s ease-out 1 forwards;
+      animation: infographic 1s ease-out 1s 1 forwards;
       align-self: flex-end;
       justify-self: flex-end;
     }
@@ -152,17 +151,17 @@
       grid-area: progress;
       background-color: var(--yellow);
       transition: 1s;
-      animation: infographic 1s ease-out 1 forwards;
       align-self: flex-end;
       justify-self: center;
+      animation: infographic 1s ease-out 1s 1 forwards;
     }
     .doneBar {
       grid-area: done;
-      background-color: var(--primary);
+      background-color: var(--done);
       transition: 1s;
       align-self: flex-end;
       justify-self: flex-start;
-      animation: infographic 1s ease-out 1 forwards;
+      animation: infographic 1s ease-out 1s 1 forwards;
     }
 
     @keyframes infographic {
@@ -229,6 +228,7 @@
   }
   .ViewProfile {
     padding: 0;
+    margin-bottom: 1.5rem;
     display: grid;
     height: 100%;
     grid-column-gap: 1.3rem;
@@ -271,7 +271,7 @@
     .private-wrapper {
       width: 100%;
 
-      background-color: white;
+      background-color: var(--white);
       box-shadow: var(--card-shadow);
       border-radius: var(--border-radius);
       display: grid;
@@ -284,6 +284,8 @@
   .ViewProfile {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(20, 5.5rem);
+    margin-bottom: 0;
+
     img {
       width: 150px;
       height: 150px;
@@ -327,7 +329,7 @@
     .private-wrapper {
       width: 100%;
 
-      background-color: white;
+      background-color: var(--white);
       box-shadow: var(--card-shadow);
       border-radius: var(--border-radius);
       display: grid;

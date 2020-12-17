@@ -1,13 +1,22 @@
 .FilterTasks,
 .TopBar {
   margin-bottom: 1rem;
-  // border-radius: var(--border-radius);
 }
 
+.MuiSelect-select:focus {
+  background: #ffffff00 !important;
+}
+.MuiSelect-select {
+  color: var(--dark-text) !important;
+}
+.MuiSelect-select[aria-diabled="true"],
+.MuiInputLabel-root:has(.MuiSelect-select[aria-diabled="true"]) {
+  color: var(--light-text) !important;
+}
 .FilterUsers,
 .FilterTasks,
 .TopBar {
-  background-color: white;
+  background-color: var(--white);
   box-shadow: var(--card-shadow);
   margin-bottom: 0.5rem;
   padding: 1rem;
@@ -62,9 +71,16 @@
     }
   }
 }
+
+body[data-state="dark"] .TopBar {
+  svg {
+    fill: var(--button);
+  }
+}
+
 .FilterTasks {
   padding: 0 1rem 0.5rem;
-  transform: translateY(-135px);
+  top: -80px;
   border-radius: 0px 0px 10px 10px;
   position: relative;
   z-index: 1;
@@ -78,16 +94,23 @@
   z-index: 140;
 }
 @media (min-width: 1000px) {
+  .TopBar .grid-wrapper .reset-wrapper,
+  .TopBar .grid-wrapper .reset-wrapper-planner {
+    position: absolute;
+    right: -2rem;
+    bottom: 0rem;
+    svg {
+      fill: var(--orange);
+      stroke: var(--orange);
+    }
+  }
+
   .FilterUsers,
   .FilterTasks {
     transform: translateY(0);
     display: none;
   }
 
-  .TopBar .searchUsers .MuiInputLabel-shrink,
-  .TopBar .MuiInputLabel-shrink {
-    transform: translate(0px, -20000px) scale(0.75);
-  }
   .TopBar {
     .filter-wrapper,
     .input-wrapper {
@@ -134,6 +157,9 @@
         fill: var(--tietery);
         stroke: var(--tietery);
       }
+      .date svg {
+        stroke: none;
+      }
       .float-btn {
         grid-area: chat;
         background-color: var(--primary);
@@ -142,7 +168,7 @@
         svg {
           width: 22px;
           height: 22px;
-          fill: white;
+          fill: var(--button);
           stroke: none;
         }
       }
@@ -163,21 +189,21 @@
     }
     .grid-wrapper.noNewUser {
       grid-template-areas: "sorted filter . search chat";
-      grid-template-columns: 6rem 30rem auto 20rem 50px;
+      grid-template-columns: 6rem 20rem auto 12rem 50px;
     }
     .planner-top .grid-wrapper {
-      /*    .filter.wrapper > .select:nth-child(1) {
-        width: 40%;
-      } */
       .select:nth-child(2) {
         width: 60%;
       }
-      grid-template-columns: 6rem 26rem auto 0rem 5rem 50px;
+      grid-template-columns: 6rem 20rem auto 0rem 5rem 50px;
+    }
+    .category {
+      width: 45%;
+    }
+    .employees {
+      width: 45%;
     }
   }
-}
-.TopBar .category {
-  width: 30%;
 }
 
 @media (min-width: 1100px) {
@@ -188,6 +214,9 @@
 @media (min-width: 1200px) {
   .TopBar .grid-wrapper {
     grid-template-columns: 6rem 20rem auto 15rem 5rem 50px;
+  }
+  .TopBar .grid-wrapper.noNewUser {
+    grid-template-columns: 6rem 25rem auto 20rem 50px;
   }
   .TopBar .planner-top .grid-wrapper {
     .select:nth-child(1) {
@@ -203,6 +232,9 @@
   .TopBar .grid-wrapper {
     grid-template-columns: 6rem 20rem auto 20rem 5rem 50px;
   }
+  .TopBar .grid-wrapper.noNewUser {
+    grid-template-columns: 6rem 30rem auto 25rem 50px;
+  }
   .TopBar .planner-top .grid-wrapper {
     .select:nth-child(1) {
       width: 50%;
@@ -210,10 +242,10 @@
     .select:nth-child(2) {
       width: 60%;
     }
-    grid-template-columns: 6rem 35rem auto 0rem 5rem 50px;
+    grid-template-columns: 6rem 30rem auto 0rem 5rem 50px;
   }
   .TopBar .category {
-    width: 35%;
+    width: 45%;
     color: #6fc4ad;
   }
 }
