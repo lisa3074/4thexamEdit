@@ -9,7 +9,7 @@ import {
 } from "../../../jsModules/displayFunctions/gsap";
 
 export default function UserCard(props) {
-  console.log("administration/UserCard.js || UserCard()");
+  //console.log("administration/UserCard.js || UserCard()");
 
   function detectId(e) {
     const userId = e.target.parentNode.dataset.user;

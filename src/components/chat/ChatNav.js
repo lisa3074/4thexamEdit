@@ -21,7 +21,7 @@ var customParseFormat = require("dayjs/plugin/customParseFormat");
 dayjs.extend(customParseFormat);
 
 export default function ChatNav(props) {
-  console.log("chat || ChatNav.js | ChatNav()");
+  //console.log("chat || ChatNav.js | ChatNav()");
   const [searching, setSearching] = useState(false);
 
   const { setSortDate } = props;

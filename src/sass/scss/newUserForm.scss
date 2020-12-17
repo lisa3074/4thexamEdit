@@ -2,7 +2,6 @@
   background-color: var(--background);
   opacity: 0;
   width: 100vw;
-  //height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
   z-index: 101;
   position: fixed;
@@ -159,13 +158,11 @@ input[type="file"] {
     background-color: var(--secondary);
     right: auto;
     left: 1.5rem;
-    // transform: translateX(1.5rem);
   }
   .back {
     background-color: var(--tietery);
     right: auto;
     left: 5rem;
-    // transform: translate(5rem);
   }
 }
 .upload-wrapper {
@@ -197,7 +194,6 @@ input[type="file"] {
   top: 0;
   left: 0;
   width: 100vw;
-  //height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
   z-index: 132;
   display: flex;

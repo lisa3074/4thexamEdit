@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 export default function WorkLoad(props) {
-  console.log("administration/viewProfile || ViewProfile.js | WorkLoad()");
+  //console.log("administration/viewProfile || ViewProfile.js | WorkLoad()");
 
   const chosenUser = props.user ? props.user.map((entry) => entry.name.toString()) : "";
   const todo = props.cards.filter(

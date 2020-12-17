@@ -4,7 +4,7 @@ import MessageBoard from "./MessageBoard";
 import NewMessage from "./NewMessage";
 
 export default function Chat(props) {
-  console.log("chat || Chat.js | Chat()");
+  //console.log("chat || Chat.js | Chat()");
 
   const [message, setMessage] = useState();
   const [checked, setChecked] = useState(false);

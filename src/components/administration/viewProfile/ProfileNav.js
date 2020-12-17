@@ -6,7 +6,7 @@ import { areYouSure } from "../../../jsModules/displayFunctions/mainMenuNavigati
 import { GSAP_removeOpacity } from "../../../jsModules/displayFunctions/gsap";
 
 export default function ProfileNav(props) {
-  console.log("administration/viewProfile || ProfileNav.js | ProfileNav()");
+  //console.log("administration/viewProfile || ProfileNav.js | ProfileNav()");
 
   //prevent all users from deleting their own profile. It takes another admin.
   const deleteProfile = props.isUSerProfile ? (

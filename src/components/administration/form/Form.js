@@ -16,7 +16,7 @@ import { forwards } from "../../../jsModules/displayFunctions/formNavigation";
 import { GSAP_addOpacityUserForm, GSAP_stagProfiles } from "../../../jsModules/displayFunctions/gsap";
 
 export default function Form(props, { history }) {
-  console.log(" administration/form || Form.js | Form()");
+  //console.log(" administration/form || Form.js | Form()");
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [imageFile, setImageFile] = useState();
@@ -27,7 +27,7 @@ export default function Form(props, { history }) {
   const [division, setDivision] = useState("");
   const [email, setEmail] = useState("");
   const [position, setPosition] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date());
   const [tel, setTel] = useState("");
   const [level, setLevel] = useState("");
   const [hours, setHours] = useState("");
@@ -57,7 +57,7 @@ export default function Form(props, { history }) {
   }, [date]);
 
   function resetForm() {
-    console.log(" administration/form || Form.js | resetForm()");
+    // console.log(" administration/form || Form.js | resetForm()");
     setImage("");
     setCity("");
     setName("");
@@ -65,7 +65,7 @@ export default function Form(props, { history }) {
     setPosition("");
     setDivision("");
     setHours("");
-    setDate("");
+    setDate(new Date());
     setLevel("");
     setEmail("");
     setTel("");
@@ -83,9 +83,6 @@ export default function Form(props, { history }) {
     setContractPath("");
     setContractFile("");
     setTimeout(() => {
-      /*       document.querySelectorAll("input[type='file']").forEach((input) => {
-        input.value = "";
-      }); */
       document.querySelector("#file-upload").value = "";
       document.querySelector("#pdf-upload").value = "";
     }, 6000);
@@ -98,7 +95,7 @@ export default function Form(props, { history }) {
 
   function submit(e) {
     e.preventDefault();
-    console.log(" administration/form || Form.js | submit()");
+    //console.log(" administration/form || Form.js | submit()");
     const $ = document.querySelector.bind(document);
     forwards();
 
@@ -163,7 +160,7 @@ export default function Form(props, { history }) {
             GSAP_stagProfiles();
           }, 1500);
         }, 500)
-      : console.log("No filePath");
+      : console.log("");
   }, [filePath, contractPath]);
 
   useEffect(() => {
@@ -196,11 +193,11 @@ export default function Form(props, { history }) {
             GSAP_stagProfiles();
           }, 1500);
         }, 500)
-      : console.log("No fileUrl");
+      : console.log("");
   }, [fileUrl, contractPath]);
 
   function clear() {
-    console.log(" administration/form || Form.js | clear()");
+    //console.log(" administration/form || Form.js | clear()");
     //if new user
     if (!document.querySelector(".password-safety").classList.contains("hide")) {
       if (window.innerWidth < 1000) {
@@ -252,7 +249,7 @@ export default function Form(props, { history }) {
   //Post new login to Google authentication (new user). Existing user connot be updated for safety reasons. A user can request a password reset on the login page, but the email cannot be changed.
   const handleSignUp = useCallback(
     async (e) => {
-      console.log(" administration/form || Form.js | handleSignUp()");
+      //console.log(" administration/form || Form.js | handleSignUp()");
       try {
         await firebaseConfig.auth().createUserWithEmailAndPassword(email.toString().trim(), password.toString().trim());
         history.push("/");

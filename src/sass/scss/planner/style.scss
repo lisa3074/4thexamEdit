@@ -27,58 +27,11 @@
     url("../../../fonts/IBMPlexSans-SemiBold.ttf") format("truetype");
 }
 
-/* :root {
-  --third-color: #9fa3a6;
-  --forth-color: #b0b9bf;
-  --fifth-color: #f0f1f2;
-  --black: #000000;
-  --white: #ffffff;
-  --dark: rgb(113, 113, 113);
-  --red: rgb(196, 175, 175);
-  --green: rgb(176, 196, 175);
-  --danger-button: rgb(217 187 186);
-  --disabled-button: rgb(192, 141, 141);
-  --error: rgb(158 68 68);
-  overflow: hidden;
-  //COLORS
-  --primary: #1ec69a;
-  --secondary: #384d62;
-  --tietery: #b0b2b5;
-  --background: #f3f7fc;
-  --dark-text: #222224;
-  --light-text: #9b9b9b;
-  --yellow: #f0c75d;
-  --orange: #d98c6a;
-  --chat-you: #eaecef;
-  --chat-me: #c9eee5;
-
-  //PLANNER COLORS
-
-  --orange-p: #fb6126;
-  --green-p: #41c1a0;
-  --purple-p: #8567b2;
-  --yellow-p: #b4b256;
-  --blue-p: #34d0d5;
-  --black-p: #222224;
-
-  //SHADOWS
-  --shadow-button: 2px 2px 3px #384d623f;
-  --shadow-image: 0px 1px 10px #384d626e;
-  --card-shadow: 0px 1px 15px #384d6228;
-
-  --border-radius: 10px;
-
-  //BUTTONS
-  --border-button: 20px;
-  --gradient: linear-gradient(0deg, rgba(30, 198, 154, 1) 0%, rgba(98, 189, 166, 1) 100%);
-} */
-
 .planner-wrapper {
   display: block;
   position: relative;
   top: 0;
   height: calc(var(--vh, 1vh) * 100);
-  /*   padding-right: 1rem; */
   background-color: var(--background);
 
   .NewTask {
@@ -160,7 +113,6 @@
   }
 
   .Main {
-    //height: calc(100vh - 60px);
     height: calc((var(--vh, 1vh) * 100) - 60px);
     overflow: hidden;
 
@@ -262,7 +214,6 @@
 @media (min-width: 1000px) {
   .planner-wrapper {
     .Main {
-      // height: calc(100vh - 80px);
       height: calc((var(--vh, 1vh) * 100) - 80px);
     }
     .float-btn {

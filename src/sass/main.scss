@@ -42,7 +42,6 @@
   --background: #f3f7fc;
   --dark-text: #222224;
 
-  /*   --light-text: #747474; */
   --light-text: #9b9b9b;
   --menu-text: #555555;
   --white: #ffffff;
@@ -161,7 +160,7 @@
 
 body {
   width: 100vw;
-  //height: 100vh;
+
   height: calc(var(--vh, 1vh) * 100);
   p,
   h1,
@@ -300,7 +299,6 @@ a {
 .loading-page {
   position: fixed;
   width: 100vw;
-  // height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
   top: 0;
   left: 0;
@@ -367,27 +365,22 @@ body[data-state="dark"] .MuiPaper-root {
 
 @keyframes glow {
   0% {
-    /* filter: saturate(1); */
     box-shadow: var(--shadow-button);
   }
   92% {
     box-shadow: var(--shadow-button);
-    /*  filter: saturate(1); */
   }
   84% {
     box-shadow: 2px 2px 10px #2222246b;
   }
   90% {
     box-shadow: var(--shadow-button);
-    /* filter: saturate(1); */
   }
   95% {
     box-shadow: 2px 2px 10px #2222246b;
-    /*     filter: saturate(0.7); */
   }
   100% {
     box-shadow: var(--shadow-button);
-    /*    filter: saturate(1); */
   }
 }
 @media (min-width: 1000px) {

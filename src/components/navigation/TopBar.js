@@ -27,7 +27,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import Grid from "@material-ui/core/Grid";
 
 export default function TopBar(props) {
-  console.log("navigation || TopBar.js | TopBar()");
+  //console.log("navigation || TopBar.js | TopBar()");
 
   const handleChanges = (module, e) => {
     document.querySelectorAll(".UserCard, .panelMargin").forEach((card) => {
@@ -115,7 +115,7 @@ export default function TopBar(props) {
   };
 
   function clearForm() {
-    console.log("navigation || SubMenu.js | clearForm()");
+    //console.log("navigation || SubMenu.js | clearForm()");
     document.querySelector("form.FilterUsers").reset();
     const divisionSpan = document.querySelector("#mui-component-select-Division > span");
     const division = document.querySelector("#mui-component-select-Division");

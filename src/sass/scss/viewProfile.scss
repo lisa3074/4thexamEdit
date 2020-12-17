@@ -1,7 +1,6 @@
 .ViewProfile {
   padding-bottom: 40px;
   overflow: auto;
-  //height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
   padding: 0.5rem;
   padding-bottom: 3.2rem;
@@ -211,7 +210,6 @@
   .ViewProfile {
     position: relative;
     top: -140px;
-    /*     padding: 0.5rem; */
   }
 }
 @media (min-width: 1000px) {

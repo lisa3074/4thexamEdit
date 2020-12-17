@@ -206,7 +206,6 @@ button.sendMessage {
 }
 
 .MessageBoard {
-  //height: calc(100vh - 100px - 0.5rem);
   height: calc((var(--vh, 1vh) * 100) - 100px - 0.5rem);
   padding-top: 60px;
 

@@ -1,5 +1,5 @@
 export function forwards() {
-  console.log("jsModules || formNavigation.js | forwards()");
+  //console.log("jsModules || formNavigation.js | forwards()");
   const $ = document.querySelector.bind(document);
   //PERSON FORM VALIDATION
   if (
@@ -53,7 +53,7 @@ export function forwards() {
   }, 100);
 }
 export function backwards() {
-  console.log("jsModules || formNavigation.js | backwards()");
+  //console.log("jsModules || formNavigation.js | backwards()");
   const $ = document.querySelector.bind(document);
   if (!$(".WorkForm").classList.contains("hide")) {
     $(".PersonForm").classList.remove("hide");
@@ -73,7 +73,7 @@ export function backwards() {
 }
 
 export function person() {
-  console.log("jsModules || formNavigation.js | person()");
+  //console.log("jsModules || formNavigation.js | person()");
   const $ = document.querySelector.bind(document);
   $(".back").classList.add("hide");
   $(".PersonForm").classList.remove("hide");
@@ -84,7 +84,7 @@ export function person() {
 }
 
 export function work() {
-  console.log("jsModules || formNavigation.js | work()");
+  //console.log("jsModules || formNavigation.js | work()");
   const $ = document.querySelector.bind(document);
   if (
     ($(".name input").value === "" || $(".country input").value === "" || $(".city input").value === "") &&
@@ -108,7 +108,7 @@ export function work() {
 }
 
 export function privat() {
-  console.log("jsModules || formNavigation.js | privat()");
+  //console.log("jsModules || formNavigation.js | privat()");
   const $ = document.querySelector.bind(document);
   if (
     ($(".name input").value === "" || $(".country input").value === "" || $(".city input").value === "") &&

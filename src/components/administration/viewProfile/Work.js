@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Work(props) {
-  console.log("administration/viewProfile || ViewProfile.js | Work()");
+  //console.log("administration/viewProfile || ViewProfile.js | Work()");
   let today;
   props.startDate !== undefined ? (today = new Date(props.startDate)) : (today = new Date());
   const dd = String(today.getDate()).padStart(2, "0");

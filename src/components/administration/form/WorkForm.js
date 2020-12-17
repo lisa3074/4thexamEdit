@@ -10,7 +10,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import Grid from "@material-ui/core/Grid";
 
 export default function WorkForm(props) {
-  console.log("administration/form || WorkForm.js | WorkForm()");
+  //console.log("administration/form || WorkForm.js | WorkForm()");
   const { user, level, hours, division } = props;
 
   const handleHoursChange = (e) => {
@@ -25,7 +25,7 @@ export default function WorkForm(props) {
   };
 
   const handleDateChange = (e) => {
-    props.setDate(new Date(e));
+    props.setDate(e);
     document.querySelector("fieldset.WorkForm > div:nth-child(5) > p").classList.add("hide");
   };
 
@@ -151,6 +151,7 @@ export default function WorkForm(props) {
               className="startDate"
               label="On board since"
               onChange={handleDateChange}
+              onFocus={handleDateChange}
               name="Start date"
               autoOk={true}
               error={false}

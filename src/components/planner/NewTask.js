@@ -17,7 +17,7 @@ import { hideError, taskValidation } from "../../jsModules/displayFunctions/task
 import { GSAP_stagCardsDesktop } from "../../jsModules/displayFunctions/gsap";
 
 export default function NewTask(props) {
-  console.log("planner || NewTask.js | NewTask()");
+  //console.log("planner || NewTask.js | NewTask()");
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
@@ -91,7 +91,7 @@ export default function NewTask(props) {
   };
 
   function submit(evt) {
-    console.log("planner || NewTask.js | submit()");
+    //console.log("planner || NewTask.js | submit()");
     evt.preventDefault();
     if (title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0) {
       taskValidation();

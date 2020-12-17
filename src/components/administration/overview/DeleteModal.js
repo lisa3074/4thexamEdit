@@ -2,8 +2,8 @@ import { notSure, deleted } from "../../../jsModules/displayFunctions/mainMenuNa
 import { deleteAMessage } from "../../../jsModules/dbData/deleteData";
 
 export default function DeleteModal(props) {
-  console.log("administration/DeleteModal.js || DeleteModal()");
-  console.log(props.systemPart);
+  //console.log("administration/DeleteModal.js || DeleteModal()");
+
   return (
     <div className="modal-wrapper hide">
       <div className="areYouSure">

@@ -4,7 +4,7 @@ import $ from "jquery";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 
 export default function PersonForm(props) {
-  console.log("administration/form || PersonForm.js | PersonForm()");
+  //console.log("administration/form || PersonForm.js | PersonForm()");
 
   const handleName = (e) => {
     props.setName(e.target.value);
@@ -21,7 +21,7 @@ export default function PersonForm(props) {
 
   //image prewiev
   function preview(e) {
-    console.log(" administration/form || PersonForm.js | preview()");
+    //console.log(" administration/form || PersonForm.js | preview()");
     const uploadedImage = $("#file-upload").get(0).files[0];
     if (uploadedImage) {
       const reader = new FileReader();

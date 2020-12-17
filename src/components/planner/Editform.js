@@ -24,7 +24,7 @@ import { areYouSure } from "../../jsModules/displayFunctions/mainMenuNavigation"
 import { GSAP_stagCardsDesktop } from "../../jsModules/displayFunctions/gsap";
 
 export default function EditForm(props) {
-  console.log("planner || EditForm.js | EditForm()");
+  //console.log("planner || EditForm.js | EditForm()");
   const { users } = props;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -54,13 +54,13 @@ export default function EditForm(props) {
   ));
 
   function editTask() {
-    console.log("planner/EditForm.js || editTask()");
+    //console.log("planner/EditForm.js || editTask()");
     popUp("#b" + props.id);
     setUpForm();
   }
 
   function setUpForm() {
-    console.log("planner/EditForm.js || setUpForm()");
+    //console.log("planner/EditForm.js || setUpForm()");
     setTitle(props.title);
     setCategory(props.category);
     setDescription(props.description);
@@ -112,7 +112,7 @@ export default function EditForm(props) {
   };
 
   function submit(evt) {
-    console.log("planner/EditForm.js || submit()");
+    //console.log("planner/EditForm.js || submit()");
     evt.preventDefault();
     if (title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0) {
       editTaskValidation();

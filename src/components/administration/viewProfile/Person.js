@@ -3,7 +3,7 @@ import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import { editUser, setUpForm } from "../../../jsModules/displayFunctions/displayEditForm";
 import { GSAP_removeOpacity } from "../../../jsModules/displayFunctions/gsap";
 export default function Person(props) {
-  console.log("administration/viewProfile || Person.js | Person()");
+  //console.log("administration/viewProfile || Person.js | Person()");
   return (
     <article className="Person userCard">
       <img src={props.image} alt={props.name} />

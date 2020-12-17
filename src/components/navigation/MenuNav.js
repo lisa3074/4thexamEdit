@@ -28,11 +28,11 @@ import {
 import { setUpForm } from "../../jsModules/displayFunctions/displayEditForm";
 
 export default function MenuNav(props) {
-  console.log("navigation || MenuNav.js | MenuNav()");
+  //console.log("navigation || MenuNav.js | MenuNav()");
   let innerWidth = props.innerWidth;
 
   function resetSearch() {
-    console.log("navigation || MenuNav.js | resetSearch()");
+    //console.log("navigation || MenuNav.js | resetSearch()");
     props.setChosenCategory("");
     props.setChosenEmployee("");
     props.setChosenDivision("");
@@ -45,7 +45,7 @@ export default function MenuNav(props) {
   GSAP_stagMenuNav();
 
   function clearFormPlanner() {
-    console.log("navigation || SubMenu.js | clearFormPlanner()");
+    //console.log("navigation || SubMenu.js | clearFormPlanner()");
     const categorySpan = document.querySelector("#mui-component-select-category > span");
     const category = document.querySelector("#mui-component-select-category");
     const employeeSpan = document.querySelector("#mui-component-select-Employees > span");

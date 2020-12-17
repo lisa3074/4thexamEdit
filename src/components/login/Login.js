@@ -12,14 +12,14 @@ import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import { resetPasswordMail } from "../../jsModules/firebase/firebase";
 
 const Login = ({ history }) => {
-  console.log("login || Login.js | Login()");
+  //console.log("login || Login.js | Login()");
   const [error, setError] = useState([null]);
   const [resetEmail, setResetEmail] = useState("");
   const { currentUser } = useContext(AuthContext);
   let theme = localStorage.getItem("theme");
   theme === "regular" || theme === "orange" || theme === "dark"
     ? document.querySelector("body").setAttribute("data-state", theme)
-    : console.log("no theme chosen");
+    : console.log("");
 
   const handleLogin = useCallback(
     async (e) => {
@@ -83,7 +83,7 @@ const Login = ({ history }) => {
               </Grid>
               <Grid item>
                 <TextField
-                  id="email"
+                  //  id="email"
                   label="Email"
                   className="email"
                   name="email"
@@ -99,7 +99,13 @@ const Login = ({ history }) => {
                 <VpnKeyIcon />
               </Grid>
               <Grid item>
-                <TextField id="password" label="Password" className="password" name="password" type="password" />
+                <TextField
+                  //id="password"
+                  label="Password"
+                  className="password"
+                  name="password"
+                  type="password"
+                />
               </Grid>
             </Grid>
           </div>
@@ -128,7 +134,7 @@ const Login = ({ history }) => {
       <div className="forgot hide">
         <div className="forgot-wrapper">
           <TextField
-            id="forgotEmail"
+            //id="forgotEmail"
             label="Email"
             className="forgotEmail"
             name="forgot"

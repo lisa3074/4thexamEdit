@@ -8,7 +8,7 @@ import Select from "@material-ui/core/Select";
 import { GSAP_sortVisibleMobileUsers, GSAP_stagProfilesSort } from "../../jsModules/displayFunctions/gsap";
 
 export default function FilterUsers(props) {
-  console.log("navigation || FilterUsers.js | FilterUsers()");
+  //console.log("navigation || FilterUsers.js | FilterUsers()");
 
   const handleDivisionChange = (e) => {
     const value = e.target.value === "All" ? "" : e.target.value;

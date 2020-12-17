@@ -54,7 +54,7 @@ const theme = createMuiTheme({
 });
 
 export default function App() {
-  console.log("App.js || App() |");
+  // console.log("App.js || App() |");
 
   window.addEventListener("resize", function (event) {
     if (window.innerWidth > 1000 && window.innerWidth < 1050) {

@@ -8,7 +8,7 @@ import "../../sass/scss/filterUsers.scss";
 import { GSAP_sortVisibleMobileChat, GSAP_stagProfilesSort } from "../../jsModules/displayFunctions/gsap";
 
 export default function FilterMessages(props) {
-  console.log("planner || FilterTasks.js | FilterMessages()");
+  //console.log("planner || FilterTasks.js | FilterMessages()");
 
   const handleSearch = (e) => {
     props.setChatSearch(e.target.value);

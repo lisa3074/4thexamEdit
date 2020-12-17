@@ -7,7 +7,7 @@ import "../../sass/scss/filterUsers.scss";
 import { GSAP_stagCards, GSAP_sortVisibleMobileTasks } from "../../jsModules/displayFunctions/gsap";
 
 export default function FilterTasks(props) {
-  console.log("planner || FilterTasks.js | FilterTasks()");
+  //console.log("planner || FilterTasks.js | FilterTasks()");
 
   const { users } = props;
 

@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import { AuthContext } from "../../jsModules/firebase/auth";
 
 const PrivateRoute = ({ component: Component, credentials, ...rest }) => {
-  console.log("login || PrivateRoute.js | PrivateRoute()");
+  //console.log("login || PrivateRoute.js | PrivateRoute()");
   const { currentUser } = useContext(AuthContext);
   return (
     <Route

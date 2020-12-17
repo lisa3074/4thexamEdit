@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import $ from "jquery";
 import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 export default function PrivateForm(props) {
-  console.log("administration/form || PrivateForm.js | PrivateForm()");
+  //console.log("administration/form || PrivateForm.js | PrivateForm()");
 
   function findFileName(e) {
     const file = $("#pdf-upload").get(0).files[0];

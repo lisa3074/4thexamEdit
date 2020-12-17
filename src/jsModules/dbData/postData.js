@@ -9,7 +9,7 @@ db.settings({ timestampsInSnapshots: true });
 
 //PROFILES
 export function postUser(payload) {
-  console.log("jsModules || postData.js | postUser()");
+  //console.log("jsModules || postData.js | postUser()");
 
   //go to the database, find the right collection at add payload
   db.collection("users").add({
@@ -35,7 +35,7 @@ export function postUser(payload) {
 
 //TASKS
 export function postCard(payload) {
-  console.log("jsModules || postpayload.js | postCard()");
+  //console.log("jsModules || postpayload.js | postCard()");
   //go to the database, find the right collection and add payload
   db.collection("planner").add({
     title: payload.title,
@@ -51,7 +51,7 @@ export function postCard(payload) {
 }
 //MESSAGES
 export function postMessage(message, user) {
-  console.log("jsModules || postData.js | postMessage()");
+  //console.log("jsModules || postData.js | postMessage()");
 
   db.collection("chat").add({
     date: Date.now(),
@@ -62,13 +62,15 @@ export function postMessage(message, user) {
 
 //IMAGE
 export function storeImage(file, email, callback, image) {
-  console.log("jsModules || postData.js | storeImage()");
+  //console.log("jsModules || postData.js | storeImage()");
   //If there is no file uploaded and no previous link to an image, use a placeholder on the callback location
   if (!file && !image) {
     const loader = document.querySelector("#loader");
     loader.value = 100;
     setTimeout(() => {
-      document.querySelector(".succes").classList.add("hide");
+      setTimeout(() => {
+        document.querySelector(".succes").classList.add("hide");
+      }, 1000);
       if (document.querySelector(".FormPath > h2").textContent === "Add user") {
         newUserResetForm();
       } else {
@@ -115,7 +117,7 @@ export function storeImage(file, email, callback, image) {
         }
       },
       function error(err) {
-        console.log("ERROR: " + err);
+        //console.log("ERROR: " + err);
       },
       function complete() {
         document.querySelector(".succes").classList.add("hide");
@@ -155,7 +157,7 @@ export function storeImage(file, email, callback, image) {
   }
 }
 export function storeContract(file, name, callback, contract) {
-  console.log("jsModules || postData.js | storeImage()");
+  //console.log("jsModules || postData.js | storeImage()");
   //If there is no file uploaded and no previous link to an image, use a placeholder on the callback location
   if (!file && contract) {
     callback(contract);

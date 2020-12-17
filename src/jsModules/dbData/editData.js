@@ -6,7 +6,7 @@ db.settings({ timestampsInSnapshots: true });
 
 //ADMIN-SYS
 export function editUser(payload) {
-  console.log("jsModules || editData.js | editUser()");
+  //console.log("jsModules || editData.js | editUser()");
 
   db.collection("users").doc(payload.id).update({
     image: payload.image,
@@ -31,7 +31,7 @@ export function editUser(payload) {
 
 //PLANNER
 export function editACard(payload) {
-  console.log("jsModules || editData.js | editACard()");
+  //console.log("jsModules || editData.js | editACard()");
   db.collection("planner").doc(payload.id).update({
     title: payload.title,
     list: payload.list,
@@ -44,14 +44,14 @@ export function editACard(payload) {
   });
 }
 export function dragACard(payload, id) {
-  console.log("jsModules || editData.js | dragACard()");
+  //console.log("jsModules || editData.js | dragACard()");
   db.collection("planner").doc(id).update({
     id: payload.id,
     list: payload.list,
   });
 } //CHAT
 export function editAMessage(payload) {
-  console.log("jsModules || editData.js | dragACard()");
+  //console.log("jsModules || editData.js | dragACard()");
   db.collection("chat").doc(payload.id).update({
     id: payload.id,
     message: payload.message,

@@ -11,7 +11,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
 export default function Profile(props) {
-  console.log("navigation || Profile.js | Profile()");
+  //console.log("navigation || Profile.js | Profile()");
   const [anchorEl, setAnchorEl] = useState(null);
 
   const name = props.signedinUser ? props.signedinUser[0].name : "";
@@ -23,7 +23,7 @@ export default function Profile(props) {
   const picture = props.signedinUser ? props.signedinUser[0].image : image;
 
   const handleClose = (e, theme) => {
-    console.log("planner || PlannerNav.js | handleClose()");
+    //console.log("planner || PlannerNav.js | handleClose()");
     setAnchorEl(null);
     if (theme === "regular" || theme === "dark" || theme === "orange") {
       document.querySelector("body").setAttribute("data-state", theme);
@@ -32,7 +32,7 @@ export default function Profile(props) {
   };
 
   const handleClick = (event) => {
-    console.log("planner || PlannerNav.js | handleClick()");
+    //console.log("planner || PlannerNav.js | handleClick()");
     setAnchorEl(event.currentTarget);
   };
   const move = {

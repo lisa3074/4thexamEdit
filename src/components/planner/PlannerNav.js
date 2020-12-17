@@ -19,17 +19,17 @@ import SearchRoundedIcon from "@material-ui/icons/SearchRounded";
 import { searchUsers, closeSearch } from "../../jsModules/displayFunctions/subMenuNavigation";
 
 export default function PlannerNav(props) {
-  console.log("planner || PlannerNav.js | PlannerNav()");
+  //console.log("planner || PlannerNav.js | PlannerNav()");
   const [anchorEl, setAnchorEl] = useState(null);
   const [list, setList] = useState("To do");
 
   const handleClick = (event) => {
-    console.log("planner || PlannerNav.js | handleClick()");
+    //console.log("planner || PlannerNav.js | handleClick()");
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = (e) => {
-    console.log("planner || PlannerNav.js | handleClose()");
+    //console.log("planner || PlannerNav.js | handleClose()");
     setAnchorEl(null);
     e.target.textContent === "" ? setList(list) : setList(e.target.textContent);
     closeSearch(props.tool);

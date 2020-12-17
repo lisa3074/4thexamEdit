@@ -1,7 +1,7 @@
 import React from "react";
 import Message from "./Message";
 export default function MessageBoard(props) {
-  console.log("chat || MessageBoard.js | MessageBoard()");
+  //console.log("chat || MessageBoard.js | MessageBoard()");
 
   const mappedMessages = props.messages
     ? props.messages.map((message) => (

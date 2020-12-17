@@ -13,7 +13,7 @@ import { GSAP_stagProfilesStartup } from "../../../jsModules/displayFunctions/gs
 import { firebaseConfig } from "../../../jsModules/firebase/firebase";
 
 export default function Administration(props) {
-  console.log("administration/Administration.js || Administration()");
+  //console.log("administration/Administration.js || Administration()");
   const [tool, setTool] = useState("");
   const [chosenCategory, setChosenCategory] = useState("");
   const [chosenEmployee, setChosenEmployee] = useState("");
@@ -36,7 +36,7 @@ export default function Administration(props) {
   const [chatSearch, setChatSearch] = useState("");
   const [messageToDelete, setMessageToDelete] = useState();
 
-  localStorage.length === 0 ? firebaseConfig.auth().signOut() : console.log("known user");
+  localStorage.length === 0 ? firebaseConfig.auth().signOut() : localStorage.setItem("user", "true");
 
   useEffect(() => {
     chosenDivision === (undefined || "") && chosenHours === (undefined || "")
@@ -73,7 +73,7 @@ export default function Administration(props) {
   }, [messages]);
 
   function editProfile(id) {
-    console.log("administration/Administration.js || editProfile()");
+    //console.log("administration/Administration.js || editProfile()");
     const user = users.filter((user) => user.id === id);
     setChosenUser(user);
     setState("edit");

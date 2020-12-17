@@ -15,7 +15,6 @@
     width: 4px;
     position: absolute;
     background-color: black;
-    //transform: translate(-5px, -15px);
     border-radius: 25px 0 0 25px;
   }
   .container {
@@ -84,10 +83,6 @@
   .panelMargin[data-state="hidden"] .assignedTo {
     padding: 0.3rem 0;
     display: none;
-  }
-
-  .container .MuiFormControl-root {
-    //margin: 1rem 0;
   }
 
   header h1,

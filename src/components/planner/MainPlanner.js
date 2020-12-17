@@ -23,7 +23,7 @@ export default function MainPlanner({
   setList,
   list,
 }) {
-  console.log("planner || MainPlanner.js | MainPlanner()");
+  //console.log("planner || MainPlanner.js | MainPlanner()");
 
   const [dropList, setDropList] = React.useState("");
 

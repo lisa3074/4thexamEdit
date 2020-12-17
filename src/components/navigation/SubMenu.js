@@ -32,18 +32,18 @@ import { newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { addTask } from "../planner/modules/mobNavigation";
 
 export default function SubMenu(props) {
-  console.log("navigation || SubMenu.js | SubMenu()");
+  //console.log("navigation || SubMenu.js | SubMenu()");
   const tool = props.tool;
 
   function removeDelete() {
-    console.log("navigation || SubMenu.js | removeDelete()");
+    //console.log("navigation || SubMenu.js | removeDelete()");
     document.querySelectorAll(".modal-wrapper").forEach((modal) => {
       modal.classList.add("hide");
     });
   }
 
   function clearForm() {
-    console.log("navigation || SubMenu.js | clearForm()");
+    //console.log("navigation || SubMenu.js | clearForm()");
     document.querySelector("form.FilterUsers").reset();
     const divisionSpan = document.querySelector("#mui-component-select-Division > span");
     const division = document.querySelector("#mui-component-select-Division");

@@ -12,7 +12,7 @@ import DeleteModal from "../overview/DeleteModal";
 import { showCardList } from "../../../jsModules/displayFunctions/subMenuNavigation";
 
 export default function ViewProfile(props) {
-  console.log("administration/viewProfile || ViewProfile.js | ViewProfile()");
+  //console.log("administration/viewProfile || ViewProfile.js | ViewProfile()");
 
   const mappedPerson = props.user.map((user) => (
     <Person
@@ -30,7 +30,7 @@ export default function ViewProfile(props) {
   ));
 
   async function deleteProfile(id) {
-    console.log("administration/viewProfile || ViewProfile.js | deleteProfile()");
+    //console.log("administration/viewProfile || ViewProfile.js | deleteProfile()");
     deleteUser(id);
     document.querySelector(".ViewProfile").classList.add("hide");
     document.querySelector(".UserList").classList.remove("hide");

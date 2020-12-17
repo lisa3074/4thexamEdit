@@ -3,7 +3,7 @@ import UserList from "./UserList";
 import ViewProfile from "../viewProfile/ViewProfile";
 import FilterUsers from "../../navigation/FilterUsers";
 export default function MainAdmin(props) {
-  console.log("administration/MainAdmin.js || MainAdmin()");
+  //console.log("administration/MainAdmin.js || MainAdmin()");
 
   return (
     <main className={window.innerWidth < 1000 ? "MainAdmin hide" : "MainAdmin"}>

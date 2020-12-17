@@ -7,7 +7,7 @@
     width: 100vw;
     height: calc(var(--vh, 1vh) * 100);
     z-index: 130;
-    /*     padding: 2rem; */
+
     .flex {
       width: 100%;
       height: 100%;
@@ -21,14 +21,6 @@
     display: flex;
   }
   .editContainer p {
-    /*     width: 100%;
-    height: 4rem;
-    text-align: right;
-    padding: 0;
-    font-size: 2rem;
-    cursor: pointer;
-    margin: 0; */
-
     h1 {
       width: 100%;
     }
@@ -71,13 +63,4 @@
   .MuiInputBase-input.MuiInput-inputMultiline:not(textarea) {
     overflow: hidden;
   }
-  /*  @media (max-width: 600px) {
-    .editContainer {
-      width: 100%;
-    }
-
-    .editWrapper {
-      width: calc(100% - 40px);
-    }
-  } */
 }

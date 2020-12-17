@@ -5,7 +5,7 @@ import VisibilityOffRoundedIcon from "@material-ui/icons/VisibilityOffRounded";
 import VisibilityRoundedIcon from "@material-ui/icons/VisibilityRounded";
 
 export default function Private(props) {
-  console.log("administration/viewProfile || Private.js | Private()");
+  //console.log("administration/viewProfile || Private.js | Private()");
   //Show only if administrator or own profie
   const privateSection =
     props.level === "Administrator" || props.isUSerProfile ? (

@@ -11,7 +11,7 @@ import Tooltip from "@material-ui/core/Tooltip";
 import { GSAP_opacity0To1NamePopup } from "../../jsModules/displayFunctions/gsap";
 
 export default function Card(props) {
-  console.log("planner || Card.js | Card()");
+  //console.log("planner || Card.js | Card()");
   const [list, setList] = useState("");
   const listChanged = (e) => {
     setList(e.target.value);

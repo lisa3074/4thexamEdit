@@ -12,7 +12,7 @@ var customParseFormat = require("dayjs/plugin/customParseFormat");
 dayjs.extend(customParseFormat);
 
 export default function Message(props) {
-  console.log("chat || Message.js | Message()");
+  //console.log("chat || Message.js | Message()");
   const { signedinUser, users, id, checked, setMessageToDelete, messageToDelete } = props;
   const [sendingUser, setSendingUser] = useState();
   const [profilePic, setProfilePic] = useState();
@@ -27,11 +27,7 @@ export default function Message(props) {
   }, [users]);
 
   useEffect(() => {
-    sendingUser
-      ? sendingUser[0]
-        ? setProfilePic(sendingUser[0].image)
-        : console.log("no sending user yet")
-      : console.log("no sending user yet");
+    sendingUser ? (sendingUser[0] ? setProfilePic(sendingUser[0].image) : setProfilePic()) : setProfilePic();
   }, [sendingUser]);
   function handleText(e) {
     setEditText(e.target.value);
@@ -56,7 +52,7 @@ export default function Message(props) {
   }
 
   function doNothing() {
-    console.log("do nothing");
+    return;
   }
   function handleOnKeyDown(e) {
     if (e.keyCode === 13) {

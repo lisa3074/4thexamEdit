@@ -9,11 +9,11 @@ import {
 } from "../../jsModules/displayFunctions/gsap";
 import { administration, clearFormAdmin } from "../../jsModules/displayFunctions/mainMenuNavigation";
 export default function Menu(props) {
-  console.log("navigation || Menu.js | Menu()");
+  //console.log("navigation || Menu.js | Menu()");
   GSAP_removeOpacityMenuProfile();
 
   function resetSearch() {
-    console.log("navigation || Menu.js | resetSearch()");
+    //console.log("navigation || Menu.js | resetSearch()");
     props.setChosenCategory("");
     props.setChosenEmployee("");
     props.setChosenDivision("");

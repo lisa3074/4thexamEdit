@@ -2,7 +2,7 @@ import React from "react";
 import UserCard from "./UserCard";
 import { GSAP_UserListToTop } from "../../../jsModules/displayFunctions/gsap";
 export default function UserList(props) {
-  console.log("administration/UserList.js || UserList()");
+  //console.log("administration/UserList.js || UserList()");
   if (window.innerWidth < 1000) {
     GSAP_UserListToTop();
   }

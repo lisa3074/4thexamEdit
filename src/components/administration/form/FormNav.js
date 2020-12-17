@@ -8,7 +8,7 @@ import { backwards } from "../../../jsModules/displayFunctions/formNavigation";
 import { GSAP_stagProfiles, GSAP_addOpacityUserForm } from "../../../jsModules/displayFunctions/gsap";
 
 export default function FormNav(props) {
-  console.log("administration/form || FormNav.js | FormNav()");
+  //console.log("administration/form || FormNav.js | FormNav()");
   return (
     <nav className="FormNav">
       <div

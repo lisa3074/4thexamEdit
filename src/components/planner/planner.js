@@ -18,7 +18,7 @@ import { GSAP_stagCardsDesktop, GSAP_stagCards, GSAP_sortInvisibleMobile } from 
 import { addTask } from "./modules/mobNavigation";
 
 export default function Planner(props) {
-  console.log("planner || Planner.js | Planner()");
+  //console.log("planner || Planner.js | Planner()");
   const { cards } = props;
 
   if (window.innerWidth < 1000) {
@@ -38,28 +38,28 @@ export default function Planner(props) {
   scroll();
 
   async function onFormSubmit(data) {
-    console.log("planner || Planner.js | onFormSubmit()");
+    //console.log("planner || Planner.js | onFormSubmit()");
     showCards();
     postCard(data, cards);
   }
   async function deleteCard(id) {
-    console.log("planne || Planner.js | deleteCard()");
+    //console.log("planne || Planner.js | deleteCard()");
     showCards();
     deleteACard(id);
   }
 
   async function moveCard(payload, id) {
-    console.log("planner || Planner.js | moveCard()");
+    //console.log("planner || Planner.js | moveCard()");
     showCards();
     dragACard(payload, id);
   }
   async function dragCard(payload, id) {
-    console.log("planner || Planner.js | dragCard()");
+    //console.log("planner || Planner.js | dragCard()");
     showCards();
     dragACard(payload, id);
   }
   async function editCard(payload) {
-    console.log("planner || Planner.js | editCard()");
+    //console.log("planner || Planner.js | editCard()");
     showCards();
     editACard(payload);
   }
