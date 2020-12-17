@@ -60,7 +60,7 @@ export default function Administration(props) {
     setChosenUser(user);
     setState("edit");
   }
-
+  let var = 1;
   return (
     <section className="Administration">
       <div className="loading-page">
