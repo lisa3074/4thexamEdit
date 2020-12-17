@@ -11,8 +11,8 @@ import "./sass/scss/filterUsers.scss";
 import "./sass/scss/deleteModal.scss";
 import "./sass/main.scss";
 import "./sass/scss/adminOverview.scss";
-import React, { useEffect, useState } from "react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import React from "react";
+import { Route, BrowserRouter as Switch } from "react-router-dom";
 import { HashRouter } from "react-router-dom";
 import { AuthProvider } from "./jsModules/firebase/auth";
 import Login from "./components/login/Login";
@@ -20,13 +20,10 @@ import PrivateRoute from "./components/login/PrivateRoute";
 import SignUp from "./components/login/SignUp";
 import Administration from "./components/administration/overview/Administration";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import Planner from "./components/planner/Planner";
-import { Redirect } from "react-router";
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      /*   main: "#38C29E", */
       main: "#838383",
     },
     secondary: {

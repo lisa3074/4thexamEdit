@@ -10,6 +10,7 @@ db.settings({ timestampsInSnapshots: true });
 //PROFILES
 export function postUser(payload) {
   console.log("jsModules || postData.js | postUser()");
+
   //go to the database, find the right collection at add payload
   db.collection("users").add({
     image: payload.image,

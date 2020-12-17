@@ -43,13 +43,13 @@ export default function Card(props) {
   };
 
   const mappedAssignedImg = props.assignedTo.map((user) => (
-    <Tooltip title={user.name + " / " + user.position} key={user.id}>
+    <Tooltip title={user.name + " / " + user.position} key={user.id + user.name}>
       <div>
         <img src={user.image} alt={user.name} />
       </div>
     </Tooltip>
   ));
-  const mappedNames = props.assignedTo.map((user) => <p key={user.id}>{user.name}</p>);
+  const mappedNames = props.assignedTo.map((user) => <p key={user.name + user.id}>{user.name}</p>);
 
   function showNames(id) {
     if (window.innerWidth < 1000) {
@@ -70,6 +70,7 @@ export default function Card(props) {
   return (
     <Panel
       className={"panelMargin smaller a" + props.id}
+      key={props.id}
       data-state="hidden"
       draggable
       onDragEnd={(e) => {
