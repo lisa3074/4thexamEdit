@@ -27,6 +27,9 @@ export function showCardList() {
   //console.log("jsModules || subMenuNavigation.js | showCardList()");
   document.querySelectorAll(".ViewProfile, .menuBack, .menuEdit, .menuDelete").forEach((element) => {
     element.classList.add("hide");
+    setTimeout(() => {
+      document.querySelector(".UserList").scrollTo({ top: 0, left: 0, behavior: "smooth" }); //////scroll to top
+    }, 400);
   });
   document.querySelectorAll(".menuIcon, .UserList, .menuSearch, .newUserIcon").forEach((element) => {
     element.classList.remove("hide");

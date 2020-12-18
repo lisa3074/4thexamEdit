@@ -12,6 +12,9 @@ export function displayProfile(userId) {
     document.querySelector(".SubMenu").classList.remove("hide");
     setSubmMenu();
   }
+  setTimeout(() => {
+    document.querySelector(".MainAdmin").scrollTo({ top: 0, left: 0, behavior: "smooth" }); //////scroll to top
+  }, 400);
 }
 export function hidePrivateInfo() {
   //console.log("jsModules || displayProfile.js | hidePrivateInfo()");

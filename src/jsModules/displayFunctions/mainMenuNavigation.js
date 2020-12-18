@@ -53,6 +53,9 @@ export function administration() {
       document.querySelector(".Menu").classList.add("hide");
     }
   }, 200);
+  setTimeout(() => {
+    document.querySelector(".MainAdmin").scrollTo({ top: 0, left: 0, behavior: "smooth" }); //////scroll to top
+  }, 400);
 }
 export function planner() {
   //console.log("jsModules || mainMenuNavigation.js | planner()");
