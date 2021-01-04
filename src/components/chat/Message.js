@@ -4,7 +4,7 @@ import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
 import CheckRoundedIcon from "@material-ui/icons/CheckRounded";
 import { editAMessage } from "../../jsModules/dbData/editData";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
-import { deleteAMessage } from "../../jsModules/dbData/deleteData";
+//import { deleteAMessage } from "../../jsModules/dbData/deleteData";
 import DeleteModal from "../administration/overview/DeleteModal";
 import { areYouSure } from "../../jsModules/displayFunctions/mainMenuNavigation";
 var dayjs = require("dayjs");
@@ -22,13 +22,16 @@ export default function Message(props) {
   const date = dayjs(props.date * 1).format(`dddd, MMM D, YYYY`);
   const time = dayjs(props.date * 1).format(`h:mm A`);
 
+  const { name } = props;
+
   useEffect(() => {
-    setSendingUser(users.filter((user) => user.name === props.name));
-  }, [users]);
+    setSendingUser(users.filter((user) => user.name === name));
+  }, [users, name]);
 
   useEffect(() => {
     sendingUser ? (sendingUser[0] ? setProfilePic(sendingUser[0].image) : setProfilePic()) : setProfilePic();
   }, [sendingUser]);
+
   function handleText(e) {
     setEditText(e.target.value);
     setEditMessage({ id: id, message: e.target.value, name: props.name, date: props.date });

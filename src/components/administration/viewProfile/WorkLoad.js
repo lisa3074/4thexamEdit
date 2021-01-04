@@ -15,13 +15,10 @@ export default function WorkLoad(props) {
   ).length;
 
   useEffect(() => {
-    const todoBar = document.querySelector(".todoBar");
-    const progressBar = document.querySelector(".progressBar");
-    const doneBar = document.querySelector(".doneBar");
-    todoBar.style.setProperty("--height", todo.toString());
-    progressBar.style.setProperty("--height", progress.toString());
-    doneBar.style.setProperty("--height", done.toString());
-  }, [chosenUser]);
+    document.querySelector(".todoBar").style.setProperty("--height", todo.toString());
+    document.querySelector(".progressBar").style.setProperty("--height", progress.toString());
+    document.querySelector(".doneBar").style.setProperty("--height", done.toString());
+  }, [chosenUser, todo, progress, done]);
 
   return (
     <article className="WorkLoad userCard">

@@ -3,7 +3,6 @@ import image from "../../images/placeholder.png";
 import { displayProfile } from "../../jsModules/displayFunctions/displayProfile";
 import { GSAP_stagViewProfile, GSAP_removeOpacity } from "../../jsModules/displayFunctions/gsap";
 import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
-import SettingsRoundedIcon from "@material-ui/icons/SettingsRounded";
 import PaletteRoundedIcon from "@material-ui/icons/PaletteRounded";
 import Tooltip from "@material-ui/core/Tooltip";
 

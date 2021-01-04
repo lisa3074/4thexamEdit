@@ -108,7 +108,6 @@ export default function PrivateForm(props) {
           name="Password"
           className="password"
           label="Password"
-          required
           value={props.password}
           onChange={handlePasswordChange}
         />

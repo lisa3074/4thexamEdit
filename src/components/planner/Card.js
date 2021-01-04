@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Select from "@material-ui/core/Select";
 import Panel from "muicss/lib/react/panel";
 import { expand } from "./modules/expand";

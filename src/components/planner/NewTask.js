@@ -86,9 +86,9 @@ export default function NewTask(props) {
     //setDue(e);
   };
 
-  const outline = {
+  /*   const outline = {
     outlineColor: "green",
-  };
+  }; */
 
   function submit(evt) {
     //console.log("planner || NewTask.js | submit()");
@@ -96,8 +96,8 @@ export default function NewTask(props) {
     if (title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0) {
       taskValidation();
     } else {
-      setTitleFocusOn(false);
-      setCatFocusOn(false);
+      // setTitleFocusOn(false);
+      //etCatFocusOn(false);
       props.onFormSubmit({
         title: title,
         list: list,
@@ -125,8 +125,8 @@ export default function NewTask(props) {
     }
   }
   //MANUEL VALIDERING
-  const [titleFocusOn, setTitleFocusOn] = useState("false");
-  const [catFocusOn, setCatFocusOn] = useState("false");
+  //const [titleFocusOn, setTitleFocusOn] = useState("false");
+  //const [catFocusOn, setCatFocusOn] = useState("false");
   const [correct, setCorrect] = useState("false");
   const [areWeThereYet, setAreWeThereYet] = useState(false);
 
@@ -145,9 +145,9 @@ export default function NewTask(props) {
   const correctFalse = (e) => {
     setCorrect(false);
   };
-  const titleFocusChanged = (e) => {
-    setTitleFocusOn(true);
-  };
+  /*   const titleFocusChanged = (e) => {
+     setTitleFocusOn(true);
+  }; */
 
   const disabled = {
     filter:
@@ -187,7 +187,7 @@ export default function NewTask(props) {
             className="title"
             /*  style={titleBorderStyle} */
             label="Task title *"
-            onFocus={titleFocusChanged}
+            //onFocus={titleFocusChanged}
             onChange={titleChanged}
             name="title"
             value={title}

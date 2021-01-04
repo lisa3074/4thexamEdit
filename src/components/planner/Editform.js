@@ -72,6 +72,9 @@ export default function EditForm(props) {
 
   const titleChanged = (e) => {
     setTitle(e.target.value);
+    const id = e.target.parentNode.parentNode.parentNode.parentNode.querySelector(".flex-wrapper > button")
+      .classList[2];
+    editTaskValidation(id);
     document.querySelector(".editContainer form > div:nth-child(1) > p").classList.add("hide");
   };
 
@@ -97,7 +100,6 @@ export default function EditForm(props) {
     const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
     const yyyy = today.getFullYear();
     setDue(`${yyyy}-${mm}-${dd}`);
-    //setDue(e);
   };
 
   const payload = {
@@ -112,10 +114,11 @@ export default function EditForm(props) {
   };
 
   function submit(evt) {
+    const id = evt.target.querySelector(".flex-wrapper > button").classList[2];
     //console.log("planner/EditForm.js || submit()");
     evt.preventDefault();
     if (title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0) {
-      editTaskValidation();
+      editTaskValidation(id);
     } else {
       props.editCard(payload, props.id, title, list, assignedTo, color, category, description, due);
       GSAP_stagCardsDesktop();
@@ -134,8 +137,7 @@ export default function EditForm(props) {
   }
 
   //MANUEL VALIDERING
-  const [titleFocusOn, setTitleFocusOn] = useState("false");
-  const [catFocusOn, setCatFocusOn] = useState("false");
+  //const [titleFocusOn, setTitleFocusOn] = useState("false");
   const [correct, setCorrect] = useState("false");
   const [areWeThereYet, setAreWeThereYet] = useState(false);
 
@@ -155,20 +157,10 @@ export default function EditForm(props) {
     setCorrect(false);
   };
 
-  const titleFocusChanged = (e) => {
+  /*   const titleFocusChanged = (e) => {
     setTitleFocusOn(true);
-  };
-  const catFocusChanged = (e) => {
-    setCatFocusOn(true);
-  };
-  const titleBorderStyle = {
-    outline: "none",
-    borderBottom: title.length === 0 && titleFocusOn === true ? "2px solid #e68b3c" : "0px solid #e68b3c",
-  };
-  const catBorderStyle = {
-    outline: "none",
-    borderBottom: category.length === 0 && catFocusOn === true ? "2px solid #e68b3c" : "0px solid #ff5e5e",
-  };
+  }; */
+
   const disabled = {
     filter:
       title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0
@@ -183,8 +175,11 @@ export default function EditForm(props) {
     e.target.innerText
       ? document.querySelector(".editContainer .collaborators").setAttribute("data-chosen", true)
       : document.querySelector(".editContainer .collaborators").setAttribute("data-chosen", false);
-    document.querySelector(".editContainer form > div:nth-child(2) > p").classList.add("hide");
+    document.querySelectorAll(".editContainer form > div:nth-child(2) > p").forEach((p) => {
+      p.classList.add("hide");
+    });
   }
+
   function resetState() {
     setCategory("");
     setColor("#ffffff");
@@ -210,15 +205,7 @@ export default function EditForm(props) {
             <h1 className="editTask">Edit task</h1>
             <form className="form" onSubmit={submit}>
               <div className="input-wrapper">
-                <TextField
-                  className="title"
-                  style={titleBorderStyle}
-                  label="Task title"
-                  onFocus={titleFocusChanged}
-                  onChange={titleChanged}
-                  name="title"
-                  value={title}
-                />
+                <TextField className="title" label="Task title" onChange={titleChanged} name="title" value={title} />
                 <p className="error hide">Give the task a title to help your co-workers out.</p>
               </div>{" "}
               <div className="input-wrapper">
@@ -279,7 +266,6 @@ export default function EditForm(props) {
                       variant="inline"
                       format="dd/MM/yyyy"
                       margin="normal"
-                      label="Date picker inline"
                       value={due}
                       className="due"
                       label="Due date"
@@ -313,7 +299,7 @@ export default function EditForm(props) {
               </div>
               <div className="flex-wrapper">
                 <Tooltip title={areWeThereYet ? "Go ahead!" : "You need to fil all required fields"}>
-                  <button style={disabled} className="float-btn save">
+                  <button style={disabled} className={"float-btn save b" + props.id}>
                     <CheckRoundedIcon />
                   </button>
                 </Tooltip>

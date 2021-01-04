@@ -8,6 +8,7 @@ const SignUp = ({ history, saveCredentials }) => {
   const [error, setError] = useState([null]);
   const handleSignUp = useCallback(
     async (e) => {
+      console.log("LOAD");
       e.preventDefault();
       saveCredentials();
       const { email, password } = e.target.elements;
@@ -18,7 +19,7 @@ const SignUp = ({ history, saveCredentials }) => {
         setError(error.message);
       }
     },
-    [history]
+    [history, saveCredentials]
   );
 
   return (
@@ -34,7 +35,7 @@ const SignUp = ({ history, saveCredentials }) => {
         </label>
         <label>
           Password
-          <input name="password" type="password" placeholder="Password" name="password" className="password" />
+          <input name="password" type="password" placeholder="Password" className="password" />
         </label>
 
         <div>

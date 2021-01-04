@@ -30,14 +30,14 @@ export default function Administration(props) {
   const [level, setLevel] = useState();
   const [viewingProfile, setViewingProfile] = useState(false);
   const [isUSerProfile, setisUSerProfile] = useState(false);
-  const [sortDate, setSortDate] = useState();
+  const [sortDate, setSortDate] = useState(null);
   const [cards, setCards] = useState([]);
   const [list, setList] = useState("To");
   const [chatSearch, setChatSearch] = useState("");
   const [messageToDelete, setMessageToDelete] = useState();
 
   localStorage.length === 0 ? firebaseConfig.auth().signOut() : localStorage.setItem("user", "true");
-
+  console.log(chosenHours);
   useEffect(() => {
     chosenDivision === (undefined || "") && chosenHours === (undefined || "")
       ? document.querySelector(".reset-wrapper").classList.add("hide")
@@ -128,6 +128,7 @@ export default function Administration(props) {
         setChosenDivision={setChosenDivision}
         setChosenHours={setChosenHours}
         setSearch={setSearch}
+        setSortDate={setSortDate}
         setSystemPart={setSystemPart}></Menu>
       <MainAdmin
         setChosenDivision={setChosenDivision}

@@ -282,6 +282,9 @@ button.sendMessage {
             pointer-events: none;
             fill: var(--dark-text);
           }
+          div {
+            cursor: pointer;
+          }
 
           .float-btn {
             background-color: var(--primary);

@@ -39,7 +39,7 @@ export default function Private(props) {
             <p className="education">{props.education}</p>
 
             <h2>CONTRACT</h2>
-            <a href={props.contract} target="_blank" download>
+            <a href={props.contract} target="_blank" rel="noreferrer" download>
               <GetAppRoundedIcon />
             </a>
           </div>

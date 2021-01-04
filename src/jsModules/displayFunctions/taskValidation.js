@@ -23,28 +23,22 @@ export function taskValidation() {
   }
 }
 
-export function editTaskValidation() {
+export function editTaskValidation(id) {
   const $ = document.querySelector.bind(document);
-
-  if ($(".editContainer .title input").value === "") {
-    $(".editContainer form > div:nth-child(1) > p").classList.remove("hide");
+  const $a = document.querySelectorAll.bind(document);
+  if ($(".editContainer#" + id + " .title input").value === "") {
+    $(".editContainer#" + id + " form > div:nth-child(1) > p").classList.remove("hide");
   } else {
-    $(".editContainer form > div:nth-child(1) > p").classList.add("hide");
+    $(".editContainer#" + id + " form > div:nth-child(1) > p").classList.add("hide");
   }
   if ($('.editContainer .collaborators[data-chosen="false"]')) {
-    $(".editContainer form > div:nth-child(2) > p").classList.remove("hide");
+    $a(".editContainer form > div:nth-child(2) > p").forEach((p) => {
+      p.classList.remove("hide");
+    });
   } else {
-    $(".editContainer form > div:nth-child(2) > p").classList.add("hide");
-  }
-  if ($(".editContainer .list input").value === "") {
-    $(".editContainer form > div:nth-child(4) > p").classList.remove("hide");
-  } else {
-    $(".editContainer form > div:nth-child(4) > p").classList.add("hide");
-  }
-  if ($(".editContainer .category input").value === "") {
-    $(".editContainer form > div:nth-child(6) > p").classList.remove("hide");
-  } else {
-    $(".editContainer form > div:nth-child(6) > p").classList.add("hide");
+    $a(".editContainer form > div:nth-child(2) > p").forEach((p) => {
+      p.classList.add("hide");
+    });
   }
 }
 

@@ -55,7 +55,7 @@ export default function FilterTasks(props) {
         <FormControl className="category">
           <InputLabel id="select-category">Category</InputLabel>
           <Select
-            value={categories.category}
+            // value={categories.category}
             labelId="select-category"
             name="category"
             label="category"

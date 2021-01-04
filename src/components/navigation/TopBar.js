@@ -139,12 +139,6 @@ export default function TopBar(props) {
     }
   }
 
-  const today = new Date();
-  const dd = String(today.getDate()).padStart(2, "0");
-  const mm = String(today.getMonth() + 1).padStart(2, "0");
-  const yyyy = today.getFullYear();
-  /*   const todaysDate = `${yyyy}-${mm}-${dd}`; */
-
   const newUserAcces = props.level === "Administrator" ? <AddRoundedIcon className="add-task" onClick={addTask} /> : "";
 
   return (
@@ -244,7 +238,7 @@ export default function TopBar(props) {
             <FormControl className="category">
               <InputLabel id="select-category-top">Category</InputLabel>
               <Select
-                value={categories.category}
+                //value={categories.category}
                 labelId="select-category-top"
                 name="category"
                 label="category"
@@ -368,10 +362,7 @@ export default function TopBar(props) {
           <div
             className="float-btn all"
             onClick={() => {
-              props.setSortDate();
-              document
-                .querySelector("#root > section > section > nav.TopBar > div.chat-top > div > form.date-wrapper")
-                .reset();
+              props.setSortDate(null);
               scrollToBottom();
               fetchAll();
             }}>

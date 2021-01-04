@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ChatNav from "./ChatNav";
 import MessageBoard from "./MessageBoard";
 import NewMessage from "./NewMessage";
@@ -8,7 +8,6 @@ export default function Chat(props) {
 
   const [message, setMessage] = useState();
   const [checked, setChecked] = useState(false);
-  const [search, setSearch] = useState("");
   const { signedinUser, setSortDate, sortDate } = props;
 
   return (

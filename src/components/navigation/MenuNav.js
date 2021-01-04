@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Switch, Link } from "react-router-dom";
 import PeopleIcon from "@material-ui/icons/People";
 import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
@@ -38,6 +38,7 @@ export default function MenuNav(props) {
     props.setChosenDivision("");
     props.setChosenHours("");
     props.setSearch("");
+    props.setSortDate(null);
     props.setisUSerProfile(false);
     props.setViewingProfile(false);
   }

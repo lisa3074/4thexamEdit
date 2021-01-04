@@ -53,6 +53,7 @@ export default function Menu(props) {
           setChosenDivision={props.setChosenDivision}
           setChosenHours={props.setChosenHours}
           setSearch={props.setSearch}
+          setSortDate={props.setSortDate}
           setSystemPart={props.setSystemPart}></MenuNav>
       </nav>
     </>

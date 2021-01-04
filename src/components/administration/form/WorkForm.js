@@ -11,7 +11,7 @@ import Grid from "@material-ui/core/Grid";
 
 export default function WorkForm(props) {
   //console.log("administration/form || WorkForm.js | WorkForm()");
-  const { user, level, hours, division } = props;
+  const { division } = props;
 
   const handleHoursChange = (e) => {
     props.setHours(e.target.value);
@@ -97,7 +97,6 @@ export default function WorkForm(props) {
           name="Position"
           className="position"
           label="Position"
-          required
           value={props.position}
           onChange={handlePositionChange}
         />
