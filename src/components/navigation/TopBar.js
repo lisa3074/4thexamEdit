@@ -341,6 +341,7 @@ export default function TopBar(props) {
                   format="dd/MM/yyyy"
                   margin="none"
                   value={props.sortDate}
+                  placeholder="All dates"
                   className="date"
                   label=""
                   onChange={dateChanged}

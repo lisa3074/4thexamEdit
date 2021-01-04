@@ -51,7 +51,12 @@ button.sendMessage {
     padding: 0;
   }
 }
-
+.ChatNav button.text-btn .MuiInputBase-input::-webkit-input-placeholder {
+  font-family: "IBMPlexSans-regular";
+  text-align: center;
+  color: var(--white);
+  opacity: 0.7;
+}
 .nav-wrapper .float-btn svg {
   fill: var(--button);
   stroke: var(--button);
@@ -99,13 +104,15 @@ button.sendMessage {
   z-index: 100;
   .showAll {
     position: fixed;
-    top: 14px;
-    right: 6.5rem;
+    top: 18px;
+    right: 6rem;
     height: 3rem;
     z-index: 150;
     svg {
-      width: 25px;
-      height: 25px;
+      width: 20px;
+      height: 20px;
+      stroke-width: 2px;
+      stroke: var(--orange);
       fill: var(--orange);
     }
   }

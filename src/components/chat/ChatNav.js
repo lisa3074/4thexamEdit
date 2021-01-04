@@ -74,6 +74,7 @@ export default function ChatNav(props) {
                   format="MMM dd. yyyy"
                   margin="normal"
                   value={props.sortDate}
+                  placeholder="All dates"
                   className="date"
                   onChange={dateChanged}
                   name="Date"
@@ -108,7 +109,7 @@ export default function ChatNav(props) {
           <div
             className="showAll hide"
             onClick={() => {
-              setSortDate();
+              setSortDate(null);
               scrollToBottom();
               fetchAll();
             }}>

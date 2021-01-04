@@ -5,11 +5,10 @@ export function newUser() {
 
 export function openMenu() {
   //console.log("jsModules || subMenuNavigation.js | openMenu()");
-  document.querySelector(".Planner").classList.add("hide");
-  document.querySelector(".MainAdmin").classList.add("hide");
-  document.querySelector(".Chat").classList.add("hide");
-  document.querySelector(".SubMenu").classList.add("hide");
   document.querySelector(".Menu").classList.remove("hide");
+  document.querySelectorAll(".Planner, .MainAdmin, .Chat, .SubMenu").forEach((element) => {
+    element.classList.add("hide");
+  });
 }
 
 export function delegation() {
@@ -52,10 +51,16 @@ export function searchUsers(tool) {
 
 export function closeSearch(tool) {
   //console.log("jsModules || subMenuNavigation.js | closeSearch()");
-  document.querySelector(".menuSearch").classList.remove("hide");
+  /*   document.querySelector(".menuSearch").classList.remove("hide");
   document.querySelector(".menuClose").classList.add("hide");
   document.querySelector(".PlannerNav .search-wrapper").classList.remove("hide");
-  document.querySelector(".close-wrapper").classList.add("hide");
+  document.querySelector(".close-wrapper").classList.add("hide"); */
+  document.querySelectorAll(".menuSearch, .PlannerNav .search-wrapper").forEach((element) => {
+    element.classList.remove("hide");
+  });
+  document.querySelectorAll(".menuClose, .close-wrapper").forEach((element) => {
+    element.classList.add("hide");
+  });
 }
 
 export function resetFilterNav() {

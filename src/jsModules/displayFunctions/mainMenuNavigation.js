@@ -18,6 +18,7 @@ export function deleted() {
     modal.classList.add("hide");
   });
 }
+
 export function clearFormAdmin() {
   //console.log("navigation || SubMenu.js | clearForm()");
   document.querySelector("form.FilterUsers").reset();
@@ -37,18 +38,14 @@ export function clearFormAdmin() {
 
 export function administration() {
   //console.log("jsModules || mainMenuNavigation.js | administration()");
-
   setTimeout(() => {
-    document.querySelector(".MainAdmin").classList.remove("hide");
-    document.querySelector(".SubMenu").classList.remove("hide");
-    document.querySelector(".UserList").classList.remove("hide");
-    document.querySelector(".admin-top").classList.remove("hide");
-    document.querySelector(".chat-top").classList.add("hide");
-    document.querySelector(".Planner").classList.add("hide");
-    document.querySelector(".ViewProfile").classList.add("hide");
-    document.querySelector(".planner-top").classList.add("hide");
+    document.querySelectorAll(".MainAdmin, .SubMenu, .UserList, .admin-top").forEach((element) => {
+      element.classList.remove("hide");
+    });
+    document.querySelectorAll(".chat-top, .Planner, .ViewProfile, .planner-top, .Chat").forEach((element) => {
+      element.classList.add("hide");
+    });
     document.querySelector(".TopBar").setAttribute("data-state", "admin");
-    document.querySelector(".Chat").classList.add("hide");
     if (window.innerWidth < 1000) {
       document.querySelector(".Menu").classList.add("hide");
     }
@@ -57,52 +54,51 @@ export function administration() {
     document.querySelector(".MainAdmin").scrollTo({ top: 0, left: 0, behavior: "smooth" }); //////scroll to top
   }, 400);
 }
+
 export function planner() {
   //console.log("jsModules || mainMenuNavigation.js | planner()");
-  document.querySelector(".MainAdmin").classList.add("hide");
-  document.querySelector(".admin-top").classList.add("hide");
-  document.querySelector(".chat-top").classList.add("hide");
-  document.querySelector(".Chat").classList.add("hide");
-  document.querySelector(".Planner").classList.remove("hide");
-  document.querySelector(".planner-top").classList.remove("hide");
-  document.querySelector(".SubMenu").classList.remove("hide");
+  document.querySelectorAll(".MainAdmin, .chat-top, .Chat, .admin-top").forEach((element) => {
+    element.classList.add("hide");
+  });
+  document.querySelectorAll(".Planner, .SubMenu, .planner-top").forEach((element) => {
+    element.classList.remove("hide");
+  });
   document.querySelector(".TopBar").setAttribute("data-state", "planner");
   if (window.innerWidth < 1000) {
-    document.querySelector(".Menu").classList.add("hide");
-    document.querySelector(".newUserIcon").classList.add("hide");
     document.querySelector(".menuAddTask").classList.remove("hide");
+    document.querySelectorAll(".Menu, .newUserIcon").forEach((element) => {
+      element.classList.add("hide");
+    });
   }
 }
+
 export function chat() {
   //console.log("jsModules || mainMenuNavigation.js | chat()");
-  document.querySelector(".admin-top").classList.add("hide");
-  document.querySelector(".planner-top").classList.add("hide");
-  document.querySelector(".Planner").classList.add("hide");
-  document.querySelector(".MainAdmin").classList.add("hide");
-  document.querySelector(".chat-top").classList.remove("hide");
-  document.querySelector(".TopBar").setAttribute("data-state", "chat");
-  document.querySelectorAll(".Chat").forEach((chat) => {
-    chat.classList.remove("hide");
+  document.querySelectorAll(".MainAdmin, .planner-top, .Planner, .admin-top").forEach((element) => {
+    element.classList.add("hide");
   });
+  document.querySelectorAll(".chat-top, .Chat").forEach((element) => {
+    element.classList.remove("hide");
+  });
+  document.querySelector(".TopBar").setAttribute("data-state", "chat");
   if (window.innerWidth < 1000) {
-    document.querySelector(".Menu").classList.add("hide");
-    document.querySelector(".newUserIcon").classList.add("hide");
-    document.querySelector(".menuAddTask").classList.add("hide");
-    document.querySelector(".SubMenu").classList.add("hide");
+    document.querySelectorAll(".Menu, .newUserIcon, .menuAddTask, .SubMenu").forEach((element) => {
+      element.classList.add("hide");
+    });
   }
 }
+
 export function newUser() {
   //console.log("jsModules || mainMenuNavigation.js | newUser()");
-  document.querySelector(".ViewProfile").classList.remove("hide");
-  document.querySelector(".ViewProfile .UserForm").classList.remove("hide");
-  document.querySelector(".MainAdmin").classList.remove("hide");
-  document.querySelector(".admin-top").classList.remove("hide");
-  document.querySelector(".UserForm").setAttribute("data-state", "new");
-  document.querySelector(".previewImg").setAttribute("data-state", "new");
-  document.querySelector(".Chat").classList.add("hide");
-  document.querySelector(".Planner").classList.add("hide");
-  document.querySelector(".planner-top").classList.add("hide");
-  document.querySelector(".chat-top").classList.add("hide");
+  document.querySelectorAll(".ViewProfile, .ViewProfile .UserForm, .MainAdmin, .admin-top").forEach((element) => {
+    element.classList.remove("hide");
+  });
+  document.querySelectorAll(".Chat, .Planner, .planner-top, .chat-top").forEach((element) => {
+    element.classList.add("hide");
+  });
+  document.querySelectorAll(".previewImg, .UserForm").forEach((element) => {
+    element.setAttribute("data-state", "new");
+  });
   document.querySelector(".TopBar").setAttribute("data-state", "admin");
   if (window.innerWidth < 1000) {
     document.querySelector(".Menu").classList.add("hide");

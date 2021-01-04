@@ -1,6 +1,7 @@
 export function forwards() {
   //console.log("jsModules || formNavigation.js | forwards()");
   const $ = document.querySelector.bind(document);
+  const $a = document.querySelectorAll.bind(document);
   //PERSON FORM VALIDATION
   if (
     ($(".name input").value === "" || $(".country input").value === "" || $(".city input").value === "") &&
@@ -8,8 +9,9 @@ export function forwards() {
   ) {
     personValidation();
   } else if (!$(".PersonForm").classList.contains("hide")) {
-    $(".back").classList.remove("hide");
-    $(".WorkForm").classList.remove("hide");
+    $a(".back, .WorkForm").forEach((element) => {
+      element.classList.remove("hide");
+    });
     $(".PersonForm").classList.add("hide");
     $(".float-btn.two").style.backgroundColor = "var(--secondary)";
 
@@ -32,6 +34,7 @@ export function forwards() {
     $(".PrivateForm").classList.remove("hide");
     $(".WorkForm").classList.add("hide");
     $(".float-btn.three").style.backgroundColor = "var(--secondary)";
+
     //PRIVATE FORM VAILDATION
   } else if (
     ($(".cpr input").value === "" ||
@@ -39,7 +42,6 @@ export function forwards() {
       $(".address input").value === "" ||
       $(".postal input").value === "" ||
       $(".education input").value === "" ||
-      /*    ($("#pdf-upload").files.length === 0 && */
       $(".PrivateForm .custom-upload .flex-wrapper p").textContent === "Upload contract*" ||
       $(".password input").value === "") &&
     !$(".PrivateForm").classList.contains("hide")
@@ -52,13 +54,16 @@ export function forwards() {
       : $(".check").classList.add("hide");
   }, 100);
 }
+
 export function backwards() {
   //console.log("jsModules || formNavigation.js | backwards()");
   const $ = document.querySelector.bind(document);
+  const $a = document.querySelectorAll.bind(document);
   if (!$(".WorkForm").classList.contains("hide")) {
     $(".PersonForm").classList.remove("hide");
-    $(".WorkForm").classList.add("hide");
-    $(".back").classList.add("hide");
+    $a(".back, .WorkForm").forEach((element) => {
+      element.classList.add("hide");
+    });
     $(".float-btn.two").style.backgroundColor = "var(--tietery)";
   } else if (!$(".PrivateForm").classList.contains("hide")) {
     $(".WorkForm").classList.remove("hide");
@@ -75,10 +80,8 @@ export function backwards() {
 export function person() {
   //console.log("jsModules || formNavigation.js | person()");
   const $ = document.querySelector.bind(document);
-  $(".back").classList.add("hide");
+  hideForms();
   $(".PersonForm").classList.remove("hide");
-  $(".WorkForm").classList.add("hide");
-  $(".PrivateForm").classList.add("hide");
   $(".float-btn.two").style.backgroundColor = "var(--tietery)";
   $(".float-btn.three").style.backgroundColor = "var(--tietery)";
 }
@@ -91,10 +94,8 @@ export function work() {
     !$(".PersonForm").classList.contains("hide")
   ) {
     personValidation();
-    $(".back").classList.add("hide");
     $(".PersonForm").classList.remove("hide");
-    $(".WorkForm").classList.add("hide");
-    $(".PrivateForm").classList.add("hide");
+    hideForms();
     $(".float-btn.two").style.backgroundColor = "var(--tietery)";
     $(".float-btn.three").style.backgroundColor = "var(--tietery)";
   } else {
@@ -107,18 +108,35 @@ export function work() {
   }
 }
 
+function hideForms() {
+  const $a = document.querySelectorAll.bind(document);
+  $a(".back, .WorkForm, .PrivateForm").forEach((element) => {
+    element.classList.add("hide");
+  });
+}
+
 export function privat() {
-  //console.log("jsModules || formNavigation.js | privat()");
+  console.log("jsModules || formNavigation.js | privat()");
   const $ = document.querySelector.bind(document);
+  const $a = document.querySelectorAll.bind(document);
   if (
-    ($(".name input").value === "" || $(".country input").value === "" || $(".city input").value === "") &&
+    ($(".name input").value === "" ||
+      $(".country input").value === "" ||
+      $(".city input").value === "" ||
+      $('.level[data-chosen="false"]') ||
+      $('.division[data-chosen="false"]') ||
+      $('.hours[data-chosen="false"]') ||
+      $(".email input").value === "" ||
+      !$(".email input").value.match(
+        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/
+      ) ||
+      $(".startDate input").value === "" ||
+      $(".phone input").value === "" ||
+      $(".position input").value === "") &&
     !$(".PersonForm").classList.contains("hide")
   ) {
     personValidation();
-    $(".back").classList.add("hide");
-    $(".PersonForm").classList.remove("hide");
-    $(".WorkForm").classList.add("hide");
-    $(".PrivateForm").classList.add("hide");
+    hideForms();
     $(".float-btn.two").style.backgroundColor = "var(--tietery)";
     $(".float-btn.three").style.backgroundColor = "var(--tietery)";
   } else if (
@@ -136,10 +154,12 @@ export function privat() {
   ) {
     workValidation();
   } else {
-    $(".check").classList.remove("hide");
-    $(".PrivateForm").classList.remove("hide");
-    $(".PersonForm").classList.add("hide");
-    $(".WorkForm").classList.add("hide");
+    $a(".check, .PrivateForm").forEach((element) => {
+      element.classList.remove("hide");
+    });
+    $a(".PersonForm, .WorkForm").forEach((element) => {
+      element.classList.add("hide");
+    });
     $(".float-btn.two").style.backgroundColor = "var(--secondary)";
     $(".float-btn.three").style.backgroundColor = "var(--secondary)";
   }
@@ -147,7 +167,6 @@ export function privat() {
 
 function personValidation() {
   const $ = document.querySelector.bind(document);
-
   if ($(".name input").value === "") {
     $("fieldset.PersonForm > div.input-wrapper > p").classList.remove("hide");
   } else {
@@ -164,6 +183,7 @@ function personValidation() {
     $("fieldset.PersonForm > div.flex-wrapper > div:nth-child(2) > p").classList.add("hide");
   }
 }
+
 function workValidation() {
   const $ = document.querySelector.bind(document);
   if ($(".position input").value === "") {
@@ -211,6 +231,7 @@ function workValidation() {
     $("fieldset.WorkForm > div:nth-child(8) > p").classList.add("hide");
   }
 }
+
 function privateValidation() {
   const $ = document.querySelector.bind(document);
   if ($(".cpr input").value === "") {
@@ -243,10 +264,7 @@ function privateValidation() {
   } else {
     $(".PrivateForm > div:nth-child(7) > p").classList.add("hide");
   }
-  if (
-    /* $("#pdf-upload").files.length === 0 */
-    $(".PrivateForm .custom-upload .flex-wrapper p").textContent === "Upload contract*"
-  ) {
+  if ($(".PrivateForm .custom-upload .flex-wrapper p").textContent === "Upload contract*") {
     $(".PrivateForm > div.upload-wrapper > p").classList.remove("hide");
   } else {
     $(".PrivateForm > div.upload-wrapper > p").classList.add("hide");
