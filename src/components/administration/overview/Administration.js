@@ -51,7 +51,6 @@ export default function Administration(props) {
   }, [chosenEmployee, chosenCategory]);
 
   useEffect(() => {
-    //LOADER 4 GANGE
     getUsers(setUsers);
     getCards(setCards);
     getSignedinUser(setSignedinUser, localStorage.email);
@@ -64,7 +63,6 @@ export default function Administration(props) {
   }, [users]);
 
   useEffect(() => {
-    //loader 2 gange
     signedInUserDepandables();
   }, [signedinUser]);
 
@@ -91,7 +89,12 @@ export default function Administration(props) {
       }, 2000);
     }
   }
-
+  const chosenProps = {
+    setChosenCategory: setChosenCategory,
+    setChosenEmployee: setChosenEmployee,
+    setChosenHours: setChosenHours,
+    setChosenDivision: setChosenDivision,
+  };
   return (
     <section className="Administration" data-module="profiles">
       <div className="loading-page">
@@ -100,11 +103,8 @@ export default function Administration(props) {
         </div>
       </div>
       <TopBar
+        {...chosenProps}
         endpoint={props.endpoint}
-        setChosenCategory={setChosenCategory}
-        setChosenEmployee={setChosenEmployee}
-        setChosenDivision={setChosenDivision}
-        setChosenHours={setChosenHours}
         setSearch={setSearch}
         level={level}
         setTool={setTool}
@@ -116,6 +116,7 @@ export default function Administration(props) {
         chatSearch={chatSearch}
         setChatSearch={setChatSearch}></TopBar>
       <Menu
+        {...chosenProps}
         setEndpoint={props.setEndpoint}
         setTool={setTool}
         signedinUser={signedinUser}
@@ -123,16 +124,11 @@ export default function Administration(props) {
         level={level}
         setisUSerProfile={setisUSerProfile}
         setViewingProfile={setViewingProfile}
-        setChosenCategory={setChosenCategory}
-        setChosenEmployee={setChosenEmployee}
-        setChosenDivision={setChosenDivision}
-        setChosenHours={setChosenHours}
         setSearch={setSearch}
         setSortDate={setSortDate}
         setSystemPart={setSystemPart}></Menu>
       <MainAdmin
-        setChosenDivision={setChosenDivision}
-        setChosenHours={setChosenHours}
+        {...chosenProps}
         users={users}
         setUsers={setUsers}
         chosenDivision={chosenDivision}
@@ -156,10 +152,9 @@ export default function Administration(props) {
         cards={cards}></MainAdmin>
 
       <Planner
+        {...chosenProps}
         chosenCategory={chosenCategory}
         chosenEmployee={chosenEmployee}
-        setChosenCategory={setChosenCategory}
-        setChosenEmployee={setChosenEmployee}
         users={users}
         setSystemPart={setSystemPart}
         systemPart={systemPart}
@@ -185,12 +180,9 @@ export default function Administration(props) {
       />
 
       <SubMenu
+        {...chosenProps}
         endpoint={props.endpoint}
         tool={tool}
-        setChosenCategory={setChosenCategory}
-        setChosenEmployee={setChosenEmployee}
-        setChosenHours={setChosenHours}
-        setChosenDivision={setChosenDivision}
         id={id}
         setSystemPart={setSystemPart}
         systemPart={systemPart}

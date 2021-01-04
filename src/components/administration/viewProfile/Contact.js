@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Contact(props) {
   //console.log("administration/viewProfile || Contact.js | Contact()");
-  const mailLink = `"mailto:${props.email}"`;
-  const telLink = `"tel:${props.tel}"`;
+  const mailLink = "mailto:" + props.email;
+  const telLink = "tel:" + props.tel;
 
   return (
     <article className="Contact userCard">

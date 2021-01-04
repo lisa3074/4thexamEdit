@@ -70,6 +70,7 @@ export default function EditForm(props) {
     setDue(props.due);
   }
 
+  //CHANGE HANDLERS
   const titleChanged = (e) => {
     setTitle(e.target.value);
     const id = e.target.parentNode.parentNode.parentNode.parentNode.querySelector(".flex-wrapper > button")
@@ -77,12 +78,10 @@ export default function EditForm(props) {
     editTaskValidation(id);
     document.querySelector(".editContainer form > div:nth-child(1) > p").classList.add("hide");
   };
-
   const catChanged = (e) => {
     setCategory(e.target.value);
     document.querySelector(".editContainer form > div:nth-child(6) > p").classList.add("hide");
   };
-
   const descriptionChanged = (e) => {
     setDescription(e.target.value);
   };
@@ -101,7 +100,16 @@ export default function EditForm(props) {
     const yyyy = today.getFullYear();
     setDue(`${yyyy}-${mm}-${dd}`);
   };
+  function handleAssigned(e) {
+    e.target.innerText
+      ? document.querySelector(".editContainer .collaborators").setAttribute("data-chosen", true)
+      : document.querySelector(".editContainer .collaborators").setAttribute("data-chosen", false);
+    document.querySelectorAll(".editContainer form > div:nth-child(2) > p").forEach((p) => {
+      p.classList.add("hide");
+    });
+  }
 
+  //SUBMIT
   const payload = {
     title: title,
     list: list,
@@ -137,7 +145,6 @@ export default function EditForm(props) {
   }
 
   //MANUEL VALIDERING
-  //const [titleFocusOn, setTitleFocusOn] = useState("false");
   const [correct, setCorrect] = useState("false");
   const [areWeThereYet, setAreWeThereYet] = useState(false);
 
@@ -156,11 +163,6 @@ export default function EditForm(props) {
   const correctFalse = (e) => {
     setCorrect(false);
   };
-
-  /*   const titleFocusChanged = (e) => {
-    setTitleFocusOn(true);
-  }; */
-
   const disabled = {
     filter:
       title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0
@@ -171,15 +173,8 @@ export default function EditForm(props) {
   const succes = {
     display: correct === true ? "flex" : "none",
   };
-  function handleAssigned(e) {
-    e.target.innerText
-      ? document.querySelector(".editContainer .collaborators").setAttribute("data-chosen", true)
-      : document.querySelector(".editContainer .collaborators").setAttribute("data-chosen", false);
-    document.querySelectorAll(".editContainer form > div:nth-child(2) > p").forEach((p) => {
-      p.classList.add("hide");
-    });
-  }
 
+  //RESET
   function resetState() {
     setCategory("");
     setColor("#ffffff");

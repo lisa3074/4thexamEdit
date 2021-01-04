@@ -6,6 +6,7 @@ import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 export default function PersonForm(props) {
   //console.log("administration/form || PersonForm.js | PersonForm()");
 
+  //CHANGE HANDLERS
   const handleName = (e) => {
     props.setName(e.target.value);
     document.querySelector("fieldset.PersonForm > div.input-wrapper > p").classList.add("hide");
@@ -19,7 +20,7 @@ export default function PersonForm(props) {
     document.querySelector("fieldset.PersonForm > div.flex-wrapper > div:nth-child(2) > p").classList.add("hide");
   };
 
-  //image prewiev
+  //IMAGE PREVIEW
   function preview(e) {
     //console.log(" administration/form || PersonForm.js | preview()");
     const uploadedImage = $("#file-upload").get(0).files[0];

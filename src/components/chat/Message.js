@@ -32,11 +32,21 @@ export default function Message(props) {
     sendingUser ? (sendingUser[0] ? setProfilePic(sendingUser[0].image) : setProfilePic()) : setProfilePic();
   }, [sendingUser]);
 
+  //CHANGE HANDLERS
   function handleText(e) {
     setEditText(e.target.value);
     setEditMessage({ id: id, message: e.target.value, name: props.name, date: props.date });
   }
+  function doNothing() {
+    return;
+  }
+  function handleOnKeyDown(e) {
+    if (e.keyCode === 13) {
+      submitIfChecked(e);
+    }
+  }
 
+  //SUBMIT
   function submitEdit(e) {
     e.preventDefault();
     editAMessage(editMessage);
@@ -54,14 +64,6 @@ export default function Message(props) {
     submitEdit(e);
   }
 
-  function doNothing() {
-    return;
-  }
-  function handleOnKeyDown(e) {
-    if (e.keyCode === 13) {
-      submitIfChecked(e);
-    }
-  }
   function scrollIntoView(e) {
     setTimeout(() => {
       e.target.scrollIntoView({

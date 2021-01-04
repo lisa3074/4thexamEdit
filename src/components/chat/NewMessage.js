@@ -7,24 +7,11 @@ export default function NewMessage(props) {
   //console.log("chat || NewMessage.js | NewMessage()");
 
   const { signedinUser, message, setMessage, checked, setChecked } = props;
+
+  // CHANGE HANDLERS
   function handleMessage(e) {
     setMessage(e.target.value);
   }
-  function submitMessage(e) {
-    e.preventDefault();
-    if (message) {
-      const user = signedinUser ? signedinUser[0].name : "unknown";
-      postMessage(message, user);
-      setMessage("");
-      props.setSortDate();
-    } else {
-      document.querySelector(".NewMessage textarea").style.color = "var(--danger)";
-      setTimeout(() => {
-        document.querySelector(".NewMessage textarea").style.color = "var(--dark-text)";
-      }, 1500);
-    }
-  }
-
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
@@ -39,6 +26,22 @@ export default function NewMessage(props) {
       }
     } else if (e.keyCode === 13) {
       e.preventDefault();
+    }
+  }
+
+  //SUBMIT
+  function submitMessage(e) {
+    e.preventDefault();
+    if (message) {
+      const user = signedinUser ? signedinUser[0].name : "unknown";
+      postMessage(message, user);
+      setMessage("");
+      props.setSortDate();
+    } else {
+      document.querySelector(".NewMessage textarea").style.color = "var(--danger)";
+      setTimeout(() => {
+        document.querySelector(".NewMessage textarea").style.color = "var(--dark-text)";
+      }, 1500);
     }
   }
 

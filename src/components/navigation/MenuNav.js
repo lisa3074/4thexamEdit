@@ -59,6 +59,7 @@ export default function MenuNav(props) {
     }
   }
 
+  //USER LEVEL RESTRICTIONS
   //if administrator
   const newUserAcces =
     props.level === "Administrator" ? (

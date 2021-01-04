@@ -21,7 +21,7 @@ export default function ProfileNav(props) {
       />
     </div>
   );
-  //Show only to administrators or if it is your own profile.
+  //Show only possibility to edit profile to administrators or if it is your own profile.
   const navigation =
     props.level === "Administrator" || props.isUSerProfile ? (
       <div className={"ProfileNav"}>

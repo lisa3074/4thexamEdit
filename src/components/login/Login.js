@@ -17,9 +17,10 @@ const Login = ({ history }) => {
   const [resetEmail, setResetEmail] = useState("");
   const { currentUser } = useContext(AuthContext);
   let theme = localStorage.getItem("theme");
+
   theme === "regular" || theme === "orange" || theme === "dark"
     ? document.querySelector("body").setAttribute("data-state", theme)
-    : console.log("");
+    : document.querySelector("body").setAttribute("data-state", "regular");
 
   const handleLogin = useCallback(
     async (e) => {
@@ -30,7 +31,16 @@ const Login = ({ history }) => {
         history.push("/administration");
       } catch (error) {
         error.message === "The password is invalid or the user does not have a password."
-          ? setError("Either the user does not exist or the password does not match user")
+          ? setError(
+              "The password does not match the email. If you do not remember your password, you can reset your password below."
+            )
+          : error.message ===
+            "There is no user record corresponding to this identifier. The user may have been deleted."
+          ? setError(
+              "The email does not exist in our system. If you think this is a mistake, please send an email to admin@skatteguiden.dk"
+            )
+          : error.message === "The email address is badly formatted."
+          ? setError("To log in you need to enter an email containing the characters: @ and .")
           : setError(error.message);
       }
     },
@@ -45,18 +55,23 @@ const Login = ({ history }) => {
     document.querySelector(".Question").classList.toggle("hide");
   }
 
+  // CAHNGE HANDLERS
   const handleEmail = (e) => {
     localStorage.setItem("email", e.target.value);
   };
-  // console.log(localStorage);
-  function openReset() {
-    document.querySelector(".forgot").classList.remove("hide");
-  }
-
   function handleChange(e) {
     setResetEmail(e.target.value);
   }
 
+  //RESET PASSWORD
+  function openReset() {
+    document.querySelector(".forgot").classList.remove("hide");
+  }
+  const close = () => {
+    document.querySelector(".forgot").classList.add("hide");
+  };
+
+  //RESET FORM
   function resetForm() {
     document.querySelector(".resetSent").classList.remove("hide");
     setResetEmail("");
@@ -65,9 +80,6 @@ const Login = ({ history }) => {
       document.querySelector(".forgot").classList.add("hide");
     }, 1000);
   }
-  const close = () => {
-    document.querySelector(".forgot").classList.add("hide");
-  };
   return (
     <main className="login-wrapper">
       <div className="login">

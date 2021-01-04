@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FilterTasks from "./FilterTasks";
 import PlannerList from "./PlannerList";
 import PlannerNav from "./PlannerNav";
@@ -27,6 +27,20 @@ export default function MainPlanner({
 
   const [dropList, setDropList] = React.useState("");
 
+  const listProps = {
+    deleteCard: deleteCard,
+    moveCard: moveCard,
+    editCard: editCard,
+    dragCard: dragCard,
+    onFormSubmit: onFormSubmit,
+    setDropList: setDropList,
+    users: users,
+    dropList: dropList,
+    setSystemPart: setSystemPart,
+    systemPart: systemPart,
+    chosenEmployee: chosenEmployee,
+  };
+
   function getFilteredCards(PlannerList) {
     return chosenEmployee !== "" && chosenCategory !== ""
       ? cards.filter(
@@ -41,6 +55,7 @@ export default function MainPlanner({
       ? cards.filter((card) => card.list === PlannerList && card.assignedTo.some((obj) => obj.name === chosenEmployee))
       : cards.filter((card) => card.list === PlannerList);
   }
+
   return (
     <main className="Main">
       <PlannerNav
@@ -60,66 +75,10 @@ export default function MainPlanner({
         list={list}
       />
       <section className="relativeContainer">
-        <PlannerList
-          deleteCard={deleteCard}
-          moveCard={moveCard}
-          editCard={editCard}
-          dragCard={dragCard}
-          onFormSubmit={onFormSubmit}
-          setDropList={setDropList}
-          users={users}
-          dropList={dropList}
-          setSystemPart={setSystemPart}
-          systemPart={systemPart}
-          chosenEmployee={chosenEmployee}
-          header="To Do"
-          cards={getFilteredCards("To Do")}
-        />
-        <PlannerList
-          deleteCard={deleteCard}
-          moveCard={moveCard}
-          editCard={editCard}
-          dragCard={dragCard}
-          onFormSubmit={onFormSubmit}
-          users={users}
-          setDropList={setDropList}
-          dropList={dropList}
-          setSystemPart={setSystemPart}
-          systemPart={systemPart}
-          chosenEmployee={chosenEmployee}
-          header="In progress"
-          cards={getFilteredCards("In progress")}
-        />
-        <PlannerList
-          deleteCard={deleteCard}
-          moveCard={moveCard}
-          editCard={editCard}
-          dragCard={dragCard}
-          onFormSubmit={onFormSubmit}
-          users={users}
-          setDropList={setDropList}
-          dropList={dropList}
-          setSystemPart={setSystemPart}
-          systemPart={systemPart}
-          chosenEmployee={chosenEmployee}
-          header="Barrier"
-          cards={getFilteredCards("Barrier")}
-        />
-        <PlannerList
-          deleteCard={deleteCard}
-          moveCard={moveCard}
-          editCard={editCard}
-          dragCard={dragCard}
-          onFormSubmit={onFormSubmit}
-          users={users}
-          setDropList={setDropList}
-          dropList={dropList}
-          setSystemPart={setSystemPart}
-          systemPart={systemPart}
-          chosenEmployee={chosenEmployee}
-          header="Done"
-          cards={getFilteredCards("Done")}
-        />
+        <PlannerList key={cards.id} header="To Do" cards={getFilteredCards("To Do")} {...listProps} />
+        <PlannerList key={cards.id} header="In progress" cards={getFilteredCards("In progress")} {...listProps} />
+        <PlannerList key={cards.id} header="Barrier" cards={getFilteredCards("Barrier")} {...listProps} />
+        <PlannerList key={cards.id} header="Done" cards={getFilteredCards("Done")} {...listProps} />
       </section>
     </main>
   );

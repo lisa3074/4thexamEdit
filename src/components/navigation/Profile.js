@@ -12,15 +12,14 @@ import MenuItem from "@material-ui/core/MenuItem";
 export default function Profile(props) {
   //console.log("navigation || Profile.js | Profile()");
   const [anchorEl, setAnchorEl] = useState(null);
-
   const name = props.signedinUser ? props.signedinUser[0].name : "";
   const firstSpace = name.indexOf(" ");
   const firstName = name.substring(0, firstSpace + 1);
   const lastSpace = name.lastIndexOf(" ");
   const lastName = name.substring(lastSpace);
-
   const picture = props.signedinUser ? props.signedinUser[0].image : image;
 
+  //CHANGE HANDLERS
   const handleClose = (e, theme) => {
     //console.log("planner || PlannerNav.js | handleClose()");
     setAnchorEl(null);
@@ -29,16 +28,18 @@ export default function Profile(props) {
       localStorage.setItem("theme", theme);
     }
   };
-
   const handleClick = (event) => {
     //console.log("planner || PlannerNav.js | handleClick()");
     setAnchorEl(event.currentTarget);
   };
+
+  //STYLE
   const move = {
     top: "44px",
     left: "-16px",
     width: "100vw",
   };
+
   return (
     <div className="Profile">
       <img

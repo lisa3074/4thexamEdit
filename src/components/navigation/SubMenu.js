@@ -42,6 +42,7 @@ export default function SubMenu(props) {
     });
   }
 
+  //PROFILES RESET
   function clearForm() {
     //console.log("navigation || SubMenu.js | clearForm()");
     document.querySelector("form.FilterUsers").reset();
@@ -57,6 +58,7 @@ export default function SubMenu(props) {
     }
   }
 
+  //USER LEVEL RESTRCTIONS
   //makes sure only admins can add profiles
   const newUserAccess =
     props.level === "Administrator" ? (

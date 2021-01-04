@@ -4,6 +4,14 @@ import { editUser, setUpForm } from "../../../jsModules/displayFunctions/display
 import { GSAP_removeOpacity } from "../../../jsModules/displayFunctions/gsap";
 export default function Person(props) {
   //console.log("administration/viewProfile || Person.js | Person()");
+  const edit =
+    props.level === "Administrator" || props.isUSerProfile ? (
+      <div>
+        <EditRoundedIcon />
+      </div>
+    ) : (
+      <></>
+    );
   return (
     <article className="Person userCard">
       <img src={props.image} alt={props.name} />
@@ -16,9 +24,7 @@ export default function Person(props) {
           setUpForm();
         }}>
         <h1 className="profile name">{props.name}</h1>
-        <div className={props.level === "Administrator" || props.isUSerProfile ? "" : "hiddenFromUser"}>
-          <EditRoundedIcon />
-        </div>
+        {edit}
       </div>
     </article>
   );

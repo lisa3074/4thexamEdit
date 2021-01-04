@@ -16,14 +16,18 @@ export function expand(theId) {
   const panel = document.querySelector(".mui-panel.panelMargin" + theIdClassName);
 
   if (panel.dataset.state === "visible") {
-    document.querySelector(theIdClass + " .delete").classList.add("hide");
-    document.querySelector(theIdClass + " .edit").classList.add("hide");
-    document.querySelector(theIdClass + " .MuiFormControl-root").classList.add("hide");
+    document
+      .querySelectorAll(theIdClass + " .delete, " + theIdClass + " .edit, " + theIdClass + " .MuiFormControl-root")
+      .forEach((element) => {
+        element.classList.add("hide");
+      });
     panel.dataset.state = "hidden";
   } else {
-    document.querySelector(theIdClass + " .delete").classList.remove("hide");
-    document.querySelector(theIdClass + " .edit").classList.remove("hide");
-    document.querySelector(theIdClass + " .MuiFormControl-root").classList.remove("hide");
+    document
+      .querySelectorAll(theIdClass + " .delete, " + theIdClass + " .edit, " + theIdClass + " .MuiFormControl-root")
+      .forEach((element) => {
+        element.classList.remove("hide");
+      });
     panel.dataset.state = "visible";
   }
 }

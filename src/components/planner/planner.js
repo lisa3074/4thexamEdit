@@ -34,7 +34,6 @@ export default function Planner(props) {
       }
     }, 500);
   }
-
   scroll();
 
   async function onFormSubmit(data) {

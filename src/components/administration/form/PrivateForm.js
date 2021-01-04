@@ -5,24 +5,7 @@ import PublishRoundedIcon from "@material-ui/icons/PublishRounded";
 export default function PrivateForm(props) {
   //console.log("administration/form || PrivateForm.js | PrivateForm()");
 
-  function findFileName(e) {
-    const file = $("#pdf-upload").get(0).files[0];
-    if (file) {
-      const readerFile = new FileReader();
-      readerFile.readAsDataURL(file);
-      setTimeout(() => {
-        props.setContractFile(file);
-      }, 100);
-    }
-    setTimeout(() => {
-      const lastBackSlash = e.target.value.lastIndexOf("\\") + 1;
-      const fileName = e.target.value.substring(lastBackSlash, 50);
-      document.querySelector(".PrivateForm > .upload-wrapper > label > div > p").textContent = fileName;
-      props.setContract(fileName);
-      document.querySelector(".PrivateForm > div.upload-wrapper > p").classList.add("hide");
-    }, 100);
-  }
-
+  //CHANGE HANDLERS
   const handleCprChange = (e) => {
     props.setCpr(e.target.value);
     document.querySelector("fieldset.PrivateForm > div:nth-child(2) > p").classList.add("hide");
@@ -31,7 +14,6 @@ export default function PrivateForm(props) {
     props.setAccount(e.target.value);
     document.querySelector("fieldset.PrivateForm > div:nth-child(3) > p").classList.add("hide");
   };
-
   const handleAddressChange = (e) => {
     props.setAddress(e.target.value);
     document.querySelector(".PrivateForm > div:nth-child(4) > p").classList.add("hide");
@@ -49,6 +31,24 @@ export default function PrivateForm(props) {
     document.querySelector(".PrivateForm > div.input-wrapper.password-safety > p").classList.add("hide");
   };
 
+  //DISPLAY FILENAME
+  function findFileName(e) {
+    const file = $("#pdf-upload").get(0).files[0];
+    if (file) {
+      const readerFile = new FileReader();
+      readerFile.readAsDataURL(file);
+      setTimeout(() => {
+        props.setContractFile(file);
+      }, 100);
+    }
+    setTimeout(() => {
+      const lastBackSlash = e.target.value.lastIndexOf("\\") + 1;
+      const fileName = e.target.value.substring(lastBackSlash, 50);
+      document.querySelector(".PrivateForm > .upload-wrapper > label > div > p").textContent = fileName;
+      props.setContract(fileName);
+      document.querySelector(".PrivateForm > div.upload-wrapper > p").classList.add("hide");
+    }, 100);
+  }
   return (
     <fieldset className="PrivateForm hide">
       <h2>PRIVATE</h2>

@@ -13,6 +13,23 @@ export default function WorkForm(props) {
   //console.log("administration/form || WorkForm.js | WorkForm()");
   const { division } = props;
 
+  //CHANGE HANDLERS
+  const handleDateChange = (e) => {
+    props.setDate(e);
+    document.querySelector("fieldset.WorkForm > div:nth-child(5) > p").classList.add("hide");
+  };
+  const handlePositionChange = (e) => {
+    props.setPosition(e.target.value);
+    document.querySelector("fieldset.WorkForm > div:nth-child(2) > p").classList.add("hide");
+  };
+  const handleEmailChange = (e) => {
+    props.setEmail(e.target.value);
+    document.querySelector("fieldset.WorkForm > div:nth-child(7) > p").classList.add("hide");
+  };
+  const handleTelChange = (e) => {
+    props.setTel(e.target.value);
+    document.querySelector("fieldset.WorkForm > div:nth-child(8) > p").classList.add("hide");
+  };
   const handleHoursChange = (e) => {
     props.setHours(e.target.value);
     dataChosen(e.target.value, e.target.name);
@@ -23,41 +40,22 @@ export default function WorkForm(props) {
     document.querySelector("fieldset.WorkForm > div:nth-child(6) > p").classList.add("hide");
     dataChosen(e.target.value, e.target.name);
   };
-
-  const handleDateChange = (e) => {
-    props.setDate(e);
-    document.querySelector("fieldset.WorkForm > div:nth-child(5) > p").classList.add("hide");
-  };
-
-  const handlePositionChange = (e) => {
-    props.setPosition(e.target.value);
-    document.querySelector("fieldset.WorkForm > div:nth-child(2) > p").classList.add("hide");
-  };
   const handleDivisionChange = (e) => {
     props.setDivision(e.target.value);
     dataChosen(e.target.value, e.target.name);
     document.querySelector("fieldset.WorkForm > div:nth-child(3) > p").classList.add("hide");
   };
-  const handleEmailChange = (e) => {
-    props.setEmail(e.target.value);
-    document.querySelector("fieldset.WorkForm > div:nth-child(7) > p").classList.add("hide");
-  };
-  const handleTelChange = (e) => {
-    props.setTel(e.target.value);
-    document.querySelector("fieldset.WorkForm > div:nth-child(8) > p").classList.add("hide");
-  };
-
   const dataChosen = (value, element) => {
     element = element.substring(element.lastIndexOf(" ") + 1, 50);
     value
       ? document.querySelector(".UserForm ." + element).setAttribute("data-chosen", true)
       : document.querySelector(".UserForm ." + element).setAttribute("data-chosen", false);
   };
-
   const handleOnKeyDown = () => {
     return;
   };
 
+  //ARRAYS FOR SORTING
   const divisions = [
     "Design",
     "Support",
@@ -76,12 +74,14 @@ export default function WorkForm(props) {
     </MenuItem>
   ));
   const workHours = ["Full time", "Part time", "Hourly"];
+
   const mappedHours = workHours.map((hours) => (
     <MenuItem value={hours} key={hours}>
       {hours}
     </MenuItem>
   ));
   const userLevel = ["Administrator", "Regular user", "Board member"];
+
   const mappedLevel = userLevel.map((level) => (
     <MenuItem value={level} key={level}>
       {level}

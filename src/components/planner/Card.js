@@ -13,11 +13,12 @@ import { GSAP_opacity0To1NamePopup } from "../../jsModules/displayFunctions/gsap
 export default function Card(props) {
   //console.log("planner || Card.js | Card()");
   const [list, setList] = useState("");
+
+  //CHANGE LIST
   const listChanged = (e) => {
     setList(e.target.value);
     onClickMove(e.target.value);
   };
-
   const cardDragged = (e, id) => {
     e.preventDefault();
     e.stopPropagation();
@@ -26,25 +27,20 @@ export default function Card(props) {
       dragMove(id, props.dropList);
     }
   };
-
   function onClickMove(list) {
     props.dragCard({ id: props.id, list: list, timeStamp: Date.now() }, props.id);
   }
   function dragMove(id, list) {
     props.dragCard({ id: id, list: list, timeStamp: Date.now() }, id);
   }
+
+  //CLOSE / EXPAND CARD
   function clickOnCard() {
     closeExpand(props.id);
     expand(props.id);
   }
 
-  const colorCat = {
-    backgroundColor: props.color,
-  };
-  const colorText = {
-    color: props.color,
-  };
-
+  //SHOW ASSIGNED (IMG / NAME / POSITION)
   const mappedAssignedImg = props.assignedTo.map((user) => (
     <Tooltip title={user.name + " / " + user.position} key={user.id + user.name}>
       <div>
@@ -69,6 +65,13 @@ export default function Card(props) {
       clickOnCard();
     }
   }
+  //STYLES
+  const colorCat = {
+    backgroundColor: props.color,
+  };
+  const colorText = {
+    color: props.color,
+  };
 
   return (
     <Panel

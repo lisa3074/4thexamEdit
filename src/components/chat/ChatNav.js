@@ -23,8 +23,9 @@ dayjs.extend(customParseFormat);
 export default function ChatNav(props) {
   //console.log("chat || ChatNav.js | ChatNav()");
   const [searching, setSearching] = useState(false);
-
   const { setSortDate } = props;
+
+  //CHANGE HANDLERS
   const dateChanged = (e) => {
     setSortDate(e.toString().substring(0, 15));
     scrollToBottom();
@@ -33,23 +34,24 @@ export default function ChatNav(props) {
     });
   };
 
+  //SEARCH / RESET SEARCH
   const chooseSvg = (e) => {
     document.querySelectorAll(".ChatNav .svg-wrapper").forEach((svg) => {
       svg.classList.remove("hide");
     });
     e.target.classList.add("hide");
-
     !searching ? GSAP_sortVisibleMobileChat() : GSAP_sortInvisibleMessagesMobile();
-
     setTimeout(() => {
       scrollToBottom();
     }, 200);
   };
 
+  //RESET FORM
   const resetSearch = () => {
     document.querySelector("#root > section > section > main.Chat > div > nav.FilterMessages > form").reset();
     props.setChatSearch("");
   };
+
   return (
     <>
       <nav className="ChatNav">

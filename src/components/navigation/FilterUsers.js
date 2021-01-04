@@ -10,6 +10,7 @@ import { GSAP_sortVisibleMobileUsers, GSAP_stagProfilesSort } from "../../jsModu
 export default function FilterUsers(props) {
   //console.log("navigation || FilterUsers.js | FilterUsers()");
 
+  //CHANGE HANDLERS
   const handleDivisionChange = (e) => {
     const value = e.target.value === "All" ? "" : e.target.value;
     props.setChosenDivision(value);
@@ -33,6 +34,8 @@ export default function FilterUsers(props) {
       GSAP_sortVisibleMobileUsers();
     }, 1);
   };
+
+  //ARRAYS FOR SORTING
   const divisions = [
     "Design",
     "Support",
@@ -46,6 +49,7 @@ export default function FilterUsers(props) {
     "Executive",
   ];
   const workHours = ["Full time", "Part time", "Hourly"];
+
   const mappedDivision = divisions.map((division) => (
     <MenuItem value={division} key={division}>
       {division}
@@ -56,6 +60,7 @@ export default function FilterUsers(props) {
       {hours}
     </MenuItem>
   ));
+
   return (
     <form className="FilterUsers">
       <div className="filter-wrapper">

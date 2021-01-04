@@ -10,6 +10,10 @@ import {
 
 export default function UserCard(props) {
   //console.log("administration/UserCard.js || UserCard()");
+  const firstSpace = props.name.indexOf(" ");
+  const firstName = props.name.substring(0, firstSpace + 1);
+  const lastSpace = props.name.lastIndexOf(" ");
+  const lastName = props.name.substring(lastSpace);
 
   function detectId(e) {
     const userId = e.target.parentNode.dataset.user;
@@ -26,10 +30,6 @@ export default function UserCard(props) {
     }
     GSAP_addOpacity(".UserCard");
   }
-  const firstSpace = props.name.indexOf(" ");
-  const firstName = props.name.substring(0, firstSpace + 1);
-  const lastSpace = props.name.lastIndexOf(" ");
-  const lastName = props.name.substring(lastSpace);
 
   function isUserEqualToProfile(id) {
     if (localStorage.getItem("signedInUserId") === id) {

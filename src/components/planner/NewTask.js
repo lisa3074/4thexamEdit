@@ -54,20 +54,18 @@ export default function NewTask(props) {
     setDue(`${yyyy}-${mm}-${dd}`);
   }, [due]);
 
+  //CHANGE HANDLERS
   const titleChanged = (e) => {
     setTitle(e.target.value);
     document.querySelector(".addForm div.input-wrapper > p").classList.add("hide");
   };
-
   const descriptionChanged = (e) => {
     setDescription(e.target.value);
   };
-
   const catChanged = (e) => {
     setCategory(e.target.value);
     document.querySelector(".addForm > div:nth-child(7) > p").classList.add("hide");
   };
-
   const colorChanged = (e) => {
     const colorMatch = categories.filter((entry) => e.target.value === entry.category);
     setColor(colorMatch[0].color);
@@ -76,28 +74,58 @@ export default function NewTask(props) {
     setList(e.target.value);
     document.querySelector(".addForm > div:nth-child(5) > p").classList.add("hide");
   };
-
   const dueChanged = (e) => {
     let today = new Date(e);
     const dd = String(today.getDate()).padStart(2, "0");
     const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
     const yyyy = today.getFullYear();
     setDue(`${yyyy}-${mm}-${dd}`);
-    //setDue(e);
+  };
+  function handleAssigned(e) {
+    e.target.innerText
+      ? document.querySelector(".addForm .collaborators").setAttribute("data-chosen", true)
+      : document.querySelector(".addForm .collaborators").setAttribute("data-chosen", false);
+    document.querySelector(".addForm > div:nth-child(3) > p").classList.add("hide");
+  }
+
+  //MANUEL VALIDERING
+  const [correct, setCorrect] = useState("false");
+  const [areWeThereYet, setAreWeThereYet] = useState(false);
+
+  useEffect(() => {
+    title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0
+      ? setAreWeThereYet(false)
+      : setAreWeThereYet(true);
+  }, [title, category, assignedTo, list]);
+
+  const correctTrue = (e) => {
+    setCorrect(true);
+    setTimeout(() => {
+      correctFalse();
+    }, 3000);
+  };
+  const correctFalse = (e) => {
+    setCorrect(false);
   };
 
-  /*   const outline = {
-    outlineColor: "green",
-  }; */
+  const disabled = {
+    filter:
+      title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0
+        ? "grayscale(1) brightness(1.3)"
+        : "none",
+    padding: "0",
+  };
+  const succes = {
+    display: correct === true ? "flex" : "none",
+  };
 
+  //SUBMIT
   function submit(evt) {
     //console.log("planner || NewTask.js | submit()");
     evt.preventDefault();
     if (title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0) {
       taskValidation();
     } else {
-      // setTitleFocusOn(false);
-      //etCatFocusOn(false);
       props.onFormSubmit({
         title: title,
         list: list,
@@ -124,48 +152,8 @@ export default function NewTask(props) {
       setAssigned([]);
     }
   }
-  //MANUEL VALIDERING
-  //const [titleFocusOn, setTitleFocusOn] = useState("false");
-  //const [catFocusOn, setCatFocusOn] = useState("false");
-  const [correct, setCorrect] = useState("false");
-  const [areWeThereYet, setAreWeThereYet] = useState(false);
 
-  useEffect(() => {
-    title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0
-      ? setAreWeThereYet(false)
-      : setAreWeThereYet(true);
-  }, [title, category, assignedTo, list]);
-
-  const correctTrue = (e) => {
-    setCorrect(true);
-    setTimeout(() => {
-      correctFalse();
-    }, 3000);
-  };
-  const correctFalse = (e) => {
-    setCorrect(false);
-  };
-  /*   const titleFocusChanged = (e) => {
-     setTitleFocusOn(true);
-  }; */
-
-  const disabled = {
-    filter:
-      title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0
-        ? "grayscale(1) brightness(1.3)"
-        : "none",
-    padding: "0",
-  };
-  const succes = {
-    display: correct === true ? "flex" : "none",
-  };
-
-  function handleAssigned(e) {
-    e.target.innerText
-      ? document.querySelector(".addForm .collaborators").setAttribute("data-chosen", true)
-      : document.querySelector(".addForm .collaborators").setAttribute("data-chosen", false);
-    document.querySelector(".addForm > div:nth-child(3) > p").classList.add("hide");
-  }
+  //RESET
   function resetState() {
     setCategory("");
     setTitle("");
@@ -183,15 +171,7 @@ export default function NewTask(props) {
           <h1>Add task</h1>
         </div>
         <div className="input-wrapper">
-          <TextField
-            className="title"
-            /*  style={titleBorderStyle} */
-            label="Task title *"
-            //onFocus={titleFocusChanged}
-            onChange={titleChanged}
-            name="title"
-            value={title}
-          />
+          <TextField className="title" label="Task title *" onChange={titleChanged} name="title" value={title} />
           <p className="error hide">Give the task a title to help your co-workers out.</p>
         </div>
         <div className="input-wrapper">

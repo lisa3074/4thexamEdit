@@ -29,18 +29,26 @@ import Grid from "@material-ui/core/Grid";
 export default function TopBar(props) {
   //console.log("navigation || TopBar.js | TopBar()");
 
+  //CHANGE HANDLERS
   const handleChanges = (module, e) => {
     document.querySelectorAll(".UserCard, .panelMargin").forEach((card) => {
       card.style.opacity = "0";
     });
     module === "admin" ? GSAP_stagProfilesSort() : GSAP_stagCardsDesktop();
   };
-
   const handleSearch = (e) => {
     props.setSearch(e.target.value);
     GSAP_stagProfilesSort();
   };
+  const dateChanged = (e) => {
+    props.setSortDate(new Date(e));
+    scrollToBottom();
+  };
+  const handleChatSearch = (e) => {
+    props.setChatSearch(e.target.value);
+  };
 
+  //ARRAYS FOR SORTING
   const categories = [
     { category: "Design", color: "#374d62" },
     { category: "Support", color: "#f44336" },
@@ -67,6 +75,7 @@ export default function TopBar(props) {
     "Executive",
   ];
   const workHours = ["Full time", "Part time", "Hourly"];
+
   const mappedDivision = divisions.map((division) => (
     <MenuItem value={division} key={division}>
       {division}
@@ -77,7 +86,6 @@ export default function TopBar(props) {
       {hours}
     </MenuItem>
   ));
-
   const mappedUsers = props.users.map((user) => (
     <MenuItem value={user.name} key={user.id}>
       {user.name}
@@ -88,15 +96,8 @@ export default function TopBar(props) {
       {category.category}
     </MenuItem>
   ));
-  const dateChanged = (e) => {
-    props.setSortDate(new Date(e));
 
-    scrollToBottom();
-  };
-
-  const handleChatSearch = (e) => {
-    props.setChatSearch(e.target.value);
-  };
+  //CHAT TOP
   const chooseSvg = (e) => {
     document.querySelectorAll(".TopBar .chat-top .svg-wrapper").forEach((svg) => {
       svg.classList.remove("hide");
@@ -109,11 +110,11 @@ export default function TopBar(props) {
   const resetSearch = (e) => {
     document.querySelector(".TopBar .chat-top .svg-wrapper.close").classList.add("hide");
     document.querySelector(".TopBar .chat-top .svg-wrapper.search").classList.remove("hide");
-
     document.querySelector("#root > section > section > nav.TopBar > div.chat-top > div > form").reset();
     props.setChatSearch("");
   };
 
+  //PLANNER & PROFILES TOP
   function clearForm() {
     //console.log("navigation || SubMenu.js | clearForm()");
     document.querySelector("form.FilterUsers").reset();
@@ -139,6 +140,7 @@ export default function TopBar(props) {
     }
   }
 
+  //USER LEVEL RESTRCTIONS
   const newUserAcces = props.level === "Administrator" ? <AddRoundedIcon className="add-task" onClick={addTask} /> : "";
 
   return (

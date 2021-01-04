@@ -56,49 +56,40 @@ export default function Form(props, { history }) {
     setDate(date ? `${yyyy}-${mm}-${dd}` : "");
   }, [date]);
 
-  function resetForm() {
-    // console.log(" administration/form || Form.js | resetForm()");
-    setImage("");
-    setCity("");
-    setName("");
-    setCountry("");
-    setPosition("");
-    setDivision("");
-    setHours("");
-    setDate(new Date());
-    setLevel("");
-    setEmail("");
-    setTel("");
-    setAccount("");
-    setContract("");
-    setCpr("");
-    setEducation("");
-    setPostal("");
-    setAddress("");
-    setImageFile("");
-    setChosenUser();
-    setFilePath("");
-    setFileUrl("");
-    setPassword("");
-    setContractPath("");
-    setContractFile("");
-    setTimeout(() => {
-      document.querySelector("#file-upload").value = "";
-      document.querySelector("#pdf-upload").value = "";
-    }, 6000);
-    props.setState("");
-    setUploadedImage("");
-    document.querySelectorAll(".error").forEach((error) => {
-      error.classList.add("hide");
-    });
-  }
+  //SET UP FORM
+  //Fill the form with the chosen users data, if a user has been chosen. Othwerwise add new user.
+  useEffect(() => {
+    if (chosenUser) {
+      setName(chosenUser[0].name);
+      setCountry(chosenUser[0].country);
+      setCity(chosenUser[0].city);
+      setImage(
+        chosenUser[0].image
+          ? chosenUser[0].image
+          : "https://firebasestorage.googleapis.com/v0/b/mmdfinalexam.appspot.com/o/profile_pictures%2Fplaceholder.png?alt=media&token=c06d8e7a-6812-45d0-bff1-af790d20f5b8"
+      );
+      setPosition(chosenUser[0].position);
+      setDivision(chosenUser[0].division);
+      setHours(chosenUser[0].workHours);
+      setDate(chosenUser[0].startDate);
+      setLevel(chosenUser[0].userLevel);
+      setEmail(chosenUser[0].email);
+      setTel(chosenUser[0].tel);
+      setAccount(chosenUser[0].accountNumber);
+      setContract(chosenUser[0].contract);
+      setEducation(chosenUser[0].education);
+      setCpr(chosenUser[0].cpr);
+      setPostal(chosenUser[0].postalCode);
+      setAddress(chosenUser[0].streetAndNumber);
+    }
+  }, [chosenUser]);
 
+  //SUBMIT AND VALIDATION
   function submit(e) {
     e.preventDefault();
     //console.log(" administration/form || Form.js | submit()");
     const $ = document.querySelector.bind(document);
     forwards();
-
     if (
       //If one of the below inputs are empty and if .password-safety is not hidden (new user)
       ($(".cpr input").value === "" ||
@@ -196,6 +187,7 @@ export default function Form(props, { history }) {
       : console.log("");
   }, [fileUrl, contractPath]);
 
+  //RESET
   function clear() {
     //console.log(" administration/form || Form.js | clear()");
     //if new user
@@ -217,34 +209,42 @@ export default function Form(props, { history }) {
     }
   }
 
-  //Fill the form with the chosen users data, if a user has been chosen. Othwerwise add new user.
-  useEffect(() => {
-    if (chosenUser) {
-      setName(chosenUser[0].name);
-      setCountry(chosenUser[0].country);
-      setCity(chosenUser[0].city);
-      setImage(
-        chosenUser[0].image
-          ? chosenUser[0].image
-          : "https://firebasestorage.googleapis.com/v0/b/mmdfinalexam.appspot.com/o/profile_pictures%2Fplaceholder.png?alt=media&token=c06d8e7a-6812-45d0-bff1-af790d20f5b8"
-      );
-
-      setPosition(chosenUser[0].position);
-      setDivision(chosenUser[0].division);
-      setHours(chosenUser[0].workHours);
-      setDate(chosenUser[0].startDate);
-      setLevel(chosenUser[0].userLevel);
-      setEmail(chosenUser[0].email);
-      setTel(chosenUser[0].tel);
-
-      setAccount(chosenUser[0].accountNumber);
-      setContract(chosenUser[0].contract);
-      setEducation(chosenUser[0].education);
-      setCpr(chosenUser[0].cpr);
-      setPostal(chosenUser[0].postalCode);
-      setAddress(chosenUser[0].streetAndNumber);
-    }
-  }, [chosenUser]);
+  function resetForm() {
+    // console.log(" administration/form || Form.js | resetForm()");
+    setImage("");
+    setCity("");
+    setName("");
+    setCountry("");
+    setPosition("");
+    setDivision("");
+    setHours("");
+    setDate(new Date());
+    setLevel("");
+    setEmail("");
+    setTel("");
+    setAccount("");
+    setContract("");
+    setCpr("");
+    setEducation("");
+    setPostal("");
+    setAddress("");
+    setImageFile("");
+    setChosenUser();
+    setFilePath("");
+    setFileUrl("");
+    setPassword("");
+    setContractPath("");
+    setContractFile("");
+    setTimeout(() => {
+      document.querySelector("#file-upload").value = "";
+      document.querySelector("#pdf-upload").value = "";
+    }, 6000);
+    props.setState("");
+    setUploadedImage("");
+    document.querySelectorAll(".error").forEach((error) => {
+      error.classList.add("hide");
+    });
+  }
 
   //Post new login to Google authentication (new user). Existing user connot be updated for safety reasons. A user can request a password reset on the login page, but the email cannot be changed.
   const handleSignUp = useCallback(
