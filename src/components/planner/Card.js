@@ -20,8 +20,11 @@ export default function Card(props) {
 
   const cardDragged = (e, id) => {
     e.preventDefault();
+    e.stopPropagation();
     setList(props.dropList);
-    dragMove(id, props.dropList);
+    if (!e.target.classList.contains("editContainer") && !e.target.classList.contains("editContainer").children) {
+      dragMove(id, props.dropList);
+    }
   };
 
   function onClickMove(list) {
@@ -134,6 +137,7 @@ export default function Card(props) {
               users={props.users}
               setSystemPart={props.setSystemPart}
               systemPart={props.systemPart}
+              cardDragged={cardDragged}
             />
           </div>
         </div>

@@ -199,7 +199,13 @@ export default function EditForm(props) {
         <EditRoundedIcon />
       </div>
       <DeleteModal deleteCard={props.deleteCard} id={props.id} systemPart={props.systemPart} />
-      <article className="editContainer hide" id={"b" + props.id}>
+      <article
+        className="editContainer hide"
+        id={"b" + props.id}
+        draggable
+        onDragStart={(e) => {
+          props.cardDragged(e);
+        }}>
         <div className="flex">
           <div className="edit-wrapper">
             <h1 className="editTask">Edit task</h1>

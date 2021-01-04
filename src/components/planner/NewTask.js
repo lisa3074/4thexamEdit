@@ -252,7 +252,6 @@ export default function NewTask(props) {
                 variant="inline"
                 format="dd/MM/yyyy"
                 margin="normal"
-                label="Date picker inline"
                 value={due}
                 className="due"
                 label="Due date"
