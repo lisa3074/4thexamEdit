@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Menu from "../../navigation/Menu";
 import MainAdmin from "./MainAdmin";
 import TopBar from "../../navigation/TopBar";
@@ -10,7 +10,8 @@ import { getUsers, getSignedinUser, getCards } from "../../../jsModules/dbData/g
 import { scrollToBottom } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 import { getMessages } from "../../../jsModules/dbData/getData";
 import { GSAP_stagProfilesStartup } from "../../../jsModules/displayFunctions/gsap";
-import { firebaseConfig } from "../../../jsModules/firebase/firebase";
+import { firebaseConfig, findCurrentUser } from "../../../jsModules/firebase/firebase";
+import { withRouter, Redirect } from "react-router";
 
 export default function Administration(props) {
   //console.log("administration/Administration.js || Administration()");
@@ -35,9 +36,11 @@ export default function Administration(props) {
   const [list, setList] = useState("To");
   const [chatSearch, setChatSearch] = useState("");
   const [messageToDelete, setMessageToDelete] = useState();
+  const [userEmail, setUserEmail] = useState();
+  const doesProfileExist = useRef(false);
 
   localStorage.length === 0 ? firebaseConfig.auth().signOut() : localStorage.setItem("user", "true");
-  console.log(chosenHours);
+
   useEffect(() => {
     chosenDivision === (undefined || "") && chosenHours === (undefined || "")
       ? document.querySelector(".reset-wrapper").classList.add("hide")
@@ -53,6 +56,7 @@ export default function Administration(props) {
   useEffect(() => {
     getUsers(setUsers);
     getCards(setCards);
+    findCurrentUser(setUserEmail);
     getSignedinUser(setSignedinUser, localStorage.email);
   }, []);
 
@@ -61,6 +65,31 @@ export default function Administration(props) {
       GSAP_stagProfilesStartup();
     }
   }, [users]);
+
+  useEffect(() => {
+    if (users && userEmail) {
+      users.filter((user) => {
+        if (userEmail === user.email) {
+          doesProfileExist.current = true;
+          localStorage.removeItem("profileDeleted");
+        }
+      });
+    }
+  }, [users, userEmail]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (doesProfileExist.current !== true) {
+        console.log("logging out");
+        firebaseConfig.auth().signOut();
+        localStorage.removeItem("email");
+        localStorage.removeItem("signedInUser");
+        localStorage.removeItem("signedInUserId");
+        localStorage.setItem("profileDeleted", true);
+        window.location.reload();
+      }
+    }, 1000);
+  }, [doesProfileExist]);
 
   useEffect(() => {
     signedInUserDepandables();

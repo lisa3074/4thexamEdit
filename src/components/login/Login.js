@@ -17,6 +17,8 @@ const Login = ({ history }) => {
   const [resetEmail, setResetEmail] = useState("");
   const { currentUser } = useContext(AuthContext);
   let theme = localStorage.getItem("theme");
+  const [checkProfiles, setCheckProfiles] = useState([]);
+  const [userEmail, setUserEmail] = useState();
 
   theme === "regular" || theme === "orange" || theme === "dark"
     ? document.querySelector("body").setAttribute("data-state", theme)
@@ -80,6 +82,23 @@ const Login = ({ history }) => {
       document.querySelector(".forgot").classList.add("hide");
     }, 1000);
   }
+
+  //DELETED PROFILE LOGOUT
+  const deleted = localStorage.profileDeleted ? (
+    <p className="deletedProfile">
+      Your profile has been deleted, and because of that, you have been logged out. If this is a mistake, please contact
+      an admin.
+    </p>
+  ) : (
+    <> </>
+  );
+
+  //Remove the reason for error message after 8 seconds. If page is refreshed after that, the login page is the default one.
+  if (localStorage.profileDeleted) {
+    setTimeout(() => {
+      localStorage.removeItem("profileDeleted");
+    }, 7000);
+  }
   return (
     <main className="login-wrapper">
       <div className="login">
@@ -137,6 +156,7 @@ const Login = ({ history }) => {
             </button>
           </div>
         </form>
+        {deleted}
 
         <div className="question-icon" onClick={questionClicked}>
           <h3>?</h3>

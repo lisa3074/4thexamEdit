@@ -2,7 +2,17 @@ import firebase from "firebase/app";
 import "firebase/storage";
 import "firebase/firestore";
 import "firebase/auth";
+import Profile from "../../components/navigation/Profile";
 
+export function findCurrentUser(callback) {
+  const user = firebase.auth().currentUser;
+  var email, uid;
+  if (user != null) {
+    email = user.email;
+    uid = user.uid;
+    callback(email);
+  }
+}
 export const firebaseConfig = firebase.initializeApp({
   apiKey: "AIzaSyDUpP2FLqidaGgtZVAbkkCLLdrE3JyNJ0M",
   authDomain: "mmdfinalexam.firebaseapp.com",

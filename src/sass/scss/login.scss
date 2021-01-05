@@ -37,6 +37,13 @@ body[data-state="dark"] {
   }
 }
 
+.deletedProfile {
+  font-size: 0.75rem;
+  padding: 1rem;
+  color: var(--orange);
+  line-height: 1rem;
+}
+
 .login-inputs {
   width: 100%;
   padding: 0.8rem 1rem;

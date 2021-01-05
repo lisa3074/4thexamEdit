@@ -6,17 +6,21 @@ export default function UserList(props) {
   if (window.innerWidth < 1000) {
     GSAP_UserListToTop();
   }
-  const mappedUsers = props.users.map((user) => (
-    <UserCard
-      key={user.id}
-      signedinUser={props.signedinUser}
-      {...user}
-      setId={props.setId}
-      setViewingProfile={props.setViewingProfile}
-      isUSerProfile={props.isUSerProfile}
-      setisUSerProfile={props.setisUSerProfile}
-    />
-  ));
+  const mappedUsers = props.users.map((user) =>
+    user.name !== "No profile" ? (
+      <UserCard
+        key={user.id}
+        signedinUser={props.signedinUser}
+        {...user}
+        setId={props.setId}
+        setViewingProfile={props.setViewingProfile}
+        isUSerProfile={props.isUSerProfile}
+        setisUSerProfile={props.setisUSerProfile}
+      />
+    ) : (
+      <></>
+    )
+  );
   return (
     <section className="UserList">
       <div className="grid-wrapper">{mappedUsers}</div>

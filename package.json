@@ -17,7 +17,7 @@
     "date-fns": "^2.16.1",
     "dayjs": "^1.9.6",
     "firebase": "^8.1.1",
-    "firebase-admin": "^9.4.1",
+    "firebase-admin": "^9.4.2",
     "gsap": "^3.5.1",
     "jquery": "^3.5.1",
     "muicss": "^0.10.2",
