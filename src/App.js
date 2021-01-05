@@ -70,7 +70,7 @@ export default function App() {
             <Switch>
               <PrivateRoute exact path="/administration" component={Administration} />
               <Route path="/signup" component={SignUp}></Route>
-              <Route path="/login" component={Login}></Route>
+              {/*    <Route path="/login" component={Login}></Route> */}
               <Route path="/" component={Login}></Route>
             </Switch>
           </HashRouter>
