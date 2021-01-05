@@ -14,6 +14,7 @@ export default function MainAdmin(props) {
         chosenHours={props.chosenHours}
         chosenDivision={props.chosenDivision}></FilterUsers>
       <UserList
+        profileStatus={props.profileStatus}
         setId={props.setId}
         setViewingProfile={props.setViewingProfile}
         signedinUser={props.signedinUser}
@@ -63,7 +64,12 @@ export default function MainAdmin(props) {
         }
       />
       <ViewProfile
+        setChosenHours={props.setChosenHours}
+        setChosenDivision={props.setChosenDivision}
+        setSearch={props.setSearch}
         user={props.users.filter((person) => person.id === props.id)}
+        profileStatus={props.profileStatus}
+        setProfileStatus={props.setProfileStatus}
         users={props.users}
         id={props.id}
         setUsers={props.setUsers}

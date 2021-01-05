@@ -43,6 +43,7 @@ export default function Menu(props) {
           setId={props.setId}
           setisUSerProfile={props.setisUSerProfile}></Profile>
         <MenuNav
+          setProfileStatus={props.setProfileStatus}
           setEndpoint={props.setEndpoint}
           setTool={props.setTool}
           level={props.level}

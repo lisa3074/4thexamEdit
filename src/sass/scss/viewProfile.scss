@@ -220,10 +220,14 @@
     bottom: 2rem;
     right: 3rem;
     .float-btn:nth-child(1) {
-      background-color: var(--secondary);
+      background-color: var(--tietery);
       margin-right: 1rem;
     }
     .float-btn:nth-child(2) {
+      background-color: var(--secondary);
+      margin-right: 1rem;
+    }
+    .float-btn:nth-child(3) {
       background-color: var(--primary);
     }
   }

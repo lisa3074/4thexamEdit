@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Contact(props) {
   //console.log("administration/viewProfile || Contact.js | Contact()");
-  const mailLink = "mailto:" + props.email;
+  const mailLink = props.profileStatus === "active" ? "mailto:" + props.email : "mailto:" + props.archivedEmail;
   const telLink = "tel:" + props.tel;
 
   return (
@@ -11,7 +11,7 @@ export default function Contact(props) {
       <div className="info-wrapper">
         <h2>EMAIL</h2>
         <p className="email">
-          <a href={mailLink}>{props.email}</a>
+          <a href={mailLink}>{props.profileStatus === "active" ? props.email : props.archivedEmail}</a>
         </p>
 
         <h2>TEL</h2>

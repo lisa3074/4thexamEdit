@@ -3,11 +3,25 @@ import UserCard from "./UserCard";
 import { GSAP_UserListToTop } from "../../../jsModules/displayFunctions/gsap";
 export default function UserList(props) {
   //console.log("administration/UserList.js || UserList()");
+  const { profileStatus } = props;
   if (window.innerWidth < 1000) {
     GSAP_UserListToTop();
   }
+  const UserList = document.querySelector(".UserList")
+    ? document.querySelector(".UserList").getAttribute("data-state")
+    : console.log();
   const mappedUsers = props.users.map((user) =>
-    user.name !== "No profile" ? (
+    user.email !== "" && profileStatus === "active" ? (
+      <UserCard
+        key={user.id}
+        signedinUser={props.signedinUser}
+        {...user}
+        setId={props.setId}
+        setViewingProfile={props.setViewingProfile}
+        isUSerProfile={props.isUSerProfile}
+        setisUSerProfile={props.setisUSerProfile}
+      />
+    ) : user.email === "" && profileStatus === "archived" ? (
       <UserCard
         key={user.id}
         signedinUser={props.signedinUser}
@@ -18,9 +32,10 @@ export default function UserList(props) {
         setisUSerProfile={props.setisUSerProfile}
       />
     ) : (
-      <></>
+      console.log()
     )
   );
+
   return (
     <section className="UserList">
       <div className="grid-wrapper">{mappedUsers}</div>

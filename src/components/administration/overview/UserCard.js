@@ -15,10 +15,17 @@ export default function UserCard(props) {
   const lastSpace = props.name.lastIndexOf(" ");
   const lastName = props.name.substring(lastSpace);
 
-  function detectId(e) {
+  /*   function detectId(e) {
     const userId = e.target.parentNode.dataset.user;
     viewUser(e, userId);
     isUserEqualToProfile(userId);
+    console.log(userId);
+  } */
+  function detectIdCard(e) {
+    const userId = e.target.dataset.user;
+    viewUser(e, userId);
+    isUserEqualToProfile(userId);
+    console.log(userId);
   }
   function viewUser(e, userId) {
     displayProfile(userId);
@@ -43,12 +50,13 @@ export default function UserCard(props) {
       className="UserCard"
       data-user={props.id}
       onClick={(e) => {
+        detectIdCard(e);
         viewUser(e, props.id);
         GSAP_stagViewProfile();
         props.setViewingProfile(true);
         GSAP_removeOpacity(".ProfileNav");
       }}>
-      <img src={props.image} alt="" />
+      <img src={props.image} alt="" className="profile-img-card" />
       <div className="info-container">
         <div className="info-wrapper">
           <h2>NAME</h2>
@@ -65,11 +73,12 @@ export default function UserCard(props) {
       </div>
       <button
         className="usercard btn primary text-btn"
-        onClick={(e) => {
+        /*  onClick={(e) => {
           detectId(e);
           props.setViewingProfile(true);
           GSAP_stagViewProfile();
-        }}>
+        }} */
+      >
         View
       </button>
     </article>

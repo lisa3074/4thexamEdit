@@ -81,6 +81,9 @@ export default function Form(props, { history }) {
       setCpr(chosenUser[0].cpr);
       setPostal(chosenUser[0].postalCode);
       setAddress(chosenUser[0].streetAndNumber);
+      if (chosenUser[0].archivedEmail) {
+        setEmail(chosenUser[0].archivedEmail);
+      }
     }
   }, [chosenUser]);
 

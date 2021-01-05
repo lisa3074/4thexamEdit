@@ -7,6 +7,7 @@ import ChatBubbleIcon from "@material-ui/icons/ChatBubble";
 import LockIcon from "@material-ui/icons/Lock";
 import { addTask } from "../planner/modules/mobNavigation";
 import AddCircleOutlineRoundedIcon from "@material-ui/icons/AddCircleOutlineRounded";
+import AccountBoxRoundedIcon from "@material-ui/icons/AccountBoxRounded";
 import { firebaseConfig } from "../../jsModules/firebase/firebase";
 import {
   administration,
@@ -46,16 +47,17 @@ export default function MenuNav(props) {
   GSAP_stagMenuNav();
 
   function clearFormPlanner() {
-    //console.log("navigation || SubMenu.js | clearFormPlanner()");
-    const categorySpan = document.querySelector("#mui-component-select-category > span");
-    const category = document.querySelector("#mui-component-select-category");
+    //console.log("navigation || SubMenu.js | clearForm()");
+    document.querySelector("form.FilterUsers").reset();
     const employeeSpan = document.querySelector("#mui-component-select-Employees > span");
     const employee = document.querySelector("#mui-component-select-Employees");
-    if (!categorySpan) {
-      category.textContent = "All";
-    }
+    const categorySpan = document.querySelector("#mui-component-select-category > span");
+    const category = document.querySelector("#mui-component-select-category");
     if (!employeeSpan) {
       employee.textContent = "All";
+    }
+    if (!categorySpan) {
+      category.textContent = "All";
     }
   }
 
@@ -74,10 +76,35 @@ export default function MenuNav(props) {
           resetSearch();
           GSAP_addOpacity(".UserCard, .userCard, .ProfileNav, .panelMargin");
           setUpForm();
+          clearFormAdmin();
         }}>
         <PersonAddIcon />
         <h3 className="new-user-link">New user</h3>
       </li>
+    ) : (
+      <li></li>
+    );
+  const archivedProfile =
+    props.level === "Administrator" ? (
+      <Link
+        to="/administration"
+        className="inset"
+        onClick={() => {
+          administration();
+          props.setTool("admin");
+          props.setSystemPart("admin");
+          resetSearch();
+          GSAP_stagProfilesMenuNav();
+          GSAP_addOpacity(".panelMargin, .userCard, .ProfileNav");
+          clearFormAdmin();
+
+          props.setProfileStatus("archived");
+        }}>
+        <li>
+          <AccountBoxRoundedIcon />
+          <h3 className="new-user-link">Archived profiles</h3>
+        </li>
+      </Link>
     ) : (
       <li></li>
     );
@@ -91,17 +118,18 @@ export default function MenuNav(props) {
             administration();
             props.setTool("admin");
             props.setSystemPart("admin");
-
             resetSearch();
             GSAP_stagProfilesMenuNav();
             GSAP_addOpacity(".panelMargin, .userCard, .ProfileNav");
             clearFormAdmin();
+            props.setProfileStatus("active");
           }}>
           <li>
             <PeopleIcon />
             <h3 className="admin-link">Profiles</h3>
           </li>
         </Link>
+        {archivedProfile}
         {newUserAcces}
         <li
           className="go-to-planner"
@@ -125,6 +153,7 @@ export default function MenuNav(props) {
             props.setSystemPart("planner");
             props.setTool("planner");
             resetSearch();
+            clearFormPlanner();
             GSAP_addOpacity(".UserCard, .userCard, .ProfileNav, .panelMargin");
           }}>
           <AddCircleOutlineRoundedIcon />

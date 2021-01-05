@@ -24,7 +24,9 @@ export default function ViewProfile(props) {
     />
   ));
   const mappedWork = props.user.map((user) => <Work key={user.id} {...user} />);
-  const mappedContact = props.user.map((user) => <Contact key={user.id} {...user} />);
+  const mappedContact = props.user.map((user) => (
+    <Contact key={user.id} {...user} profileStatus={props.profileStatus} />
+  ));
   const mappedPrivate = props.user.map((user) => (
     <Private key={user.id} {...user} level={props.level} isUSerProfile={props.isUSerProfile} />
   ));
@@ -48,6 +50,7 @@ export default function ViewProfile(props) {
 
       <div className="empty"></div>
       <ProfileNav
+        profileStatus={props.profileStatus}
         id={props.id}
         editProfile={props.editProfile}
         setSystemPart={props.setSystemPart}
@@ -62,6 +65,11 @@ export default function ViewProfile(props) {
         setState={props.setState}
       />
       <DeleteModal
+        setChosenHours={props.setChosenHours}
+        setChosenDivision={props.setChosenDivision}
+        setSearch={props.setSearch}
+        chosenUser={props.chosenUser}
+        setProfileStatus={props.setProfileStatus}
         deleteProfile={deleteProfile}
         id={props.id}
         systemPart={props.systemPart}

@@ -1,5 +1,13 @@
 .Administration {
   min-height: 100%;
+  .UserCard {
+    cursor: pointer;
+    .profile-img-card,
+    .info-container,
+    button {
+      pointer-events: none;
+    }
+  }
 }
 .MainDesktop {
   padding: 0.5rem 0.5rem 3.2rem;

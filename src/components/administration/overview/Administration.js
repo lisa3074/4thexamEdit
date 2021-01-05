@@ -37,6 +37,7 @@ export default function Administration(props) {
   const [chatSearch, setChatSearch] = useState("");
   const [messageToDelete, setMessageToDelete] = useState();
   const [userEmail, setUserEmail] = useState();
+  const [profileStatus, setProfileStatus] = useState("active");
   const doesProfileExist = useRef(false);
 
   localStorage.length === 0 ? firebaseConfig.auth().signOut() : localStorage.setItem("user", "true");
@@ -124,6 +125,7 @@ export default function Administration(props) {
     setChosenHours: setChosenHours,
     setChosenDivision: setChosenDivision,
   };
+  console.log(isUSerProfile);
   return (
     <section className="Administration" data-module="profiles">
       <div className="loading-page">
@@ -146,6 +148,7 @@ export default function Administration(props) {
         setChatSearch={setChatSearch}></TopBar>
       <Menu
         {...chosenProps}
+        setProfileStatus={setProfileStatus}
         setEndpoint={props.setEndpoint}
         setTool={setTool}
         signedinUser={signedinUser}
@@ -158,6 +161,8 @@ export default function Administration(props) {
         setSystemPart={setSystemPart}></Menu>
       <MainAdmin
         {...chosenProps}
+        setProfileStatus={setProfileStatus}
+        profileStatus={profileStatus}
         users={users}
         setUsers={setUsers}
         chosenDivision={chosenDivision}

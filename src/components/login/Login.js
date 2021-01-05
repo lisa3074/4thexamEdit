@@ -84,8 +84,8 @@ const Login = ({ history }) => {
   //DELETED PROFILE LOGOUT
   const deleted = localStorage.profileDeleted ? (
     <p className="deletedProfile">
-      Your profile has been deleted, and because of that, you have been logged out. If this is a mistake, please contact
-      an admin.
+      Your profile has been deleted or your access has been revoked, and because of that, you have been logged out. If
+      this is a mistake, please contact an <a href="mailto:admin@skatteguiden.dk">admin</a>.
     </p>
   ) : (
     <> </>
