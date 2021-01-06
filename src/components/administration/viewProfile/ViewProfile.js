@@ -61,6 +61,7 @@ export default function ViewProfile(props) {
         isUSerProfile={props.isUSerProfile}
       />
       <UserForm
+        profileStatus={props.profileStatus}
         chosenUser={props.chosenUser}
         setChosenUser={props.setChosenUser}
         id={props.id}

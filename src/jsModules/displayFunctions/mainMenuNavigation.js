@@ -54,6 +54,21 @@ export function administration() {
     document.querySelector(".MainAdmin").scrollTo({ top: 0, left: 0, behavior: "smooth" }); //////scroll to top
   }, 400);
 }
+export function ownProfile() {
+  //console.log("jsModules || mainMenuNavigation.js | administration()");
+  setTimeout(() => {
+    document.querySelectorAll(".SubMenu, .admin-top").forEach((element) => {
+      element.classList.remove("hide");
+    });
+    document.querySelectorAll(".chat-top, .planner-top").forEach((element) => {
+      element.classList.add("hide");
+    });
+    document.querySelector(".TopBar").setAttribute("data-state", "admin");
+    if (window.innerWidth < 1000) {
+      document.querySelector(".Menu").classList.add("hide");
+    }
+  }, 200);
+}
 
 export function planner() {
   //console.log("jsModules || mainMenuNavigation.js | planner()");

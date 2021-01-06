@@ -39,8 +39,11 @@ export default function Menu(props) {
           <h1>SkatteGuiden</h1>
         </div>
         <Profile
+          setTool={props.setTool}
           signedinUser={props.signedinUser}
           setId={props.setId}
+          setSystemPart={props.setSystemPart}
+          setViewingProfile={props.setViewingProfile}
           setisUSerProfile={props.setisUSerProfile}></Profile>
         <MenuNav
           setProfileStatus={props.setProfileStatus}

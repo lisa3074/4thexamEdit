@@ -19,7 +19,6 @@ export default function UserCard(props) {
     const userId = e.target.dataset.user;
     viewUser(e, userId);
     isUserEqualToProfile(userId);
-    console.log(userId);
   }
   function viewUser(e, userId) {
     displayProfile(userId);

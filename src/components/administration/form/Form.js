@@ -160,26 +160,49 @@ export default function Form(props, { history }) {
   useEffect(() => {
     fileUrl && contractPath
       ? setTimeout(() => {
-          editUser({
-            image: fileUrl,
-            city: city,
-            name: name,
-            country: country,
-            position: position,
-            division: division,
-            workHours: hours,
-            startDate: date,
-            userLevel: level,
-            email: email,
-            tel: tel,
-            accountNumber: account,
-            contract: contractPath,
-            cpr: cpr,
-            education: education,
-            postalCode: postal,
-            streetAndNumber: address,
-            id: props.id,
-          });
+          props.profileStatus === "active"
+            ? editUser({
+                image: fileUrl,
+                city: city,
+                name: name,
+                country: country,
+                position: position,
+                division: division,
+                workHours: hours,
+                startDate: date,
+                userLevel: level,
+                email: email,
+                tel: tel,
+                accountNumber: account,
+                contract: contractPath,
+                cpr: cpr,
+                education: education,
+                postalCode: postal,
+                streetAndNumber: address,
+                id: props.id,
+              })
+            : editUser({
+                image: fileUrl,
+                city: city,
+                name: name,
+                country: country,
+                position: position,
+                division: division,
+                workHours: hours,
+                startDate: date,
+                userLevel: level,
+                email: "",
+                archivedEmail: email,
+                tel: tel,
+                accountNumber: account,
+                contract: contractPath,
+                cpr: cpr,
+                education: education,
+                postalCode: postal,
+                streetAndNumber: address,
+                id: props.id,
+              });
+
           document.querySelector(".succes").classList.remove("hide");
           setTimeout(() => {
             GSAP_addOpacityUserForm();

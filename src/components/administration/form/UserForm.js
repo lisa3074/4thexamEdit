@@ -9,6 +9,7 @@ export default function UserForm(props) {
     <section className="UserForm hide ">
       <FormPath />
       <Form
+        profileStatus={props.profileStatus}
         chosenUser={props.chosenUser}
         setChosenUser={props.setChosenUser}
         id={props.id}

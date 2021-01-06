@@ -5,6 +5,7 @@ import { GSAP_stagViewProfile, GSAP_removeOpacity } from "../../jsModules/displa
 import PersonRoundedIcon from "@material-ui/icons/PersonRounded";
 import PaletteRoundedIcon from "@material-ui/icons/PaletteRounded";
 import Tooltip from "@material-ui/core/Tooltip";
+import { ownProfile } from "../../jsModules/displayFunctions/mainMenuNavigation";
 
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -46,6 +47,10 @@ export default function Profile(props) {
         src={picture}
         alt=""
         onClick={() => {
+          ownProfile();
+          props.setTool("admin");
+          props.setSystemPart("admin");
+          props.setViewingProfile(true);
           displayProfile(props.signedinUser ? props.signedinUser[0].id : "");
           props.setId(props.signedinUser ? props.signedinUser[0].id : "");
           GSAP_stagViewProfile();
@@ -59,6 +64,10 @@ export default function Profile(props) {
         <button
           className="text-btn btn"
           onClick={(e) => {
+            props.setTool("admin");
+            props.setSystemPart("admin");
+            props.setViewingProfile(true);
+            ownProfile();
             displayProfile(props.signedinUser ? props.signedinUser[0].id : "");
             props.setId(props.signedinUser ? props.signedinUser[0].id : "");
             GSAP_stagViewProfile();

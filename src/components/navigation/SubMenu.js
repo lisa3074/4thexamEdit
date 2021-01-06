@@ -117,7 +117,6 @@ export default function SubMenu(props) {
     ) : (
       <></>
     );
-  console.log(props.isUSerProfile);
 
   //prevent users from deleting their own account, only another admin can do that
   const deleteAccess = props.isUSerProfile ? (

@@ -40,7 +40,6 @@ export default function Administration(props) {
   const [userEmail, setUserEmail] = useState();
   const [profileStatus, setProfileStatus] = useState("active");
   const doesProfileExist = useRef(false);
-  console.log(profileStatus);
   localStorage.length === 0 ? firebaseConfig.auth().signOut() : localStorage.setItem("user", "true");
 
   useEffect(() => {
@@ -82,7 +81,6 @@ export default function Administration(props) {
   useEffect(() => {
     setTimeout(() => {
       if (doesProfileExist.current !== true) {
-        console.log("logging out");
         firebaseConfig.auth().signOut();
         localStorage.removeItem("email");
         localStorage.removeItem("signedInUser");
