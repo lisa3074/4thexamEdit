@@ -13,6 +13,7 @@ import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import { addTask } from "../planner/modules/mobNavigation";
 import { chat, scrollToBottom, newUser } from "../../jsModules/displayFunctions/mainMenuNavigation";
 import { fetchAll } from "../../jsModules/displayFunctions/subMenuNavigation";
+import Tooltip from "@material-ui/core/Tooltip";
 import {
   GSAP_addOpacity,
   GSAP_opacity0To1MessageContainer,
@@ -362,15 +363,17 @@ export default function TopBar(props) {
               </Grid>
             </MuiPickersUtilsProvider>
           </form>
-          <div
-            className="float-btn all"
-            onClick={() => {
-              props.setSortDate(null);
-              scrollToBottom();
-              fetchAll();
-            }}>
-            <AllInclusiveIcon />
-          </div>
+          <Tooltip title="All dates">
+            <div
+              className="float-btn all"
+              onClick={() => {
+                props.setSortDate(null);
+                scrollToBottom();
+                fetchAll();
+              }}>
+              <AllInclusiveIcon />
+            </div>
+          </Tooltip>
         </div>
       </div>
     </nav>
