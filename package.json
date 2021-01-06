@@ -37,7 +37,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://frontnd.ninja/optimate/",
+  "homepage": "https://frontnd.ninja/optimateEdit/",
   "eslintConfig": {
     "extends": [
       "react-app",
