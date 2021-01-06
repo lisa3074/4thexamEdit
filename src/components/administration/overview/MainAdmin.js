@@ -64,6 +64,8 @@ export default function MainAdmin(props) {
         }
       />
       <ViewProfile
+        editProfileArchive={props.editProfileArchive}
+        chosenUserArchive={props.chosenUserArchive}
         setChosenHours={props.setChosenHours}
         setChosenDivision={props.setChosenDivision}
         setSearch={props.setSearch}
@@ -84,6 +86,7 @@ export default function MainAdmin(props) {
         isUSerProfile={props.isUSerProfile}
         cards={props.cards}
         setViewingProfile={props.setViewingProfile}
+        setisUSerProfile={props.setisUSerProfile}
       />
     </main>
   );

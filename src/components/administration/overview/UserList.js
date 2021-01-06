@@ -20,6 +20,7 @@ export default function UserList(props) {
         setViewingProfile={props.setViewingProfile}
         isUSerProfile={props.isUSerProfile}
         setisUSerProfile={props.setisUSerProfile}
+        profileStatus={props.profileStatus}
       />
     ) : user.email === "" && profileStatus === "archived" ? (
       <UserCard
@@ -30,14 +31,17 @@ export default function UserList(props) {
         setViewingProfile={props.setViewingProfile}
         isUSerProfile={props.isUSerProfile}
         setisUSerProfile={props.setisUSerProfile}
+        profileStatus={props.profileStatus}
       />
     ) : (
       console.log()
     )
   );
-
+  const archivedProfiles =
+    props.profileStatus === "archived" ? <h1 className="archivedProfiles float-btn">Archive</h1> : <></>;
   return (
     <section className="UserList">
+      {archivedProfiles}
       <div className="grid-wrapper">{mappedUsers}</div>
     </section>
   );

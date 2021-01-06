@@ -63,17 +63,17 @@ export default function Planner(props) {
     editACard(payload);
   }
 
-  if (cards.length === 0) {
-    return (
+  /*  if (cards.length === 0) {
+    /return (
       <div className="load_container hide">
         <h1 className="loading">LOADING</h1>
       </div>
-    );
+    ); 
   } else {
     setTimeout(() => {
       document.querySelector(".loading-page").classList.add("hide");
-    }, 10);
-  }
+    }, 3000);
+  } */
 
   return (
     <main className="Planner hide" data-state="chosen">

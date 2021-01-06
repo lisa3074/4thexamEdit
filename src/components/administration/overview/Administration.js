@@ -9,7 +9,7 @@ import Chat from "../../chat/Chat";
 import { getUsers, getSignedinUser, getCards } from "../../../jsModules/dbData/getData";
 import { scrollToBottom } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 import { getMessages } from "../../../jsModules/dbData/getData";
-import { GSAP_stagProfilesStartup } from "../../../jsModules/displayFunctions/gsap";
+import { GSAP_stagProfilesStartup, GSAP_stagMenuNav } from "../../../jsModules/displayFunctions/gsap";
 import { firebaseConfig, findCurrentUser } from "../../../jsModules/firebase/firebase";
 import { withRouter, Redirect } from "react-router";
 
@@ -27,6 +27,7 @@ export default function Administration(props) {
   const [systemPart, setSystemPart] = useState("admin");
   const [messages, setMessages] = useState();
   const [chosenUser, setChosenUser] = useState();
+  const [chosenUserArchive, setChosenUserArchive] = useState();
   const [state, setState] = useState();
   const [level, setLevel] = useState();
   const [viewingProfile, setViewingProfile] = useState(false);
@@ -39,7 +40,7 @@ export default function Administration(props) {
   const [userEmail, setUserEmail] = useState();
   const [profileStatus, setProfileStatus] = useState("active");
   const doesProfileExist = useRef(false);
-
+  console.log(profileStatus);
   localStorage.length === 0 ? firebaseConfig.auth().signOut() : localStorage.setItem("user", "true");
 
   useEffect(() => {
@@ -94,6 +95,15 @@ export default function Administration(props) {
 
   useEffect(() => {
     signedInUserDepandables();
+    if (signedinUser) {
+      localStorage.setItem("signedInUser", signedinUser[0].name);
+      localStorage.setItem("signedInUserId", signedinUser[0].id);
+      setLevel(signedinUser[0].userLevel);
+      document.querySelector(".loading-page").classList.add("hide");
+      setTimeout(() => {
+        GSAP_stagMenuNav();
+      }, 100);
+    }
   }, [signedinUser]);
 
   useEffect(() => {
@@ -106,17 +116,18 @@ export default function Administration(props) {
     setChosenUser(user);
     setState("edit");
   }
+  function editProfileArchive(id) {
+    //console.log("administration/Administration.js || editProfileArchive()");
+    const user = users.filter((user) => user.id === id);
+    setChosenUserArchive(user);
+    setState("edit");
+  }
 
   function signedInUserDepandables() {
     if (signedinUser) {
       setTimeout(() => {
         getMessages(setMessages);
-        if (signedinUser) {
-          localStorage.setItem("signedInUser", signedinUser[0].name);
-          localStorage.setItem("signedInUserId", signedinUser[0].id);
-          setLevel(signedinUser[0].userLevel);
-        }
-      }, 2000);
+      }, 500);
     }
   }
   const chosenProps = {
@@ -125,7 +136,7 @@ export default function Administration(props) {
     setChosenHours: setChosenHours,
     setChosenDivision: setChosenDivision,
   };
-  console.log(isUSerProfile);
+
   return (
     <section className="Administration" data-module="profiles">
       <div className="loading-page">
@@ -175,14 +186,16 @@ export default function Administration(props) {
         setSystemPart={setSystemPart}
         systemPart={systemPart}
         editProfile={editProfile}
+        editProfileArchive={editProfileArchive}
+        chosenUserArchive={chosenUserArchive}
         chosenUser={chosenUser}
         setChosenUser={setChosenUser}
         state={state}
         setState={setState}
         setViewingProfile={setViewingProfile}
+        setisUSerProfile={setisUSerProfile}
         level={level}
         isUSerProfile={isUSerProfile}
-        setisUSerProfile={setisUSerProfile}
         cards={cards}></MainAdmin>
 
       <Planner
@@ -215,6 +228,7 @@ export default function Administration(props) {
 
       <SubMenu
         {...chosenProps}
+        profileStatus={profileStatus}
         endpoint={props.endpoint}
         tool={tool}
         id={id}
@@ -227,6 +241,7 @@ export default function Administration(props) {
         isUSerProfile={isUSerProfile}
         setisUSerProfile={setisUSerProfile}
         list={list}
+        editProfileArchive={editProfileArchive}
         setSearch={setSearch}></SubMenu>
     </section>
   );

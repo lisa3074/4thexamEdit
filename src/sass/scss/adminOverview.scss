@@ -23,6 +23,20 @@
   overflow: auto;
   padding: 0.5rem 0.5rem 3.2rem;
   position: relative;
+  .archivedProfiles {
+    width: 60px;
+    height: 60px;
+    font-family: "IBMPlexSans-Medium";
+    background-color: var(--chat-me);
+    background-color: var(--list-titles);
+    box-shadow: var(--card-shadow);
+    color: var(--dark-text);
+    font-size: 0.8rem;
+    position: fixed;
+    top: 0.2rem;
+    right: 0.4rem;
+    z-index: 2;
+  }
 }
 .userCard {
   opacity: 0;
@@ -51,6 +65,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
     padding-right: 0.5rem;
+  }
+  .archivedSingleProfiles {
+    display: none;
   }
 
   img {
@@ -164,6 +181,28 @@
   .UserList {
     height: auto;
     padding: 0.5rem 0.5rem;
+    .archivedProfiles {
+      display: none;
+    }
+    .UserCard {
+      position: relative;
+      .archivedSingleProfiles {
+        display: flex;
+        width: 50px;
+        height: 15px;
+        border-radius: 5px;
+        font-family: "IBMPlexSans-Bold";
+        background-color: var(--chat-me);
+        background-color: var(--list-titles);
+        box-shadow: var(--card-shadow);
+        color: var(--dark-text);
+        font-size: 0.6rem;
+        position: absolute;
+        bottom: 0.2rem;
+        left: 0.3rem;
+        z-index: 200;
+      }
+    }
   }
   .MainAdmin {
     min-height: 100%;
@@ -230,6 +269,28 @@
     padding: 0 1rem 1rem 1rem;
     .UserList {
       padding: 0.5rem 0.5rem 5rem;
+      .archivedProfiles {
+        display: none;
+      }
+      .UserCard {
+        position: relative;
+        .archivedSingleProfiles {
+          display: flex;
+          width: 60px;
+          height: 20px;
+          border-radius: 10px;
+          font-family: "IBMPlexSans-Bold";
+          background-color: var(--chat-me);
+          background-color: var(--list-titles);
+          box-shadow: var(--card-shadow);
+          color: var(--dark-text);
+          font-size: 0.65rem;
+          position: absolute;
+          top: 1.4rem;
+          right: 6rem;
+          z-index: 200;
+        }
+      }
     }
   }
 }
@@ -266,6 +327,12 @@
         grid-template-rows: 65% 35%;
         height: 9rem;
         padding: 1rem;
+
+        .archivedSingleProfiles {
+          top: 0.5rem;
+          right: 0.5rem;
+        }
+
         img {
           grid-area: image;
           width: 60px;
@@ -305,12 +372,24 @@
       button.usercard.btn {
         justify-self: flex-end;
       }
+      .archivedSingleProfiles {
+        top: auto;
+        right: auto;
+        bottom: 1rem;
+        left: 1.5rem;
+      }
     }
   }
 }
 @media (min-width: 1900px) {
   .MainAdmin .UserList .UserCard {
     grid-template-columns: 100px auto;
+    .archivedSingleProfiles {
+      top: 1rem;
+      right: 1.5rem;
+      bottom: auto;
+      left: auto;
+    }
 
     img {
       width: 90px;

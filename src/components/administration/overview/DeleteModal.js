@@ -3,19 +3,14 @@ import { notSure, deleted } from "../../../jsModules/displayFunctions/mainMenuNa
 import { deleteAMessage } from "../../../jsModules/dbData/deleteData";
 import { editUser } from "../../../jsModules/dbData/editData";
 import { GSAP_addOpacityUserForm, GSAP_stagProfiles } from "../../../jsModules/displayFunctions/gsap";
-import {
-  clearUserForm,
-  editUserResetForm,
-  newUserResetForm,
-} from "../../../jsModules/displayFunctions/displayEditForm";
+import { resetSubmenu, showCardList } from "../../../jsModules/displayFunctions/subMenuNavigation";
+import { resetFilterNav } from "../../../jsModules/displayFunctions/subMenuNavigation";
 
 export default function DeleteModal(props) {
   //console.log("administration/DeleteModal.js || DeleteModal()");
 
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
-  //const [imageFile, setImageFile] = useState();
-  //const [contractFile, setContractFile] = useState();
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
 
@@ -33,50 +28,42 @@ export default function DeleteModal(props) {
   const [education, setEducation] = useState("");
   const [postal, setPostal] = useState("");
   const [address, setAddress] = useState("");
-  const [password, setPassword] = useState("");
-  //const [fileUrl, setFileUrl] = useState("");
-  //const [filePath, setFilePath] = useState("");
-  //const [uploadedImage, setUploadedImage] = useState();
-  //const [contractPath, setContractPath] = useState("");
 
-  const { chosenUser } = props;
+  const { chosenUserArchive } = props;
 
   useEffect(() => {
-    if (chosenUser) {
-      setName(chosenUser[0].name);
-      setCountry(chosenUser[0].country);
-      setCity(chosenUser[0].city);
+    if (chosenUserArchive) {
+      setName(chosenUserArchive[0].name);
+      setCountry(chosenUserArchive[0].country);
+      setCity(chosenUserArchive[0].city);
       setImage(
-        chosenUser[0].image
-          ? chosenUser[0].image
+        chosenUserArchive[0].image
+          ? chosenUserArchive[0].image
           : "https://firebasestorage.googleapis.com/v0/b/mmdfinalexam.appspot.com/o/profile_pictures%2Fplaceholder.png?alt=media&token=c06d8e7a-6812-45d0-bff1-af790d20f5b8"
       );
-      setPosition(chosenUser[0].position);
-      setDivision(chosenUser[0].division);
-      setHours(chosenUser[0].workHours);
-      setDate(chosenUser[0].startDate);
-      setLevel(chosenUser[0].userLevel);
-      setEmail(chosenUser[0].email);
-      setTel(chosenUser[0].tel);
-      setAccount(chosenUser[0].accountNumber);
-      setContract(chosenUser[0].contract);
-      setEducation(chosenUser[0].education);
-      setCpr(chosenUser[0].cpr);
-      setPostal(chosenUser[0].postalCode);
-      setAddress(chosenUser[0].streetAndNumber);
-      setPassword(chosenUser[0].password);
-      if (chosenUser[0].archivedEmail) {
-        setEmail(chosenUser[0].archivedEmail);
+      setPosition(chosenUserArchive[0].position);
+      setDivision(chosenUserArchive[0].division);
+      setHours(chosenUserArchive[0].workHours);
+      setDate(chosenUserArchive[0].startDate);
+      setLevel(chosenUserArchive[0].userLevel);
+      setEmail(chosenUserArchive[0].email);
+      setTel(chosenUserArchive[0].tel);
+      setAccount(chosenUserArchive[0].accountNumber);
+      setContract(chosenUserArchive[0].contract);
+      setEducation(chosenUserArchive[0].education);
+      setCpr(chosenUserArchive[0].cpr);
+      setPostal(chosenUserArchive[0].postalCode);
+      setAddress(chosenUserArchive[0].streetAndNumber);
+      if (chosenUserArchive[0].archivedEmail) {
+        setEmail(chosenUserArchive[0].archivedEmail);
       }
     }
-  }, [chosenUser]);
+  }, [chosenUserArchive]);
 
-  function resetSearch() {
+  function clearFilter() {
     props.setChosenDivision("");
     props.setChosenHours("");
     props.setSearch("");
-  }
-  function clearForm() {
     document.querySelector("form.FilterUsers").reset();
     const divisionSpan = document.querySelector("#mui-component-select-Division > span");
     const division = document.querySelector("#mui-component-select-Division");
@@ -91,31 +78,29 @@ export default function DeleteModal(props) {
     }
   }
   function clear() {
-    //console.log(" administration/form || Form.js | clear()");
-    //if new user
-    if (!document.querySelector(".password-safety").classList.contains("hide")) {
-      if (window.innerWidth < 1000) {
-        document.querySelector(".SubMenu").classList.remove("hide");
-      }
-      console.log("nr 1");
-      newUserResetForm();
-      editUserResetForm();
-      clearUserForm();
-      resetForm();
-      resetSearch();
-      clearForm();
-      console.log(name);
-      document.querySelector(".ViewProfile").classList.add("hide");
-      document.querySelector(".UserList").classList.remove("hide");
-      setTimeout(() => {
-        GSAP_addOpacityUserForm();
-        GSAP_stagProfiles();
-      }, 1500);
+    if (window.innerWidth < 1000) {
+      console.log("Hide menu");
+      document.querySelector(".Menu").classList.add("hide");
+      resetSubmenu();
+      resetFilterNav();
+      showCardList();
     }
+    setTimeout(() => {
+      resetForm();
+    }, 1000);
+    clearFilter();
+    document.querySelector(".UserList").classList.remove("hide");
+    document.querySelector(".ViewProfile").classList.add("hide");
+    document.querySelector(".succes").classList.add("hide");
+    setTimeout(() => {
+      GSAP_addOpacityUserForm();
+      GSAP_stagProfiles();
+      props.setViewingProfile(false);
+      props.setisUSerProfile(false);
+    }, 500);
   }
 
   function resetForm() {
-    console.log("reset");
     setImage("");
     setCity("");
     setName("");
@@ -133,7 +118,6 @@ export default function DeleteModal(props) {
     setEducation("");
     setPostal("");
     setAddress("");
-    setPassword("");
   }
 
   function archiveProfile() {
@@ -206,11 +190,6 @@ export default function DeleteModal(props) {
               !
             </h1>
             <p>
-              {/*           {props.systemPart === "planner"
-                ? "This will remove the task permanently, and it will not be recovereable."
-                : "chat"
-                ? "This will remove the message permanently, and it will not be recovereable."
-                : "If you do this, the user will no longer be able to log in to the system."} */}
               {props.systemPart === "planner"
                 ? "This will remove the task permanently, and it will not be recovereable."
                 : props.systemPart === "chat"
@@ -224,7 +203,6 @@ export default function DeleteModal(props) {
             <h3>
               {" "}
               Are you sure you want to
-              {/*      {props.systemPart === "planner" ? " task" : props.systemPart === "chat" ? " message" : " profile"}? */}
               {props.systemPart === "planner"
                 ? " delete this task"
                 : props.systemPart === "chat"
@@ -252,12 +230,6 @@ export default function DeleteModal(props) {
                   : unArchiveProfile();
               }
 
-              /* 
-              props.systemPart === "planner"
-                ? props.deleteCard(props.id)
-                : props.systemPart === "chat"
-                ? deleteAMessage(props.messageToDelete)
-                : props.deleteProfile(props.id); */
               deleted();
               props.setViewingProfile ? props.setViewingProfile(false) : console.log("");
             }}>

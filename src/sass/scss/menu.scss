@@ -24,7 +24,7 @@
   }
   .Profile {
     opacity: 0;
-    padding-top: 4rem;
+    padding-top: 3rem;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -55,8 +55,8 @@
       }
     }
     img {
-      width: 135px;
-      height: 135px;
+      width: 120px;
+      height: 120px;
       object-fit: cover;
       cursor: pointer;
     }
@@ -92,7 +92,7 @@ body[data-state="dark"] .Menu .Profile .grid-wrapper .svg-wrapper svg {
   fill: var(--button);
 }
 .MenuNav {
-  padding-top: 3rem;
+  padding-top: 5vh;
   padding-bottom: 2rem;
   opacity: 0;
   li {

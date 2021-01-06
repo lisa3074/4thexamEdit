@@ -255,7 +255,7 @@ button.MuiButton-root:not(.MuiIconButton-root):not(.float-btn):not(.sendMessage)
     filter: brightness(1.5) saturate(0.2);
   }
 }
-.float-btn:not(.theList):not(.edit):not(.delete):not(.save):not(.one):not(.two):not(.three) {
+.float-btn:not(.theList):not(.edit):not(.delete):not(.save):not(.one):not(.two):not(.three):not(.archivedSingleProfiles) {
   animation: glow 5s ease-out 0s infinite forwards;
 }
 .float-btn svg,

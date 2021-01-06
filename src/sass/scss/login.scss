@@ -38,10 +38,21 @@ body[data-state="dark"] {
 }
 
 .deletedProfile {
-  font-size: 0.75rem;
-  padding: 1rem;
-  color: var(--orange);
-  line-height: 1rem;
+  padding: 2rem 1rem 3rem 1rem;
+  p,
+  li {
+    color: var(--orange);
+    font-size: 0.75rem;
+    line-height: 1.15rem;
+  }
+  li {
+    font-family: "IBMPlexSans-Regular";
+    list-style: disc;
+    padding-top: 0.5rem;
+  }
+  ul {
+    padding-left: 1rem;
+  }
 }
 
 .login-inputs {

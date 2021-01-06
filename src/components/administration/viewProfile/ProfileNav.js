@@ -18,7 +18,7 @@ export default function ProfileNav(props) {
           <ArchiveRoundedIcon
             onClick={() => {
               areYouSure();
-              props.editProfile(props.id);
+              props.editProfileArchive(props.id);
               props.setSystemPart("adminArchive");
             }}
           />
@@ -30,7 +30,7 @@ export default function ProfileNav(props) {
           <UnarchiveRoundedIcon
             onClick={() => {
               areYouSure();
-              props.editProfile(props.id);
+              props.editProfileArchive(props.id);
               props.setSystemPart("adminUnArchive");
             }}
           />
@@ -43,17 +43,6 @@ export default function ProfileNav(props) {
     <div></div>
   ) : (
     <>
-      {/*    <div className={"float-btn archive"}>
-        <Tooltip title="Archive profile">
-          <ArchiveRoundedIcon
-            onClick={() => {
-              areYouSure();
-              props.editProfile(props.id);
-              props.setSystemPart("adminArchive");
-            }}
-          />
-        </Tooltip>
-      </div> */}
       {ifActive}
       <div className={"float-btn delete"}>
         <Tooltip title="Delete profile">

@@ -6,6 +6,8 @@ import ArrowBackIosRoundedIcon from "@material-ui/icons/ArrowBackIosRounded";
 import CloseRoundedIcon from "@material-ui/icons/CloseRounded";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import DeleteRoundedIcon from "@material-ui/icons/DeleteRounded";
+import ArchiveRoundedIcon from "@material-ui/icons/ArchiveRounded";
+import UnarchiveRoundedIcon from "@material-ui/icons/UnarchiveRounded";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import { editUser, setUpForm } from "../../jsModules/displayFunctions/displayEditForm";
 import { resetSubmenu } from "../../jsModules/displayFunctions/subMenuNavigation";
@@ -33,7 +35,7 @@ import { addTask } from "../planner/modules/mobNavigation";
 
 export default function SubMenu(props) {
   //console.log("navigation || SubMenu.js | SubMenu()");
-  const tool = props.tool;
+  const { tool } = props;
 
   function removeDelete() {
     //console.log("navigation || SubMenu.js | removeDelete()");
@@ -75,22 +77,48 @@ export default function SubMenu(props) {
       <div className="newUserIcon"></div>
     );
   //makes sure only admins can edit profiles
-  const editAccess =
-    props.level === "Administrator" || props.isUSerProfile ? (
-      <div
-        className="menuEdit hide"
-        onClick={(e) => {
-          editUser();
-          removeDelete();
-          props.editProfile(props.id);
-          GSAP_removeOpacity(".UserForm");
-          setUpForm();
-        }}>
-        <EditRoundedIcon />
+  const editAccess = props.isUSerProfile ? (
+    <div
+      className="menuEdit hide"
+      onClick={(e) => {
+        editUser();
+        removeDelete();
+        props.editProfile(props.id);
+        GSAP_removeOpacity(".UserForm");
+        setUpForm();
+      }}>
+      <EditRoundedIcon />
+    </div>
+  ) : (
+    <div className="menuEdit hide"></div>
+  );
+
+  const archiveAccess =
+    props.level === "Administrator" && !props.isUSerProfile && props.profileStatus === "active" ? (
+      <div className="menuEdit hide">
+        <ArchiveRoundedIcon
+          onClick={() => {
+            areYouSure();
+            props.editProfileArchive(props.id);
+            props.setSystemPart("adminArchive");
+          }}
+        />
+      </div>
+    ) : props.level === "Administrator" && !props.isUSerProfile && props.profileStatus === "archived" ? (
+      <div className="menuEdit hide">
+        <UnarchiveRoundedIcon
+          onClick={() => {
+            areYouSure();
+            props.editProfileArchive(props.id);
+            props.setSystemPart("adminUnArchive");
+          }}
+        />
       </div>
     ) : (
-      <div className="menuEdit hide"></div>
+      <></>
     );
+  console.log(props.isUSerProfile);
+
   //prevent users from deleting their own account, only another admin can do that
   const deleteAccess = props.isUSerProfile ? (
     <div className="menuDelete hide"></div>
@@ -146,6 +174,7 @@ export default function SubMenu(props) {
           {props.tool === "admin" ? <SearchRoundedIcon /> : <SearchRoundedIcon />}
         </div>
         {editAccess}
+        {archiveAccess}
         <div
           className="menuClose hide"
           onClick={() => {

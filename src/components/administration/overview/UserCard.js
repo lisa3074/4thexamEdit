@@ -15,12 +15,6 @@ export default function UserCard(props) {
   const lastSpace = props.name.lastIndexOf(" ");
   const lastName = props.name.substring(lastSpace);
 
-  /*   function detectId(e) {
-    const userId = e.target.parentNode.dataset.user;
-    viewUser(e, userId);
-    isUserEqualToProfile(userId);
-    console.log(userId);
-  } */
   function detectIdCard(e) {
     const userId = e.target.dataset.user;
     viewUser(e, userId);
@@ -45,6 +39,8 @@ export default function UserCard(props) {
       props.setisUSerProfile(false);
     }
   }
+  const archivedProfiles =
+    props.profileStatus === "archived" ? <h1 className="archivedSingleProfiles float-btn">Archived</h1> : <></>;
   return (
     <article
       className="UserCard"
@@ -71,16 +67,8 @@ export default function UserCard(props) {
           <p className="usercard division">{props.division}</p>
         </div>
       </div>
-      <button
-        className="usercard btn primary text-btn"
-        /*  onClick={(e) => {
-          detectId(e);
-          props.setViewingProfile(true);
-          GSAP_stagViewProfile();
-        }} */
-      >
-        View
-      </button>
+      {archivedProfiles}
+      <button className="usercard btn primary text-btn">View</button>
     </article>
   );
 }

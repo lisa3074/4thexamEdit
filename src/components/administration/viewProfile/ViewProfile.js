@@ -8,6 +8,7 @@ import ProfileNav from "./ProfileNav";
 import Work from "./Work";
 import WorkLoad from "./WorkLoad";
 import { deleteUser } from "../../../jsModules/dbData/deleteData";
+import { GSAP_stagProfiles } from "../../../jsModules/displayFunctions/gsap";
 import DeleteModal from "../overview/DeleteModal";
 import { showCardList } from "../../../jsModules/displayFunctions/subMenuNavigation";
 
@@ -38,6 +39,7 @@ export default function ViewProfile(props) {
     document.querySelector(".UserList").classList.remove("hide");
     document.querySelector(".modal-wrapper").classList.add("hide");
     showCardList();
+    GSAP_stagProfiles();
   }
 
   return (
@@ -52,6 +54,7 @@ export default function ViewProfile(props) {
       <ProfileNav
         profileStatus={props.profileStatus}
         id={props.id}
+        editProfileArchive={props.editProfileArchive}
         editProfile={props.editProfile}
         setSystemPart={props.setSystemPart}
         level={props.level}
@@ -68,12 +71,13 @@ export default function ViewProfile(props) {
         setChosenHours={props.setChosenHours}
         setChosenDivision={props.setChosenDivision}
         setSearch={props.setSearch}
-        chosenUser={props.chosenUser}
+        chosenUserArchive={props.chosenUserArchive}
         setProfileStatus={props.setProfileStatus}
         deleteProfile={deleteProfile}
         id={props.id}
         systemPart={props.systemPart}
         setViewingProfile={props.setViewingProfile}
+        setisUSerProfile={props.setisUSerProfile}
       />
     </section>
   );

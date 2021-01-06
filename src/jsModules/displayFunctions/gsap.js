@@ -125,7 +125,7 @@ export function GSAP_sortVisibleMobileTasks() {
 export function GSAP_sortVisibleMobileUsers() {
   //console.log("jsModules || gsap.js | GSAP_sortVisibleMobile()");
   setTimeout(() => {
-    gsap.to(".FilterUsers", { delay: 0.2, duration: 0.3, top: 135 });
+    gsap.to(".FilterUsers", { delay: 0.2, duration: 0.3, top: 130 });
     gsap.to(".UserList", { duration: 0.5, top: 0 });
   }, 1);
 }

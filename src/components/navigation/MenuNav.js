@@ -22,7 +22,6 @@ import {
   GSAP_addOpacity,
   GSAP_stagCardsDesktop,
   GSAP_stagProfilesMenuNav,
-  GSAP_stagMenuNav,
   GSAP_removeOpacity,
   GSAP_opacity0To1MessageContainer,
 } from "../../jsModules/displayFunctions/gsap";
@@ -44,8 +43,6 @@ export default function MenuNav(props) {
     props.setViewingProfile(false);
   }
 
-  GSAP_stagMenuNav();
-
   function clearFormPlanner() {
     //console.log("navigation || SubMenu.js | clearForm()");
     document.querySelector("form.FilterUsers").reset();
@@ -63,50 +60,47 @@ export default function MenuNav(props) {
 
   //USER LEVEL RESTRICTIONS
   //if administrator
-  const newUserAcces =
+  const adminAccess =
     props.level === "Administrator" ? (
-      <li
-        className="inset"
-        onClick={() => {
-          newUser();
-          GSAP_addOpacity(".panelMargin");
-          GSAP_removeOpacity(".UserForm");
-          props.setTool("admin");
-          props.setSystemPart("admin");
-          resetSearch();
-          GSAP_addOpacity(".UserCard, .userCard, .ProfileNav, .panelMargin");
-          setUpForm();
-          clearFormAdmin();
-        }}>
-        <PersonAddIcon />
-        <h3 className="new-user-link">New user</h3>
-      </li>
-    ) : (
-      <li></li>
-    );
-  const archivedProfile =
-    props.level === "Administrator" ? (
-      <Link
-        to="/administration"
-        className="inset"
-        onClick={() => {
-          administration();
-          props.setTool("admin");
-          props.setSystemPart("admin");
-          resetSearch();
-          GSAP_stagProfilesMenuNav();
-          GSAP_addOpacity(".panelMargin, .userCard, .ProfileNav");
-          clearFormAdmin();
+      <>
+        <Link
+          to="/administration"
+          className="inset"
+          onClick={() => {
+            administration();
+            props.setTool("admin");
+            props.setSystemPart("admin");
+            resetSearch();
+            GSAP_stagProfilesMenuNav();
+            GSAP_addOpacity(".panelMargin, .userCard, .ProfileNav");
+            clearFormAdmin();
 
-          props.setProfileStatus("archived");
-        }}>
-        <li>
-          <AccountBoxRoundedIcon />
-          <h3 className="new-user-link">Archived profiles</h3>
+            props.setProfileStatus("archived");
+          }}>
+          <li>
+            <AccountBoxRoundedIcon />
+            <h3 className="new-user-link">Archive</h3>
+          </li>
+        </Link>
+        <li
+          className="inset"
+          onClick={() => {
+            newUser();
+            GSAP_addOpacity(".panelMargin");
+            GSAP_removeOpacity(".UserForm");
+            props.setTool("admin");
+            props.setSystemPart("admin");
+            resetSearch();
+            GSAP_addOpacity(".UserCard, .userCard, .ProfileNav, .panelMargin");
+            setUpForm();
+            clearFormAdmin();
+          }}>
+          <PersonAddIcon />
+          <h3 className="new-user-link">New user</h3>
         </li>
-      </Link>
+      </>
     ) : (
-      <li></li>
+      <></>
     );
 
   return (
@@ -129,8 +123,7 @@ export default function MenuNav(props) {
             <h3 className="admin-link">Profiles</h3>
           </li>
         </Link>
-        {archivedProfile}
-        {newUserAcces}
+        {adminAccess}
         <li
           className="go-to-planner"
           onClick={() => {

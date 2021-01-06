@@ -83,10 +83,18 @@ const Login = ({ history }) => {
 
   //DELETED PROFILE LOGOUT
   const deleted = localStorage.profileDeleted ? (
-    <p className="deletedProfile">
-      Your profile has been deleted or your access has been revoked, and because of that, you have been logged out. If
-      this is a mistake, please contact an <a href="mailto:admin@skatteguiden.dk">admin</a>.
-    </p>
+    <div className="deletedProfile">
+      <p>You have been logged out. This has happened because:</p>
+      <ul>
+        <li>
+          It's been too long since your last login. If so, please log in, so your profile can be re-authenticated.
+        </li>
+        <li>
+          Your profile has been deleted or your access has been revoked. If you are unable to log in, please contact an
+          <a href="mailto:admin@skatteguiden.dk"> admin</a>.
+        </li>
+      </ul>
+    </div>
   ) : (
     <> </>
   );
