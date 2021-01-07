@@ -33,7 +33,7 @@ export default function NewTask(props) {
     { category: "Support", color: "#3498DB" },
     { category: "Development", color: "#1ec69a" },
     { category: "Finance", color: "#EA5974" },
-    { category: "Sales", color: "#374d62" },
+    { category: "Sales", color: "#999999" },
     { category: "Test", color: "#B4B256" },
     { category: "UX", color: "#8567b2" },
     { category: "Marketing", color: "#34d0d5" },
@@ -42,7 +42,7 @@ export default function NewTask(props) {
   ];
 
   const mappedCategories = categories.map((entry) => (
-    <MenuItem value={entry.category} key={entry.color}>
+    <MenuItem value={entry.category} key={entry.category}>
       {entry.category}
     </MenuItem>
   ));
@@ -139,7 +139,7 @@ export default function NewTask(props) {
         timeStamp: Date.now(),
       });
       GSAP_stagCardsDesktop();
-
+      setAssigned([]);
       setTitle("");
       setColor("#ffffff");
       setDescription("");

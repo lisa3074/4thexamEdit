@@ -40,7 +40,7 @@ export default function EditForm(props) {
     { category: "Support", color: "#5d9ec9" },
     { category: "Development", color: "#6fc4ad" },
     { category: "Finance", color: "#d68292" },
-    { category: "Sales", color: "#374d62" },
+    { category: "Sales", color: "#999999" },
     { category: "Test", color: "#B4B256" },
     { category: "UX", color: "#9178b6" },
     { category: "Marketing", color: "#62aeb1" },
