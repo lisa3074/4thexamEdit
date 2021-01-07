@@ -47,20 +47,26 @@ export function searchUsers(tool) {
   document.querySelector(".menuClose").classList.remove("hide");
   document.querySelector(".PlannerNav .search-wrapper").classList.add("hide");
   document.querySelector(".close-wrapper").classList.remove("hide");
+  if (tool === "admin") {
+    document.querySelector(".UserList").setAttribute("data-state", "searchOpen");
+  } else {
+    document.querySelector(".relativeContainer").setAttribute("data-state", "searchOpen");
+  }
 }
 
 export function closeSearch(tool) {
   //console.log("jsModules || subMenuNavigation.js | closeSearch()");
-  /*   document.querySelector(".menuSearch").classList.remove("hide");
-  document.querySelector(".menuClose").classList.add("hide");
-  document.querySelector(".PlannerNav .search-wrapper").classList.remove("hide");
-  document.querySelector(".close-wrapper").classList.add("hide"); */
   document.querySelectorAll(".menuSearch, .PlannerNav .search-wrapper").forEach((element) => {
     element.classList.remove("hide");
   });
   document.querySelectorAll(".menuClose, .close-wrapper").forEach((element) => {
     element.classList.add("hide");
   });
+  if (tool === "admin") {
+    document.querySelector(".UserList").setAttribute("data-state", "");
+  } else {
+    document.querySelector(".relativeContainer").setAttribute("data-state", "");
+  }
 }
 
 export function resetFilterNav() {

@@ -20,6 +20,7 @@ export default function Message(props) {
   const [editText, setEditText] = useState();
   const [editClicked, setEditClicked] = useState(false);
   const date = dayjs(props.date * 1).format(`dddd, MMM D, YYYY`);
+  const dateMobile = dayjs(props.date * 1).format(`MMM D, YYYY`);
   const time = dayjs(props.date * 1).format(`h:mm A`);
 
   const { name } = props;
@@ -129,7 +130,10 @@ export default function Message(props) {
                 <DeleteModal messageToDelete={messageToDelete} systemPart={props.systemPart} />
               </div>
             </div>
-            <h2 className="time">{time}</h2>
+            <h2 className="time">
+              <span className="date-mobile">{dateMobile} at </span>
+              {time}
+            </h2>
 
             <p className={editClicked ? "message hiddenFromUser" : "message"}>{props.message}</p>
             <form

@@ -15,6 +15,7 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import Grid from "@material-ui/core/Grid";
 import { hideError, taskValidation } from "../../jsModules/displayFunctions/taskValidation";
 import { GSAP_stagCardsDesktop } from "../../jsModules/displayFunctions/gsap";
+import { navigate } from "../planner/modules/mobNavigation";
 
 export default function NewTask(props) {
   //console.log("planner || NewTask.js | NewTask()");
@@ -138,6 +139,7 @@ export default function NewTask(props) {
         timeStamp: Date.now(),
       });
       GSAP_stagCardsDesktop();
+
       setTitle("");
       setColor("#ffffff");
       setDescription("");
@@ -146,10 +148,25 @@ export default function NewTask(props) {
       setDue("");
       correctTrue();
       document.querySelector(".collaborators").value = "";
-      setTimeout(() => {
-        closeNewTask();
-      }, 2000);
-      setAssigned([]);
+
+      props.setTaskList(list);
+      if (window.innerWidth < 1000) {
+        if (list === "To Do") {
+          navigate("To", "progress1", "Barrier1", "Done1");
+        } else if (list === "In progress") {
+          navigate("progress1", "To", "Barrier1", "Done1");
+        } else if (list === "Barrier") {
+          navigate("Barrier1", "To", "progress1", "Done1");
+        } else {
+          navigate("Done1", "To", "progress1", "Barrier1");
+        }
+
+        closeNewTask("#b" + props.id);
+      } else {
+        setTimeout(() => {
+          closeNewTask("#b" + props.id);
+        }, 2000);
+      }
     }
   }
 

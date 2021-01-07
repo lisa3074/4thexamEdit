@@ -22,6 +22,9 @@ export default function MainPlanner({
   setTool,
   setList,
   list,
+  taskList,
+  setTaskList,
+  plannerClicked,
 }) {
   //console.log("planner || MainPlanner.js | MainPlanner()");
 
@@ -59,6 +62,8 @@ export default function MainPlanner({
   return (
     <main className="Main">
       <PlannerNav
+        taskList={taskList}
+        setTaskList={setTaskList}
         tool={tool}
         setTool={setTool}
         setChosenCategory={setChosenCategory}
@@ -75,10 +80,38 @@ export default function MainPlanner({
         list={list}
       />
       <section className="relativeContainer">
-        <PlannerList key={cards.id} header="To Do" cards={getFilteredCards("To Do")} {...listProps} />
-        <PlannerList key={cards.id} header="In progress" cards={getFilteredCards("In progress")} {...listProps} />
-        <PlannerList key={cards.id} header="Barrier" cards={getFilteredCards("Barrier")} {...listProps} />
-        <PlannerList key={cards.id} header="Done" cards={getFilteredCards("Done")} {...listProps} />
+        <PlannerList
+          key={cards.id}
+          header="To Do"
+          cards={getFilteredCards("To Do")}
+          {...listProps}
+          setTaskList={setTaskList}
+          plannerClicked={plannerClicked}
+        />
+        <PlannerList
+          key={cards.id}
+          header="In progress"
+          cards={getFilteredCards("In progress")}
+          {...listProps}
+          setTaskList={setTaskList}
+          plannerClicked={plannerClicked}
+        />
+        <PlannerList
+          key={cards.id}
+          header="Barrier"
+          cards={getFilteredCards("Barrier")}
+          {...listProps}
+          setTaskList={setTaskList}
+          plannerClicked={plannerClicked}
+        />
+        <PlannerList
+          key={cards.id}
+          header="Done"
+          cards={getFilteredCards("Done")}
+          {...listProps}
+          setTaskList={setTaskList}
+          plannerClicked={plannerClicked}
+        />
       </section>
     </main>
   );

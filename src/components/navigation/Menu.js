@@ -46,6 +46,7 @@ export default function Menu(props) {
           setViewingProfile={props.setViewingProfile}
           setisUSerProfile={props.setisUSerProfile}></Profile>
         <MenuNav
+          setPlannerClicked={props.setPlannerClicked}
           setProfileStatus={props.setProfileStatus}
           setEndpoint={props.setEndpoint}
           setTool={props.setTool}

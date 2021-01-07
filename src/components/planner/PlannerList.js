@@ -18,6 +18,8 @@ export default function List(props) {
       chosenEmployee={props.chosenEmployee}
       setSystemPart={props.setSystemPart}
       systemPart={props.systemPart}
+      setTaskList={props.setTaskList}
+      plannerClicked={props.plannerClicked}
     />
   ));
 

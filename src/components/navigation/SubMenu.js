@@ -12,6 +12,7 @@ import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import { editUser, setUpForm } from "../../jsModules/displayFunctions/displayEditForm";
 import { resetSubmenu } from "../../jsModules/displayFunctions/subMenuNavigation";
 import { areYouSure } from "../../jsModules/displayFunctions/mainMenuNavigation";
+import { navigate } from "../planner/modules/mobNavigation";
 import {
   openMenu,
   delegation,
@@ -134,6 +135,12 @@ export default function SubMenu(props) {
     <div className="menuDelete hide"></div>
   );
 
+  function resetTaskList() {
+    if (props.tool === "planner") {
+      navigate("To", "progress1", "Barrier1", "Done1");
+    }
+  }
+
   return (
     <nav className="SubMenu hide">
       <div
@@ -198,11 +205,15 @@ export default function SubMenu(props) {
         className="menuIcon"
         onClick={() => {
           openMenu();
+          closeSearch(props.tool);
           resetSubmenu();
           resetFilterNav();
+          GSAP_sortInvisibleFilterMobile();
           GSAP_opacity0To1MenuProfile();
           GSAP_sortInvisibleMobile();
           GSAP_addOpacity(".UserCard");
+          resetTaskList();
+          props.setTaskList("To do");
         }}>
         <MenuRoundedIcon />
       </div>

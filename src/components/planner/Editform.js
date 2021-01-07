@@ -21,18 +21,19 @@ import { MuiPickersUtilsProvider, KeyboardDatePicker } from "@material-ui/picker
 import Grid from "@material-ui/core/Grid";
 import DeleteModal from "../administration/overview/DeleteModal";
 import { areYouSure } from "../../jsModules/displayFunctions/mainMenuNavigation";
-import { GSAP_stagCardsDesktop } from "../../jsModules/displayFunctions/gsap";
+import { GSAP_stagCardsDesktop, GSAP_stagCards } from "../../jsModules/displayFunctions/gsap";
+import { navigate } from "../planner/modules/mobNavigation";
 
 export default function EditForm(props) {
   //console.log("planner || EditForm.js | EditForm()");
   const { users } = props;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(props.category ? props.category : "");
   const [color, setColor] = useState("#ffffff");
-  const [list, setList] = useState("");
+  const [list, setList] = useState(props.list ? props.list : "");
   const [assignedTo, setAssigned] = useState([]);
-  const [due, setDue] = useState("");
+  const [due, setDue] = useState(props.due ? props.due : "");
 
   const categories = [
     { category: "Design", color: "#e2835e" },
@@ -91,7 +92,7 @@ export default function EditForm(props) {
   };
   const listChanged = (e) => {
     setList(e.target.value);
-    document.querySelector(".editContainer form > div:nth-child(4) > p").classList.remove("hide");
+    document.querySelector(".editContainer form > div:nth-child(4) > p").classList.add("hide");
   };
   const dueChanged = (e) => {
     let today = new Date(e);
@@ -130,17 +131,26 @@ export default function EditForm(props) {
     } else {
       props.editCard(payload, props.id, title, list, assignedTo, color, category, description, due);
       GSAP_stagCardsDesktop();
-      setTitle("");
-      setColor("#ffffff");
-      setDescription("");
-      setCategory("");
-      setList("");
-      setDue("");
-      correctTrue();
-      setAssigned([]);
-      setTimeout(() => {
+      props.setTaskList(list);
+      if (window.innerWidth < 1000) {
+        if (list === "To Do") {
+          navigate("To", "progress1", "Barrier1", "Done1");
+        } else if (list === "In progress") {
+          navigate("progress1", "To", "Barrier1", "Done1");
+        } else if (list === "Barrier") {
+          navigate("Barrier1", "To", "progress1", "Done1");
+        } else {
+          navigate("Done1", "To", "progress1", "Barrier1");
+        }
+        setTimeout(() => {
+          GSAP_stagCardsDesktop();
+        }, 1000);
         close("#b" + props.id);
-      }, 2000);
+      } else {
+        setTimeout(() => {
+          close("#b" + props.id);
+        }, 2000);
+      }
     }
   }
 
@@ -163,6 +173,7 @@ export default function EditForm(props) {
   const correctFalse = (e) => {
     setCorrect(false);
   };
+
   const disabled = {
     filter:
       title.length === 0 || category.length === 0 || assignedTo.length === 0 || list.length === 0
@@ -180,6 +191,7 @@ export default function EditForm(props) {
     setColor("#ffffff");
     setList("");
   }
+
   return (
     <>
       <div

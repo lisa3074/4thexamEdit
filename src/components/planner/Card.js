@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "@material-ui/core/Select";
 import Panel from "muicss/lib/react/panel";
 import { expand } from "./modules/expand";
@@ -8,21 +8,27 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Tooltip from "@material-ui/core/Tooltip";
-import { GSAP_opacity0To1NamePopup } from "../../jsModules/displayFunctions/gsap";
+import { GSAP_opacity0To1NamePopup, GSAP_stagCardsDesktop } from "../../jsModules/displayFunctions/gsap";
 
 export default function Card(props) {
   //console.log("planner || Card.js | Card()");
-  const [list, setList] = useState("");
+  const [dropList, setDropList] = useState(props.dropList ? props.dropList : "");
+  const { plannerClicked } = props;
+  useEffect(() => {
+    if (plannerClicked) {
+      GSAP_stagCardsDesktop();
+    }
+  }, [dropList, plannerClicked]);
 
   //CHANGE LIST
   const listChanged = (e) => {
-    setList(e.target.value);
+    setDropList(e.target.value);
     onClickMove(e.target.value);
   };
   const cardDragged = (e, id) => {
     e.preventDefault();
     e.stopPropagation();
-    setList(props.dropList);
+    setDropList(props.dropList);
     if (!e.target.classList.contains("editContainer") && !e.target.classList.contains("editContainer").children) {
       dragMove(id, props.dropList);
     }
@@ -108,7 +114,7 @@ export default function Card(props) {
           <Select
             labelId="select-list"
             id="demo-simple-select"
-            value={(list, props.list)}
+            value={(dropList, props.list)}
             onChange={listChanged}
             name="input"
             label="List">
@@ -141,12 +147,11 @@ export default function Card(props) {
               setSystemPart={props.setSystemPart}
               systemPart={props.systemPart}
               cardDragged={cardDragged}
+              setTaskList={props.setTaskList}
             />
           </div>
         </div>
       </li>
     </Panel>
-    /* ) : (
-    "" */
   );
 }

@@ -38,6 +38,9 @@
     z-index: 2;
   }
 }
+.UserList[data-state="searchOpen"] {
+  height: calc(var(--vh, 1vh) * 100 - 140px);
+}
 .userCard {
   opacity: 0;
 }

@@ -130,6 +130,7 @@ export default function MenuNav(props) {
             planner(innerWidth);
             props.setTool("planner");
             props.setSystemPart("planner");
+            props.setPlannerClicked(true);
             resetSearch();
             GSAP_stagCardsDesktop();
             GSAP_addOpacity(".UserCard, .userCard, .ProfileNav");

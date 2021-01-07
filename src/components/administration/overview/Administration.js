@@ -9,7 +9,13 @@ import Chat from "../../chat/Chat";
 import { getUsers, getSignedinUser, getCards } from "../../../jsModules/dbData/getData";
 import { scrollToBottom } from "../../../jsModules/displayFunctions/mainMenuNavigation";
 import { getMessages } from "../../../jsModules/dbData/getData";
-import { GSAP_stagProfilesStartup, GSAP_stagMenuNav } from "../../../jsModules/displayFunctions/gsap";
+import {
+  GSAP_stagProfilesStartup,
+  GSAP_stagMenuNav,
+  GSAP_stagCardsDesktop,
+  GSAP_stagCards,
+  GSAP_sortInvisibleMobile,
+} from "../../../jsModules/displayFunctions/gsap";
 import { firebaseConfig, findCurrentUser } from "../../../jsModules/firebase/firebase";
 import { withRouter, Redirect } from "react-router";
 
@@ -40,6 +46,8 @@ export default function Administration(props) {
   const [userEmail, setUserEmail] = useState();
   const [profileStatus, setProfileStatus] = useState("active");
   const doesProfileExist = useRef(false);
+  const [plannerClicked, setPlannerClicked] = useState(false);
+  const [taskList, setTaskList] = useState("To do");
   localStorage.length === 0 ? firebaseConfig.auth().signOut() : localStorage.setItem("user", "true");
 
   useEffect(() => {
@@ -66,6 +74,16 @@ export default function Administration(props) {
       GSAP_stagProfilesStartup();
     }
   }, [users]);
+
+  useEffect(() => {
+    if (window.innerWidth > 1000) {
+      if (props.plannerClicked) {
+        GSAP_stagCardsDesktop();
+      }
+    } else if (window.innerWidth < 1000 && !props.plannerClicked) {
+      GSAP_sortInvisibleMobile();
+    }
+  }, [cards]);
 
   useEffect(() => {
     if (users && userEmail) {
@@ -157,6 +175,7 @@ export default function Administration(props) {
         setChatSearch={setChatSearch}></TopBar>
       <Menu
         {...chosenProps}
+        setPlannerClicked={setPlannerClicked}
         setProfileStatus={setProfileStatus}
         setEndpoint={props.setEndpoint}
         setTool={setTool}
@@ -198,6 +217,9 @@ export default function Administration(props) {
 
       <Planner
         {...chosenProps}
+        setTaskList={setTaskList}
+        taskList={taskList}
+        plannerClicked={plannerClicked}
         chosenCategory={chosenCategory}
         chosenEmployee={chosenEmployee}
         users={users}
@@ -226,6 +248,7 @@ export default function Administration(props) {
 
       <SubMenu
         {...chosenProps}
+        setTaskList={setTaskList}
         profileStatus={profileStatus}
         endpoint={props.endpoint}
         tool={tool}

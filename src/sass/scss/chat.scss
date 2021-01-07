@@ -482,6 +482,9 @@ body[data-state="dark"] .ChatNav button.text-btn .MuiInputBase-input::-webkit-in
         padding-right: 10rem;
       }
     }
+    .date-mobile {
+      display: none;
+    }
   }
 }
 @media (min-width: 1000px) {

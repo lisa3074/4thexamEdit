@@ -21,7 +21,7 @@ import { searchUsers, closeSearch } from "../../jsModules/displayFunctions/subMe
 export default function PlannerNav(props) {
   //console.log("planner || PlannerNav.js | PlannerNav()");
   const [anchorEl, setAnchorEl] = useState(null);
-  const [list, setList] = useState("To do");
+  //const [props.taskList, props.setTaskList] = useState("To do");
 
   const handleClick = (event) => {
     //console.log("planner || PlannerNav.js | handleClick()");
@@ -29,13 +29,14 @@ export default function PlannerNav(props) {
   };
 
   const handleClose = (e) => {
-    //console.log("planner || PlannerNav.js | handleClose()");
+    // console.log("planner || PlannerNav.js | handleClose()");
     setAnchorEl(null);
-    e.target.textContent === "" ? setList(list) : setList(e.target.textContent);
+    e.target.textContent === "" ? props.setTaskList(props.taskList) : props.setTaskList(e.target.textContent);
     closeSearch(props.tool);
     props.setChosenCategory("");
     props.setChosenEmployee("");
     GSAP_sortInvisibleMobile();
+    GSAP_sortInvisibleFilterMobile();
     GSAP_stagCards(props.list);
   };
   const move = {
@@ -54,7 +55,7 @@ export default function PlannerNav(props) {
         color="primary">
         <div className="list-wrapper" onClick={handleClick}>
           <ArrowDropDownRoundedIcon />
-          <h3>{list}</h3>
+          <h3>{props.taskList}</h3>
         </div>
         <div>
           <div
