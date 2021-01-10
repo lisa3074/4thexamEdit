@@ -33,7 +33,7 @@ export function clearUserForm() {
 }
 
 export function newUserResetForm() {
-  //console.log("jsModules || displayEditForm.js | newUserResetForm()");
+  console.log("jsModules || displayEditForm.js | newUserResetForm()");
   const $ = document.querySelector.bind(document);
   setTimeout(() => {
     $(".ViewProfile").classList.add("hide");

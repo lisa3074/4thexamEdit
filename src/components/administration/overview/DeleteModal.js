@@ -79,7 +79,6 @@ export default function DeleteModal(props) {
   }
   function clear() {
     if (window.innerWidth < 1000) {
-      console.log("Hide menu");
       document.querySelector(".Menu").classList.add("hide");
       resetSubmenu();
       resetFilterNav();

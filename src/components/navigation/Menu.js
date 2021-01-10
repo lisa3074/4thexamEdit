@@ -46,6 +46,10 @@ export default function Menu(props) {
           setViewingProfile={props.setViewingProfile}
           setisUSerProfile={props.setisUSerProfile}></Profile>
         <MenuNav
+          newMessage={props.newMessage}
+          setNewMessage={props.setNewMessage}
+          setNumberOfnewMessages={props.setNumberOfnewMessages}
+          setOnChat={props.setOnChat}
           setPlannerClicked={props.setPlannerClicked}
           setProfileStatus={props.setProfileStatus}
           setEndpoint={props.setEndpoint}

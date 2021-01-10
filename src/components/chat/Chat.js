@@ -18,6 +18,7 @@ export default function Chat(props) {
           sortDate={sortDate}
           setChatSearch={props.setChatSearch}
           chatSearch={props.chatSearch}
+          setOnChat={props.setOnChat}
         />
         <MessageBoard
           users={props.users}

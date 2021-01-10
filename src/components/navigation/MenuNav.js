@@ -109,6 +109,7 @@ export default function MenuNav(props) {
         <Link
           to="/administration"
           onClick={() => {
+            props.setOnChat(false);
             administration();
             props.setTool("admin");
             props.setSystemPart("admin");
@@ -127,6 +128,7 @@ export default function MenuNav(props) {
         <li
           className="go-to-planner"
           onClick={() => {
+            props.setOnChat(false);
             planner(innerWidth);
             props.setTool("planner");
             props.setSystemPart("planner");
@@ -142,6 +144,7 @@ export default function MenuNav(props) {
         <li
           className="addTask"
           onClick={() => {
+            props.setOnChat(false);
             addTask();
             planner(innerWidth);
             props.setSystemPart("planner");
@@ -156,6 +159,12 @@ export default function MenuNav(props) {
 
         <li
           onClick={() => {
+            props.setOnChat(true);
+            props.setNumberOfnewMessages(1);
+            document.querySelectorAll(".newNumber").forEach((number) => {
+              number.textContent = "";
+            });
+            props.setNewMessage(false);
             chat();
             scrollToBottom();
             resetSearch();
@@ -165,6 +174,9 @@ export default function MenuNav(props) {
           }}>
           <ChatBubbleIcon />
           <h3 className="chat-link">Chat</h3>
+          <div className="new-message" data-state={props.newMessage === true ? "new" : "old"}>
+            <p className="newNumber"></p>
+          </div>
         </li>
         <li>
           <LockIcon />
@@ -173,6 +185,7 @@ export default function MenuNav(props) {
             onClick={() => {
               firebaseConfig.auth().signOut();
               //localStorage.clear();
+              props.setOnChat(false);
               localStorage.removeItem("email");
               localStorage.removeItem("signedInUser");
               localStorage.removeItem("signedInUserId");

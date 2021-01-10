@@ -62,6 +62,7 @@ export default function ChatNav(props) {
               showMenu();
               GSAP_opacity0To1MenuProfile();
               resetSubmenu();
+              props.setOnChat(false);
             }}>
             <ArrowBackIosRoundedIcon />
           </button>

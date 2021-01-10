@@ -13,7 +13,6 @@ import {
   GSAP_stagProfilesStartup,
   GSAP_stagMenuNav,
   GSAP_stagCardsDesktop,
-  GSAP_stagCards,
   GSAP_sortInvisibleMobile,
 } from "../../../jsModules/displayFunctions/gsap";
 import { firebaseConfig, findCurrentUser } from "../../../jsModules/firebase/firebase";
@@ -48,6 +47,11 @@ export default function Administration(props) {
   const doesProfileExist = useRef(false);
   const [plannerClicked, setPlannerClicked] = useState(false);
   const [taskList, setTaskList] = useState("To do");
+  const [newMessage, setNewMessage] = useState(false);
+  const [numberOfMessages, setNumberOfMessages] = useState(false);
+  const [numberOfNewMessages, setNumberOfnewMessages] = useState(1);
+  const [onChat, setOnChat] = useState(false);
+
   localStorage.length === 0 ? firebaseConfig.auth().signOut() : localStorage.setItem("user", "true");
 
   useEffect(() => {
@@ -124,6 +128,30 @@ export default function Administration(props) {
 
   useEffect(() => {
     scrollToBottom();
+    if (messages) {
+      //If messages is not nothing
+      if (numberOfMessages) {
+        //if numberOfMessages is not undefindes/""/0
+        if (messages.length !== numberOfMessages && !onChat) {
+          //if the amount of messages is not equal to numberOfMessages and the user is not in the chat module
+          if (messages.length > numberOfMessages) {
+            //Message added
+            setNumberOfMessages(messages.length);
+            setNumberOfnewMessages(numberOfNewMessages + 1);
+            document.querySelectorAll(".newNumber").forEach((number) => {
+              number.textContent = numberOfNewMessages;
+            });
+            setNewMessage(true);
+          } else {
+            setNumberOfMessages(messages.length);
+          }
+        } else {
+          setNumberOfMessages(messages.length);
+        }
+      } else {
+        setNumberOfMessages(messages.length);
+      }
+    }
   }, [messages]);
 
   function editProfile(id) {
@@ -162,6 +190,9 @@ export default function Administration(props) {
       </div>
       <TopBar
         {...chosenProps}
+        setOnChat={setOnChat}
+        setNumberOfnewMessages={setNumberOfnewMessages}
+        setNewMessage={setNewMessage}
         endpoint={props.endpoint}
         setSearch={setSearch}
         level={level}
@@ -172,9 +203,14 @@ export default function Administration(props) {
         users={users}
         setViewingProfile={setViewingProfile}
         chatSearch={chatSearch}
+        newMessage={newMessage}
         setChatSearch={setChatSearch}></TopBar>
       <Menu
         {...chosenProps}
+        newMessage={newMessage}
+        setOnChat={setOnChat}
+        setNewMessage={setNewMessage}
+        setNumberOfnewMessages={setNumberOfnewMessages}
         setPlannerClicked={setPlannerClicked}
         setProfileStatus={setProfileStatus}
         setEndpoint={props.setEndpoint}
@@ -244,6 +280,7 @@ export default function Administration(props) {
         setChatSearch={setChatSearch}
         messageToDelete={messageToDelete}
         setMessageToDelete={setMessageToDelete}
+        setOnChat={setOnChat}
       />
 
       <SubMenu

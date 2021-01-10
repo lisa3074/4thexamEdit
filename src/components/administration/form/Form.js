@@ -215,12 +215,13 @@ export default function Form(props, { history }) {
 
   //RESET
   function clear() {
-    //console.log(" administration/form || Form.js | clear()");
+    console.log(" administration/form || Form.js | clear()");
     //if new user
     if (!document.querySelector(".password-safety").classList.contains("hide")) {
       if (window.innerWidth < 1000) {
         document.querySelector(".SubMenu").classList.remove("hide");
       }
+      console.log("new");
       newUserResetForm();
       clearUserForm();
       resetForm();

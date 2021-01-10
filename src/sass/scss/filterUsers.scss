@@ -104,6 +104,18 @@ body[data-state="dark"] .TopBar {
       stroke: var(--orange);
     }
   }
+  .TopBar .grid-wrapper .float-btn {
+    position: relative;
+    .new-message {
+      right: -0.4rem;
+      top: -0.1rem;
+      width: 18px;
+      height: 18px;
+      .newNumber {
+        font-size: 0.75rem;
+      }
+    }
+  }
 
   .FilterUsers,
   .FilterTasks {

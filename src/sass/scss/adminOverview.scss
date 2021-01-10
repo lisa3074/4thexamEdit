@@ -23,20 +23,6 @@
   overflow: auto;
   padding: 0.5rem 0.5rem 3.2rem;
   position: relative;
-  .archivedProfiles {
-    width: 60px;
-    height: 60px;
-    font-family: "IBMPlexSans-Medium";
-    background-color: var(--chat-me);
-    background-color: var(--list-titles);
-    box-shadow: var(--card-shadow);
-    color: var(--dark-text);
-    font-size: 0.8rem;
-    position: fixed;
-    top: 0.2rem;
-    right: 0.4rem;
-    z-index: 2;
-  }
 }
 .UserList[data-state="searchOpen"] {
   height: calc(var(--vh, 1vh) * 100 - 140px);
@@ -49,17 +35,19 @@
   width: 100%;
   opacity: 0;
   grid-template-areas:
-    "image info info"
-    "image division button";
-  grid-template-columns: 90px auto 120px;
-  grid-template-rows: 65% 35%;
-  height: 9rem;
+    "image info"
+    "image division"
+    "image button";
+  grid-template-columns: 70px auto;
+  grid-template-rows: 45% 35% 20%;
+  height: 11.5rem;
   padding: 1rem;
   margin-bottom: 1.2rem;
   border-radius: var(--border-radius);
   box-shadow: 0px 1px 15px #384d6228;
   background-color: var(--white);
   display: grid;
+  position: relative;
   .usercard.name,
   .usercard.position,
   .usercard.division {
@@ -70,14 +58,27 @@
     padding-right: 0.5rem;
   }
   .archivedSingleProfiles {
-    display: none;
+    display: flex;
+    width: 60px;
+    height: 20px;
+    border-radius: 5px;
+    font-family: "IBMPlexSans-Bold";
+    background-color: var(--chat-me);
+    background-color: var(--list-titles);
+    box-shadow: var(--card-shadow);
+    color: var(--dark-text);
+    font-size: 0.7rem;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 200;
   }
 
   img {
     object-fit: cover;
     grid-area: image;
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     align-self: center;
     justify-self: center;
   }
@@ -113,6 +114,29 @@
   }
 }
 
+@media (min-width: 360px) {
+  .UserCard {
+    grid-template-areas:
+      "image info info"
+      "image division button";
+    grid-template-columns: 90px auto 120px;
+    grid-template-rows: 65% 35%;
+    height: 9rem;
+    .archivedSingleProfiles {
+      width: 75px;
+      height: 25px;
+      font-size: 0.7rem;
+      bottom: auto;
+      left: auto;
+      top: 1rem;
+      right: 1rem;
+    }
+    img {
+      width: 90px;
+      height: 90px;
+    }
+  }
+}
 @media (min-width: 400px) {
   .UserCard {
     grid-template-columns: 100px auto 120px;
@@ -174,6 +198,15 @@
       align-self: flex-end;
       margin-right: 0.3rem;
     }
+    .archivedSingleProfiles {
+      width: 55px;
+      height: 15px;
+      font-size: 0.6rem;
+      bottom: auto;
+      left: auto;
+      top: 1rem;
+      right: 0.8rem;
+    }
   }
 }
 
@@ -184,26 +217,16 @@
   .UserList {
     height: auto;
     padding: 0.5rem 0.5rem;
-    .archivedProfiles {
-      display: none;
-    }
     .UserCard {
       position: relative;
       .archivedSingleProfiles {
-        display: flex;
         width: 50px;
         height: 15px;
-        border-radius: 5px;
-        font-family: "IBMPlexSans-Bold";
-        background-color: var(--chat-me);
-        background-color: var(--list-titles);
-        box-shadow: var(--card-shadow);
-        color: var(--dark-text);
         font-size: 0.6rem;
-        position: absolute;
+        top: auto;
+        right: auto;
         bottom: 0.2rem;
         left: 0.3rem;
-        z-index: 200;
       }
     }
   }
@@ -267,35 +290,25 @@
     }
   }
 }
+@media (min-width: 750px) {
+  .UserList .UserCard {
+    .archivedSingleProfiles {
+      width: 60px;
+      height: 20px;
+      border-radius: 10px;
+      font-size: 0.65rem;
+      bottom: auto;
+      left: auto;
+      top: 1.4rem;
+      right: 6rem;
+    }
+  }
+}
 @media (min-width: 1000px) {
   .MainAdmin {
     padding: 0 1rem 1rem 1rem;
     .UserList {
       padding: 0.5rem 0.5rem 5rem;
-      .archivedProfiles {
-        display: none;
-      }
-      .UserCard {
-        position: relative;
-        .archivedSingleProfiles {
-          display: flex;
-          width: 60px;
-          height: 20px;
-          border-radius: 10px;
-          font-family: "IBMPlexSans-Bold";
-          background-color: var(--chat-me);
-          background-color: var(--list-titles);
-          box-shadow: var(--card-shadow);
-          color: var(--dark-text);
-          font-size: 0.65rem;
-          position: absolute;
-          bottom: auto;
-          left: auto;
-          top: 1.4rem;
-          right: 6rem;
-          z-index: 200;
-        }
-      }
     }
   }
 }

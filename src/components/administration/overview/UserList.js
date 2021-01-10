@@ -37,11 +37,9 @@ export default function UserList(props) {
       console.log()
     )
   );
-  const archivedProfiles =
-    props.profileStatus === "archived" ? <h1 className="archivedProfiles float-btn">Archive</h1> : <></>;
+
   return (
     <section className="UserList">
-      {archivedProfiles}
       <div className="grid-wrapper">{mappedUsers}</div>
     </section>
   );

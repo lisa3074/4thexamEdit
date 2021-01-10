@@ -105,9 +105,11 @@ export function chat() {
 
 export function newUser() {
   //console.log("jsModules || mainMenuNavigation.js | newUser()");
-  document.querySelectorAll(".ViewProfile, .ViewProfile .UserForm, .MainAdmin, .admin-top").forEach((element) => {
-    element.classList.remove("hide");
-  });
+  document
+    .querySelectorAll(".ViewProfile, .ViewProfile .UserForm, .MainAdmin, .admin-top, .password-safety")
+    .forEach((element) => {
+      element.classList.remove("hide");
+    });
   document.querySelectorAll(".Chat, .Planner, .planner-top, .chat-top").forEach((element) => {
     element.classList.add("hide");
   });

@@ -100,6 +100,12 @@ body[data-state="dark"] .Menu .Profile .grid-wrapper .svg-wrapper svg {
     align-items: center;
     line-height: 3rem;
     opacity: 0;
+    position: relative;
+
+    .new-message {
+      left: -0.5rem;
+      top: 0.5rem;
+    }
     h3 {
       padding-left: 0.5rem;
       color: var(--menu-text);

@@ -224,6 +224,12 @@ export default function TopBar(props) {
           <div
             className="float-btn"
             onClick={() => {
+              props.setNewMessage(false);
+              props.setOnChat(true);
+              props.setNumberOfnewMessages(1);
+              document.querySelectorAll(".newNumber").forEach((number) => {
+                number.textContent = "";
+              });
               chat();
               scrollToBottom();
               GSAP_opacity0To1MessageContainer();
@@ -231,6 +237,9 @@ export default function TopBar(props) {
               props.setViewingProfile(false);
             }}>
             <ChatBubbleRoundedIcon />
+            <div className="new-message" data-state={props.newMessage === true ? "new" : "old"}>
+              <p className="newNumber"></p>
+            </div>
           </div>
         </div>
       </form>
@@ -295,6 +304,9 @@ export default function TopBar(props) {
               scrollToBottom();
             }}>
             <ChatBubbleRoundedIcon />
+            <div className="new-message" data-state={props.newMessage === true ? "new" : "old"}>
+              <p className="newNumber"></p>
+            </div>
           </div>
         </div>
       </div>

@@ -33,6 +33,9 @@
   margin: 0;
   padding: 0;
 }
+:root {
+  --always-white: #dddcdc;
+}
 
 :root body[data-state="regular"] {
   //COLORS
@@ -55,6 +58,8 @@
   --line: #eaecef;
   --button: #ffffff;
   --new-message: #ffffff;
+  --message-warning: #ff6127;
+  --message-text: #eeeeee;
 
   //PLANNER COLORS
 
@@ -96,6 +101,8 @@
   --line: #8f8f8f;
   --button: #ffffff;
   --new-message: #ffffff;
+  --message-warning: #00ab8e;
+  --message-text: #ffffff;
   //PLANNER COLORS
 
   --orange-p: #494949;
@@ -136,6 +143,8 @@
   --line: #8f8f8f;
   --button: #cfcfcf;
   --new-message: #292929;
+  --message-warning: #b92b00;
+  --message-text: #cfcfcf;
 
   //PLANNER COLORS
 
@@ -361,6 +370,28 @@ body[data-state="dark"] .MuiPopover-root .MuiPaper-root {
 body[data-state="dark"] .MuiPaper-root {
   color: #c2c2c2;
   background-color: #292929;
+}
+
+.new-message {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.new-message[data-state="old"] {
+  background-color: transparent;
+}
+.new-message[data-state="new"] {
+  background-color: var(--message-warning);
+}
+.newNumber {
+  font-size: 0.7rem;
+  font-family: "IBMPlexSans-Medium";
+  color: var(--message-text);
 }
 
 @keyframes glow {
