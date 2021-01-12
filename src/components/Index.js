@@ -1,21 +1,21 @@
 import React, { useState, useEffect, useRef } from "react";
-import Menu from "../../navigation/Menu";
-import MainAdmin from "./MainAdmin";
-import TopBar from "../../navigation/TopBar";
-import SubMenu from "../../navigation/SubMenu";
-import Planner from "../../planner/planner";
+import Menu from "./navigation/Menu";
+import MainAdmin from "./administration/overview/MainAdmin";
+import TopBar from "./navigation/TopBar";
+import SubMenu from "./navigation/SubMenu";
+import Planner from "./planner/planner";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Chat from "../../chat/Chat";
-import { getUsers, getSignedinUser, getCards } from "../../../jsModules/dbData/getData";
-import { scrollToBottom } from "../../../jsModules/displayFunctions/mainMenuNavigation";
-import { getMessages } from "../../../jsModules/dbData/getData";
+import Chat from "./chat/Chat";
+import { getUsers, getSignedinUser, getCards } from "../jsModules/dbData/getData";
+import { scrollToBottom } from "../jsModules/displayFunctions/mainMenuNavigation";
+import { getMessages } from "../jsModules/dbData/getData";
 import {
   GSAP_stagProfilesStartup,
   GSAP_stagMenuNav,
   GSAP_stagCardsDesktop,
   GSAP_sortInvisibleMobile,
-} from "../../../jsModules/displayFunctions/gsap";
-import { firebaseConfig, findCurrentUser } from "../../../jsModules/firebase/firebase";
+} from "../jsModules/displayFunctions/gsap";
+import { firebaseConfig, findCurrentUser } from "../jsModules/firebase/firebase";
 import { withRouter, Redirect } from "react-router";
 
 export default function Administration(props) {

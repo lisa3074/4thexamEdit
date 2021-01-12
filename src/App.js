@@ -18,7 +18,7 @@ import { AuthProvider } from "./jsModules/firebase/auth";
 import Login from "./components/login/Login";
 import PrivateRoute from "./components/login/PrivateRoute";
 import SignUp from "./components/login/SignUp";
-import Administration from "./components/administration/overview/Administration";
+import Administration from "./components/Index.js";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
 const theme = createMuiTheme({
