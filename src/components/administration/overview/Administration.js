@@ -27,14 +27,12 @@ export default function Administration(props) {
   const [chosenHours, setChosenHours] = useState("");
   const [search, setSearch] = useState("");
   const [users, setUsers] = useState([]);
-  const [signedinUser, setSignedinUser] = useState();
   const [id, setId] = useState();
   const [systemPart, setSystemPart] = useState("admin");
   const [messages, setMessages] = useState();
   const [chosenUser, setChosenUser] = useState();
   const [chosenUserArchive, setChosenUserArchive] = useState();
   const [state, setState] = useState();
-  const [level, setLevel] = useState();
   const [viewingProfile, setViewingProfile] = useState(false);
   const [isUSerProfile, setisUSerProfile] = useState(false);
   const [sortDate, setSortDate] = useState(null);
@@ -51,6 +49,8 @@ export default function Administration(props) {
   const [numberOfMessages, setNumberOfMessages] = useState(false);
   const [numberOfNewMessages, setNumberOfnewMessages] = useState(1);
   const [onChat, setOnChat] = useState(false);
+  const [signedinUser, setSignedinUser] = useState();
+  const [level, setLevel] = useState();
 
   localStorage.length === 0 ? firebaseConfig.auth().signOut() : localStorage.setItem("user", "true");
 
@@ -72,6 +72,19 @@ export default function Administration(props) {
     findCurrentUser(setUserEmail);
     getSignedinUser(setSignedinUser, localStorage.email);
   }, []);
+
+  useEffect(() => {
+    signedInUserDepandables();
+    if (signedinUser) {
+      localStorage.setItem("signedInUser", signedinUser[0].name);
+      localStorage.setItem("signedInUserId", signedinUser[0].id);
+      setLevel(signedinUser[0].userLevel);
+      document.querySelector(".loading-page").classList.add("hide");
+      setTimeout(() => {
+        GSAP_stagMenuNav();
+      }, 100);
+    }
+  }, [signedinUser]);
 
   useEffect(() => {
     if (window.innerWidth > 999) {
@@ -112,19 +125,6 @@ export default function Administration(props) {
       }
     }, 1000);
   }, [doesProfileExist]);
-
-  useEffect(() => {
-    signedInUserDepandables();
-    if (signedinUser) {
-      localStorage.setItem("signedInUser", signedinUser[0].name);
-      localStorage.setItem("signedInUserId", signedinUser[0].id);
-      setLevel(signedinUser[0].userLevel);
-      document.querySelector(".loading-page").classList.add("hide");
-      setTimeout(() => {
-        GSAP_stagMenuNav();
-      }, 100);
-    }
-  }, [signedinUser]);
 
   useEffect(() => {
     scrollToBottom();

@@ -82,7 +82,7 @@ export function storeImage(file, email, callback, image) {
     callback(
       "https://firebasestorage.googleapis.com/v0/b/mmdfinalexam.appspot.com/o/profile_pictures%2Fplaceholder.png?alt=media&token=c06d8e7a-6812-45d0-bff1-af790d20f5b8"
     );
-    //if there is no uploaded file, but there is a link to a previous uploaded image, use that link.
+    //if there is no uploaded file, but there is a link to a previous uploaded image, set loader value and reset form.
   } else if (!file && image) {
     const loader = document.querySelector("#loader");
     loader.value = 100;
@@ -95,7 +95,6 @@ export function storeImage(file, email, callback, image) {
       }
       clearUserForm();
     }, 1000);
-    callback(image);
     //if there is a file uploaded: post to storage, then get the url, then send to callback function, then post url with db entry
   } else {
     const loader = document.querySelector("#loader");
@@ -103,7 +102,6 @@ export function storeImage(file, email, callback, image) {
     const profilePicture = storageRef.put(file);
     storageRef.put(file).then((data) => {
       data.ref.getDownloadURL().then((url) => {
-        // console.log(url.toString());
         callback(url.toString());
       });
     });
@@ -158,15 +156,13 @@ export function storeImage(file, email, callback, image) {
 }
 export function storeContract(file, name, callback, contract) {
   //console.log("jsModules || postData.js | storeImage()");
-  //If there is no file uploaded and no previous link to an image, use a placeholder on the callback location
+  //If there is no file uploaded but a previous link to a contract has been stored, do nothing.
   if (!file && contract) {
-    callback(contract);
     //if there is a file uploaded: post to storage, then get the url, then send to callback function, then post url with db entry
   } else if (file) {
     const storageRef = firebase.storage().ref("contracts/" + name + ".pdf");
     storageRef.put(file).then((data) => {
       data.ref.getDownloadURL().then((url) => {
-        //  console.log(url.toString());
         callback(url.toString());
       });
     });

@@ -164,6 +164,7 @@ export default function NewTask(props) {
         closeNewTask("#b" + props.id);
       } else {
         setTimeout(() => {
+          GSAP_stagCardsDesktop();
           closeNewTask("#b" + props.id);
         }, 2000);
       }

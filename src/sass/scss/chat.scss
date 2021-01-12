@@ -455,6 +455,17 @@ body[data-state="dark"] .ChatNav button.text-btn .MuiInputBase-input::-webkit-in
   }
 }
 @media (min-width: 650px) {
+  .Message .message-container {
+    margin-bottom: 0;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .MessageBoard {
+    .messageList ul {
+      padding-bottom: 3rem;
+    }
+  }
   .Message {
     .line-wrapper {
       display: grid;
@@ -497,6 +508,7 @@ body[data-state="dark"] .ChatNav button.text-btn .MuiInputBase-input::-webkit-in
   .Message .message-container .message-wrapper {
     width: 60%;
   }
+
   .Chat .ChatNav,
   .Chat .FilterMessages {
     display: none;
@@ -507,10 +519,8 @@ body[data-state="dark"] .ChatNav button.text-btn .MuiInputBase-input::-webkit-in
   .MessageBoard {
     height: calc((var(--vh, 1vh) * 100) - 80px - 2.5rem);
     padding-top: 65px;
-    ul {
-      padding-bottom: 2rem;
-    }
   }
+
   .NewMessage .sendMessage {
     width: 45px;
     height: 45px;
@@ -624,9 +634,10 @@ body[data-state="dark"] .ChatNav button.text-btn .MuiInputBase-input::-webkit-in
     width: 45%;
   }
 }
-@media (min-width: 2200px) {
+
+@media (min-width: 1550px) {
   .Chat {
-    width: 1600px;
+    width: 1300px;
     margin: 0 auto;
   }
   .NewMessage {

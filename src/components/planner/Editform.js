@@ -148,6 +148,7 @@ export default function EditForm(props) {
         close("#b" + props.id);
       } else {
         setTimeout(() => {
+          GSAP_stagCardsDesktop();
           close("#b" + props.id);
         }, 2000);
       }

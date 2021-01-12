@@ -302,6 +302,12 @@ export default function TopBar(props) {
             onClick={() => {
               chat();
               scrollToBottom();
+              props.setNewMessage(false);
+              props.setOnChat(true);
+              props.setNumberOfnewMessages(1);
+              document.querySelectorAll(".newNumber").forEach((number) => {
+                number.textContent = "";
+              });
             }}>
             <ChatBubbleRoundedIcon />
             <div className="new-message" data-state={props.newMessage === true ? "new" : "old"}>
